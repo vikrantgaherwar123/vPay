@@ -1,0 +1,9 @@
+.not-active {
+    pointer-events: none;
+    cursor: default;
+}
+
+.d-block{
+    padding-top: 7px;
+    padding-left: 5px;
+}

@@ -1,0 +1,52 @@
+<!-- <div style="padding-bottom:1.5em;" class="input-var">
+        <input (blur)="onBlur()" (focus)="onFocus()" (keydown)="onKeyDown($event)" [(ngModel)]="txtVal"  [id]="eid" [name]="eid" [class]="txtClass" [placeholder]=" " [maxlength]="maxLength" />
+        <label [for]="eid" name="labelName" [class]="labelFadeClass">{{captionLabel}}
+                <span *ngIf="required" style="color:red;"> *</span>
+        </label>
+        <div class="errClass" *ngIf="showError"  name="labelValName">
+                You must enter {{captionLabel}}.
+        </div>
+</div> -->
+<div *ngIf="showOtpDiv">
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>
+                    Enter OTP
+                </mat-label>
+                <input matInput [id]="eid" autocomplete="off" [placeholder]="placeholder" name="otp" type="text"
+                    inputType="number" [(ngModel)]="otp" title='OTP' required maxlength="6" minlength="6">
+                <mat-hint>
+                    OTP has been sent to your registered mobile number xxxx xxx {{mobLast3Digit}}
+                </mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="form-group">
+                <!-- <span class={{OTPTimeOut}} style="color:  #24229e;font-weight:bold;font-size: 12px;">Your OTP is expired within -->
+                <span class={{OTPTimeOut}} style="color:  #24229e;font-weight:bold;font-size: 12px;">Your OTP will
+                    expire after
+                    <span style="color:#ff0000;">{{mmTime}}:{{ssTime}}</span></span>
+                <span class={{OTPRegenerate}} style="color: green;font-size: 12px;"
+                    (click)="GenerateNewOTP();">Regenerate New OTP
+                    <a style="color:blue; font-size: 12px; cursor: pointer;">Click Here !</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-xs-12" style="display: inline-block; text-align:center;padding-top: 10px;">
+        </div>
+    </div> -->
+
+    <div class="row" style="margin: 10px;">
+        <div class="col-md-12 col-sm-12" style="color:blue">
+            Note
+        </div>
+        <ol style="font-size: 11px;color:red">
+            <li>Never share your OTP with anyone.</li>
+            <!-- <li>Never share your Debit/Credit card details with anyone.</li> -->
+        </ol>
+    </div>
+
+</div>

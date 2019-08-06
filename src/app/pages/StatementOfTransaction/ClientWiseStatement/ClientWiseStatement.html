@@ -1,0 +1,159 @@
+<dtp>
+</dtp>
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="inner" style="margin: 0px -15px;">
+                <section>
+                    <div class="" >
+                        <div class="row" *ngIf="Corporateuse" style="padding-bottom: 5px;">
+                            <div class="col-md-2" style="padding-left: 0px;margin-left: 36px;">
+                                <label class="lable-text required" for="InstituteSubName :">Institute Sub Name :</label>
+                                <select class="form-control form-control-sm" [(ngModel)]="InstiSubMstId" (change)="getclientid();">
+                                    <option *ngFor="let item of InstisubIdData" value="{{item.KEY }}" selected>{{
+                                        item.DESCRIPTION }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="lable-text required">Client Id :</label>
+                                <select class="form-control form-control-sm" [(ngModel)]="ClientMstId" style="width: 125px"
+                                    (change)="ChangeClientId();">
+                                    <option *ngFor="let item of clientData" value="{{item.CLIENT_MST_ID }}" selected>{{
+                                        item.CLIENT_NAME }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 cardInputTop">
+                                <input type="text" autocomplete="off" id="Fdate" class="form-control  form-control-sm searchBarInput"
+                                    style="padding: 11px 0px 3px 11px;" name="Fdate" [(ngModel)]="Fdate" (click)="DateTimeCtrl('D','Fdate')"
+                                    required readonly>
+                                <label class="form-control-placeholder" for="Fdate">From Date</label>
+                            </div>
+                            <div class="col-md-2 cardInputTop">
+                                <input type="text" autocomplete="off" id="Tdate" class="form-control  form-control-sm searchBarInput"
+                                    style="padding: 11px 0px 3px 11px;" name="Tdate" [(ngModel)]="Tdate" (click)="DateTimeCtrl('D','Tdate')"
+                                    required readonly>
+                                <label class="form-control-placeholder" for="Tdate">Upto Date</label>
+                            </div>
+                            <div class="col-md-2 cardInputTop" style="max-width:10%">
+                                <button type="button" id="btnSubmit" mat-raised-button class="btn-success text-white pageValid"
+                                    (click)="ShowData()">Show</button>
+                            </div>
+                            <div class="col-md-2 cardInputTop">
+                                <div class="download-block frt">
+                                    <a class="cursorPointerC" title="Generate PDF" (click)="export(this,'PDF');">
+                                        <img src="assets/images/pdf-icon.png" alt="" />
+                                    </a>
+                                    <a class="cursorPointerC" title="Generate Excel" (click)="export(this,'EXCEL');">
+                                        <img src="assets/images/xls-icon.png" alt="" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gap"></div>
+                    <div class="" *ngIf="Disp_DivData" style="margin-bottom: 0">
+                        <div class="box table_scroll " style="width: 100%; height: 370px; overflow: auto;">
+                            <div class="box-body" style="font-size: 0.9em;font-family: verdana;">
+                                <div class="col-md-3">
+                                    <div class="form-group" style="margin-bottom: 12px;">
+                                        <input type="text" autocomplete="off" class="form-control  form-control-sm searchBarInput"
+                                            style="padding: 11px 0px 3px 11px;" onkeyup="searchFunction(event,'#searchTranList tr')"
+                                            placeholder="&#61442; Search Transaction...">
+                                    </div>
+                                </div>
+                                <!-- theader start -->
+                                <div class="tbl-header">
+                                    <table cellpadding="0" id="myTable" cellspacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 183px;" (click)="sort('TRAN_DATE')">Transaction Date
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'TRAN_DATE', 
+                                        'fa-arrow-up': (column == 'TRAN_DATE' && isDesc), 
+                                        'fa-arrow-down': (column == 'TRAN_DATE' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                                <th style="width: 151px;padding-left: 0;" (click)="sort('PARTICULARS')">Particular
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'PARTICULARS', 
+                                        'fa-arrow-up': (column == 'PARTICULARS' && isDesc), 
+                                        'fa-arrow-down': (column == 'PARTICULARS' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                                <th class="text-right" (click)="sort('DR_AMT')">Debit
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'DR_AMT', 
+                                        'fa-arrow-up': (column == 'DR_AMT' && isDesc), 
+                                        'fa-arrow-down': (column == 'DR_AMT' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                                <th class="text-right" (click)="sort('CR_AMT')">Credit
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'CR_AMT', 
+                                        'fa-arrow-up': (column == 'CR_AMT' && isDesc), 
+                                        'fa-arrow-down': (column == 'CR_AMT' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                                <th class="text-right" (click)="sort('BALANCE')">Balance
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'BALANCE', 
+                                        'fa-arrow-up': (column == 'BALANCE' && isDesc), 
+                                        'fa-arrow-down': (column == 'BALANCE' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                                <th (click)="sort('GATEWAY_NAME')">Gateway Name
+                                                    <span class="fa" [ngClass]="{'fa-sort': column != 'GATEWAY_NAME', 
+                                        'fa-arrow-up': (column == 'GATEWAY_NAME' && isDesc), 
+                                        'fa-arrow-down': (column == 'GATEWAY_NAME' && !isDesc) }"
+                                                        aria-hidden="true"> </span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <!-- theader end -->
+                                <div class="tbl-content">
+                                    <table id="searchTranList" class="table-striped" cellpadding="0" cellspacing="0"
+                                        border="0">
+                                        <tbody>
+                                            <tr *ngFor="let item of Result_Data" style="border-bottom: 1px solid #000;">
+                                                <td>{{ item.TRAN_DATE | date:'dd-MM-yyyy'}} {{ item.TRAN_DATE |
+                                                    date:'hh:mm:ss'}}
+                                                </td>
+                                                <td>{{ item.PARTICULARS }}</td>
+                                                <td class="text-right" style=" color: maroon">
+                                                    <i class="icofont icofont-cur-rupee"></i>{{ item.DR_AMT |
+                                                    number:'1.2' }}</td>
+                                                <td class="text-right" style=" color: green ">
+                                                    <i class="icofont icofont-cur-rupee"></i>{{ item.CR_AMT |
+                                                    number:'1.2'}}</td>
+                                                <td class="text-right">
+                                                    <i class="icofont icofont-cur-rupee"></i>{{ item.BALANCE |
+                                                    number:'1.2'}}</td>
+                                                <td>{{ item.GATEWAY_NAME }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- tfooter -->
+                                <div class="tbl-header">
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <th>Total :</th>
+                                                <td class="text-right" style="color: maroon ; font-weight: bold">₹
+                                                    {{TDR | number:'1.2' }}</td>
+                                                <td class="text-right" style="color: green ; font-weight: bold">₹ {{TCR
+                                                    | number:'1.2'}}</td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <!-- tfooter closed -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>

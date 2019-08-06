@@ -1,0 +1,238 @@
+<div class="signup__container" *ngIf='signup__container'>
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__content text-center">
+      <img src="assets/images/vardhmanBank.png" alt="">
+      <h1 class="heading--primary">VARDHMAN BANK</h1>
+      <h2 class="heading--secondary">Vardhaman [Mahila] Co-op. Urban Bank Ltd.</h2>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signup__form">
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Mobile Number" type="text" name="mobile" id="mobile" [(ngModel)]="mobile" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" type="text" name="email" id="email" [(ngModel)]="email" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" type="password" name="password" id="password" [(ngModel)]="password"
+          required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Repeat Password" type="password" name="passwordRepeat" id="passwordRepeat"
+          [(ngModel)]="passwordRepeat" required>
+      </mat-form-field>
+
+
+
+    </form>
+
+    <!-- 
+
+    <div class="form-group">
+      <label for="mobile">Mobile Number</label>
+      
+      <input class="form-control" type="text" name="mobile" id="mobile" [(ngModel)]="mobile" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" type="text" name="email" id="email" [(ngModel)]="email" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input class="form-control" type="password" name="password" id="password" [(ngModel)]="password" required />
+    </div>
+    <div class="form-group">
+      <label for="passwordRepeat">Repeat Password</label>
+      <input class="form-control" type="password" name="passwordRepeat" id="passwordRepeat" [(ngModel)]="passwordRepeat"
+        required />
+    </div> -->
+    <div class="m-t-lg" style="margin: auto;width: 60%;padding: 10px;">
+      <ul class="list-inline">
+        <li>
+          <input class="btn btn--form" type="submit" value="Register" />
+        </li>
+      </ul>
+    </div>
+    <div style="margin: auto;width: 90%">
+      <a class="signup__link" href="javascript:void(0)" (click)="alreadyUser()">Already have an account ? Login
+        here.</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="signup__container" *ngIf='signin__container'>
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__content text-center">
+      <img src="assets/images/vardhmanBank.png" alt="">
+      <h1 class="heading--primary">VARDHMAN BANK</h1>
+      <h2 class="heading--secondary">Vardhaman [Mahila] Co-op. Urban Bank Ltd.</h2>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signin__form">
+
+
+
+
+    <div class="">
+      <label for="mobile">Mobile</label>
+      <input class="form-control" type="text" name="mobile" id="txtMobileNo" inputType="mobileNo" [(ngModel)]="mobileNo"
+        (keyup)="goProcess($event)" autocomplete="off" autofocus required />
+    </div>
+    <div>
+
+      <button id="btnSubmit" mat-raised-button class="btn btn-success text-white pageValid" disabled="true"
+        (click)="Gogo()">
+        Submit
+      </button>
+    </div>
+    <!-- <div [class]="showCustTypes">
+      <div class="radio radio-success radio-inline" style="margin-left: 20px;">
+        <input type="radio" id="rdbIndividual" value="I" [(ngModel)]="custType" (click)="changeCustType('I')"
+          name="custTypes">
+        <label for="rdbIndividual"> Individual </label>
+      </div>
+      <div class="radio radio-success radio-inline" style="margin-left: 20px;">
+        <input type="radio" id="rdbCorporate" name="custTypes" value="C" [(ngModel)]="custType"
+          (click)="changeCustType('C')">
+        <label for="rdbCorporate"> Corporate</label>
+      </div>
+    </div> -->
+
+
+    <div [class]="hideCorpCode">
+      <label for="corporateCode">Corporate Code</label>
+
+      <input type="text" autocomplete="off" id="txtCorporateCode" inputType="number" [(ngModel)]="corporateCode"
+        title='Corporate Code.' class="form-control" maxlength="15" required (change)="setCorpClientMstId()">
+    </div>
+
+    <div class="" style="margin-top: 20px;">
+      <label for="password">Password</label>
+      <!-- <input class="form-control" type="password" name="password" id="txtPassword" inputType="alphaNumeric"
+        [(ngModel)]="password" (keyup)="submit($event)" autocomplete="off" required />
+      <span toggle="#txtPassword" class="fa fa-fw fa-eye-slash field-icon toggle-password" style="color: black;"></span> -->
+
+      <input type="password" autocomplete="off" id="txtPassword" inputType="alphaNumeric" [(ngModel)]="password"
+      title='Password' class="form-control" name="password" required (keyup)="submit($event)"
+      maxlength="20">
+    <span toggle="#txtPassword" style="color: black; cursor: pointer;" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+
+    </div>
+    <div class="">
+      <p class="login-link">
+        <a href="javascript:void(0)" style="font-size: 11px;color: #007bff;margin-right: 125px"
+          (click)="gotoForgetUnLockTab('U')">
+          <i class="fa fa-unlock-alt"></i> Unlock User</a>
+        <a href="javascript:void(0)" style="font-size: 11px;color: #007bff; " (click)="gotoForgetUnLockTab('F')">
+          <i class="fa fa-question"></i> Forgot Password</a> &nbsp; &nbsp;
+        <br />
+        <a href="javascript:void(0)" style="font-size: 11px;color: #007bff;" (click)="gotoForgetUnLockTab('SP')">
+          <i class="fa fa-user"></i> Set Password For Existing User</a>
+      </p>
+    </div>
+    <div class="checkbox checkbox-success">
+      <input id="checkbox3" type="checkbox" [(ngModel)]="TCchek">
+      <label for="checkbox3" style="font-size: 10px">
+        I agree to the
+        <a href="javascript:void(0)" style="font-size: 10px" (click)="termConditions()" data-toggle="modal"
+          data-target="#myModal">Terms
+          and Conditions</a> &
+        <a href="#" style="font-size: 10px" (click)="privacyPolicy()" data-toggle="modal" data-target="#myModal">Privacy
+          Policy.</a>
+      </label>
+    </div>
+    <div class="m-t-lg" style="margin: auto;width: 60%;">
+      <ul class="list-inline">
+        <li>
+          <input class="btn btn--form" type="button"  (click)="login()" value="Login" />
+        </li>
+      </ul>
+    </div>
+    <div style="margin: auto;width: 80%;">
+      <a class="signup__link" href="javascript:void(0)" (click)="newUser()">Dont have an Account ? Sign up. </a>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 400px;overflow: auto;">
+        <div *ngFor="let item of termCondContent">
+          <p style="text-transform: uppercase; font-weight: bold">
+            {{item.TERM_COND_HEADER}}
+          </p>
+          <p style="margin-top: 2%">
+            {{item.TERM_COND_DETAIL}}
+          </p>
+          <br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="showUserModal" class="modal fade" id="vpayUserModal" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+    <div class="modal-content dialog" style="    width: 40% !important; left: 30% !important;">
+      <button type="button" class="close" data-dismiss="modal" style="    padding-left: 475px;">&times;</button>
+
+      <div class="modal-body">
+
+        <ul class="card" style=" margin: 0px 10px !important;">
+          <div class="modal-header" style="background-color: aliceblue" >
+            <p class="title-name m-0" style="color: #1283e6;">Individual user</p>
+          </div>
+          <li *ngFor="let item of VpayUserlist" style="color: #000;" (click)="selectedUser(item)">
+            <div class="row cursorPointerC" style="font-size: 17px;margin: 15px;display: -webkit-inline-box;"
+              *ngIf="item.CORPORATE_FLAG =='I'" data-dismiss="modal">
+              <img src="assets/images/user_1.png" width="50" height="50" alt="">
+              <div class="col-md-12" style=" color: #1283e6c2;    margin: 12px 0px 0px 0px">{{item.CLIENT_NAME}} 
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+
+
+      <div class="modal-body ">
+        <ul class="card" style=" margin-bottom:0px;margin: 10px; ">
+          <div class="modal-header" style=" background-color: aliceblue;">
+            <p class="title-name m-0" style="color: #1283e6;">Corporate user</p>
+          </div>
+          <li *ngFor="let item of VpayUserlist" style="color: #000;" (click)="selectedUser(item)">
+            <div class="row cursorPointerC" style="font-size: 17px;margin: 15px;display: -webkit-inline-box;"
+              *ngIf="item.CORPORATE_FLAG =='C'" data-dismiss="modal">
+              <img src="assets/images/group-button.png" width="50" height="50" alt="">
+              <div class="col-md-12" style=" color: #1283e6;">{{item.CLIENT_NAME}}
+                <br>
+                <h5 *ngIf="item.CORPORATE_FLAG =='C'" style="  color: #1283e6;">({{item.INSTITUTION_NAME}})</h5>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

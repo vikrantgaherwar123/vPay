@@ -1,0 +1,173 @@
+<dtp></dtp>
+<main>
+    <div class="main">
+        <div class="col-md-12">
+            <div class="card mb-0 p-3">
+                <h4 class="text-center">
+                    <span *ngIf="banklogo !=null && BankArray?.length == 1">
+                        <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-left" style="height: 44px;padding-left: 10px;" />
+                    </span>
+                    <span *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                        <img [src]="setBankLogo" class="img-fluid cursorPointerC float-left" *ngIf="setBankLogo !=''"
+                            matTooltip="Select Your Bank" matTooltipPosition="above" (click)="showBankModal()" style="height: 44px;padding-left: 10px;" />
+                    </span>
+                    <span class="font-weight-bold"> Register Complaint</span>
+                    <img style="width: 10%;" class="img-fluid float-right" src="assets/images/bbps_logo.png" alt="bbps" />
+                    <img style=" width: 7%;" class="img-fluid float-right mr-2" src="assets/images/icici_logo.png" alt="icici_logo" />
+                </h4>
+                <hr class="mt-0">
+                <div class="row">
+                    <div class="col-md-2 mr-5">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <mat-select placeholder="Type of Complaint" [(ngModel)]="TypeofComplaint">
+                                    <mat-option value="T">
+                                        Transaction Based
+                                    </mat-option>
+                                    <mat-option value="S">
+                                        Service Based
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-12 mr-5" *ngIf="TypeofComplaint=='S'">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <input type="text" autocomplete="off"  matInput placeholder="Mobile Number" id="txtAgentNo" inputType="mobileNo"
+                                    name="MobNumber" [(ngModel)]='MOBILE' maxlength="10">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div *ngIf="TypeofComplaint=='T'" class="col-md-2 col-sm-12 mr-5">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <input type="text" autocomplete="off"  autocomplete="off" matInput placeholder="Transaction Ref. Number" id="txtTranNo"
+                                    inputType="number" name="tranRefNo" [(ngModel)]='TRF_REF_NUMBER' maxlength="20">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mr-5" *ngIf="TypeofComplaint=='S'">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <mat-select (selectionChange)="setServiceReason()" placeholder="Participation Type" [(ngModel)]="participationType">
+                                    <mat-option value="Agent">
+                                        Agent
+                                    </mat-option>
+                                    <mat-option value="Biller">
+                                        Biller
+                                    </mat-option>
+                                    <!-- <mat-option value="BS">
+                                        Biller / System
+                                    </mat-option> -->
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mr-5" *ngIf="TypeofComplaint=='T'">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <mat-select placeholder="Complaint Reason" [(ngModel)]="Disposition">
+                                    <mat-option *ngFor="let item of DispositionItems" value="{{item.name}}">
+                                    <!-- <mat-option *ngFor="let item of DispositionItems" value="{{item.id}}-{{item.name}}"> -->
+                                        {{item.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-2 mr-5">
+                        <div class="form-group mb-0">
+                            <mat-form-field>
+                                <textarea matInput id="txtDesc" [(ngModel)]='DESC' placeholder="Description"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button mat-raised-button class="btn-success text-white" (click)="Submit()">
+                            Register</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="back()">
+                            Back</button>
+                    </div>
+                </div>
+
+                <div class="gap"></div>
+                <div class="gap"></div>
+                <div class="row">
+                    <div *ngFor="let Item of Items">
+                        <div item-start *ngIf="Item.FLAG == 'Y'">
+                            <i class="fa fa-check-circle" style="font-size:50px;color: #39c139;"></i>
+                        </div>
+                        <div item-start *ngIf="Item.FLAG == 'N'">
+                            <i class="fa fa-check-circle" style="font-size: 50px;color: red;"></i>
+                        </div>
+                        <div>
+                            <h5 style=" margin-top:auto !important;">VPA - {{Item.PAYER_VA}}</h5>
+                            <h3> {{Item.RESPONSE}}</h3>
+                            <p>{{Item.TRAN_DATE | date:'dd MMM yyyy H:mm' }}</p>
+                            <h2 *ngIf="Item.FLAG == 'Y'">
+                                <b>
+                                    <label style="float:right;color:green">₹ {{Item.TRANSAMT |
+                                        number:'1.2'}}</label>
+                                </b>
+                            </h2>
+                            <h2 *ngIf="Item.FLAG == 'N'">
+                                <b>
+                                    <label style="float:right;color:red">₹ {{Item.TRANSAMT | number:'1.2'}}</label>
+                                </b>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div [class]="showBankList">
+            <div class="row bankList">
+                <div class="col-md-10" style="position:absolute;z-index: 5000;color: #000;top: 0%; left: 8%; ">
+                    <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                        <div class="tableHeader">
+                            <h4 class="shopTitle">Select Your Bank</h4>
+                            <hr class="m-0">
+                            <span class="closeBtn" title="close" (click)="btnClose()">
+                                <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                            </span>
+                        </div>
+                        <table id="myTable" class="table table-fixedheader table-striped tblBack">
+                            <tbody style="min-height: 285px !important;max-height: 430px !important;">
+                                <div class="row col-md-12">
+                                    <div class="col-md-6 p-2" *ngFor="let bank of BankArray">
+                                        <ul class="userModal">
+                                            <li class="text-black p-0">
+                                                <div class="row cursorPointerC" (click)="bankListData(bank)">
+                                                    <div class="col-md-3">
+                                                        <img [src]="bank.BANK_LOGO" style="height:70px;padding: 5px;"
+                                                            *ngIf="bank.BANK_LOGO != ''">
+                                                        <img src="assets/images/bank.png" style="height:70px;padding: 5px;"
+                                                            *ngIf="bank.BANK_LOGO == ''">
+                                                    </div>
+                                                    <div class="col-md-9 p-0"> <span style="position: absolute;width: 290px;top: 17px; ">{{bank.BANK_NAME}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="position:absolute;z-index: 4999; height:-webkit-fill-available;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)"
+            [ngClass]="showOverlay"></div>
+        <div class="clearfix">
+        </div>
+
+    </div>
+</main>

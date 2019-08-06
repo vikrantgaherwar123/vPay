@@ -1,0 +1,141 @@
+<main style="height:auto !important; font-family:Verdana, Geneva, Tahoma, sans-serif">
+    <div>
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat" style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="Aadhaar Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <div class="container">
+            <div class="row">
+                <div [class]="showLargeQr">
+                    <div class="text-center">
+                        <div class="qrcode-blockLrg" id="exportthis2" #exportthis2>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtoptop">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop">
+                                <img class="img-fluid" src="assets/images/mobile.png" alt="" />
+                            </div>
+                            <!-- <span style="height:100px;"> </span> -->
+                            <div class="genqr">
+                                <div class="scan-title">
+                                    <h5>Scan QR Code</h5>
+                                    <span style="margin-top:10px"></span>
+                                    <ngx-qrcode item-width="200px" item-height="200px" qrc-value="{{QRDATA}}">
+                                    </ngx-qrcode>
+                                    <img class="upi_qr" src="assets/images/UPI-qr-2.png" />
+                                </div>
+                            </div>
+                            <div class="client-name">
+                                <!-- <p style="padding-top:8px;" *ngIf="businessName!=null">Business Name </p>
+                                <p class="font-weight-bold">{{businessName | titlecase }}</p>
+                                <p style="padding-top:10px;">Merchant Name</p>
+                                <p class="font-weight-bold">{{merchantName| titlecase }} </p> -->
+
+                                <p *ngIf="businessName!=null" style="color: #000;">Business Name </p>
+                                    <p style="font-weight:900; line-height: 11px;">
+                                        {{businessName | titlecase }}</p>
+                               
+                                <p style="color: #000;">Merchant Name</p>
+                                    <p style="font-weight:900;line-height: 11px;">{{merchantName
+                                        | titlecase }} </p>
+                                
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div [class]="showSmallQr">
+                    <div class="text-center">
+                        <div class="qrcode-block" id="exportthis1" #exportthis1>
+                            <div class="qrtop">
+                                <img class="img-fluid" src="assets/images/mobile.png" alt="" />
+                            </div>
+                            <div class="genqr">
+                                <div class="scan-title">
+                                    <h5>Scan QR Code</h5>
+                                    <span style="margin-top:10px"></span>
+                                    <ngx-qrcode item-width="200px" item-height="200px" qrc-value="{{QRDATA}}">
+                                    </ngx-qrcode>
+                                    <img class="upi_qr" src="assets/images/UPI-qr-2.png" />
+                                </div>
+                            </div>
+                            <div class="client-name">
+                                <!-- <p style="padding-top:8px;" *ngIf="businessName!=null">Business Name </p>
+                                <p>{{businessName | titlecase }}</p>
+                                <p style="padding-top:10px;">Merchant Name</p>
+                                <p>{{merchantName| titlecase }} </p> -->
+
+                                <p *ngIf="businessName!=null" style="color: #000;">Business Name</p>
+                                    <p style=" width: 169px;line-height: 11px;">
+                                        {{businessName | titlecase }}</p>
+                               
+                                <p style="color: #000;">Merchant Name</p>
+                                    <p style="width: 169px;line-height: 11px;">{{merchantName
+                                        | titlecase }} </p>
+                                
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                            <div class="qrtop1">
+                                <img class="img-fluid" src="assets/images/blank.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn show-btn btn-primary " (click)="generatePdf()">Generate PDF</button>
+                    <!-- <button class="btn show-btn btn-primary " (click)="captureScreen()">Generate PDF</button> -->
+                </div>
+            </div>
+        </div>
+
+        <!--POPUP START-->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+    </div>
+</main>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

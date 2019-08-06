@@ -1,0 +1,108 @@
+.flip {
+    -webkit-perspective: 800;
+     width: 400px;
+     /* height: 200px; */
+      position: relative;
+      /* margin: 50px auto; */
+      height: 148px;
+  }
+  .flip .card2.flipped {
+    -webkit-transform: rotatey(-180deg);
+  }
+  .flip .card2 {
+    width: 100%;
+    height: 79%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+    border-radius: 5px;
+  }
+  .flip .card2 .face {
+    width: 100%;
+    height: 79%;
+    position: absolute;
+    -webkit-backface-visibility: hidden ;
+    z-index: 2;
+      /* font-family: Georgia; */
+      /* font-size: 3em; */
+      /* text-align: center; */
+      /* line-height: 200px; */
+      border-radius: 5px;
+  }
+  .flip .card2 .front {
+    position: absolute;
+    z-index: 1;
+      background:white;
+      /* color: white; */
+      cursor: pointer;
+  }
+  .flip .card2 .back {
+    -webkit-transform: rotatey(-180deg);
+      /* background: blue; */
+      background: #4680ff;
+      /* color: black; */
+      cursor: pointer;
+      height:100%;
+      padding-top:17px;
+  }
+
+  .flip .card2 .backP{
+    -webkit-transform: rotatey(-180deg);
+      /* background: blue; */
+      background: #fc6180;
+      /* color: black; */
+      cursor: pointer;
+      height:100%;
+      padding-top:17px;
+  }
+
+  .flip .card2 .backG{
+    -webkit-transform: rotatey(-180deg);
+    /* background: blue; */
+    background: #93be52;
+    /* color: black; */
+    cursor: pointer;
+    height:100%;
+    padding-top:17px;
+  }
+  
+
+  .flip .card2 .backY{
+    -webkit-transform: rotatey(-180deg);
+    /* background: blue; */
+    background: #ffb64d;
+    /* color: black; */
+    cursor: pointer;
+    height:100%;
+    padding-top:17px;
+  }
+
+  .main-body .page-wrapper{
+    padding-bottom: 0px !important;
+  }
+
+  .top-logos {
+    /* background:#B9CB1A url('assets/images/header.svg') no-repeat center 0 !important; */
+     /* background-size:70% !important; */
+     
+    } 
+    .bbpsBox{
+      position: relative;
+      left: 75%;
+      bottom: 230px;
+    }
+  
+
+    .cardSmBtn{
+      color: #fff;border-radius: 14px;font-size: 20px;
+    }
+  
+  
+      @media (min-width:1200px){ .dashPage{
+       margin-bottom: -204px;
+       padding: 0.5rem 0rem ;
+      }}
+  @media (max-width:1200px){.dashPage{
+    margin-bottom: 0px;
+    padding: 0.5rem 0rem;
+   }}
+    

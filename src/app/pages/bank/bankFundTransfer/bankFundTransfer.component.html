@@ -1,0 +1,353 @@
+<main class="mt-3">
+    <div *ngIf='CUSTNAME !=undefined'>
+        <app-bankHeader></app-bankHeader>
+    </div>
+
+    <div class="main mt-3">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="{{fundModeTitle}} Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+
+        <div class="container">
+            <!-- Header -->
+            <div class="card mb-3">
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <img class="img-fluid" style="height: 35px;" src="assets/images/bankdetails.png"
+                                alt="Bank Details">
+                            <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Fund Transfer</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="banklogo !=null">
+                        <span *ngIf="btnBack" class="float-right pt-1">
+                            <i  class="fa fa-arrow-circle-o-left cursorPointerC" style="font-size:31px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fund Transfer Mode Page -->
+            <div class="card mb-0 pb-3 col-md-8 m-auto" *ngIf="showfundModepage">
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{fundModeTitle | uppercase}}</span>
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="col-md-12 col-sm-12 col-xl-12 m-auto pt-3">
+                    <div class="row col-sm-12">
+                        <div class="col-sm-12 col-md-6">
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <input #fromInput (keyup)="0" matInput placeholder="From Account Number"
+                                    aria-label="FromAccount" [matAutocomplete]="auto"
+                                    [formControl]="FromAccountNumber1">
+                                <div class="mat-select-arrow-wrapper">
+                                    <div class="mat-select-arrow"
+                                        [ngClass]="{'mat-select-arrow-down': !auto.isOpen, 'mat-select-arrow-up': auto.isOpen}">
+                                    </div>
+                                </div>
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option
+                                        (onSelectionChange)="fromInput.value !=undefined && onEnter($event, fromAccItem )"
+                                        *ngFor="let fromAccItem of filteredStates | async"
+                                        [value]="fromAccItem.ACCOUNT_NUMBER">
+                                        <span>{{ fromAccItem.ACCOUNT_NAME }}</span> <br>
+                                        <small>Account No.: {{fromAccItem.ACCOUNT_NUMBER}}</small>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field> -->
+
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="From Account Number" autocomplete="off" inputType="char"
+                                     id="txtFromAccountNumber" name="FromAccountNumber" list="fromitems" (keyup)='checkLengthOfFrmAccNo($event);'  (change)="saveCode($event); "
+                                    [(ngModel)]="FromAccountNumber" required maxlength="100">
+                                <button mat-button *ngIf="FromAccountNumber" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="resetFrom()">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                                <datalist id="fromitems">
+                                    <option *ngFor="let Item of fromAccfundTranArray" [value]="Item.ACCOUNT_NUMBER" (click)="FromAccountchange(Item)">
+                                        <span>{{ Item.ACCOUNT_NAME }}</span> <br>
+                                    </option>
+                                </datalist>
+                            </mat-form-field>
+
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-select placeholder="From Account Number" [(ngModel)]="FromAccountNumber" required>
+                                    <mat-option *ngFor="let item of fromAccfundTranArray"
+                                        (click)="FromAccountchange(item)" [value]=item.ACCOUNT_NUMBER>
+                                        {{item.ACCOUNT_NUMBER}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card p-2 mb-0">
+                                <strong>
+                                    <p style="font-size: 11px" class="mb-0">Account Name :-
+                                        {{FromAccountName}}</p>
+                                    <p style="font-size: 11px" class="mb-0">Account Bal
+                                        :-{{FromAccountBal |currency:'₹' :'code'}}</p>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-sm-12" *ngIf="ShowAccList">
+                        <div class="col-sm-12 col-md-6">
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-select placeholder="To Account Number" [(ngModel)]="ToAccountNumber" required>
+                                    <mat-option *ngFor="let item of toAccfundTranArray"
+                                        (click)="ToAccountchangeOWN(item)" [value]=item.ACCOUNT_NUMBER>
+                                        {{item.ACCOUNT_NUMBER}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <input #toAccInput (keyup)="0" matInput placeholder="To Account Number"
+                                    aria-label="ToAccount" [matAutocomplete]="autoToAcc"
+                                    [formControl]="ToAccountNumber1">
+                                <mat-autocomplete #autoToAcc="matAutocomplete">
+                                    <mat-option
+                                        (onSelectionChange)="toAccInput.value !=undefined && onEnterTo($event, toAccItem )"
+                                        *ngFor="let toAccItem of filteredStatesTo | async"
+                                        [value]="toAccItem.ACCOUNT_NUMBER">
+                                        <span>{{ toAccItem.ACCOUNT_NAME }}</span> <br>
+                                        <small>Account No.: {{toAccItem.ACCOUNT_NUMBER}}</small>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field> -->
+
+                            <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="To Account Number" autocomplete="off" inputType="char"
+                                         id="txtToAccountNumber" name="ToAccountNumber" list="toitems" (keyup)='checkLengthOfToAccNo($event);' (change)="saveCode($event);"
+                                        [(ngModel)]="ToAccountNumber" required maxlength="100">
+                                    <button mat-button *ngIf="ToAccountNumber" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="resetTo()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                    <datalist id="toitems">
+                                        <option *ngFor="let Item of toAccfundTranArray" [value]="Item.ACCOUNT_NUMBER" (click)="ToAccountchangeOWN(Item)">
+                                            <span>{{ Item.ACCOUNT_NAME }}</span> <br>
+                                            <!-- <small>Account No.: {{Item.ACCOUNT_NUMBER}}</small> -->
+                                        </option>
+                                    </datalist>
+                                </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card p-2 mb-0">
+                                <strong>
+                                    <p style="font-size: 11px" class="mb-0">Account Name :-
+                                        {{ToAccountName}}</p>
+                                    <p style="font-size: 11px" class="mb-0">Bank Name
+                                        :-{{ToBranchName}}</p>
+                                    <p style="font-size: 11px" class="mb-0">IFSC
+                                        :-{{ToAccountIFSC}}</p>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12" *ngIf="ShowBeneList">
+                        <div class="col-sm-12 col-md-6">
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-select placeholder="To Account Number" [(ngModel)]="BeneToAccountNumber" required>
+                                    <mat-option *ngFor="let item of BeneAccountList" (click)="ToAccountchange(item)"
+                                        value={{item.BENE_ACCOUNT_NUMBER}}>
+                                        {{item.BENE_ACCOUNT_NUMBER}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+
+                            <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="To Account Number" autocomplete="off" inputType="char"
+                                         id="txtToBeneAccountNumber" name="ToAccountNumber" list="Beneitems"   (keyup)='checkLengthOfToBeneAccNo($event);' (change)="saveCode($event); "
+                                        [(ngModel)]="BeneToAccountNumber" required maxlength="100">
+                                    <button mat-button *ngIf="BeneToAccountNumber" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="resetBeneTo()">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                    <datalist id="Beneitems">
+                                        <option *ngFor="let Item of BeneAccountList" [value]="Item.BENE_ACCOUNT_NUMBER" (click)="ToAccountchange(Item)">
+                                            <span>{{ Item.BENE_NAME }}</span> <br>
+                                            <!-- <small>Account No.: {{Item.BENE_ACCOUNT_NUMBER}}</small> -->
+                                        </option>
+                                    </datalist>
+                                </mat-form-field>
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <input #BeneInput (keyup)="0" matInput placeholder="To Account Number"
+                                    aria-label="FromAccount" [matAutocomplete]="autoBene"
+                                    [formControl]="ToBeneAccountNumber1">
+                                <mat-autocomplete #autoBene="matAutocomplete">
+                                    <mat-option
+                                        (onSelectionChange)="BeneInput.value !=undefined && onEnterToBene($event, toBeneItem )"
+                                        *ngFor="let toBeneItem of filteredStatesBene | async"
+                                        [value]="toBeneItem.BENE_ACCOUNT_NUMBER">
+                                        <span>{{ toBeneItem.BENE_NAME }}</span> <br>
+                                        <small>Account No.: {{toBeneItem.BENE_ACCOUNT_NUMBER}}</small>
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field> -->
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card p-2 mb-0">
+                                <strong>
+                                    <p style="font-size: 11px" class="mb-0">Account Name
+                                        :-
+                                        {{BeneToAccountName}}</p>
+                                    <p style="font-size: 11px" class="mb-0">Bank Name
+                                        :-{{BeneToBank_Name}}</p>
+                                    <p style="font-size: 11px" class="mb-0">IFSC
+                                        :-{{BeneToAccountIFSC}}</p>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-6 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" matInput inputType="decimal"
+                                    placeholder="Enter Amount" name="enterAmount" required [(ngModel)]='amount'
+                                    maxlength="8" (change)="ConverToDecimal()">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" matInput inputType="alphaNumeric"
+                                    placeholder="Enter Remark" name="remark" [(ngModel)]='remark' maxlength="50">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <input type="password" autocomplete="off" matInput inputType="number"
+                                    placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin' maxlength="4"
+                                    minlength="4">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="card p-2 mb-0 mt-3" *ngIf="TranLimitResp!=undefined || TranLimitResp!=null">
+                                <div>
+
+                                    <p style="font-size: 11px" class="mb-0">Remaining number of Transaction:-
+                                        {{TranLimitResp.MAX_NO_OF_TRANSACTION}}</p>
+                                    <p style="font-size: 11px" class="mb-0">Remaining Transaction Amount
+                                        :- {{TranLimitResp.TOTAL_OF_TRANSACTION_AMOUNT |currency:'₹' :'code'}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 m-auto">
+                        <button mat-raised-button class="btn-success text-white" *ngIf="btnRtgsSubmit"
+                            (click)="fundTranferSubmit('FUND_RTGS')">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" *ngIf="btnNeftSubmit"
+                            (click)="fundTranferSubmit('FUND_NEFT')">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" *ngIf="btnOwnSubmit"
+                            (click)="fundTranferSubmit('FUND_OWN')">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" *ngIf="btnOtherSubmit"
+                            (click)="fundTranferSubmit('FUND_OTHER')">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                            Clear</button>
+                    </div>
+                </div>
+            </div>
+            <!-- OTP Control -->
+            <div class="card p-4" [ngClass]='showVpayOtp'>
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{fundModeTitle}}</span></h6>
+                            <hr class="m-1">
+
+                <div class="form-group">
+                    <otp [eid]="'vpayOtp'"></otp>
+                </div>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="fundOtpProcess()">Submit</button>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="Back()">Cancel</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+        <!-- All Pop Up Start -->
+        <!-- cbs banklist -->
+        <!-- success help -->
+        <div *ngIf="showTOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center" style="height: 263px;">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+                        </div>
+
+
+                        <div>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{FromAccountNumber}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                            </h6>
+
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- term help -->
+        <div class="modal fade" id="termModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>

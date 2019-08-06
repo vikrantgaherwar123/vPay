@@ -1,0 +1,38 @@
+.btn-primary:focus, .btn-primary.focus {
+    -moz-box-shadow:
+       0px 1px 3px rgba(000,000,000,0.5),
+       inset 0px 0px 11px rgba(28,3,28,0.7);
+     -webkit-box-shadow:
+       0px 1px 3px rgba(000,000,000,0.5),
+       inset 0px 0px 11px rgba(28,3,28,0.7);
+     box-shadow:
+       0px 1px 3px rgba(000,000,000,0.5),
+       inset 0px 0px 11px rgba(28,3,28,0.7);
+       background-color: #fff;
+        border-color: #fff;
+        color:black;
+   }
+   .btn:hover{
+    color:black;
+  } 
+  .btn-primary:hover{
+    color:black;
+  }
+
+ 
+
+.error{
+  color:#ff00009c;
+}
+.success{
+  color: #008000ab;
+  
+}
+.error::before{
+  color:#ff00009c;
+  content: "✖";
+}
+.success::before{
+  color: #008000ab;
+  content: "✔";
+}

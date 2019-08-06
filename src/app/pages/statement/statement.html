@@ -1,0 +1,45 @@
+<main>
+  <div class="main">
+    <!-- <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+      style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="Statement Help"
+      matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal"> -->
+    <div class="container">
+        <div class="card mb-3">
+            <div class="row col-md-12 m-auto">
+              <div class="col-md-6">
+                <div class="row">
+                  <img class="img-fluid" style="height: 35px;" src="assets/images/settings.png" alt="Bank Details">
+                  <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Statement</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+      <div class="card-deck">
+        <!-- first card -->
+        <div class="col-sm-12 col-md-4 col-lg-3 ">
+          <div class="card card-block border-success cardHeightleftBlock">
+            <div class="">
+              <div class="bankMenu">
+                <h5 [ngClass]="{'submenuActive': tab==='tab1'}" (click)="ChangeMenu('statementOfAcc')">Statement of
+                  Account</h5>
+              </div>
+            </div>
+
+            <div class="bankMenu">
+              <h5 [ngClass]="{'submenuActive': tab==='tab2'}" (click)="ChangeMenu('TransactionStatus')">Transaction
+                Status</h5>
+            </div>
+          </div>
+        </div>
+        <!-- first card end -->
+
+         <!-- second card -->
+         <div class="card mb-0 pb-3 col-md-12" style="overflow: auto; max-height: 410px;" >
+            <app-statementOfAccount *ngIf="statementOfAcc"></app-statementOfAccount>
+
+            <app-transactionStatus *ngIf="TransactionStatus"></app-transactionStatus>
+        </div> 
+      </div>
+    </div>
+  </div>
+</main>

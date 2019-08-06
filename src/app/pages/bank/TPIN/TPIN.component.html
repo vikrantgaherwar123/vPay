@@ -1,0 +1,256 @@
+<dtp></dtp>
+<main>
+        <div *ngIf='CUSTNAME !=undefined'>
+                <app-bankHeader></app-bankHeader>
+              </div>
+    <div class="main mt-3">
+      
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="TPIN Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+        <div class="container">
+            <!-- Header -->
+            <div class="card mb-3">
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <img class="img-fluid" style="height: 35px;" src="assets/images/bankdetails.png"
+                                alt="Bank Details">
+                            <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;TPIN</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="banklogo !=null">
+                        <span *ngIf="btnBack" class="float-right pt-1">
+                            <i class="fa fa-arrow-circle-o-left cursorPointerC" style="font-size:31px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TPin   -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="showTpin">
+                <div class="row col-md-12 m-auto pt-3">
+                    <div class="col-md-7 mb-0">
+                        <!-- <h5>Other Bank Transfer</h5> -->
+                        <div class="row m-auto">
+                            <div class="zoom col-md-3 card m-2 p-2">
+                                <span (click)="setTpin()">
+                                    <img class="img-fluid mx-auto d-block" style="width:95px"
+                                        src="assets/images/bankImages/chequebook-icon.png" alt="ChequeBook Request"
+                                        title="ChequeBook Request">
+                                    <p class="text-center"
+                                        style="font-family: verdana; width: fit-content;margin: auto;">
+                                        Set Transaction PIN</p>
+                                </span>
+                            </div>
+                            <div class="zoom col-md-3 card m-2 p-2">
+                                <span (click)="unlockTpin()">
+                                    <img class="img-fluid mx-auto d-block" style="width:95px;"
+                                        src="assets/images/bankImages/chequebookStop-icon.png"
+                                        alt="Stop Payment Request" title="Stop Payment Request">
+                                    <p class="text-center"
+                                        style="font-family: verdana; width: fit-content;margin: auto;">
+                                        Unlock TPIN</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--SET TPIN  -->
+            <div class="col-md-12 col-sm-12 card mb-0 p-3" *ngIf="showDivGenerateOtp">
+                <div class="">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{tpinTitle}}</span>
+                    
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="row col-md-12 m-auto pt-3">
+                    <div class="col-md-3 col-sm-12 ">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" autocomplete="off" inputType="mobileNo" matInput
+                                placeholder="Mobile Number" name="mobileNo" maxlength="10" readonly required
+                                [(ngModel)]='mobileNo'>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-9 col-sm-12">
+                        <div class="float-right pt-3">
+                            <button mat-raised-button *ngIf="showBtnTpin ==true" class="btn-success text-white"
+                                (click)="otpConfirmation()">
+                                Generate OTP
+                            </button>
+                            <button mat-raised-button *ngIf="showBtnTpin ==false" class="btn-success text-white"
+                                (click)="otpConfirmation()">
+                                Generate OTP
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--SET TPIN  -->
+            <div class="col-md-12 col-sm-12 card mb-0 p-3" *ngIf="showSetTpinInput">
+                <div class="">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{tpinTitle}}</span>
+                   
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div>
+                    <div class="row col-md-12 m-auto pt-2">
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="password" autocomplete="off" inputType="number" matInput
+                                    placeholder="Enter TPIN" name="tpin" maxlength="4" required [(ngModel)]='tpin'>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="password" autocomplete="off" inputType="number" matInput
+                                    placeholder="Enter Confirm TPIN" name="confirmTpin" maxlength="4" required
+                                    [(ngModel)]='confirmTpin'>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="float-right pt-3">
+                        <button mat-raised-button class="btn-success text-white" (click)="saveData()">
+                            Submit
+                        </button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage();">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Unlock TPIN  -->
+            <div class="col-md-12 col-sm-12 card mb-0 p-3" *ngIf="showUnlockTpin">
+                <div class="">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{tpinTitle}}</span>
+                       
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div>
+                    <div class="row col-md-12 m-auto pt-2">
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" inputType="number" matInput
+                                    placeholder="Customer ID" name="CustomerId" maxlength="20" required
+                                    [(ngModel)]='Customer_ID'>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" maxlength="20" matInput inputType="number"
+                                    placeholder="Account Number" name="accountNo" required [(ngModel)]='AC_NUMBER'>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" inputType="mobileNo" matInput
+                                    placeholder="Mobile Number" name="mobileNo" maxlength="10" required
+                                    [(ngModel)]='Mobile_Number'>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3 col-sm-12 ">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" matInput placeholder="Date of Birth" name="dob"
+                                    required [(ngModel)]='DOB' (click)="DateTimeCtrl('D','DOB')" readonly>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="float-right pt-3">
+                        <button mat-raised-button class="btn-success text-white" (click)="SaveCbs()">
+                            Submit
+                        </button>
+                        <button mat-raised-button class="btn-success text-white" (click)="ClearCbsForm();">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            <div class="col-md-12 col-sm-12 card mb-0 p-3" [ngClass]='showOtp'>
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{tpinTitle}}</span></h6>
+                            <hr class="m-1">
+                <div class="form-group">
+                    <otp [eid]="'otp'" (callBackMethod)="regenerateOTP()"></otp>
+                </div>
+                <div class="cta mt-0">
+                    <button type="button" class="btn btn-success " (click)="onClickCheckOTP()">Submit</button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <!-- All Pop Up Start -->
+        <!-- success help -->
+        <div *ngIf="showPOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center" style="height: 215px;">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+
+                        </div>
+                        <div>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                    
+                            <p style="color:red">Do Not Share Your TPIN</p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- term help -->
+        <div class="modal fade" id="termModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>

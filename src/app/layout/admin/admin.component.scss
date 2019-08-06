@@ -1,0 +1,388 @@
+
+
+
+.menuActive{
+    /* font-weight: bold !important; */
+	color: #ffffff !important;
+	
+}
+.tab1,.tab2,.tab3,.tab4,.tab5,.tab6{
+font-size:20px
+
+ }
+
+ .menu a:hover{
+ color: #ffffff;
+
+ }
+
+
+.user-details{margin-top: 12px;}
+.business-details{margin-top: 5px;}
+
+.btnLogout{
+font-size: 11px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+position: absolute;
+font-weight: bold;
+bottom: 16px;
+right: 5px;
+}
+
+
+/* CSS Document */
+
+.toggle,
+[id^=drop] {
+	display: none;
+}
+
+/* Giving a background-color to the nav container. */
+nav { 
+	margin:0;
+	padding: 0;
+	/* background-color: #93be52e0; */
+	
+	background: #3a7bd5;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #3a6073, #3a7bd5);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #3a6073, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#logo {
+	display: block;
+	padding: 0 15px;
+	float: left;
+	font-size:20px;
+	line-height: 60px;
+}
+
+/* Since we'll have the "ul li" "float:left"
+ * we need to add a clear after the container. */
+
+nav:after {
+	content:"";
+	display:table;
+	clear:both;
+}
+
+/* Removing padding, margin and "list-style" from the "ul",
+ * and adding "position:reltive" */
+nav ul {
+	float: left;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	position: relative;
+	margin-top: 4.5px;
+	z-index: 100;
+	width: 87%;
+	}
+	
+
+
+/* Positioning the navigation items inline */
+nav ul li {
+	margin: 0px;
+	display:inline-block;
+	// float: left;
+	/* background-color: #93be52e0; */
+	/* color:yellow; */
+	}
+
+/* Styling the links */
+nav a {
+	display:block;
+	padding:14px 20px;	
+	color:#c2c2c2;
+	font-size:15px;
+	text-decoration:none;
+}
+
+.paddingNav{
+	padding:9px;	
+}
+.nav ul li ul {
+width: auto;
+}
+
+nav ul li ul li a{
+	color: black;
+padding: 10px !important;
+
+	
+}
+/* nav ul li ul li:hover { background: #000000; } */
+
+/* Background color change on Hover */
+/*nav a:hover { 
+	 background-color: #000000;  
+}*/
+
+/* Hide Dropdowns by Default
+ * and giving it a position of absolute */
+nav ul ul {
+	display: none;
+	position: absolute; 
+	/* has to be the same number as the "line-height" of "nav a" */
+	top: 45px; 
+}
+	
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+	display:inherit;
+}
+	
+/* Fisrt Tier Dropdown */
+// nav ul ul li {
+// 	width:170px;
+// 	float:none;
+// 	display:list-item;
+// 	position: relative;
+// }
+
+/* Second, Third and more Tiers	
+ * We move the 2nd and 3rd etc tier dropdowns to the left
+ * by the amount of the width of the first tier.
+*/
+nav ul ul ul li {
+	position: relative;
+	top:-60px;
+	/* has to be the same number as the "width" of "nav ul ul li" */ 
+	left:170px; 
+}
+
+	
+/* Change ' +' in order to change the Dropdown symbol */
+li > a:after { content:  ' +'; }
+li > a:only-child:after { content: ''; }
+
+
+/* Media Queries
+--------------------------------------------- */
+
+@media all and (max-width : 768px) {
+
+	#logo {
+		display: block;
+		padding: 0;
+		width: 100%;
+		text-align: center;
+		float: none;
+	}
+
+	nav {
+		margin: 0;
+	}
+
+	/* Hide the navigation menu by default */
+	/* Also hide the  */
+	.toggle + a,
+	.menu {
+		display: none;
+	}
+
+	/* Stylinf the toggle lable */
+	.toggle {
+		display: block;
+		background-color: #254441;
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px;
+		text-decoration:none;
+		margin-bottom: 0;
+		border:none;
+	}
+
+	.toggle:hover {
+		background-color: #000000;
+	}
+
+	/* Display Dropdown when clicked on Parent Lable */
+	[id^=drop]:checked + ul {
+		display: block;
+	}
+
+	/* Change menu item's width to 100% */
+	nav ul li {
+		display: block;
+		width: 100%;
+		}
+
+	nav ul ul .toggle,
+	nav ul ul a {
+		padding: 0 40px;
+	}
+
+	nav ul ul ul a {
+		padding: 0 80px;
+	}
+
+	nav a:hover,
+ 	nav ul ul ul a {
+		background-color: #000000;
+		font-size: 15px;
+	}
+  
+	nav ul li ul li .toggle,
+	nav ul ul a,
+  nav ul ul ul a{
+		padding:14px 20px;	
+		color:#FFF;
+		font-size:17px; 
+	}
+  
+  
+	nav ul li ul li .toggle,
+	nav ul ul a {
+		background-color: #212121; 
+	}
+
+	/* Hide Dropdowns by Default */
+	nav ul ul {
+		float: none;
+		position:static;
+		margin-top:0;
+		color: #ffffff;
+		display: contents !important;
+
+		/* has to be the same number as the "line-height" of "nav a" */
+	}
+		
+	/* Hide menus on hover */
+	/*nav ul ul li:hover > ul,
+	nav ul li:hover > ul {
+		 display: none; 
+	}*/
+		
+	/* Fisrt Tier Dropdown */
+	nav ul ul li {
+		display: block;
+		width: 100%;
+	}
+
+	nav ul ul ul li {
+		position: static;
+		/* has to be the same number as the "width" of "nav ul ul li" */ 
+
+	}
+
+}
+
+@media all and (max-width : 330px) {
+
+	nav ul li {
+		display:block;
+		width: 94%;
+	}
+
+}
+.userLogo{
+	font-size: 30px;
+	margin-top: 11px;
+	margin-left: 10px;
+}
+.userLogo1{
+	font-size: 15px;
+	margin-top: 11px;
+	margin-left: 6px;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #93be52e0;
+	min-width: 200px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	margin-right: 5px;
+  }
+  
+  .dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  .dropdown-content a:hover {background-color: #000000}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #000000;}
+
+.user{
+	display:none;
+	height: 140px;
+	width: 280px;
+	position: absolute;
+	margin-top: 55px;
+
+}
+
+.user h6{
+	color:black;
+}
+.dropdown:hover .user{
+	display: block;
+}
+
+
+
+.buttonLogout {
+position: absolute;
+	text-decoration: none;
+	float: right;
+  /* padding: 12px; */
+  /* margin: 15px; */
+  color: white;
+  /* width: 25px; */
+  
+  transition: width .35s;
+  -webkit-transition: width .35s;
+  overflow: hidden
+}
+ .logout{	
+		cursor: pointer;
+    color: white;
+    padding: 5px;
+    font-size: 27px;
+ }
+/*.buttonLogout:hover {
+   width: 100px; 
+}*/
+
+
+.dropdown:hover .logout{
+	/* display: block; */
+  opacity: .9;
+}
+
+.headerClient{
+	font-size: 12px;
+	margin: 0;
+	width: 21em;
+	display: inline-block;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden !important;
+	text-overflow: ellipsis;
+}
+/* 
+::ng-deep .mat-tooltip{
+	background: #000;
+	color: #fff ;
+	font-size: 16px;
+}  */
+
+
+.loginUserInfo{
+	// top: 0px; 
+	// left: 75%; 
+	// display: -webkit-box;
+
+	position: relative !important;
+	top: 0px !important;
+	display: block !important;
+	float: right !important;
+	right: 0;
+	width: 27% !important;
+}

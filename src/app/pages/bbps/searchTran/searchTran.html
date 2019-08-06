@@ -1,0 +1,337 @@
+<dtp></dtp>
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+            style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="Search Transaction Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal"
+            data-target="#myModal">
+        <div class="col-md-12 col-sm-12" *ngIf="bbpsForm">
+            <div class="card mb-2" style="padding: 15px; padding-bottom: 5px;">
+                <!-- <h4 class="font-weight-bold text-center">
+                        <img style="width: 7% " class="img-fluid float-left" src="assets/images/icici_logo.png" alt="icici_logo" />
+                        Transaction Search
+                        <img style="width: 10%" class="img-fluid float-right" src="assets/images/bbps_logo.png" alt="bbps" />
+                    </h4>
+                    <hr style="margin-top: 0; margin-bottom: 5px;">
+                    <div class="showhide">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div *ngIf="bankname !=null|| bankname !=undefined">
+                                    <div class="row">
+                                        <div>
+                                            <img [src]="banklogo" class="img-fluid" style="height: 44px;padding-left: 10px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="gap"></div>
+                        <div class="gap"></div> -->
+
+                <h4 class="text-center">
+                    <!-- <span *ngIf="bankname !=null|| bankname !=undefined">
+                                        <img [src]="bankFullLogo" class="img-fluid float-left" style="width: 20%;" />
+                                    </span> -->
+
+                    <span *ngIf="banklogo !=null && BankArray?.length == 1">
+                        <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-left"
+                            style="height: 44px;padding-left: 10px;" />
+                    </span>
+
+                    <!-- <div class="col-md-8" *ngIf="banklogo !=null && BankArray?.length > 1"> -->
+                    <span *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                        <img [src]="setBankLogo" class="img-fluid cursorPointerC float-left" *ngIf="setBankLogo !=''"
+                            matTooltip="Select Your Bank" matTooltipPosition="above" (click)="showBankModal()"
+                            style="height: 44px;padding-left: 10px;" />
+                    </span>
+                    <!-- <span class="m-auto text-center" *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                                <mat-icon class="cursorPointerC" matTooltip="Select Bank" matTooltipPosition="above" (click)="showBankModal()" >account_balance</mat-icon>
+                            </span> -->
+
+                    <span class="font-weight-bold">Transaction Search</span>
+                    <img style="width: 10%;" class="img-fluid float-right" src="assets/images/bbps_logo.png"
+                        alt="bbps" />
+                    <img style=" width: 7%;" class="img-fluid float-right mr-2" src="assets/images/icici_logo.png"
+                        alt="icici_logo" />
+                </h4>
+                <hr class="mt-0">
+
+                <div class="row pl-3 pr-3">
+                    <!-- <div class="form-group">
+                                <input placeholder="{{'Transaction Ref. Number'}}"  maxlength="20" type="text" [(ngModel)]='TRF_REF_NUMBER'>
+                            </div> -->
+                    <div class="card col-md-2 col-sm-12  mb-0">
+                        <div class="pt-2">
+                            <!-- <div class="form-group">
+                                    <input maxlength="20" type="text" autocomplete="off" inputType="number" id="txtTranNo"
+                                        class="form-control  form-control-sm searchBarInput" name="tranRefNo"
+                                        [(ngModel)]='TRF_REF_NUMBER' required>
+                                    <label class="form-control-placeholder" for="tranRefNo">Transaction Ref. Number</label>
+                                </div> -->
+                            <div class="form-group mb-0">
+                                <mat-form-field>
+                                    <input type="text" autocomplete="off" matInput placeholder="Transaction Ref. Number"
+                                        id="txtTranNo" inputType="alphaNumeric" name="tranRefNo"
+                                        [(ngModel)]='TRF_REF_NUMBER' maxlength="20">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 text-center pb-2 pt-4 pl-0">
+                        OR
+                    </div>
+                    <div class="card mb-0 p-2">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- <div class="form-group">
+                                    <input maxlength="10" type="text" autocomplete="off" inputType="mobileNo" id="txtAgentNo"
+                                        class="form-control  form-control-sm searchBarInput" name="MobNumber"
+                                        [(ngModel)]='MOBILE' required>
+                                    <label class="form-control-placeholder" for="MobNumber">Mobile Number</label>
+
+                                </div> -->
+                                <div class="form-group">
+                                    <mat-form-field>
+                                        <input type="text" autocomplete="off" matInput placeholder="Mobile Number"
+                                            id="txtAgentNo" inputType="mobileNo" name="MobNumber" [(ngModel)]='MOBILE'
+                                            minlength="10" maxlength="10">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <!-- <label style="font-size:13px;">From Date:</label>
+                                        <input [(ngModel)]="txt_Fdate" id="txtStartDate" name="txt_Fdate" class="form-control form-control-sm"
+                                            type="text" readonly (click)="DateTimeCtrl1('D','txt_Fdate')"> -->
+                                <div class="form-group mb-0">
+                                    <mat-form-field>
+                                        <input type="text" autocomplete="off" matInput placeholder="From Date:"
+                                            [(ngModel)]="txt_Fdate" id="txtStartDate" name="txt_Fdate" readonly
+                                            (click)="DateTimeCtrl1('D','txt_Fdate')">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <!-- <label style="font-size:13px;">To Date:</label>
+                                        <input [(ngModel)]="txt_Tdate" id="txtEndDate" name="txt_Tdate" class="form-control form-control-sm"
+                                            type="text" readonly (click)="DateTimeCtrl2('D','txt_Tdate')"> -->
+                                <div class="form-group mb-0">
+                                    <mat-form-field>
+                                        <input type="text" autocomplete="off" matInput placeholder="To Date:"
+                                            id="txtEndDate" name="txt_Tdate" [(ngModel)]="txt_Tdate" readonly
+                                            (click)="DateTimeCtrl2('D','txt_Tdate')">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-auto p-2">
+                        <button mat-raised-button class="btn-success text-white" (click)="Submit()">
+                            Submit</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                            Clear</button>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- <div class="gap"></div><div class="gap"></div>
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                                <button mat-raised-button class="btn-success text-white" (click)="Submit()">
+                                    Submit</button>
+                                <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                                    Clear</button>
+                        </div>
+                    </div> -->
+
+                <div class="gap"></div>
+
+                <div *ngIf="Disp_DivData">
+                    <div class="box table_scroll">
+                        <div class="box-body" style="font-size: 0.9em;font-family: verdana;">
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-bottom: 12px;">
+                                    <input type="text" autocomplete="off"
+                                        class="form-control  form-control-sm searchBarInput"
+                                        style="padding: 11px 0px 3px 11px;"
+                                        onkeyup="searchFunction(event,'#searchTranList tr')"
+                                        placeholder="&#61442; Search Transaction...">
+                                </div>
+                            </div>
+                            <!-- theader start -->
+                            <div class="tbl-header">
+                                <table cellpadding="0" id="myTable" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 17vw;" (click)="sort('agentId')">Agent
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'agentId', 
+                                            'fa-arrow-up': (column == 'agentId' && isDesc), 
+                                            'fa-arrow-down': (column == 'agentId' && !isDesc) }" aria-hidden="true">
+                                                </span>
+                                            </th>
+                                            <th class="text-right" (click)="sort('amount')">Amount
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'amount', 
+                                            'fa-arrow-up': (column == 'amount' && isDesc), 
+                                            'fa-arrow-down': (column == 'amount' && !isDesc) }" aria-hidden="true"> </span>
+                                            </th>
+                                            <th  style="width: 14vw;" (click)="sort('billerId')">Biller
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'billerId', 
+                                            'fa-arrow-up': (column == 'billerId' && isDesc), 
+                                            'fa-arrow-down': (column == 'billerId' && !isDesc) }" aria-hidden="true">
+                                                </span>
+                                            </th>
+                                            <th style="width: 15vw;" (click)="sort('txnDate')">Date
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'txnDate', 
+                                            'fa-arrow-up': (column == 'txnDate' && isDesc), 
+                                            'fa-arrow-down': (column == 'txnDate' && !isDesc) }" aria-hidden="true">
+                                                </span>
+                                            </th>
+                                            <th style="width: 12vw;" matTooltip="Reference Code" matTooltipPosition="above"
+                                                (click)="sort('txnReferenceId')">Ref.Code
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'txnReferenceId', 
+                                            'fa-arrow-up': (column == 'txnReferenceId' && isDesc), 
+                                            'fa-arrow-down': (column == 'txnReferenceId' && !isDesc) }" aria-hidden="true">
+                                                </span>
+                                            </th>
+                                            <th (click)="sort('txnStatus')">Status
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'txnStatus', 
+                                            'fa-arrow-up': (column == 'txnStatus' && isDesc), 
+                                            'fa-arrow-down': (column == 'txnStatus' && !isDesc) }" aria-hidden="true">
+                                                </span>
+                                            </th>
+                                            <th matTooltip="Raise Complaint" matTooltipPosition="above">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>Raise Complaint
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- theader end -->
+    
+                            <div class="tbl-content">
+                                <table id="searchTranList" class="table-striped" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                        <tr *ngFor="let Item of Items" style="border-bottom: 1px solid #000;">
+                                            <td>{{Item.agentId}}
+                                            </td>
+                                            <td class="text-right">
+                                                <i class="icofont icofont-cur-rupee"></i>{{Item.amount /100
+                                                    |number:'1.2'}}
+                                            </td>
+                                            <td>{{Item.billerId}}</td>
+                                            <td>{{Item.txnDate}}</td>
+                                            <td>{{Item.txnReferenceId}}</td>
+                                            <td>{{Item.txnStatus}}</td>
+                                            <td>
+                                                <!-- Raise Complaint -->
+                                                <a href="javascript:void(0)" (click)="RegisterComplaint(Item)">
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i>Raise Complaint</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+                </div>
+
+            <!-- <div *ngFor="let Item of Items">
+                        <p>{{'Agent'}} - {{Item.agentId}}</p>
+                        <p>{{'Amount'}} - {{Item.amount}}</p>
+                        <p>{{'Biller'}} - {{Item.billerId}}</p>
+                        <p>{{'Date'}} - {{Item.txnDate}}</p>
+                        <p>{{'Ref.Code'}} -{{Item.txnReferenceId}}</p>
+                        <p>{{'Status'}} - {{Item.txnStatus}}</p>
+                        <h5>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <a (click)="RegisterComplaint(Item)">{{'Raise Complaint'}}</a>
+                        </h5>
+                    </div> -->
+
+          
+
+        </div>
+
+        <!-- Pop up Modal -->
+        <!-- <div [class]="showBankList">
+                <div class="row bankList">
+                    <div class="col-md-10" style="position:absolute;z-index: 5000;color: #000;top: 0%; left: 8%; ">
+                        <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                            <div class="tableHeader">
+                                <h4 class="shopTitle">Select Your Bank</h4>
+                                <hr class="m-0">
+                                <span class="closeBtn" title="close" (click)="btnClose()">
+                                    <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                                </span>
+                            </div>
+                            <table id="myTable" class="table table-fixedheader table-striped tblBack">
+                                <tbody style="min-height: 285px !important;max-height: 430px !important;">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-6 p-2" *ngFor="let bank of BankArray">
+                                            <ul class="userModal">
+                                                <li class="text-black p-0">
+                                                    <div class="row cursorPointerC" (click)="bankListData(bank)">
+                                                        <div class="col-md-3">
+                                                            <img [src]="bank.BANK_LOGO" style="height:70px;padding: 5px;"
+                                                                *ngIf="bank.BANK_LOGO != ''">
+                                                            <img src="assets/images/bank.png" style="height:70px;padding: 5px;"
+                                                                *ngIf="bank.BANK_LOGO == ''">
+                                                        </div>
+                                                        <div class="col-md-9 p-0"> <span style="position: absolute;width: 290px;top: 17px; ">{{bank.BANK_NAME}}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+        <!-- <div style="position:absolute;z-index: 4999; height:-webkit-fill-available;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)"
+                [ngClass]="showOverlay"></div> -->
+
+        <!--POPUP START-->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+
+
+        <div class="clearfix">
+        </div>
+
+    </div>
+</main>
+
+<div class="gap"></div> 
+<div class="gap"></div>

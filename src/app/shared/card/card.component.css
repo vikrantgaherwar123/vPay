@@ -1,0 +1,56 @@
+ /* input#txtEndDate:active, input#txtEndDate:focus {
+    color: deeppink;
+}
+input#txtStartDate:active ,input#txtStartDate:focus {
+    color: deeppink; 
+}  */
+
+
+.redbg{
+    background-color:#f0e68c75;;
+}
+
+.card-header-right {
+    z-index: 999;
+}
+
+.statsLinkc{
+    color:green !important;
+    font-weight: 100 !important;
+    font-size: small !important;
+}
+
+.activeL{
+    background: lavender !important;
+    padding: 5px;
+    color: #002bff !important;
+}
+
+.listAlign{
+    display:inline;
+}
+.listAlign1{
+    display:inline;
+    padding-left:27%;
+}
+
+.icon_size{
+    width:20px;
+    padding-left:5px;
+}
+.card-header{
+padding-top: 15px !important;
+padding-bottom: 0px !important;
+}
+
+.card-body{
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+/* ul#horizontal-list li {
+    display: inline;
+} */
+
+.card .card-header span {
+    margin-top: 0px; 
+}

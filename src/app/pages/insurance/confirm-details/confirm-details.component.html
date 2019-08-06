@@ -1,0 +1,324 @@
+<section id="service">
+  <div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <!-- Section 1 -->
+              <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                      <h4 class="panel-title">
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Personal Details
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                           <div class="container">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <div class="form-group">
+                                    <label>Title</label>
+                                    <select [(ngModel)]="title" class="form-control" id="">
+                                      <option [ngValue]="name" *ngFor="let name of names">Mr</option>
+                                      <option>Mrs</option>
+                                      <option>Ms</option>
+                                      <option>M/S</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="form-group">
+                                    <label>Full Name</label>
+                                    <input [(ngModel)]="fullName" type="text" class="form-control" id="" placeholder="Full Name">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Mobile Number</label>
+                                    <input [(ngModel)]="mobileNumber" type="text" class="form-control" id="" placeholder="Mobile Number">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Email</label>
+                                    <input [(ngModel)]="email" type="text" class="form-control" id="" placeholder="Email">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input [(ngModel)]="PersonalDateOfBirth" type="date" class="form-control" id="" placeholder="Date of Birth">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Address Line 1</label>
+                                    <input [(ngModel)]="addressLine1" type="text" class="form-control" id="" placeholder="Address Line 1">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Address Line 2</label>
+                                    <input [(ngModel)]="addressLine2" type="text" class="form-control" id="" placeholder="Address Line 2">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Pincode</label>
+                                    <input [(ngModel)]="pincode" type="text" class="form-control" id="" placeholder="Pincode">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>City & State</label>
+                                    <input [(ngModel)]="cityState" type="text" class="form-control" id="" placeholder="City & State">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Pan No.</label>
+                                    <input [(ngModel)]="panNo" type="text" class="form-control" id="" placeholder="Pan No.">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Landline No.</label>
+                                    <input [(ngModel)]="landlineNo" type="text" class="form-control" id="" placeholder="Landline No.">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Landmark</label>
+                                    <input [(ngModel)]="landmark" type="text" class="form-control" id="" placeholder="Landmark">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Electronic Insurance Account(EIA)</label>
+                                    <input [(ngModel)]="EIA" type="text" class="form-control" id=""
+                                      placeholder="Electronic Insurance Account(EIA)">
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="nominee-title">
+                                <h2>Nominee Details</h2>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Name of Nominee</label>
+                                    <input [(ngModel)]="nameOfNominee" type="text" class="form-control" id="" placeholder="Name of Nominee">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Relationship with Insured</label>
+                                    <select [(ngModel)]="relationshipInsured" class="form-control" id="">
+                                      <option>-- Relationship with Insured --</option>
+                                      <option>Select</option>
+                                      <option>Mother</option>
+                                      <option>Son</option>
+                                      <option>Mother in law</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input [(ngModel)]="NomineeDateOfBirth" type="date" class="form-control" id="">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <div class="form-check">
+                                      <input [(ngModel)]="NomineeGSTINUANnumber" class="form-check-input" type="checkbox" id="gridCheck">
+                                      <label class="form-check-label" for="gridCheck">
+                                        I want to update GSTIN/UIN number
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>GSTIN/UAN Number</label>
+                                    <input [(ngModel)]="GSTINUANnumber" type="type" class="form-control" id="" placeholder="GSTIN/UAN Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Pan Number</label>
+                                    <input [(ngModel)]="panNumber" type="type" class="form-control" id="" placeholder="Pan Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Constitution of Business</label>
+                                    <select [(ngModel)]="constitutionOfBusiness" class="form-control" id="">
+                                      <option>-- Constitution of Business --</option>
+                                      <option>Select</option>
+                                      <option>Non Resident Entity</option>
+                                      <option>Foreign Company Registered in India</option>
+                                      <option>Foreign LLP</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Customer Type</label>
+                                    <select [(ngModel)]="customerType" class="form-control" id="">
+                                      <option>-- Customer Type --</option>
+                                      <option>Select</option>
+                                      <option>General</option>
+                                      <option>EOU/STP/EHTP</option>
+                                      <option>Government</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>GST Registration Status</label>
+                                    <select [(ngModel)]="gstRegistrationStatus" class="form-control" id="">
+                                      <option>-- GST Registration Status --</option>
+                                      <option>Select</option>
+                                      <option>ARN Generated</option>
+                                      <option>Provision ID Obtained</option>
+                                      <option>To Be Commenced</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="text-center">
+                                <button type="button" class="btn btn-outline-success" (click)="nextBtn()">NEXT</button>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+
+
+            
+
+              <!-- Section 2 -->
+              <div class="panel panel-default" style="margin: 10px 0 0;">
+                  <div class="panel-heading" role="tab" id="headingTwo">
+                      <h4 class="panel-title">
+                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              Vehicle Details
+                          </a>
+                      </h4>
+                  </div>
+                  <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+                          <div class="container">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                  <label>Vehicle Registration Number</label>
+                                  <input [(ngModel)]="vehicleRegistrationNumber" type="type" class="form-control" id="" placeholder="Vehicle Registration Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                  <label>Engine Number</label>
+                                  <input [(ngModel)]="engineNumber" type="type" class="form-control" id="" placeholder="Engine Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                   <label>Chassis Number</label>
+                                  <input [(ngModel)]="chassisNumber" type="type" class="form-control" id="" placeholder="Chassis Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Hypothecation/Loan</label>
+                                    <select [(ngModel)]="hypothecationLoan" class="form-control" id="">
+                                      <option>-- None --</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="nominee-title"><h2>Previous Policy Details</h2></div>
+                              <p>Previous policy was <b style="color:#05b22a;">Comprehensive Third Party</b></p>
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Previous Policy End Date</label>
+                                  <input [(ngModel)]="previousPolicyEndDate" type="date" class="form-control" id="" placeholder="Previous Policy End Date">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                  <label>New Policy Start Date</label>
+                                  <input [(ngModel)]="newPolicyStartDate" type="date" class="form-control" id="" placeholder="New Policy Start Date">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                   <label>Previous Policy Number</label>
+                                   <input [(ngModel)]="previousPolicyNumber" type="date" class="form-control" id="" placeholder="Previous Policy Number">
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <label>Previous Insurer</label>
+                                    <select [(ngModel)]="previousInsurer" class="form-control" id="">
+                                      <option>-- Previous Insurer --</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                      <option>Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" id="gridCheck">
+                                      <label class="form-check-label" for="gridCheck">
+                                      My previous policy was a full year policy without change of ownership
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>	
+                              <div class="text-center">
+                                <button type="button" class="btn btn-outline-success">SAVE</button>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+           </div>
+      </div>
+  </div>
+</div>
+</section>
+<br />
+<br />

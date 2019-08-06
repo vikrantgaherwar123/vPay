@@ -1,0 +1,139 @@
+<dtp></dtp>
+<main>
+  <div class="main">
+    <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+      style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="Statement Help"
+      matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+    <div class="container">
+
+      <div style="padding-top: 15px;">
+        <h6><span class="font-weight-bold" style="color:#276b08; ">
+            &nbsp;Statement of Account</span>
+          <span class="text-right float-right">
+            <!-- <i class="fa fa-arrow-circle-o-left cursorPointerC" aria-hidden="true" style="font-size:26px" matTooltip="Back"
+                        matTooltipPosition="above" (click)="Back()"></i> -->
+          </span>
+        </h6>
+        <hr class="mb-2">
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-3 col-sm-12 p-3">
+          <mat-form-field class="example-full-width">
+            <input type="text" autocomplete="off" matInput inputType="mobileNo" placeholder="Mobile No" name="mobileNo"
+              required [(ngModel)]='mobileNo' disabled>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-3  col-sm-12  p-3 ">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" (focus)="picker.open()" [(ngModel)]="txt_Fdate" id="txtStartDate"
+              name="txt_Fdate" readonly placeholder="From Date">
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3  col-sm-12  p-3 ">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" (focus)="picker1.open()" [(ngModel)]="txt_Tdate" id="txtEndDate"
+              name="txt_Tdate" readonly placeholder="To Date">
+            <mat-datepicker touchUi #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1 col-sm-12 m-auto" >
+          <button type="button" mat-mini-fab class="bg-success text-white" id="goStatement"
+            (click)="Submit()">Go</button>
+        </div>
+
+        <div class="col-md-2 m-auto" [ngClass]="tranTable">
+          <div class="p-2">
+            <a (click)="export(this,'PDF');" title="Generate PDF" matTooltip="Generate PDF" matTooltipPosition="above"
+              href="javascript:void(0);">
+              <img src="assets/images/pdf-icon.png" alt="" />
+            </a>
+            <a (click)="export(this,'EXCEL');" title="Generate EXCEL" matTooltip="Generate EXCEL"
+              matTooltipPosition="above" href="javascript:void(0);">
+              <img src="assets/images/xls-icon.png" alt="" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="row col-md-12 m-auto p-2" [ngClass]="tranTable">
+        <mat-form-field>
+          <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+        <div class="mat-elevation-z8 table-responsive example-container">
+          <table mat-table id="statement" class="table-striped" [dataSource]="dataSource" matSort>
+          
+            <ng-container matColumnDef="TRAN_DATE">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> TRANSACTION DATE
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.TRAN_DATE | date:'dd-MM-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="PARTICULARS">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> PARTICULARS
+              </th>
+              <td mat-cell *matCellDef="let element"> {{element.PARTICULARS}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="DR_AMT">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header>
+                DEBIT AMOUNT </th>
+              <td style="color:red" mat-cell *matCellDef="let element">
+                ₹{{element.DR_AMT  |number : '1.2' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="CR_AMT">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header>
+                CREDIT Amount </th>
+              <td style="color:green " mat-cell *matCellDef="let element"> ₹{{element.CR_AMT  |number : '1.2' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="BALANCE">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header>
+                BALANCE </th>
+              <td mat-cell *matCellDef="let element"> ₹{{element.BALANCE |number : '1.2'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="GATEWAY_NAME">
+              <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header>
+                PAYMENT METHOD </th>
+              <td mat-cell *matCellDef="let element"> {{element.GATEWAY_NAME}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+
+    <!--POPUP START-->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+        <div class="modal-content">
+          <div class="modal-body" style="height: 400px;overflow: auto;">
+            <div *ngFor="let item of termCondContent">
+              <p style="text-transform: uppercase; font-weight: bold">
+                {{item.TERM_COND_HEADER}}
+              </p>
+              <p style="margin-top: 2%">
+                {{item.TERM_COND_DETAIL}}
+              </p>
+              <br>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--POPUP END-->
+  </div>
+</main>

@@ -1,0 +1,15 @@
+<mat-dialog-content class="p-0">
+  <div class="message">
+    <p class="text-center">
+      {{message}}<br>{{messagea}}
+    </p>
+  </div>
+  <div class="info" *ngIf="information!==''">
+    <p>{{information}}</p>
+  </div>
+  <div class="text-center">
+    <div *ngIf="button">
+      <button type="button" cdkFocusInitial mat-raised-button class="btn btn-success text-white" (mousedown)="onOk($event)" (keyup)="onOk($event)" >OK</button>
+    </div>
+  </div>  
+</mat-dialog-content>

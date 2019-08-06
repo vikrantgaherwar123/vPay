@@ -1,0 +1,287 @@
+<main>
+    <div class="main">
+            <img src="assets/images/help.png" class="cursorPointerC fa-beat" style="height: 45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="Aadhaar Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <div class="container">
+
+            <div class="inner">
+                <div class="aadhaarblock">
+
+
+                        <div style="padding-top: 15px;">
+                                <h6><span class="font-weight-bold" style="color:#276b08; ">
+                                        &nbsp;Aadhar Pay</span>
+                                    <span class="text-right float-right">
+                                        
+                                    </span>
+                                </h6>
+                                <hr class="mb-2">
+                            </div>
+
+
+                    <div class="row" style="font-size: 12px !important; width: 100%;margin-bottom:10px">
+                        <div class="col-md-4">
+                            <span>
+                                <a href="https://resident.uidai.gov.in/find-uid-eid" target="_blank" style="text-decoration: underline;font-size:12px;">How
+                                    To Know Your Aadhar</a>
+                            </span>
+                        </div>
+                        <div class="col-md-4" [ngClass]="showSecuGen">
+                            <span>
+                                <a href="assets/setup/SGIRD_Windows_25.zip" style="text-decoration: underline;font-size:12px;">SecuGen
+                                    Fingerprint Scanner Device</a>
+                            </span>
+                        </div>
+                        <div class="col-md-4" [ngClass]="showStartek">
+                            <span>
+                                <a href="assets/setup/SetupFM220_RD_Ver1.zip" style="text-decoration: underline;font-size:12px;">Startek
+                                    FM220 Fingerprint Scanner Device</a>
+                            </span>
+                        </div>
+
+
+                        <!-- <div class="col-md-6">
+                            <div class="row">
+                        <div class="col-md-2"><p>Pay To:-</p></div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <input autocomplete="off"  class="form-control form-control-sm" inputType="mobileNo" type="text" id="txtDonationNumber" 
+                                     [(ngModel)]="donateNumber" required/>
+                            </div>
+                        </div>
+                        <div class="col-md-1"><button class="btn btn-success btnSuccessGO ripple" (click)="Go();"  data-toggle="modal" data-target="#vpayUserModal">GO</button></div>
+                        </div>
+                        </div> -->
+                        <!-- <div class="card" style="padding: 1px 28px;">
+                        <div class="row"><h4 style="margin-top: 8px;
+                            font-weight: bold;color: #2f4706">Donation</h4></div>
+                          <hr style="margin-top:0">
+                    <div class="row">
+                        <div class="col-md-2 text-center cursorPointerC" *ngFor="let Item of VpayConatctlist">
+                          <img class="img-fluid"  style="height:30px;" *ngIf="Item.CUSTOMER_TYPE=='99999'" (click)="submitDonate(Item)" src="assets/images/DefaultIcon.png" alt="Donation">
+                          <p class="text-center font-weight-bold" style="font-size: 10px;color:#276b08" (click)="submitDonate(Item)" *ngIf="Item.CUSTOMER_TYPE=='99999'" >{{Item.CLIENT_NAME}}</p>
+                        </div>
+                      </div>
+                </div> -->
+                    </div>
+
+                    <div *ngIf="showDonation">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 p-3" >
+                                <div class="btnSubmit">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Pay To:-
+                                        <!-- <span style="color:red">*</span> -->
+                                    </label>
+                                    <input autocomplete="off" class="form-control form-control-sm" inputType="mobileNo"
+                                        type="text" id="txtDonationNumber" placeholder="Enter Mobile No." [(ngModel)]="donateNumber"
+                                        required />
+                                </div>
+                                <div>
+                                    <!-- <button class="btn btn-primary btnSuccessGO ripple" (click)="Go();" data-toggle="modal"
+                                        data-target="#vpayUserModal">GO</button> -->
+                                    <button id="btnSubmit" mat-raised-button  class="btn btn-success text-white pageValid" disabled="true"  (click)="Go()">
+                                        Process
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="" style="padding: 1px 28px;">
+                                    <div class="row">
+                                        <h4 style="margin-top: 8px;
+                                    font-weight: bold;color: #2f4706">Donation</h4>
+                                    </div>
+                                    <hr style="margin-top:0">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center cursorPointerC" *ngFor="let Item of VpayConatctlist">
+                                            <img class="img-fluid" style="height:30px;" *ngIf="Item.CUSTOMER_TYPE=='99999'"
+                                                (click)="submitDonate(Item)" src="assets/images/DefaultIcon.png" alt="Donation">
+                                            <p class="text-center font-weight-bold" style="font-size: 10px;color:#276b08"
+                                                (click)="submitDonate(Item)" *ngIf="Item.CUSTOMER_TYPE=='99999'">{{Item.CLIENT_NAME}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row " *ngIf="showAadharForm">
+                        <div class="col-md-6 col-sm-12 aadharBtn mb-0 p-4">
+                            <h6>Pay To:-<span class="font-weight-bold" style="color:#276b08"> &nbsp;{{payName}}</span>
+                                <span class="text-right float-right">
+                                    <i class="fa fa-arrow-circle-o-left fa-2x cursorPointerC" title="Back" (click)="backDonation()"
+                                        style="font-size: x-large;"></i>
+                                </span>
+                            </h6>
+
+                            <hr>
+                            <label>Aadhar Number<span style="color:red">*</span></label>
+                                <div class="row m-auto">
+                                    <input autocomplete="off" (keyup)="onkeyup()" [(ngModel)]="aadharModel.aadharNo1"
+                                        inputType="number" id="txtAadhar1" type="text" class="form-control form-control-sm text-center aadhar col"
+                                        placeholder="Enter" maxlength="4" required> &nbsp;
+                                    <input autocomplete="off" (keyup)="onkeyup()" [(ngModel)]="aadharModel.aadharNo2"
+                                        inputType="number" id="txtAadhar2" type="text" class="form-control form-control-sm text-center aadhar col"
+                                        maxlength="4" placeholder="Aadhar" required> &nbsp;
+                                    <input autocomplete="off" (keyup)="onkeyup()" [(ngModel)]="aadharModel.aadharNo3"
+                                        inputType="number" id="txtAadhar3" type="text" class="form-control form-control-sm text-center aadhar col"
+                                        placeholder="Number" maxlength="4" required>
+                                </div>
+
+                         
+
+                            <div class="form-group">
+                                <label>Select Bank
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input autocomplete="off" class="form-control form-control-sm" (blur)="setBankCode()"
+                                    type="text" id="txtAadharBank" list="items" placeholder="Bank Name" [(ngModel)]="aadharModel.bankName"
+                                    required />
+                                <datalist id="items">
+                                    <option *ngFor="let bank of aadharModel.aadharBankList" [value]="bank.BANK_NAME"></option>
+                                </datalist>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Amount
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input type="text" id="txtAmount" autocomplete="off" maxlength="5" inputType="decimal" class="form-control form-control-sm"
+                                    [(ngModel)]="aadharModel.amount" (blur)="setAmountFormat()" placeholder="0.00"
+                                    required>
+                            </div>
+                            <div *ngIf="showOtherInfo">
+                                <div class="form-group">
+                                    <label>Customer Name</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" [(ngModel)]="aadharModel.customerName"
+                                        placeholder=" ">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bill Number</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-uppercase form-control-sm"
+                                        [(ngModel)]="aadharModel.billNumber" maxlength="20" placeholder=" ">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Customer GST Number</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" [(ngModel)]="aadharModel.custGSTNo"
+                                        maxlength="15" minlength="15" placeholder=" ">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" [(ngModel)]="aadharRemarks"
+                                        placeholder=" ">
+                                </div>
+                            </div>
+
+                            <div class="checkbox checkbox-success">
+                                <input type="checkbox" id="aadharCheck" (click)="showOthInfo($event)">
+                                <label for="aadharCheck">
+                                    <span style="padding-left: 5px; font-size: 13px;">Other Information</span>
+                                </label>
+                            </div>
+
+
+                            <!-- <div class="checkbox checkbox-success">
+                                <input type="checkbox" id="aadharCheck2" [(ngModel)]="TCchek">
+                                <label for="aadharCheck2">
+                                    <span style="color:green ;padding-left: 5px;
+                                        font-size: 13px;">
+                                        <a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal"
+                                            data-target="#myModal">Accept Term & Conditions.</a>
+                                    </span>
+                                </label>
+                            </div> -->
+                            <div>
+                                <label>
+                                    <span style="color:green ;
+                                    font-size: 13px;">Payment may take upto next working day to
+                                        reflect in your Bank A/c.</span>
+                                </label>
+                            </div>
+                            <div>
+                                <button type="button" id="aadharBtn" class="btn btn-success text-white " mat-raised-button (click)=" btnThumbScanClick();">Process</button>
+                                <button type="button" class="btn btn-success text-white" mat-raised-button (click)="clear();">Clear</button>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-6 col-sm-12" *ngIf="showAadharInstallInfo" style="padding: 20px 0">
+
+                            <div class="gap"></div>
+                            <div *ngIf="showStatusBox" style="text-align:center; font-family:  verdana; background: #bedad5ab; padding: 20px 20px 5px 20px; border-radius: 10px;">
+                                <span style="position: absolute; right: 30px; top: 18px; font-size: 20px;" (click)="hideStatusBox()">x</span>
+                                <img [src]="statusImage" [alt]="statusMessage" style="width:40px;" />
+                                <p style="color:#2f4706;padding: 10px 0 0;font-size:15px;margin-bottom: 2px;" [class]='showBusinness'>Business
+                                    :{{business}}</p>
+                                <p style="margin-bottom:2px">Merchant :{{merchantName}}</p>
+                                <p style="margin-bottom:2px" [class]='mCust'>Customer Name :{{customerName}}</p>
+                                <p style="margin-bottom:2px" [class]='showAadharTranId'>RRN : {{rrn}} </p>
+                                <p [class]="resultMessage" style="margin-bottom:2px">Status : {{statusMessage}}</p>
+                                <p [class]="resultMessage" style="font-size: 13px;margin-bottom:2px">{{collMessage}}</p>
+                                <p style="margin-bottom:2px; font-weight: bold">₹ Amount : {{balance | number:'1.2'}}</p>
+                                <p style="margin-bottom:2px">Date :{{tranDate}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--POPUP START-->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <div *ngFor="let item of termCondContent">
+                                <p style="text-transform: uppercase; font-weight: bold">
+                                    {{item.TERM_COND_HEADER}}
+                                </p>
+                                <p style="margin-top: 2%">
+                                    {{item.TERM_COND_DETAIL}}
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+
+            <!--POPUP START for show user List-->
+           
+                <div *ngIf="showUserModal" class="modal fade" id="vpayUserModal" data-backdrop="static">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                        <div class="modal-content dialog">
+                            <div class="modal-header">
+                                <p class="title-name m-0">Vpay Users</p>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body ">
+                                <ul class="userModal">
+                                    <li *ngFor="let item of VpayUserlist" style="color: #000;">
+                                        <div class="row cursorPointerC" (click)="submitDonate(item)" data-dismiss="modal">
+                                            <div class="col-md-12">{{item.CLIENT_NAME}} &nbsp; <span *ngIf="item.CORPORATE_FLAG =='C'">({{item.INSTITUTION_NAME}})</span></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>    
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            <!--POPUP END for show user List-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

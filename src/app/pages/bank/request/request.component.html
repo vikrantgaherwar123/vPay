@@ -1,0 +1,317 @@
+<dtp></dtp>
+<main>
+    <div *ngIf='CUSTNAME !=undefined'>
+        <app-bankHeader></app-bankHeader>
+    </div>
+
+    <div class="main mt-3">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="{{reqTitle}} Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+        <div class="container">
+            <!-- Header -->
+            <div class="card mb-3">
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <img class="img-fluid" style="height: 35px;" src="assets/images/bankdetails.png"
+                                alt="Bank Details">
+                            <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Request</h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="banklogo !=null">
+                        <span *ngIf="btnBack" class="float-right pt-1">
+                            <i class="fa fa-arrow-circle-o-left cursorPointerC" style="font-size:31px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Request   -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="showRequest">
+                <div class="row col-md-12 m-auto pt-3">
+                    <div class="col-md-7 mb-0">
+                        <div class="row m-auto">
+                            <div class="zoom col-md-3 card m-2 p-2">
+                                <span (click)="ChequeBookMethod()">
+                                    <img class="img-fluid mx-auto d-block" style="width:95px"
+                                        src="assets/images/bankImages/chequebook-icon.png" alt="ChequeBook Request"
+                                        title="ChequeBook Request">
+                                    <p class="text-center"
+                                        style="font-family: verdana; width: fit-content;margin: auto;">ChequeBook
+                                        Request</p>
+                                </span>
+                            </div>
+                            <div class="zoom col-md-3 card m-2 p-2">
+                                <span (click)="StopPayMethod()">
+                                    <img class="img-fluid mx-auto d-block" style="width:95px;"
+                                        src="assets/images/bankImages/chequebookStop-icon.png"
+                                        alt="Stop Payment Request" title="Stop Payment Request">
+                                    <p class="text-center"
+                                        style="font-family: verdana; width: fit-content;margin: auto;">Stop
+                                        Payment Request</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ChequeBook Request -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="showcheckBookReq">
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{reqTitle}}</span>
+
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="row m-auto pt-3">
+                    <div class="col-md-3 col-sm-12" [ngClass]="padBottom">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="Account Number" [(ngModel)]="reqAccNo" required>
+                                <mat-option *ngFor="let item of accCheckBookArray" (click)="SelectedAccNo(item)"
+                                    value={{item.ACCOUNT_NUMBER}}>
+                                    {{item.ACCOUNT_NUMBER}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint align="start" *ngIf="Account_Name!=null"><strong>
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="Account_Name !=null ">A/C Name :-
+                                        {{Account_Name}}</p>
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="AccountBalance !=null ">A/C Bal
+                                        :-{{AccountBalance | currency:'₹' :'code' }}</p>
+                                </strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="No. Of ChequeBook" [(ngModel)]="NoChequebook" required>
+                                <mat-option value='1'>1</mat-option>
+                                <mat-option value='2'>2</mat-option>
+                                <mat-option value='3'>3</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="ChequeBook Per Leaves" [(ngModel)]="NoLeaves" required>
+                                <mat-option value='10'>10</mat-option>
+                                <mat-option value='20'>20</mat-option>
+                                <mat-option value='30'>30</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="password" matInput inputType="number" placeholder="Enter TPIN" name="TPIN"
+                                required [(ngModel)]='tpin' minlength="4" maxlength="4">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <button mat-raised-button class="btn-success text-white" (click)="cheqBookReqSubmit()">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                            Clear</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Stop Payment Request -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="showStopPaymentReq">
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{reqTitle}}</span>
+
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="row m-auto pt-3">
+                    <div class="col-md-3 col-sm-12" [ngClass]="padBottom">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="Account Number" [(ngModel)]="reqAccNo" required>
+                                <mat-option *ngFor="let item of accCheckBookArray" (click)="SelectedAccNo(item)"
+                                    value={{item.ACCOUNT_NUMBER}}>
+                                    {{item.ACCOUNT_NUMBER}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint align="start" *ngIf="Account_Name!=null"><strong>
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="Account_Name !=null ">A/C Name :-
+                                        {{Account_Name}}</p>
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="AccountBalance !=null ">A/C Bal
+                                        :-{{AccountBalance |currency:'₹' :'code' }}</p>
+                                </strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="number"
+                                placeholder="Instrument Number" name="InstrmtNo" required [(ngModel)]='InstrmtNo'
+                                minlength="1" maxlength="15">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <mat-form-field class="example-full-width">
+                            <input matInput [(ngModel)]="txt_Tdate" [matDatepicker]="picker1" id="txtEndDate"
+                                placeholder="Upto Date">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker touchUi #picker1 readonly></mat-datepicker>
+                        </mat-form-field> -->
+
+
+                        <mat-form-field class="example-full-width">
+                            <input matInput [matDatepicker]="picker1" (focus)="picker1.open()" [(ngModel)]="txt_Tdate"
+                                id="txtEndDate" name="txt_Tdate" readonly placeholder="Upto Date">
+                            <mat-datepicker touchUi #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                        <!-- <mat-form-field class="example-full-width">
+                            <input type="text" autocomplete="off" matInput placeholder="Upto Date" name="Date" required
+                                [(ngModel)]='txt_Tdate' id="txtEndDate" (click)="DateTimeCtrl('D','txt_Tdate')"
+                                readonly>
+                        </mat-form-field> -->
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="decimal"
+                                placeholder="Instrument Amount" name="InstrmtAmt" required [(ngModel)]='InstrmtAmt'
+                                (change)="ConverToDecimal()" minlength="1" maxlength="5">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="number" placeholder="Alpha Code"
+                                name="alphaCode" [(ngModel)]='AlphaCode' minlength="1" maxlength="5">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="char" placeholder="Payee Name"
+                                name="Payeename" required [(ngModel)]='Payeename' minlength="1" maxlength="20">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="number"
+                                placeholder="Number of Leaves" name="Numberofleave" [(ngModel)]='Numberofleave'
+                                minlength="1" maxlength="1">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" matInput autocomplete="off" inputType="alphaNumeric" placeholder="Reason"
+                                name="reason" required [(ngModel)]='reason' maxlength="40">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="password" autocomplete="off" matInput inputType="number"
+                                placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin' minlength="4"
+                                maxlength="4">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <button mat-raised-button class="btn-success text-white" (click)="stopPaySubmit()">
+                            submit</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                            Clear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTP Control -->
+            <div class="card p-4" [ngClass]='showVpayOtp'>
+                <div class="form-group">
+                    <otp [eid]="'vpayOtp'"></otp>
+                </div>
+                <button type="button" mat-raised-button *ngIf="btnCheckBookOtp" class="btn btn-success text-white"
+                    (click)="chequeBookOtpProcess()">Submit</button>
+                <button type="button" mat-raised-button *ngIf="btnStopPayOtp" class="btn btn-success text-white"
+                    (click)="stopPayOtpProcess()">Submit</button>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="Back()">Cancel</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+
+
+        <!-- All Pop Up Start -->
+
+        <!-- success help -->
+        <div *ngIf="showPOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+
+                        </div>
+                        <div>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{reqAccNo}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                            </h6>
+
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- term help -->
+        <div class="modal fade" id="termModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>

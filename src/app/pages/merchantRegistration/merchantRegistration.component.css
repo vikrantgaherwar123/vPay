@@ -1,0 +1,98 @@
+@charset "UTF-8";
+.form-group {
+  margin-bottom: 0rem !important;
+}
+
+.input-group {
+  -ms-flex-wrap: nowrap !important;
+      flex-wrap: nowrap !important;
+}
+
+.form-group .form-control {
+  margin: 0px !important;
+}
+
+.img-thumb {
+  width: 50px;
+  padding-top: 17px;
+}
+
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+#myModalMR label, input {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+#myModalMR input {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  padding: 0;
+  font-family: Helvetica;
+  cursor: text;
+}
+
+#myModalMR input:focus {
+  outline: 0;
+  border-bottom: 1px solid #666;
+}
+
+#myModalMR label {
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+#myModalMR input:placeholder-shown + label {
+  cursor: text;
+  max-width: 66.66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transform-origin: left bottom;
+          transform-origin: left bottom;
+  -webkit-transform: translate(0, 2.125rem) scale(1.5);
+          transform: translate(0, 2.125rem) scale(1.5);
+}
+
+/**
+  * By default, the placeholder should be transparent. Also, it should 
+  * inherit the transition.
+  */
+::-webkit-input-placeholder {
+  opacity: 0.4;
+  -webkit-transition: inherit;
+  transition: inherit;
+}
+
+/**
+  * Show the placeholder when the input is focused.
+  */
+#myModalMR input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+/**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * there's something in the input at all.
+  */
+input:not(:placeholder-shown) + label,
+input:focus + label {
+  -webkit-transform: translate(0, 0) scale(1);
+          transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+/*# sourceMappingURL=merchantRegistration.component.css.map */

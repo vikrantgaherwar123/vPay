@@ -1,0 +1,761 @@
+<main>
+  <div class="main">
+    <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Profile Help"
+      matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+    <!-- </button> -->
+    <div class="container">
+      <dtp></dtp>
+
+      <!-- Profile Display -->
+      <div class="inner" *ngIf="profileDisplay">
+        <div class="container">
+          <form method="post">
+            <div class="row">
+              <div class="col-md-4 m-auto">
+                <div class="profile-img1">
+                  <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/> -->
+                  <img *ngIf="showUserIcon" src="/assets/images/photo.png" name="idClientImage" id="imgIdClientPhoto"
+                    alt="Browse An Image">
+                  <img *ngIf="!showUserIcon" class="img-radius img-60" [src]="clientPhoto" alt="">
+                  <!-- <div class="file btn btn-lg btn-primary">
+                                  Change Photo
+                                  <input type="file" name="file"/>
+                              </div> -->
+                </div>
+              </div>
+              <div class="col-md-6 mt-2">
+                <div class="profile-head">
+                  <h5>{{client_name}}</h5>
+                  <h6><span><i class="fa fa-mobile"></i> +91 {{mobileno}}</span>
+                    <!-- <p *ngIf="email !=null">
+        <i class="fa fa-envelope"></i> {{email}}</p> -->
+                    <span class="pl-2" *ngIf="dob !=null">
+                      <i class="fa fa-birthday-cake"></i> {{dob}}</span>
+                  </h6>
+                  <span class="proile-rating" *ngIf="email !=null">Email Id : <span>{{email}}</span></span>
+                </div>
+              </div>
+              <!-- <div class="col-md-2">
+                          <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                      </div> -->
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="md-tabs">
+                  <ngb-tabset>
+                    <ngb-tab title="Personal Details">
+                      <ng-template ngbTabContent>
+                        <div [@fadeInOutTranslate] class="m-t-15">
+                          <div class="row">
+                            <div class="col-md-12 card-header">
+                              <h5 class="card-header-text">About Me</h5>
+                              <button matTooltip="Edit Profile" matTooltipPosition="above"
+                                *ngIf="Corporate_Flag =='I' && kycFlag !='Y'" id="edit-btn" type="button"
+                                class="btn-sm btn-primary waves-effect waves-light f-right rounded-circle"
+                                (click)="editPro()">
+                                <i class="icofont f-16 m-0 {{ editProfileIcon }}"></i>
+                              </button>
+                            </div>
+                            <div class="card-body">
+                              <div class="view-info" *ngIf="editProfile">
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="general-info">
+                                      <div class="row">
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table m-0">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">Customer Type</th>
+                                                  <td>{{custTypeCode}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Client Full Name</th>
+                                                  <td>{{clientname}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Client First Name</th>
+                                                  <td>{{clientFName}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Client Middle Name</th>
+                                                  <td>{{clientMName}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Client Last Name </th>
+                                                  <td>{{clientLName}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Aadhar Number </th>
+                                                  <td>{{aadharNumber}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                  <th scope="row">Email</th>
+                                                  <td>
+                                                    <a href="javascript:;">{{email}}</a>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Mobile Number</th>
+                                                  <td>{{mobileno}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                  <th scope="row">Date Of Birth </th>
+                                                  <td>{{dob}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Website</th>
+                                                  <td>
+                                                    <a href="javascript:void(0);">{{website}}</a>
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">Address </th>
+                                                  <td>{{address}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Pincode </th>
+                                                  <td>{{pinCode}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Area Name</th>
+                                                  <td>{{areaName}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Landmark Name </th>
+                                                  <td>{{landmark}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">City Name </th>
+                                                  <td>{{cityCodeDisp}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                  <th scope="row">tahasil Name </th>
+                                                  <td>{{tahasilCodeDisp}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">District Name </th>
+                                                  <td>{{distCodeDisp}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">State Name </th>
+                                                  <td>{{stateCodeDisp}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                  <th scope="row">Country Name </th>
+                                                  <td>{{countryCodeDisp}}</td>
+                                                </tr>
+
+
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Business Details">
+                      <ng-template ngbTabContent>
+                        <div [@fadeInOutTranslate] class="m-t-15">
+                          <div class="row">
+                            <div class="col-md-12 card-header">
+                              <h5 class="card-header-text">Business Details</h5>
+                              <button matTooltip="Edit Profile" matTooltipPosition="above"
+                                *ngIf="Corporate_Flag =='I' && kycFlag !='Y'" id="edit-btn" type="button"
+                                class="btn-sm btn-primary waves-effect waves-light f-right rounded-circle "
+                                (click)="editPro()">
+                                <i class="icofont f-16 m-0 {{ editProfileIcon }}"></i>
+                              </button>
+                            </div>
+                            <div class="card-body">
+                              <div class="view-info" *ngIf="editProfile">
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="general-info">
+                                      <div class="row">
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table m-0">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">Business Type</th>
+                                                  <td>{{businessTypeCode}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Business Detail</th>
+                                                  <td>{{businessdet}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Business Line</th>
+                                                  <td>{{businessLineCode}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Business Address</th>
+                                                  <td>{{businessAddress}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">TAN Number </th>
+                                                  <td>{{tan}}</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">PAN Number </th>
+                                                  <td>{{panNumber}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">GSTIN </th>
+                                                  <td>{{gstin}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">GST Reg. Date</th>
+                                                  <td>
+                                                    <a href="javascript:;">{{gstRegDate}}</a>
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Taxable</th>
+                                                  <td>{{taxflag}}</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Bank Details">
+                      <ng-template ngbTabContent>
+                        <div [@fadeInOutTranslate] class="m-t-15">
+                          <div class="row">
+                            <div class="col-md-12 card-header">
+                              <h5 class="card-header-text">Bank Details</h5>
+                              <button matTooltip="Edit Bank" matTooltipPosition="above" id="edit-btn"
+                                *ngIf="kycFlag !='Y'" type="button"
+                                class="btn-sm btn-primary waves-effect waves-light f-right rounded-circle"
+                                (click)="editProBank()">
+                                <i class="icofont f-16 m-0 {{ editProfileIcon }}"></i>
+                              </button>
+                            </div>
+                            <div class="card-body">
+                              <div class="view-info" *ngIf="editProfile">
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="general-info">
+                                      <div class="row">
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table m-0">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">Bank Account Type</th>
+                                                  <td>{{accountTypeCode}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Bank Account Number</th>
+                                                  <td>{{acNo}}</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <div class="col-lg-12 col-xl-6">
+                                          <div class="table-responsive aboutMeTable">
+                                            <table class="table">
+                                              <tbody>
+                                                <tr>
+                                                  <th scope="row">Account Name</th>
+                                                  <td>{{acName}}</td>
+                                                </tr>
+                                                <tr>
+                                                  <th scope="row">Bank IFSC</th>
+                                                  <td>{{ifsc}}</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- merchant registration form -->
+      <div class="inner" *ngIf="profileEdit">
+        <div class="form-bgimg">
+          <div class="profile-img2 text-center">
+            <input type="file" class="file" accept="image/*" name="filePrfPhoto" id="filePrfPhoto"
+              (change)="fileSelected($event,this,'filePrfPhoto')" class="inputfile" style="display: none;" />
+            <label for="filePrfPhoto">
+              <span style="text-align:center">
+                <!-- <img src="/assets/images/profile-img.png" name="PrfImage" id="imgIdfilePrfPhoto" alt="Browse An Image" style="height:60px;width:60px;"
+                      required> -->
+                <img *ngIf="showUserIcon" src="/assets/images/profile-img.png" name="PrfImage" id="imgIdfilePrfPhoto"
+                  style="height:100px;width:100px;" alt="Browse An Image">
+                <img *ngIf="!showUserIcon" class="img-60 img-radius" [src]="clientPhoto" id="imgIdfilePrfPhoto" alt="">
+              </span>
+            </label>
+            <label class="f-12 f-w-400"
+              [ngStyle]="{'color':imageSizePrp !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizePrp}}</label>
+          </div>
+        </div>
+        <section>
+          <div class="tabs tabs-style-linetriangle">
+            <nav>
+              <ul>
+                <li>
+                  <a>
+                    <span id="sp1">
+                      <i class="fa fa-address-card"></i> Personal Profile</span>
+                  </a>
+                </li>
+                <li *ngIf="businessSectionShow">
+                  <a>
+                    <span id="sp2">
+                      <i class="fa fa-briefcase"></i> Business Profile</span>
+                  </a>
+                </li>
+                <!-- <li>
+                      <a>
+                        <span id="sp3">
+                          <i class="fa fa-building"></i> Bank Profile</span>
+                      </a>
+                    </li> -->
+              </ul>
+            </nav>
+            <div class="content-wrap">
+              <!-- Section Tab 1 -->
+              <section id="section-linetriangle-1" class="{{showTab1Class}}">
+                <div class="sec1btn">
+                  <div class="row multi-columns-row">
+                    <div class="col-md-3">
+                      <label class="lable-text">Customer Type
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="custTypeCode"
+                          (change)="onClickHelpData(custTypeCode,'CUST')">
+                          <option *ngFor="let custType of custTypeList" [value]="custType.KEY">{{custType.DESCRIPTION}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">First Name
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="txtFirstname" name="firstname" [(ngModel)]="clientFName" minlength="1" required
+                          placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Middel Name</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="middlename" name="middlename" [(ngModel)]="clientMName" minlength="1" placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Last Name
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="lastname" name="lastname" [(ngModel)]="clientLName" required placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Mobile Number
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="mobileNo" class="form-control form-control-sm"
+                          id="mobile" name="mobile" [(ngModel)]="mobileno" readonly maxlength="10" required
+                          placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Aadhaar Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="aadhar" name="aadhar" [(ngModel)]="aadharNumber" placeholder="0000 0000 0000"
+                          minlength="12" maxlength="12" placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">PAN Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="panNo"
+                          class="form-control form-control-uppercase  form-control-sm" id="pan" name="pan"
+                          [(ngModel)]="panNumber" blur="FormatPAN(this)" maxlength="10" placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Date of Birth</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" name="dob"
+                          [(ngModel)]="dob" (click)="DateTimeCtrl('D','dob')" readonly placeholder="DD/MM/YYYY">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Pincode</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="pincode" name="pincode" [(ngModel)]="pinCode" minlength="6" maxlength="6" placeholder=" "
+                          (change)="SearchPincode()">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Country</label>
+                      <div class="form-group">
+                        <help [keyword]="countryKey" [eid]="'country'" [dataList]="service.countryList"
+                          [readonlyFlag]="true" (getData)="onClickHelpData($event,'C')"></help>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">State</label>
+                      <div class="form-group">
+                        <help [keyword]="service.stateKey" [eid]="'state'" [txtSelectedData]="txtStateData"
+                          [dataList]="service.stateList" (getData)="onClickHelpData($event,'S')"></help>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">District</label>
+                      <div class="form-group">
+                        <help [keyword]="service.distKey" [eid]="'district'" [dataList]="service.districtList"
+                          (getData)="onClickHelpData($event,'D')"></help>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Tahasil</label>
+                      <div class="form-group">
+                        <help [keyword]="service.tahasilKey" [eid]="'tahasil'" [dataList]="service.tahasilList"
+                          (getData)="onClickHelpData($event,'T')"></help>
+                      </div>
+                      <label class="lable-text">City</label>
+                      <div class="form-group">
+                        <help [keyword]="service.cityKey" [eid]="'city'" [dataList]="service.cityList"
+                          (getData)="onClickHelpData($event,'CT')" (getInputData)="onChangeInputData($event,'CT')">
+                        </help>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Address
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <textarea rows="4" id="txtAddress" class="form-control form-control-sm" inputType="alphaNumeric"
+                          [(ngModel)]="address" maxlength="50" required placeholder=" "></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Landmark</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" rows="4" inputType="alphaNumeric"
+                          [(ngModel)]="landmark" maxlength="50" id="landmark" placeholder=" "></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Area</label>
+                      <div class="form-group">
+                        <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="area"
+                          [(ngModel)]="areaName" maxlength="50" placeholder=" "></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Address Proof</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" id="" [(ngModel)]="addressProofCode">
+                          <option *ngFor="let addressProof of addressProofList" [value]="addressProof.KEY">
+                            {{addressProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileAddressProof" class="inputfile" id="fileAddressProof"
+                            (change)="fileSelected($event,this,'AddressProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileAddressProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="addPrfImage" id="imgIdAddressProof"
+                                  alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12 f-w-400"
+                              [ngStyle]="{'color':imageSizeAd !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeAd}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Identity Proof</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="identityProofCode">
+                          <option *ngFor="let identityProof of identityProofList" [value]="identityProof.KEY">
+                            {{identityProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileIdentityProof" class="inputfile" id="fileIdentityProof"
+                            (change)="fileSelected($event,this,'IdentityProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileIdentityProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="idPrfImage" id="imgIdIdentityProof"
+                                  alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12 f-w-400"
+                              [ngStyle]="{'color':imageSizeId !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeId}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Email Address</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="eMail" class="form-control form-control-sm"
+                          id="email" name="email" [(ngModel)]="email" maxlength="50" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <button type="button" id="sec1btn" class="btn btn-success "
+                      style="max-height: 36px; margin-top: 28px;padding: 2px 18px 4px;"
+                      *ngIf="businessSectionShow==true" (click)="toggleTab('Section2')">Next</button>
+                    <button type="button" id="sec1btn" class="btn btn-success " *ngIf="businessSectionShow==false"
+                      style="max-height: 36px; margin-top: 28px;padding: 2px 18px 4px;"
+                      (click)="submit();">Submit</button>
+                    <button type="button" id="canBtn" class="btn btn-success "
+                      style="max-height: 36px; margin-top: 28px;padding: 2px 18px 4px;margin-left: 8px;"
+                      (click)="cancelPro()">Cancel</button>
+                  </div>
+                  <div class="gap"></div>
+                </div>
+              </section>
+
+              <!-- Section Tab 2 -->
+              <section id="section-linetriangle-2" class="{{showTab2Class}}">
+                <div class="sec2btn">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Detail</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" inputType="alphaNumeric" id="businessdetail"
+                          [(ngModel)]="businessdet" maxlength="150" placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Line</label>
+                      <select class="form-control form-control-sm" [(ngModel)]="businessLineCode"
+                        (change)="onClickHelpData(businessLineCode,'BUSIL')">
+                        <option *ngFor="let businessLine of businessLineList" [value]="businessLine.KEY">
+                          {{businessLine.DESCRIPTION}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Address 1</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" inputType="alphaNumeric"
+                          [(ngModel)]="businessAddress" maxlength="100" placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Web URL</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control form-control-sm" id="web" name="web" [(ngModel)]="website" maxlength="50"
+                          placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Type</label>
+                      <select class="form-control form-control-sm" [(ngModel)]="businessTypeCode"
+                        (change)="onClickHelpData(businessTypeCode,'BUSIT')">
+                        <option *ngFor="let businessType of businessTypeList" [value]="businessType.KEY">
+                          {{businessType.DESCRIPTION}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Taxable Flag</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="taxableFlagCode">
+                          <option value="Y">Yes</option>
+                          <option value="N">No</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Composite Flag</label>
+                      <div class="form-group">
+                        <select class="form-control  form-control-sm" [(ngModel)]="companyFlagCode">
+                          <option value="Y">Yes</option>
+                          <option value="N">No</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">TAN Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control form-control-sm" id="tan" name="tan" [(ngModel)]="tan" minlength="10"
+                          maxlength="10" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">GST Reg. Date</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="gstregdate"
+                          name="gstregdate" [(ngModel)]="gstRegDate" (click)="DateTimeCtrl('D','gstRegDate')" readonly
+                          placeholder="DD/MM/YYYY">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">GSTIN</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control text-uppercase form-control-sm" id="gstin" name="gstin"
+                          [(ngModel)]="gstin" (change)="checkGST()" maxlength="15" placeholder=" ">
+                        <span *ngIf="gstname !==''" class="f-12 f-w-400"
+                          [ngStyle]="{'color':gstname === ' Invalid GST Number' ? '#FF0000' : '#597d07' }">{{gstname}}</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Document Proof</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="businessProofCode"
+                          (change)="onClickHelpData(businessProofCode,'BUSIP')">
+                          <option *ngFor="let businessProof of businessProofList" [value]="businessProof.KEY">
+                            {{businessProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileBusinessProof" class="inputfile" id="fileBusinessProof"
+                            (change)="fileSelected($event,this,'BusinessProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileBusinessProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="fileBusPrfImage" id="imgIdBusinessProof"
+                                  alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12"
+                              [ngStyle]="{'color':imageSizeBp !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeBp}}</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gap"></div>
+                  <button type="button" class="btn btn-success " (click)="toggleTab('Section1')">Previous</button>
+                  <button type="button" class="btn btn-success" id="sec2btn" (click)="submit();">Submit</button>
+                  <button type="button" id="canBtn" class="btn btn-success " (click)="cancelPro()">Cancel</button>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!--POPUP START-->
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+          <div class="modal-content">
+            <div class="modal-body" style="height: 400px;overflow: auto;">
+              <div *ngFor="let item of termCondContent">
+                <p style="text-transform: uppercase; font-weight: bold">
+                  {{item.TERM_COND_HEADER}}
+                </p>
+                <p style="margin-top: 2%">
+                  {{item.TERM_COND_DETAIL}}
+                </p>
+                <br>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--POPUP END-->
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>

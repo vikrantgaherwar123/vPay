@@ -1,0 +1,89 @@
+.qrtop1 img {height:100px; overflow:hidden;}
+.qrtoptop img {height:35px; overflow:hidden;}
+// .client-name p {margin: auto; width: 29%; padding-top:5px; font-size: 11px;}
+// .client-name1 p {    margin: auto;}
+ 
+ /* QR CODE css */
+ .qrcode-block {margin:auto; width:100%; transform: scale(1,1); } // transform: scale(2,2);
+ .qrcode-blockLrg {margin:auto; width:100%; transform: scale(1.9,1.9); } // transform: scale(2,2);
+ .genqrcode { 
+   border: 3px solid #379748;
+   width: 165px;
+   height: 168px;
+   margin: -23em auto 0;
+  }
+  .qrcode img {
+      height: 150px !important;
+  }
+.scan-title{
+  margin: -12px auto;
+} 
+
+ .scan-title h5 {
+  font-weight: bold;
+  font-size: 15px;
+  background: #F6F7FB;
+  width: 82%;
+}
+
+ 
+ .qrtop img {
+    position: relative;
+    top: 0;
+    height: auto;
+    margin-top: 0%;
+    width: 55%;
+    margin-left: 0%;
+}
+ 
+
+.qrcode img {
+  width: 150px;
+  height: 150px;
+}
+  .client-name p {margin: auto; width: 46%; padding-top:5px; font-size: 10px; text-align: center}
+ .step-block {border-top:1px solid #000; width:62%; margin:auto;}
+ .step-block p {padding:6px 0 0; font-size:12px;}
+ .app {margin:-2em 0 .5em; font-size:10px !important; font-weight:bold;}
+ .qraro {color:#379748;}
+
+ 
+ @media (max-width: 640px) {
+    .upi_qr
+    {
+      width: 12%; 
+      height: auto;
+      margin-top: -40%;
+      background-color: white;
+    }
+  
+  }
+  
+  @media (min-width:768px) {
+    .upi_qr
+    {
+      
+    //   width: 9%;
+    //   height: auto;
+    //   margin-top: -51%;
+    //   background-color: white;
+    width: 19%;
+    height: auto;
+    margin-top: -106%;
+    background-color: white;
+    }
+   
+  
+  }
+  
+  
+  @media (max-width: 414px) {
+    .upi_qr
+    {
+      width: 10%; 
+      height: auto;
+      margin-top: -74%;
+      background-color: white;
+    }
+  
+  }

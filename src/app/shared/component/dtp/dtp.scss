@@ -1,0 +1,379 @@
+.SelTab{
+    box-shadow: 0 4px 8px #999;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Day of Days (S,M,T,W,T,F,S) */
+.dayofdays{
+    // background-color:#E0DFDF; 
+    border-style: solid; 
+    border-width: 1px; 
+    border-color:white; 
+    //width:14%; 
+    text-align:center; 
+    border-radius: 4px;
+    color:#000;
+}
+
+
+.table > tbody > tr > td{
+    padding: 0px !important;
+    line-height: 25px;
+}
+
+/* Class Dashboard Selected Date */
+.clssd{
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: green;
+    //width:14%; 
+    //height:30px;
+    border-radius: 4px;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Class Dashboard Dates */
+.clsdy{
+    border-style: none; 
+    border-width: 1px; 
+    border-color:#E0DFDF; 
+    //width:14%; 
+    //height:30px;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Class Dashboard Current Month */
+.clssmn{
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: green;
+    border-radius: 4px;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+    height:51px;
+}
+
+/* Class Dashboard Months */
+.clsmn{
+    border-style: solid; 
+    border-width: 1px; 
+    border-color:#E0DFDF; 
+    border-radius: 4px;
+    text-align: center; 
+    vertical-align: middle;
+    height: 51px;
+}
+
+/* Class Dashboard Current Year */
+.clssyr{
+    border-style: solid; 
+    border-width: 1px; 
+    border-color: green;
+    border-radius: 4px;
+    color: red;
+    text-align: center;
+    vertical-align: middle;
+    height:40px;
+}
+
+/* Class Dashboard Years */
+.clsyr{
+    border-style: solid; 
+    border-width: 1px; 
+    border-color:#E0DFDF; 
+    border-radius: 4px;
+    text-align: center; 
+    vertical-align: middle;
+    height:40px;
+}
+
+.cmghrstime > input{
+    text-align: center;
+    width: 35px;
+    margin : 0px;
+    
+}
+
+.cmgmnstime > input{
+    text-align: center;
+    width: 37px;
+    margin : 0px;
+}
+
+.div_none{
+  display: none;
+}
+
+.div_block{
+    display: block;
+}
+
+.clsHalfDay{
+    font-size:20px; float:right; color:#B9943B;
+    display: block;
+}
+
+.cls-dttm-hh{
+    position:absolute;
+    z-index: 1000000;
+    width:100%;
+    height:100%;
+    padding-top:19%;
+    padding-left:24%;
+    padding-right:5%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.cls-dttm-mm{
+    position:absolute;
+    z-index: 1000000;
+    width:100%;
+    height:100%;
+    padding-top:19%;
+    padding-left:37%;
+    padding-right:5%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.clsinput > input{
+    text-align: center;
+    margin : 0px;
+    font-size: large;
+    line-height: 3;
+}
+
+.clsinputdate > input{
+    text-align: center;
+    margin : 0px;
+    font-size: 50px;
+    //line-height: 3;
+}
+
+.clstextarea > textarea {
+    height: 80px;
+    margin: 0px;
+}
+
+.clschkbox > .checkbox-icon{
+    height: 25px;
+    width:25px;
+    border-radius: 4px;
+}
+
+ion-checkbox .checkbox-checked .checkbox-inner {
+    top:4px;
+    left:8px;
+}
+
+.cls-days{
+    display: block;
+    position:absolute;
+    z-index: 2000000;
+    width:100%;
+    height:100%;
+    padding-top:21%;
+    padding-left:46%;
+    padding-right:5%;
+}
+.cls-days-firstdiv{
+    height:36%;
+    width:50px;
+    display: inline-block;
+    overflow: hidden;
+}
+.cls-days-seconddiv{
+    height:85%;
+    width: 92px;
+    overflow: auto;
+    padding-right: 15px;
+}
+.cls-days-row{
+    height:40px;
+    width:55%;
+    border-radius: 4px;
+}
+.cls-days-col{
+    background-color: #ffdd99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 4px;
+}
+
+.cls-months{
+    display: block;
+    position:absolute;
+    z-index: 2000000;
+    width:100%;
+    height:100%;
+    padding-top:21%;
+    padding-left:30%;
+    padding-right:5%;
+}
+.cls-months-firstdiv{
+    height:36%;
+    width:30%;
+    display: inline-block;
+    overflow: hidden;
+}
+.cls-months-seconddiv{
+    height:85%;
+    width: 92px;
+    overflow: auto;
+    padding-right: 15px;
+}
+.cls-months-row{
+    height:40px;
+    width:75%;
+    border-radius: 4px;
+}
+.cls-months-col{
+    background-color: #ffdd99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 4px;
+}
+
+
+.cls-years{
+    display: block;
+    position:absolute;
+    z-index: 2000000;
+    width:100%;
+    height:100%;
+    padding-top:21%;
+    padding-left:61%;
+    padding-right:5%;
+}
+.cls-years-firstdiv{
+    height:36%;
+    width:57%;
+    display: inline-block;
+    overflow: hidden;
+}
+.cls-years-seconddiv{
+    height:85%;
+    width: 92px;
+    overflow: auto;
+    padding-right: 15px;
+}
+.cls-years-row{
+    height:40px;
+    width:90%;
+    border-radius: 4px;
+}
+.cls-years-col{
+    background-color: #ffdd99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 4px;
+}
+
+
+/* TIME HOURS */
+.cls-hours{
+    display: block;
+    position:absolute;
+    z-index: 2000000;
+    width:100%;
+    height:100%;
+    padding-top:21%;
+    padding-left:37%;
+    padding-right:5%;
+}
+.cls-hours-firstdiv{
+    height:25%;
+    width:50px;
+    display: inline-block;
+    overflow: hidden;
+}
+.cls-hours-seconddiv{
+    height:85%;
+    width: 92px;
+    overflow: auto;
+    padding-right: 15px;
+}
+.cls-hours-row{
+    height:40px;
+    width:55%;
+    border-radius: 4px;
+}
+.cls-hours-col{
+    background-color: #ffdd99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 4px;
+}
+
+/* TIME MINUTES */
+.cls-minutes{
+    display: block;
+    position:absolute;
+    z-index: 2000000;
+    width:100%;
+    height:100%;
+    padding-top:21%;
+    padding-left:51%;
+    padding-right:5%;
+}
+.cls-minutes-firstdiv{
+    height:25%;
+    width:50px;
+    display: inline-block;
+    overflow: hidden;
+}
+.cls-minutes-seconddiv{
+    height:85%;
+    width: 92px;
+    overflow: auto;
+    padding-right: 15px;
+}
+.cls-minutes-row{
+    height:40px;
+    width:55%;
+    border-radius: 4px;
+}
+.cls-minutes-col{
+    background-color: #ffdd99;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 4px;
+}
+
+
+.datepicker-control-container{
+    position:absolute;
+    z-index: 1000000;
+    // width:80%;
+    width:100%;
+    // height:80%;
+    height:100%;
+    // padding-top:8%;
+    
+    padding-left:5%;
+    padding-right:5%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.timepicker-control-container{
+    position:absolute;
+    z-index: 1000000;
+    width:100%;
+    height:100%;
+    padding-top:10%;
+    padding-left:5%;
+    padding-right:5%;
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.dateCtrl{background-color: white; border-radius:5px; width:32%; margin-left: 30%; }

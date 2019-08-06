@@ -1,0 +1,121 @@
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+            style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="BBPS transaction Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal"
+            data-target="#myModal">
+        <div class="card p-3">
+            <h4 class="text-center">
+                <span *ngIf="banklogo !=null">
+                    <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-left"
+                        style="height: 44px;padding-left: 10px;" />
+                </span>
+                <span class="font-weight-bold">BBPS Transaction</span>
+                <img style="width: 10%;" class="img-fluid float-right" src="assets/images/bbps_logo.png" alt="bbps" />
+                <img style=" width: 7%;" class="img-fluid float-right mr-2" src="assets/images/icici_logo.png"
+                    alt="icici_logo" />
+            </h4>
+            <hr class="mt-0">
+
+            <div *ngIf="BillerData != null">
+                <!-- For Transaction Success Condition-->
+                <div class="text-center">
+                    <img src="assets/images/success.png" style="height: 50px;">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Name of the customer <span style="float:right;font-weight: bold">{{ BillerData.customerName
+                                }}</span></p>
+                        <hr>
+                        <p>Name of Biller <span style="float:right;font-weight: bold">{{BillerData.billerName }} </span>
+                        </p>
+                        <hr>
+                        <p>Mobile number <span
+                                style="float:right;font-weight: bold">{{ BillerData.customerMobile }}</span></p>
+                        <hr>
+                        <p>Transaction ID <span
+                                style="float:right;font-weight: bold">{{ BillerData.transactionRefId }}</span></p>
+                        <hr>
+                        <p>Transaction Date <span
+                                style="float:right;font-weight: bold">{{BillerData.transactionDateTime}}
+                            </span></p>
+                        <hr>
+                        <p>Payment Mode <span style="float:right;font-weight: bold">{{BillerData.paymentMode }} </span>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Bill Number <span style="float:right;font-weight: bold">{{BillerData.billNumber}} </span></p>
+                        <hr>
+                        <p>Customer Convenience Fee <span style="float:right;font-weight: bold">{{BillerData.ccf }}
+                            </span></p>
+                        <hr>
+                        <p>cou Ccf <span style="float:right;font-weight: bold">{{BillerData.couCcf }} </span></p>
+                        <hr>
+                        <p>Bill Amount <span
+                                style="float:right;font-weight: bold">{{Amount |currency:'₹' :'code'}}</span></p>
+                        <hr>
+                        <p>Bill Date <span style="float:right;font-weight: bold">{{BillerData.billDate }} </span></p>
+                        <hr>
+                        <!-- <p>Period   <span style="float:right;">{{BillerData.billPeriod }} </span></p>
+                                <p>billerId  <span style="float:right;">{{BillerData.billerId }}</span></p> -->
+                        <p>clientRefId <span style="float:right;font-weight: bold">{{BillerData.clientRefId }}</span>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button mat-button class="bg-primary text-white" (click)="GotoHome()">Close</button>
+                </div>
+            </div>
+
+            <div *ngIf="errorDisplay != null" style="margin-top:0%;margin-right: 5%;">
+                <div class="heading1" style="height: 40%;text-align: center;">
+                    <!-- <ion-icon name="ios-close-circle-outline" style="font-size: 100px;color: #f53d3d;"></ion-icon> -->
+                    <img src="assets/images/error.png" style="height: 50px;">
+                </div>
+                <div>
+                    <p *ngFor="let err of errorDisplaydata" style="text-align: center;font-weight: bold">
+                        {{err.errorDtl}}</p>
+                    <p style="text-align: center;font-weight: 600;margin-top: 2%;">{{bbpsresponsemsg}}</p>
+
+                    <p style="text-align: center;font-weight: 600;margin-top: 2%;">{{bbpsTransmsg}}</p>
+
+                    <p style="text-align: center;font-weight: 600;margin-top:2%;">{{bbpsreversmsg}}</p>
+                    <!-- <p *ngFor="let err of errorDisplay" style="text-align: center;font-weight: bold">{{err.errorDtl}}</p> -->
+                    <!-- <p>Any Amount Deducted From Your Account Will be Reversed in 2/3 Days.</p> -->
+                    <!-- <p  *ngIf="errorDisplay !=null" style="text-align: center;font-weight: bold">{{errorDisplay}}</p> -->
+                </div>
+                <div style="text-align: center;margin-top: 10%;">
+                    <button mat-button class="bg-primary text-white" (click)="GotoHome()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!--POPUP START-->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+        <div class="clearfix">
+        </div>
+    </div>
+</main>

@@ -1,0 +1,224 @@
+<main>
+    <div class="main mt-3">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Fund Transfer Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <!-- </button> -->
+        <div class="">
+            <div class="inner">
+                <div class="aadhaarblock">
+                    <div style="padding-top: 15px;">
+                        <h6><span class="font-weight-bold" style="color:#276b08 !important;">
+                                &nbsp;Vpay Balance Transfer</span>
+                            <span class="text-right float-right">
+                            </span>
+                        </h6>
+                        <hr class="mb-2">
+                    </div>
+
+                    <div class="row  p-3">
+                        <div class="inner" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+
+                            <section>
+                                <div class="tabs tabs-style-linetriangle">
+                                    <div class="FirstDiv">
+                                        <div style=" width: 50%; text-align: center;">
+                                            <span style="color:black; font-size: 14px;font-weight: 600;">Total
+                                                Balance</span>
+                                            <br>
+                                            <span style="color:green;">{{TotalBalance |currency:'₹' :'code'}}</span>
+                                        </div>
+                                        <div style=" width: 50%;text-align: center;">
+                                            <span style="color:black; font-size: 14px; font-weight: 600;">Todays
+                                                Collection</span>
+                                            <br>
+                                            <span style="color:green;">{{TodaysCollection |currency:'₹' :'code'}}</span>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <nav>
+                                        <ul>
+                                            <li>
+                                                <a>
+                                                    <span>Total Balance</span>
+                                                    <span
+                                                        style="color:green;">{{TotalBalance |currency:'₹' :'code'}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <span>Todays Collection</span>
+                                                    <span
+                                                        style="color:green;">{{TodaysCollection |currency:'₹' :'code'}}</span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </nav> -->
+                                </div>
+                            </section>
+                            <hr class="mb-0">
+                            <section>
+                                <div class="tabs tabs-style-linetriangle">
+                                    <div style="text-align: center ">
+                                        <span style="color:black;  font-size: 14px; font-weight: 600;">Fund To
+                                            Transfer</span>
+                                        <br>
+                                        <span style="color: green;">{{FundToTransfer |currency:'₹' :'code'}}</span>
+                                        <br>
+                                        <span class="TransferedFundSpan">Todays
+                                            Total Transfered Fund :<span style="padding-left: 2px;">{{TodaysTotalTransferedFund
+                                                        |currency:'₹' :'code'}}</span></span>
+
+                                        <p style=" line-break: auto; color:black;">(Fund Transfer upto
+                                            <span
+                                                style="padding-left: 2px; font-size: 13px;">{{TransferPercent}}%</span>
+                                            from todays collection ,
+                                            <span
+                                                style="padding-left: 2px; font-size: 13px;">{{TransferAttempts}}</span>
+                                            attempts are left to fund transfer, and minimum fund transfer limit
+                                            is <span style="padding-left: 2px; font-size: 13px;">₹
+                                                {{TransferLimit}}</span>)
+                                        </p>
+                                    </div>
+
+
+                                    <!-- <nav>
+                                        <ul>
+                                            <li>
+                                                <a>
+                                                    <span>Fund To Transfer</span>
+                                                    <span
+                                                        style="color: green;">{{FundToTransfer |currency:'₹' :'code'}}</span>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align: center;">
+                                                            <span style="display: inline-flex;">Todays Total Transfered
+                                                                Fund :<span style="padding-left: 2px;">{{TodaysTotalTransferedFund
+                                                                    |currency:'₹' :'code'}}</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align: center;">
+                                                            <p style="display: inline-flex; line-break: auto; ">(Fund
+                                                                Transfer upto
+                                                                <span
+                                                                    style="padding-left: 2px; font-size: 13px;">{{TransferPercent}}%</span>
+                                                                from todays collection ,
+                                                                <span
+                                                                    style="padding-left: 2px; font-size: 13px;">{{TransferAttempts}}</span>
+                                                                attempts are left to fund transfer, and minimum fund
+                                                                transfer limit
+                                                                is <span style="padding-left: 2px; font-size: 13px;">₹
+                                                                    {{TransferLimit}}</span>)
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav> -->
+                                </div>
+                            </section>
+
+                            <hr class="m-0">
+                            <section>
+                                <div class="tabs tabs-style-linetriangle">
+
+                                    <div class="FundReleaseDiv">
+                                        <div style=" width: 50%; text-align: center;">
+                                            <span style=" font-size: 14px; font-weight: 600;">Fund Release After
+                                                Reconcilation</span>
+                                            <br>
+                                            <span style="color: red;">{{Reconcilation |currency:'₹' :'code'}}</span>
+
+
+                                        </div>
+                                        <div style=" width: 50%;text-align: center;">
+                                            <span style="font-size: 14px; font-weight: 600;">Fund Transfer To
+                                                Bank</span>
+                                            <br>
+                                            <span
+                                                style="color:green;">{{FundTransferToBank |currency:'₹' :'code'}}</span>
+
+
+                                        </div>
+                                    </div>
+
+                                    <!-- <nav>
+                                        <ul>
+                                            <li>
+                                                <a>
+                                                    <span>Fund Release After Reconcilation</span>
+                                                    <span
+                                                        style="color: red;">{{Reconcilation |currency:'₹' :'code'}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    <span>Fund Transfer To Bank</span>
+                                                    <span
+                                                        style="color:green;">{{FundTransferToBank |currency:'₹' :'code'}}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav> -->
+                                </div>
+                            </section>
+
+                            <div class="gap"></div>
+                            <div class="gap"></div>
+                            <section>
+                                <div class="tabs tabs-style-linetriangle">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                                <a>
+                                                    <div class="row">
+                                                        <div class="col-md-11" style="text-align: center;">
+                                                            <!-- <button type="button" class="btn btn-success pageValid" (click)="Proceed()">Proceed</button> -->
+                                                            <button type="button" mat-raised-button
+                                                                class="btn btn-success text-white pageValid"
+                                                                (click)="Proceed()">Proceed</button>
+                                                        </div>
+                                                        <div class="col-md-1">
+
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--POPUP START-->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <div *ngFor="let item of termCondContent">
+                                <p style="text-transform: uppercase; font-weight: bold">
+                                    {{item.TERM_COND_HEADER}}
+                                </p>
+                                <p style="margin-top: 2%">
+                                    {{item.TERM_COND_DETAIL}}
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

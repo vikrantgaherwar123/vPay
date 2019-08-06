@@ -1,0 +1,441 @@
+<div class={{CssDiv}}>
+        <div class={{CssDivfirst}}>
+            <div class={{CssDivsecond}}>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let dtl of _ArrBind" (click)="ClkRow(dtl.value)" class={{CssRow}}>
+                            <td class={{CssCol}}>
+                                <h1 style="display: inline-block; margin-top: 0px;">{{dtl.value}}</h1>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="modelShow" style="position:absolute; z-index: 1000000; width:100%; height:-webkit-fill-available;
+    padding-top:8%; padding-left:5%; padding-right:5%; background-color: rgba(0, 0, 0, 0.50);" >
+    <!-- <div *ngIf="modelShow" style="position:absolute; z-index: 1000000; width:80%; height:80%;
+                padding-top:8%; padding-left:5%; padding-right:5%; background-color: rgba(0, 0, 0, 0.50);" > -->
+        <div class="dateCtrl">
+            <!-- FIRST ROW -->
+            <div style="height: 30px; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:black; background-color: white;; 
+                    border-radius:4px; text-align:center; padding-top: 3%;">
+                    <span style="font-weight:bold; color:#000; ">{{DateOrTime}}</span>
+            </div>
+
+            <!-- SECOND ROW -->
+            <div>
+                <!-- DATE -->
+                <div style="line-height: 4;" class={{CssDivDateUI}}>
+                        <table class="table" style="text-align: center; 
+                        background-color: #3f7136bd;
+                        color: white;">
+                                <tbody>
+                                        <tr>
+                                                <td style="border-style: solid; border-width: 1px; border-color:white; border-radius: 4px;
+                                                                                                                                                border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: black;">
+                                                        
+                                                                <input class="clsinput" readonly type="text" [(ngModel)]="_Date" name="_Date" style=" display: inline-flex; width:45px; vertical-align: middle; font-weight: bold; text-align: center; background-color: transparent; border: none; color:white"
+                                                                        (click)="Clk_DB_Day()" placeholder="Day">
+                                                                <span style="display: inline; margin-left: 2px; ">/</span>
+                                                                <input class="clsinput" readonly type="text" [(ngModel)]="_Month" name="_Month" style=" display: inline-flex; width:25%; vertical-align: middle; font-weight: bold; text-align: center; background-color: transparent; border: none;color:white"
+                                                                        (click)="Clk_DB_Month()" placeholder="Month">
+                                                                <span style="display: inline; margin-left: 2px; ">/</span>
+                                                                <input class="clsinput" readonly type="text" [(ngModel)]="_Year" name="_Year" style=" display: inline-flex; width:45px; vertical-align: middle; font-weight: bold; margin-left: 5px; text-align: center; background-color: transparent; border: none;color:white"
+                                                                        (click)="Clk_DB_Year()" placeholder="Year">
+                                                                <br>
+                                                                <span style="font-weight:bold;">{{DayOfDate}}</span>
+                                                        
+                                                </td>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </div>
+
+                <!-- TIME -->
+                <div style="line-height: 8;" class={{CssDivTimeUI}}>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td style=" border-style: solid; border-width: 1px; border-color:white; border-radius: 4px;">
+                                    
+                                        <input class="clsinput" readonly type="text" [(ngModel)]="_HH" name="_HH" style=" display: inline-flex; width:45px; height:50px;"
+                                            (click)="ClkHH()" placeholder="HH">
+                                        <h1 style="display: inline; margin-left: 2px; ">:</h1>
+                                        <input class="clsinput" readonly type="text" [(ngModel)]="_MM" name="_MM" style=" display: inline-flex; width:15%; height:50px;"
+                                            (click)="ClkMM()" placeholder="MM">
+                                    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- DASHBOARD = DAYS -->
+            <div class={{ClsDivDBD}}>
+                <!-- HEADING -->
+                <div style="height: 30px; padding-top: 3%; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:black; 
+                    border-radius:4px; text-align:center; background-color: white;">
+                    <span style="font-weight:bold; color:#000;">DAYS</span>
+                </div>
+
+                <!-- DAYS ROW -->
+                <table class="table" style="border-collapse: initial;">
+                    <tbody>
+                        <tr>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Su</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Mo</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Tu</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">We</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Th</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Fr</span>
+                            </td>
+                            <td class="dayofdays">
+                                    <span style="display: inline; font-weight:bold; ">Sa</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FIRST ROW -->
+                        <tr>
+                            <td class={{_clssd1}}>
+                                <span (click)="clk_SetDate(1)" style="display: inline; font-size: large;">{{D1}}</span>
+                            </td>
+                            <td class={{_clssd2}}>
+                                <span (click)="clk_SetDate(2)" style="display: inline; font-size: large;">{{D2}}</span>
+                            </td>
+                            <td class={{_clssd3}}>
+                                <span (click)="clk_SetDate(3)" style="display: inline; font-size: large;">{{D3}}</span>
+                            </td>
+                            <td class={{_clssd4}}>
+                                <span (click)="clk_SetDate(4)" style="display: inline; font-size: large;">{{D4}}</span>
+                            </td>
+                            <td class={{_clssd5}}>
+                                <span (click)="clk_SetDate(5)" style="display: inline; font-size: large;">{{D5}}</span>
+                            </td>
+                            <td class={{_clssd6}}>
+                                <span (click)="clk_SetDate(6)" style="display: inline; font-size: large;">{{D6}}</span>
+                            </td>
+                            <td class={{_clssd7}}>
+                                <span (click)="clk_SetDate(7)" style="display: inline; font-size: large;">{{D7}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- SECOND ROW -->
+                        <tr>
+                            <td class={{_clssd8}}>
+                                    <span (click)="clk_SetDate(8)" style="display: inline; font-size: large; ">{{D8}}</span>
+                            </td>
+                            <td class={{_clssd9}}>
+                                    <span (click)="clk_SetDate(9)" style="display: inline; font-size: large; ">{{D9}}</span>
+                            </td>
+                            <td class={{_clssd10}}>
+                                    <span (click)="clk_SetDate(10)" style="display: inline; font-size: large; ">{{D10}}</span>
+                            </td>
+                            <td class={{_clssd11}}>
+                                    <span (click)="clk_SetDate(11)" style="display: inline; font-size: large; ">{{D11}}</span>
+                            </td>
+                            <td class={{_clssd12}}>
+                                    <span (click)="clk_SetDate(12)" style="display: inline; font-size: large; ">{{D12}}</span>
+                            </td>
+                            <td class={{_clssd13}}>
+                                    <span (click)="clk_SetDate(13)" style="display: inline; font-size: large; ">{{D13}}</span>
+                            </td>
+                            <td class={{_clssd14}}>
+                                    <span (click)="clk_SetDate(14)" style="display: inline; font-size: large; ">{{D14}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- THIRD ROW -->
+                        <tr>
+                            <td class={{_clssd15}}>
+                                    <span (click)="clk_SetDate(15)" style="display: inline; font-size: large; ">{{D15}}</span>
+                            </td>
+                            <td class={{_clssd16}}>
+                                    <span (click)="clk_SetDate(16)" style="display: inline; font-size: large; ">{{D16}}</span>
+                            </td>
+                            <td class={{_clssd17}}>
+                                    <span (click)="clk_SetDate(17)" style="display: inline; font-size: large; ">{{D17}}</span>
+                            </td>
+                            <td class={{_clssd18}}>
+                                    <span (click)="clk_SetDate(18)" style="display: inline; font-size: large; ">{{D18}}</span>
+                            </td>
+                            <td class={{_clssd19}}>
+                                    <span (click)="clk_SetDate(19)" style="display: inline; font-size: large; ">{{D19}}</span>
+                            </td>
+                            <td class={{_clssd20}}>
+                                    <span (click)="clk_SetDate(20)" style="display: inline; font-size: large; ">{{D20}}</span>
+                            </td>
+                            <td class={{_clssd21}}>
+                                    <span (click)="clk_SetDate(21)" style="display: inline; font-size: large; ">{{D21}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FOURTH ROW -->
+                        <tr>
+                            <td class={{_clssd22}}>
+                                   <span (click)="clk_SetDate(22)" style="display: inline; font-size: large; ">{{D22}}</span>
+                            </td>
+                            <td class={{_clssd23}}>
+                                    <span (click)="clk_SetDate(23)" style="display: inline; font-size: large; ">{{D23}}</span>
+                            </td>
+                            <td class={{_clssd24}}>
+                                    <span (click)="clk_SetDate(24)" style="display: inline; font-size: large; ">{{D24}}</span>
+                            </td>
+                            <td class={{_clssd25}}>
+                                    <span (click)="clk_SetDate(25)" style="display: inline; font-size: large; ">{{D25}}</span>
+                            </td>
+                            <td class={{_clssd26}}>
+                                    <span (click)="clk_SetDate(26)" style="display: inline; font-size: large; ">{{D26}}</span>
+                            </td>
+                            <td class={{_clssd27}}>
+                                    <span (click)="clk_SetDate(27)" style="display: inline; font-size: large; ">{{D27}}</span>
+                            </td>
+                            <td class={{_clssd28}}>
+                                    <span (click)="clk_SetDate(28)" style="display: inline; font-size: large; ">{{D28}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FIFTH ROW -->
+                        <tr>
+                            <td class={{_clssd29}}>
+                                    <span (click)="clk_SetDate(29)" style="display: inline; font-size: large; ">{{D29}}</span>
+                            </td>
+                            <td class={{_clssd30}}>
+                                    <span (click)="clk_SetDate(30)" style="display: inline; font-size: large; ">{{D30}}</span>
+                            </td>
+                            <td class={{_clssd31}}>
+                                    <span (click)="clk_SetDate(31)" style="display: inline; font-size: large; ">{{D31}}</span>
+                            </td>
+                            <td class={{_clssd32}}>
+                                    <span (click)="clk_SetDate(32)" style="display: inline; font-size: large; ">{{D32}}</span>
+                            </td>
+                            <td class={{_clssd33}}>
+                                    <span (click)="clk_SetDate(33)" style="display: inline; font-size: large; ">{{D33}}</span>
+                            </td>
+                            <td class={{_clssd34}}>
+                                    <span (click)="clk_SetDate(34)" style="display: inline; font-size: large; ">{{D34}}</span>
+                            </td>
+                            <td class={{_clssd35}}>
+                                    <span (click)="clk_SetDate(35)" style="display: inline; font-size: large; ">{{D35}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- SIXTH ROW -->
+                        <tr>
+                            <td class={{_clssd36}}>
+                                    <span (click)="clk_SetDate(36)" style="display: inline; font-size: large; ">{{D36}}</span>
+                            </td>
+                            <td class={{_clssd37}}>
+                                    <span (click)="clk_SetDate(37)" style="display: inline; font-size: large; ">{{D37}}</span>
+                            </td>
+                            <td class={{_clssd38}}>
+                                    <span (click)="clk_SetDate(38)" style="display: inline; font-size: large; ">{{D38}}</span>
+                            </td>
+                            <td class={{_clssd39}}>
+                                    <span (click)="clk_SetDate(39)" style="display: inline; font-size: large; ">{{D39}}</span>
+                            </td>
+                            <td class={{_clssd40}}>
+                                    <span (click)="clk_SetDate(40)" style="display: inline; font-size: large; ">{{D40}}</span>
+                            </td>
+                            <td class={{_clssd41}}>
+                                    <span (click)="clk_SetDate(41)" style="display: inline; font-size: large; ">{{D41}}</span>
+                            </td>
+                            <td class={{_clssd42}}>
+                                    <span (click)="clk_SetDate(42)" style="display: inline; font-size: large; ">{{D42}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DASHBOARD = MONTHS -->
+            <div class={{ClsDivDBM}}>
+                <!-- HEADING -->
+                <div style="height: 30px; padding-top: 3%; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:black; 
+                                border-radius:4px; text-align:center; background-color: white;">
+                    <span style="font-weight:bold; color:#000; ">MONTHS</span>
+                </div>
+            
+                <!-- SECOND ROW -->
+                <table class="table" style="border-collapse: initial;">
+                    <tbody>
+                        <tr>
+                            <td class={{_cssM1}}>
+                                    <span (click)="clk_SetMonth(0)" style="display: inline; font-size: large; ">JAN</span>
+                            </td>
+                            <td class={{_cssM2}}>
+                                    <span (click)="clk_SetMonth(1)" style="display: inline; font-size: large; ">FEB</span>
+                            </td>
+                            <td class={{_cssM3}}>
+                                    <span (click)="clk_SetMonth(2)" style="display: inline; font-size: large; ">MAR</span>
+                            </td>
+                        </tr>
+            
+                        <!-- THIRD ROW -->
+                        <tr>
+                            <td class={{_cssM4}}>
+                                    <span (click)="clk_SetMonth(3)" style="display: inline; font-size: large; ">APR</span>
+                            </td>
+                            <td class={{_cssM5}}>
+                                    <span (click)="clk_SetMonth(4)" style="display: inline; font-size: large; ">MAY</span>
+                            </td>
+                            <td class={{_cssM6}}>
+                                    <span (click)="clk_SetMonth(5)" style="display: inline; font-size: large; ">JUN</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FOURTH ROW -->
+                        <tr>
+                            <td class={{_cssM7}}>
+                                    <span (click)="clk_SetMonth(6)" style="display: inline; font-size: large; ">JUL</span>
+                            </td>
+                            <td class={{_cssM8}}>
+                                    <span (click)="clk_SetMonth(7)" style="display: inline; font-size: large; ">AUG</span>
+                            </td>
+                            <td class={{_cssM9}}>
+                                    <span (click)="clk_SetMonth(8)" style="display: inline; font-size: large; ">SEP</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FIFTH ROW -->
+                        <tr>
+                            <td class={{_cssM10}}>
+                                    <span (click)="clk_SetMonth(9)" style="display: inline; font-size: large; ">OCT</span>
+                            </td>
+                            <td class={{_cssM11}}>
+                                    <span (click)="clk_SetMonth(10)" style="display: inline; font-size: large; ">NOV</span>
+                            </td>
+                            <td class={{_cssM12}}>
+                                    <span (click)="clk_SetMonth(11)" style="display: inline; font-size: large; ">DEC</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DASHBOARD = YEARS -->
+            <div class={{ClsDivDBY}}>
+                <!-- HEADING -->
+                <table class="table" >
+                    <tbody>
+                        <tr style="height: 30px; border-bottom-style:solid; border-bottom-width:1px; border-bottom-color:black; 
+                                                            border-radius:4px; ">
+                            <td style="padding:0px; text-align:center; background-color: white; ">
+                                <span>
+                                    <div (click)="clk_nextyears()" style="padding-left:2%; font-size:20px; float:left; color:#209E91;">
+                                        <span><i class="fa fa-arrow-circle-left" style="font-size:24px"></i></span>
+                                    </div>
+                                    <span style="font-weight:bold; color:#000; ">YEARS</span>
+                                    <div (click)="clk_previousyears()" style="font-size:20px; float:right; color:#209E91;">
+                                            <span><i class="fa fa-arrow-circle-right" style="font-size:24px"></i></span>
+                                    </div>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <!-- FIRST ROW -->
+                <table class="table" style="border-collapse: initial;">
+                    <tbody>
+                        <tr>
+                            <td class={{_cssY1}}>
+                                    <span (click)="clk_SetYear(1)" style="display: inline; font-size: large; ">{{Y1}}</span>
+                            </td>
+                            <td class={{_cssY2}}>
+                                   <span (click)="clk_SetYear(2)" style="display: inline; font-size: large; ">{{Y2}}</span>
+                            </td>
+                            <td class={{_cssY3}}>
+                                    <span (click)="clk_SetYear(3)" style="display: inline; font-size: large; ">{{Y3}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- SECOND ROW -->
+                        <tr>
+                            <td class={{_cssY4}}>
+                                    <span (click)="clk_SetYear(4)" style="display: inline; font-size: large; ">{{Y4}}</span>
+                            </td>
+                            <td class={{_cssY5}}>
+                                    <span (click)="clk_SetYear(5)" style="display: inline; font-size: large; ">{{Y5}}</span>
+                            </td>
+                            <td class={{_cssY6}}>
+                                    <span (click)="clk_SetYear(6)" style="display: inline; font-size: large; ">{{Y6}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- THIRD ROW -->
+                        <tr>
+                            <td class={{_cssY7}}>
+                                    <span (click)="clk_SetYear(7)" style="display: inline; font-size: large; ">{{Y7}}</span>
+                            </td>
+                            <td class={{_cssY8}}>
+                                    <span (click)="clk_SetYear(8)" style="display: inline; font-size: large; ">{{Y8}}</span>
+                            </td>
+                            <td class={{_cssY9}}>
+                                    <span (click)="clk_SetYear(9)" style="display: inline; font-size: large; ">{{Y9}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FOURTH ROW -->
+                        <tr>
+                            <td class={{_cssY10}}>
+                                    <span (click)="clk_SetYear(10)" style="display: inline; font-size: large; ">{{Y10}}</span>
+                            </td>
+                            <td class={{_cssY11}}>
+                                    <span (click)="clk_SetYear(11)" style="display: inline; font-size: large; ">{{Y11}}</span>
+                            </td>
+                            <td class={{_cssY12}}>
+                                    <span (click)="clk_SetYear(12)" style="display: inline; font-size: large; ">{{Y12}}</span>
+                            </td>
+                        </tr>
+            
+                        <!-- FIFTH ROW -->
+                        <tr>
+                            <td class={{_cssY13}}>
+                                    <span (click)="clk_SetYear(13)" style="display: inline; font-size: large; ">{{Y13}}</span>
+                            </td>
+                            <td class={{_cssY14}}>
+                                    <span (click)="clk_SetYear(14)" style="display: inline; font-size: large; ">{{Y14}}</span>
+                            </td>
+                            <td class={{_cssY15}}>
+                                    <span (click)="clk_SetYear(15)" style="display: inline; font-size: large;">{{Y15}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LAST ROW (SET / CANCEL) -->
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td (click)="ClickSet()" style="height:35px; width: 50%; border-top-style: solid; border-top-width: 1px;
+                                    border-right-style: solid; border-right-width: 1px;">
+                            <div style="font-weight: bold; text-align: center; margin-top: 4px;">
+                                SET
+                            </div>
+                        </td>
+                        <td (click)="ClickCancel()" style="height:35px; width: 50%; border-top-style: solid; border-top-width: 1px;">
+                            <div style="font-weight: bold; text-align: center; margin-top: 4px;">
+                                CANCEL
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

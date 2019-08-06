@@ -1,0 +1,147 @@
+<main class="mt-3">
+    <div class="main mt-3">
+        <!-- <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Card Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal"> -->
+            <!-- Header -->
+
+            <!-- Top Card -->
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp; Topup Card</span>
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-3 col-sm-12" [ngClass]="padbot">
+                        <mat-form-field class="example-full-width">
+                            <mat-select placeholder="Account Number" [(ngModel)]="acc" required>
+                                <mat-option *ngFor="let item of accountlistArray" (click)="selectedAccDetails(item)"
+                                    value={{item.ACCOUNT_NUMBER}}>
+                                    {{item.ACCOUNT_NUMBER}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-hint align="start" class="pb-3" *ngIf="AccountName!=null"><strong>
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="AccountName !=null">Account Holder :-
+                                        {{AccountName}}</p>
+                                    <!-- <p style="font-size: 11px" class="mb-0" *ngIf="AccountName !=null">GL Name :-
+                                        {{glCode}}</p> -->
+                                    <p style="font-size: 11px" class="mb-0" *ngIf="AccountBalance !=null">Balance :-
+                                        {{AccountBalance |currency:'₹' :'code'}}</p>
+                                    <!-- <p style="font-size: 11px" class="mb-0" *ngIf="cardNO !=null">Card No.
+                                        :-{{cardNO}}</p> -->
+                                </strong>
+                            </mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" autocomplete="off" matInput inputType="decimal"
+                                placeholder="Enter Amount" name="enterAmount" required [(ngModel)]='amount'
+                                maxlength="8" (change)="ConverToDecimal()">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="text" autocomplete="off" required matInput inputType="alphaNumeric"
+                                placeholder="Debit Narration" name="debitNarration" [(ngModel)]='debitNarration'
+                                maxlength="25">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <mat-form-field class="example-full-width">
+                            <input type="password" autocomplete="off" matInput inputType="number"
+                                placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin' maxlength="4"
+                                minlength="4">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-5 col-sm-12 p-3 ">
+                        <button mat-raised-button class="btn-success text-white" (click)="submit($event)">
+                            Submit</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                            Clear</button>
+                    </div>
+                </div>
+
+
+        <!-- success help -->
+        <div *ngIf="showTOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+                        </div>
+                        <div *ngIf="showTOPUPCard">
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{acc}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{rrnNumber}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">Customer Reference No.</span> :- {{customerRefNo }}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">Bank Reference Number</span> :- {{bankReferenceNumber}}
+                            </h6>
+                            <h6 class="text-uppercase font-weight-bold ">
+                                <span>Amount</span> :- {{RespData |currency:'₹' :'code'}}
+                            </h6>
+                        </div>
+
+                        <div *ngIf="showTOPUPCard == false">
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{New_Ac_Number}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                            </h6>
+
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="gap"></div>
+<div class="gap"></div>
+
+<!-- term help -->
+<div class="modal fade" id="termModal">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+        <div class="modal-content">
+            <div class="modal-body" style="height: 400px;overflow: auto;">
+                <div *ngFor="let item of termCondContent">
+                    <p style="text-transform: uppercase; font-weight: bold">
+                        {{item.TERM_COND_HEADER}}
+                    </p>
+                    <p style="margin-top: 2%">
+                        {{item.TERM_COND_DETAIL}}
+                    </p>
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mat-raised-button class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

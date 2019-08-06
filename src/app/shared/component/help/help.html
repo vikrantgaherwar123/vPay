@@ -1,0 +1,31 @@
+<div (click)="showBox($event)">
+        <input class="form-control form-control-sm" (focus)="showBox($event)" type="text" datatype="varchar" readonly [id]="eid" name="txtSearch" [(ngModel)]="txtSelectedData"  placeholder=" " required />
+        <!-- <label  name="lblSearch"  [class]="labelFadeClass">{{captionLabel}}<span *ngIf="required" style="color:red;"> *</span></label> -->
+        <!-- <div class="requirements" name="lblVal">
+                You must enter {{captionLabel}}.
+        </div> -->
+</div>
+
+
+<div id="helpList" class="scrollbar" id="scrollbar-1" name="helpList"  [class]="listClass" style="max-height:200px;max-width:230px;position:absolute;z-index:5000;overflow:auto;
+                background-color:white; font-size: 13px !important;">
+       <table class="table table-hover " 
+       style="border-color: #d0cdcd;border-style: solid;border-width: 1px;">
+                <!-- <thead>
+                        <tr>
+                                <th *ngFor="let caption of captionArray">{{caption}}</th>
+                        </tr>
+                </thead> -->
+                <tbody>
+                        <tr>
+                          <td style="background-color: white !important;">
+                                <input [focus] ="focusEventEmitter" style="width:90%;" (blur)="hideBox();"  type="text" (keyup)="search($event)"  id="filterInput" name="filterInput" [(ngModel)]="filterText"  placeholder="Search" required />
+                                <i class="fa fa-search"></i>
+                          </td>
+                        </tr>
+                        <tr (click)="setval(item); getData.emit(item);" *ngFor="let item of helpData">
+                                <td><a >{{ item.DESCRIPTION }}</a></td>
+                        </tr>
+                </tbody>
+        </table>
+ </div>

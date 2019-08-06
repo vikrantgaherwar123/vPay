@@ -1,0 +1,83 @@
+
+.submenuActive{
+  color: #17a2b8!important;
+}
+.bankMenu{
+  display:flex;
+padding: 10px;
+/* background-color: coral; */
+}
+
+.subMenuList li{
+
+text-align: left;
+}
+
+
+.subMenuList li a{
+color: #999999;
+}
+
+.subMenuList li a:hover{
+color:#404040;
+}
+hr{
+margin-top: 0.5rem;
+margin-bottom: 0.5rem;
+}    
+
+.largeCard{
+  height: 360px;
+  width: 823px;
+  text-align: left;
+  margin-left: 0px !important;
+  }
+
+
+
+
+#formFooter {
+background-color: #f6f6f6;
+border-top: 1px solid #dce8f1;
+padding: 25px;
+text-align: center;
+-webkit-border-radius: 0 0 10px 10px;
+border-radius: 0 0 10px 10px;
+}
+.scrollbar
+{
+    margin-left: 30px;
+    float: left;
+    height: 360px;
+    
+    background: #F5F5F5;
+    overflow-y: auto;
+    margin-bottom: 25px;
+}
+
+
+/*
+ *  STYLE 3
+ */
+
+ #style-3::-webkit-scrollbar-track
+ {
+   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+   background-color: #F5F5F5;
+ }
+ 
+ #style-3::-webkit-scrollbar
+ {
+   width: 6px;
+   background-color: #F5F5F5;
+ }
+ 
+ #style-3::-webkit-scrollbar-thumb
+ {
+   background-color: #000000;
+ }
+ 
+ .force-overflow
+ {
+   min-height: 450px;
+ }

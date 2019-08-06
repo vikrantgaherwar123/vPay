@@ -1,0 +1,22 @@
+.hide{
+    display:none;
+}
+.show{
+    display:block;
+}
+
+.error{
+    color:#ff00009c;
+  }
+  .success{
+    color: #008000ab;
+    
+  }
+  .error::before{
+    color:#ff00009c;
+    content: "✖";
+  }
+  .success::before{
+    color: #008000ab;
+    content: "✔";
+  }

@@ -1,0 +1,96 @@
+<dtp></dtp>
+<div class="card {{ fullCard }} {{ cardLoad }}" [@cardClose]="cardClose" [ngClass]="cardClass">
+  <div class="card-header" *ngIf="title">
+
+
+    <div class="row">
+      <h5 class="m-auto">{{ title }}</h5>
+      <div class="col-md-3">
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker" onkeydown="return false" [(ngModel)]="txt_Fdate" (click)="picker.open();"
+            placeholder="From Date">
+          <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field class="example-full-width" (click)="picker1.open();">
+          <input matInput [matDatepicker]="picker1" onkeydown="return false" [(ngModel)]="txt_Tdate" (click)="picker1.open(); "
+            placeholder="To Date">
+          <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
+          <mat-datepicker touchUi #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-3 m-auto d-flex">
+        <i class="icofont icofont-refresh f-16 reload-card cursorPointerC" matTooltip="Refresh"
+          matTooltipPosition="above" (click)="cardRefresh($event,'')"></i>
+        <img class="icon_size ml-2 cursorPointerC" (click)="cardRefresh('','pie')" matTooltip="Line Chart"
+          matTooltipPosition="above" style="height: 20px;width: 23px;" src="assets/images/piechart.png">
+        <img class="icon_size ml-2 cursorPointerC" (click)="cardRefresh('','serial')" matTooltip="Pie Chart"
+          matTooltipPosition="above" style="height: 20px;width: 25px;" src="assets/images/linechart.png">
+      </div>
+    </div>
+    <!-- <ul class="listAlign text-dark">
+
+        <li class="listAlign " style="margin-right: 10px;">
+          <mat-form-field class="example-full-width f_date" style="width:120px;">
+            <mat-label>From Date</mat-label>
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" [(ngModel)]="txt_Fdate" id="txtStartDate"
+              name="txt_Fdate" readonly placeholder="From Date">
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+
+        </li>
+
+        <li class="listAlign">
+          <mat-form-field class="example-full-width t_date" style="width:120px;">
+            <mat-label>To Date</mat-label> <input matInput [matDatepicker]="picker1" (click)="picker1.open()"
+              [(ngModel)]="txt_Tdate" id="txtEndDate" name="txt_Tdate" readonly placeholder="To Date">
+            <mat-datepicker touchUi #picker1></mat-datepicker>
+          </mat-form-field>
+        </li>
+
+        <li class="listAlign">
+          <h5 class="statsLinkc"><i class="icofont icofont-refresh reload-card" (click)="cardRefresh($event,'')"></i>
+          </h5>
+        </li>
+
+
+      </ul>
+
+      <ul class="listAlign">
+        <li class="listAlign" (click)="cardRefresh('','pie')"><img class="icon_size" src="assets/images/piechart.png">
+        </li>
+        <li class="listAlign" (click)="cardRefresh('','serial')"><img class="icon_size"
+            src="assets/images/linechart.png">
+        </li>
+      </ul> -->
+
+    <span *ngIf="!classHeader">{{ headerContent }}</span>
+    <span *ngIf="classHeader">
+      <ng-content select=".code-header"></ng-content>
+    </span>
+    <div class="card-header-right">
+      <ul class="list-unstyled card-option">
+        <li *ngIf="!isCardToggled" (click)="this.isCardToggled = !this.isCardToggled"><i
+            class="icofont icofont-simple-left"></i></li>
+        <li *ngIf="isCardToggled" (click)="this.isCardToggled = !this.isCardToggled"><i
+            class="icofont icofont-simple-right"></i></li>
+        <li *ngIf="isCardToggled"><i class="icofont icofont-maximize {{ fullCardIcon }} full-card"
+            (click)="fullScreen($event)"></i></li>
+        <!-- <li *ngIf="isCardToggled"><i class="icofont icofont-minus minimize-card" cardToggleEvent (click)="toggleCard($event)"></i></li> -->
+        <li *ngIf="isCardToggled"><i class="icofont icofont-refresh reload-card" (click)="cardRefresh($event)"></i>
+        </li>
+        <!-- <li *ngIf="isCardToggled"><i class="icofont icofont-error close-card" (click)="closeCard($event)"></i></li> -->
+      </ul>
+    </div>
+  </div>
+
+  <div [@cardToggle]="cardToggle">
+    <div class="card-body" [ngClass]="blockClass">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <div class="card-loader" *ngIf="loadCard"><i class="icofont icofont-refresh rotate-refresh"></i></div>
+</div>

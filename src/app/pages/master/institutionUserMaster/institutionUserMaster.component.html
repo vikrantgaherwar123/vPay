@@ -1,0 +1,313 @@
+<dtp>
+</dtp>
+<!-- <div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Merchant Registration</li>
+    </ol>
+  </nav>
+</div> -->
+<main>
+  <div class="main">
+    <div class="container">
+      <div class="inner">
+        <div class="form-bgimg">
+          <div class="profile-img2 text-center">
+            <input type="file" class="file" accept="image/*" name="filePrfPhoto" id="filePrfPhoto" (change)="fileSelected($event,this,'filePrfPhoto')"
+              class="inputfile" style="display: none;" />
+            <label for="filePrfPhoto" title="Add User Photo">
+              <span style="text-align:center">
+                <img src="/assets/images/profile-img.png" name="PrfImage" id="imgIdfilePrfPhoto" alt="Browse An Image"
+                  style="height:60px;width:60px;border-radius: 22%" required>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <section>
+          <div class="tabs tabs-style-linetriangle">
+            <nav>
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" (click)="changeMode('A')">
+                    <span id="sp1">
+                      <i class="fa fa-address-card"></i> Create</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="changeMode('M')">
+                    <span id="sp2">
+                      <i class="fa fa-briefcase"></i> Modify</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="changeMode('D')">
+                    <span id="sp3">
+                      <i class="fa fa-building"></i> Inactive</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="content-wrap">
+
+              <!-- Section Tab 1 -->
+              <section id="section-linetriangle-1" class="{{showTab1Class}}">
+                <div class="sec1btn">
+                  <div class="row multi-columns-row">
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Institution Name</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric" readonly={{insertFlag}} class="form-control form-control-sm"
+                          id="txtInstName" name="instName" [(ngModel)]="instName" minlength="1" required placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Sub Institution Name</label>
+                      <div class="form-group">
+
+                        <select [disabled]="disableSubInst" class="form-control form-control-sm" id="" [(ngModel)]="subInstCode"
+                          (change)="onChangeSubInstCode()">
+                          <option *ngFor="let subInst of subInstList" [value]="subInst.KEY">{{subInst.DESCRIPTION}}</option>
+                        </select>
+
+
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Mobile Number</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" id="txtMobile" inputType="mobileNo" class="form-control form-control-sm"
+                          name="mobile" [(ngModel)]="mobileNo1" maxlength="10" required placeholder=" " (change)="getData()">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">First Name</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm" id="firstname"
+                          name="firstname" [(ngModel)]="clientFName" minlength="1" required placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Middel Name</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm" id="middlename"
+                          name="middlename" [(ngModel)]="clientMName" minlength="1" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Last Name</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm" id="lastname"
+                          name="lastname" [(ngModel)]="clientLName" required placeholder=" ">
+                      </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Email Address</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="eMail" class="form-control form-control-sm" id="email"
+                          name="email" [(ngModel)]="email" maxlength="120" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Aadhaar Number</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="aadhar" name="aadhar" [(ngModel)]="aadharNumber" placeholder="0000 0000 0000" minlength="12"
+                          maxlength="12" required>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">PAN Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="panNo" class="form-control form-control-uppercase  form-control-sm"
+                          id="pan" name="pan" [(ngModel)]="panNumber" maxlength="10" placeholder=" ">
+                      </div>
+                    </div>
+
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Date of Birth</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" name="dob"
+                          [(ngModel)]="dob" (click)="DateTimeCtrl('D','dob')" readonly placeholder="DD/MM/YYYY">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Pincode</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="pincode" name="pincode" [(ngModel)]="pinCode" minlength="6" maxlength="6" required
+                          placeholder=" " (change)="SearchPincode()">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Country</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <help [keyword]="countryKey" [eid]="'country'" [dataList]="service.countryList" [readonlyFlag]="true"
+                          (getData)="onClickHelpData($event,'C')" required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">State</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <help [keyword]="service.stateKey" [eid]="'state'" [txtSelectedData]="txtStateData" [dataList]="service.stateList"
+                          (getData)="onClickHelpData($event,'S')" required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">District</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <help [keyword]="service.distKey" [eid]="'district'" [dataList]="service.districtList"
+                          (getData)="onClickHelpData($event,'D')" required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Tahasil</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <help [keyword]="service.tahasilKey" [eid]="'tahasil'" [dataList]="service.tahasilList"
+                          (getData)="onClickHelpData($event,'T')" required></help>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">City</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <help [keyword]="service.cityKey" [eid]="'city'" [dataList]="service.cityList" (getData)="onClickHelpData($event,'CT')"
+                          (getInputData)="onChangeInputData($event,'CT')" required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Address</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <textarea rows="4" id="txtAddress" class="form-control form-control-sm" inputType="alphaNumeric"
+                          [(ngModel)]="address" maxlength="50" required placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Landmark</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" rows="4" inputType="alphaNumeric" [(ngModel)]="landmark"
+                          maxlength="50" id="landmark" placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Area</label>
+                      <div class="form-group">
+                        <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="area"
+                          [(ngModel)]="areaName" maxlength="50" placeholder=" "></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <!-- <label class="lable-text">Area</label> -->
+                      <div class="form-group">
+                        <!-- <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="area" [(ngModel)]="areaName" maxlength="50"
+                            placeholder=" "></textarea> -->
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Address Proof</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" id="" [(ngModel)]="addressProofCode" (change)="clearIdImg('A')">
+                          <option *ngFor="let addressProof of addressProofList" [value]="addressProof.KEY">{{addressProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileAddressProof" class="inputfile" id="fileAddressProof" required
+                            (change)="fileSelected($event,this,'AddressProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileAddressProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="addPrfImage" id="imgIdAddressProof" alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="img-size" style="width: 160px;">{{imageSizeAd}}</label>
+                          </div>
+                          <!-- <label class="img-size lable-text">Size of file should be between 1kb–6kb.</label> -->
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Identity Proof</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" id="" [(ngModel)]="identityProofCode" (change)="clearIdImg('I')">
+                          <option *ngFor="let identityProof of identityProofList" [value]="identityProof.KEY">{{identityProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileIdentityProof" class="inputfile" id="fileIdentityProof" required
+                            (change)="fileSelected($event,this,'IdentityProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileIdentityProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="idPrfImage" id="imgIdIdentityProof" alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="img-size" style="width: 160px;">{{imageSizeId}}</label>
+                          </div>
+                          <!-- <label class="img-size lable-text">Size of file should be between 1kb–6kb.</label> -->
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Reported By</label><span style="color:red;">*</span>
+                      <div class="form-group">
+                        <!-- <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" id="txtReportedBy" name="reportedBy" [(ngModel)]="reportedBy"
+                          minlength="1" required placeholder=" "> -->
+                        <select class="form-control form-control-sm" [(ngModel)]="reportedByCode" (change)="onClickHelpData(reportedByCode,'reportedBy')">
+                          <option *ngFor="let reportedBy of reportedByList" [value]="reportedBy.CLIENT_MST_ID">{{reportedBy.CLIENT_NAME}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="gap"></div>
+                  <button type="button" id="sec1btn" class="btn btn-success" (click)="save()">Submit</button>
+                </div>
+              </section>
+
+
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

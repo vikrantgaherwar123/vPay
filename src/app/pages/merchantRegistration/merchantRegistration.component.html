@@ -1,0 +1,871 @@
+<header id="top">
+  <div class="top-bar" style="position: fixed; top: 0px;">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-2 logo">
+          <div class="left-logo text-center">
+            <a href="javascript:void(0)">
+              <img class="img-fluid" src="assets/images/vpay.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <!-- <div class="text-center">
+            <div id="cssmenu" class="navigation">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoLogout()">
+                    <i class="fa fa-sign-out logbtns"><span class="btnLogout">Logout</span> </i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+        <div class="col-md-1 m-auto">
+          <a href="javascript:void(0)" style="position: absolute;top: 15px;" (click)="gotoLogout()">
+            <i class="fa fa-sign-out logbtns"> </i>
+            <span class="font-weight-bold" style="color:maroon">Logout</span>
+          </a>
+        </div>
+
+        <div class="col-md-3">
+          <div class="vgipl-logo text-right">
+            <a href="javascript:void(0)">
+              <img style="height: 60px;" class="img-fluid" src="assets/images/vg-logo.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</header>
+
+
+<dtp></dtp>
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0);">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Merchant Registration</li>
+    </ol>
+  </nav>
+</div>
+<main>
+  <div class="main">
+    <div class="container">
+
+      <div class="inner" [ngClass]="merchantForm">
+
+        <div class="form-bgimg">
+          <div class="profile-img2 text-center">
+            <input type="file" class="file" accept="image/*" name="filePrfPhoto" id="filePrfPhoto"
+              (change)="fileSelected($event,this,'filePrfPhoto')" class="inputfile" style="display: none;" />
+            <label for="filePrfPhoto">
+              <span style="text-align:center">
+                <img src="/assets/images/profile-img.png" name="PrfImage" id="imgIdfilePrfPhoto" alt="Browse An Image"
+                  style="height:60px;width:60px;" required>
+              </span>
+            </label>
+            <!-- <label class="img-size">{{imageSizePrp}}</label> -->
+            <label class="f-12 f-w-400" [ngStyle]="{'color':imageSizePrp !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizePrp}}</label>
+
+          </div>
+        </div>
+
+        <section>
+          <div class="tabs tabs-style-linetriangle">
+            <nav>
+              <ul>
+                <li>
+                  <!-- <a (click)="toggleTab('Section1')"> -->
+                  <a>
+                    <span id="sp1">
+                      <i class="fa fa-address-card"></i> Personal Profile</span>
+                  </a>
+                </li>
+                <li *ngIf="businessSectionShow">
+                  <a>
+                    <span id="sp2">
+                      <i class="fa fa-briefcase"></i> Business Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <span id="sp3">
+                      <i class="fa fa-building"></i> Bank Profile</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            <div class="content-wrap">
+
+              <!-- Section Tab 1 -->
+              <section id="section-linetriangle-1" class="{{showTab1Class}}">
+                <div class="sec1btn">
+                  <div class="row multi-columns-row">
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Customer Type</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="custTypeCode"
+                          (change)="onClickHelpData(custTypeCode,'CUST')">
+                          <option *ngFor="let custType of custTypeList" [value]="custType.KEY">{{custType.DESCRIPTION}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">First Name
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="txtFirstname" name="firstname" [(ngModel)]="clientFName" minlength="1" required
+                          placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Middel Name</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="middlename" name="middlename" [(ngModel)]="clientMName" minlength="1" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Last Name
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="lastname" name="lastname" [(ngModel)]="clientLName" required placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Mobile Number
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="mobileNo" class="form-control form-control-sm"
+                          id="mobile" name="mobile" [(ngModel)]="mobileno" readonly maxlength="10" required
+                          placeholder=" ">
+                      </div>
+                      <label class="lable-text">Pincode</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="pincode" name="pincode" [(ngModel)]="pinCode" minlength="6" maxlength="6" placeholder=" ">
+                      </div>
+                    </div>
+
+
+
+                    <!-- <div class="col-md-3">
+                      <label class="lable-text">Aadhaar Number<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off"  inputType="number" class="form-control form-control-sm" id="aadhar" name="aadhar" [(ngModel)]="aadharNumber"
+                          placeholder="0000 0000 0000" minlength="12" maxlength="12" required placeholder=" ">
+                      </div>
+                    </div> -->
+
+
+                    <!-- <div class="col-md-3">
+                      <label class="lable-text">PAN Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off"  inputType="panNo" class="form-control form-control-uppercase  form-control-sm" id="pan" name="pan" [(ngModel)]="panNumber"
+                          blur="FormatPAN(this)" maxlength="10" placeholder=" ">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Date of Birth</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off"  class="form-control form-control-sm" name="dob" [(ngModel)]="dob" (click)="DateTimeCtrl('D','dob')" readonly
+                          >
+                      </div>
+                    </div> -->
+                    <div class="col-md-3">
+                      <label class="lable-text">Address
+                        <span style="color:red">*</span>
+                      </label>
+                      <div class="form-group">
+                        <textarea rows="4" id="txtAddress" class="form-control form-control-sm" inputType="alphaNumeric"
+                          [(ngModel)]="address" maxlength="50" required placeholder=" "></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+
+
+
+                    <!-- <div class="col-md-3">
+                      <label class="lable-text">Country<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <help [keyword]="countryKey" [eid]="'country'" [dataList]="service.countryList" [readonlyFlag]="true" (getData)="onClickHelpData($event,'C')"
+                          required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">State<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <help [keyword]="service.stateKey" [eid]="'state'" [txtSelectedData]="txtStateData" [dataList]="service.stateList" (getData)="onClickHelpData($event,'S')"
+                          required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">District<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <help [keyword]="service.distKey" [eid]="'district'" [dataList]="service.districtList" (getData)="onClickHelpData($event,'D')"
+                          required></help>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Tahasil<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <help [keyword]="service.tahasilKey" [eid]="'tahasil'" [dataList]="service.tahasilList" (getData)="onClickHelpData($event,'T')"
+                          required></help>
+                      </div>
+
+                      <label class="lable-text">City<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <help [keyword]="service.cityKey" [eid]="'city'" [dataList]="service.cityList" (getData)="onClickHelpData($event,'CT')" (getInputData)="onChangeInputData($event,'CT')"
+                          required></help>
+                      </div>
+                    </div> -->
+
+
+
+                    <!-- <div class="col-md-3">
+                      <label class="lable-text">Landmark</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" rows="4" inputType="alphaNumeric" [(ngModel)]="landmark" maxlength="50" id="landmark"
+                          placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Area</label>
+                      <div class="form-group">
+                        <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="area" [(ngModel)]="areaName" maxlength="50"
+                          placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Address Proof<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" id="" [(ngModel)]="addressProofCode">
+                          <option *ngFor="let addressProof of addressProofList" [value]="addressProof.KEY">{{addressProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileAddressProof" class="inputfile" id="fileAddressProof" required (change)="fileSelected($event,this,'AddressProof');"
+                            style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileAddressProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="addPrfImage" id="imgIdAddressProof" alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12" [ngStyle]="{'color':imageSizeAd !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeAd}}</label>
+                            <label class="img-size">{{imageSizeAd}}</label>
+                          </div>
+                          
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Identity Proof<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm"  [(ngModel)]="identityProofCode">
+                          <option *ngFor="let identityProof of identityProofList" [value]="identityProof.KEY">{{identityProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileIdentityProof" class="inputfile" id="fileIdentityProof" required (change)="fileSelected($event,this,'IdentityProof');"
+                            style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileIdentityProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="idPrfImage" id="imgIdIdentityProof" alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12" [ngStyle]="{'color':imageSizeId !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeId}}</label>
+                            <label class="img-size">{{imageSizeId}}</label>
+                          </div>
+                          
+
+                        </div>
+                      </div>
+                    </div>
+
+                    
+                    <div class="col-md-3">
+                        <label class="lable-text">Email Address</label>
+                        <div class="form-group">
+                          <input type="text" autocomplete="off"  inputType="eMail" class="form-control form-control-sm" id="email" name="email" [(ngModel)]="email" maxlength="20"
+                            placeholder=" ">
+                        </div>
+                      </div> -->
+
+                    <button type="button" id="sec1btn" class="btn btn-success pageValid" disabled="disabled"
+                      style="max-height: 36px; margin-top: 91px;padding: 2px 18px 4px;"
+                      (click)="toggleTab('Section2')">Next</button>
+                  </div>
+                  <div class="gap"></div>
+
+                </div>
+              </section>
+
+              <!-- Section Tab 2 -->
+              <section id="section-linetriangle-2" class="{{showTab2Class}}" *ngIf="businessSectionShow">
+                <div class="sec2btn">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Detail</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" inputType="alphaNumeric" id="businessdetail"
+                          [(ngModel)]="businessdet" maxlength="150" placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Line</label>
+                      <select class="form-control form-control-sm" [(ngModel)]="businessLineCode"
+                        (change)="onClickHelpData(businessLineCode,'BUSIL')">
+                        <option *ngFor="let businessLine of businessLineList" [value]="businessLine.KEY">
+                          {{businessLine.DESCRIPTION}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Address 1</label>
+                      <div class="form-group">
+                        <textarea class="form-control form-control-sm" inputType="alphaNumeric"
+                          [(ngModel)]="businessAddress" maxlength="100" placeholder=" "></textarea>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Web URL</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control form-control-sm" id="web" name="web" [(ngModel)]="website" maxlength="50"
+                          placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Business Type</label>
+                      <select class="form-control form-control-sm" [(ngModel)]="businessTypeCode"
+                        (change)="onClickHelpData(businessTypeCode,'BUSIT')">
+                        <option *ngFor="let businessType of businessTypeList" [value]="businessType.KEY">
+                          {{businessType.DESCRIPTION}}</option>
+                      </select>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Taxable Flag</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="taxableFlagCode">
+                          <option value="Y">Yes</option>
+                          <option value="N">No</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Composite Flag</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="companyFlagCode">
+                          <option value="Y">Yes</option>
+                          <option value="N">No</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">TAN Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control form-control-sm" id="tan" name="tan" [(ngModel)]="tan" minlength="10"
+                          maxlength="10" placeholder=" ">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">GST Reg. Date</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" class="form-control form-control-sm" id="gstregdate"
+                          name="gstregdate" [(ngModel)]="gstRegDate" (click)="DateTimeCtrl('D','gstRegDate')" readonly
+                          placeholder="DD/MM/YYYY">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">GSTIN</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="alphaNumeric"
+                          class="form-control form-control-sm" id="gstin" name="gstin" [(ngModel)]="gstin"
+                          (change)="checkGST()" maxlength="15" placeholder=" ">
+                        <span *ngIf="gstname !==''" class="f-12" [ngStyle]="{'color':gstname === ' Invalid GST Number' ? '#FF0000' : '#597d07' }">{{gstname}}</span>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-3">
+                      <label class="lable-text">Business Document Proof<span style="color:red">*</span></label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" [(ngModel)]="businessProofCode" (change)="onClickHelpData(businessProofCode,'BUSIP')">
+                          <option *ngFor="let businessProof of businessProofList" [value]="businessProof.KEY">{{businessProof.DESCRIPTION}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileBusinessProof" class="inputfile" id="fileBusinessProof" required (change)="fileSelected($event,this,'BusinessProof');"
+                            style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileBusinessProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="fileBusPrfImage" id="imgIdBusinessProof" alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12" [ngStyle]="{'color':imageSizeBp !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeBp}}</label>
+                            <label class="img-size">{{imageSizeBp}}</label>
+                          </div>
+                          
+
+                        </div>
+
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="gap"></div>
+                  <button type="button" class="btn btn-success " (click)="toggleTab('Section1')">Previous</button>
+                  <button type="button" class="btn btn-success" id="sec2btn"
+                    (click)="toggleTab('Section3')">Next</button>
+                </div>
+              </section>
+
+              <!-- section Tab 3 -->
+              <section id="section-linetriangle-3" class="{{showTab3Class}}">
+                <div class="sec3btn">
+                  <div class="row">
+                    <p class="bankNote">Note:- Please Enter valid Bank Details Because your collection amount will
+                      transfer to your register
+                      valid bank details.</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <label class="lable-text">Account Type</label>
+                      <div class="form-group">
+                        <select class="form-control form-control-sm" id="" [(ngModel)]="accountTypeCode"
+                          (change)="onChangeAcType()">
+                          <option value="SB">Saving Account</option>
+                          <option value="CA">Current Account</option>
+                          <option value="CC">Cash Credit Account</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+
+                      <label class="lable-text">IFSC Code</label>
+
+                      <!-- <div style="border:1px solid #000; border-radius: 10%;"> -->
+                      <div class="input-group mb-0">
+                        <input type="text" autocomplete="off"
+                          class="form-control form-control-uppercase form-control-sm" placeholder="IFSC Code"
+                          [(ngModel)]="IFSC_CODE" maxlength="11" minlength="9" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <span class="input-group-text" id="basic-addon2" (click)="OpenIfscPage()" data-toggle="modal"
+                            data-target="#myModalMR">
+                            <i class="fa fa-search"></i>
+                          </span>
+                        </div>
+
+                      </div>
+                      <label class="text-primary font-weight-bold f-12"
+                        *ngIf="branch!=undefined && IFSC_CODE !=undefined">{{bank}}-{{this.branch}}</label>
+
+                      <!-- <label class="lable-text">IFSC</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-uppercase form-control-sm" id="ifsc" name="ifsc"
+                          [(ngModel)]="ifsc" maxlength="11" minlength="9" placeholder=" ">
+                      </div> -->
+
+                      <!--POPUP START-->
+                      <div *ngIf="Disp_ifscpage" class="modal fade" id="myModalMR" data-backdrop="static">
+                        <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                          <div class="modal-content">
+
+                            <div class="modal-header">
+                              <p class="title-name" style="margin:0em 0 0;font-weight: 400;">Search IFSC Code</p>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+
+                            <div class="modal-body">
+                              <div class="container">
+                                <!-- <input class="form-control" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for names.." title="Type in a name"> -->
+
+                                <div class="row">
+                                  <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                      <label>Bank Name
+                                        <span style="color:red">*</span>
+                                      </label>
+                                      <input autocomplete="off" class="form-control form-control-sm"
+                                        (change)="setBankName(bank)" type="text" id="txtbank"
+                                        placeholder="Search Bank Name" list="items" [(ngModel)]="bank" required />
+                                      <datalist id="items">
+                                        <option *ngFor="let item of bankdata" [value]="item.DESCRIPTION"></option>
+                                      </datalist>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                      <label>State Name
+                                        <span style="color:red">*</span>
+                                      </label>
+                                      <input autocomplete="off" class="form-control form-control-sm"
+                                        (change)="setBankState(state)" type="text" id="txstate"
+                                        placeholder="Search State Name" list="stateitems" [(ngModel)]="state"
+                                        required />
+                                      <datalist id="stateitems">
+                                        <option *ngFor="let item of statedata" [value]="item.DESCRIPTION"></option>
+                                      </datalist>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                      <label>City Name
+                                        <span style="color:red">*</span>
+                                      </label>
+                                      <input autocomplete="off" class="form-control form-control-sm"
+                                        (change)="setBankCity(city)" type="text" id="txtcity"
+                                        placeholder="Search City Name" list="cityitems" [(ngModel)]="city" required />
+                                      <datalist id="cityitems">
+                                        <option *ngFor="let item of citydata" [value]="item.DESCRIPTION"></option>
+                                      </datalist>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                      <label>Branch Name
+                                        <span style="color:red">*</span>
+                                      </label>
+                                      <input autocomplete="off" class="form-control form-control-sm"
+                                        (change)="setBankBranch(branch)" type="text" id="txtbranch"
+                                        placeholder="Search Branch Name" list="branchitems" [(ngModel)]="branch"
+                                        required />
+                                      <datalist id="branchitems">
+                                        <option *ngFor="let item of branchdata" [value]="item.DESCRIPTION"></option>
+                                      </datalist>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-md-12 inputcard">
+                                    <div class="col-md-8 inputcard">
+                                      <div *ngIf="Disp_ifsclabel" class="input-cont">
+                                        <label class="pt-2" style="color: green; font-size: 1em;">IFSC Code : {{ifsc}}
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-12 inputcard">
+                                    <div class="col-md-8 inputcard">
+                                      <div *ngIf="Disp_ifscnotfound" class="input-cont">
+                                        <label style="color: red">IFSC Code not found. </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <br>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                              <button class="btn show-btn btn-primary show-raise" (click)="SetIFSC()">Set IFSC</button>
+                              <button class="btn show-btn btn-primary show-raise" (click)="clearIFSC()"> Clear </button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!--POPUP END-->
+                    </div>
+                    <div class="col-md-3">
+                      <label class="lable-text">Account Number</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                          id="accountnumber" name="accountnumber" [(ngModel)]="acNo" maxlength="18">
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label class="lable-text">Account Name</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                          id="accountName" minlength="3" name="accountName" [(ngModel)]="acName">
+                      </div>
+                    </div>
+
+                    <!-- bank proof details -->
+                    <div class="col-md-3">
+                      <label class="lable-text">Upload Bank Proof</label>
+                      <select class="form-control form-control-sm" [(ngModel)]="bankProofCode"
+                        (change)="onClickHelpData(bankProofCode,'DM~B')">
+                        <option *ngFor="let bankProof of bankProofList" [value]="bankProof.KEY">
+                          {{bankProof.DESCRIPTION}}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="form-group">
+                        <div class="fileimg">
+                          <input type="file" name="fileCancelChequeProof" class="inputfile" id="fileCancelChequeProof"
+                            required (change)="fileSelected($event,this,'CancelChequeProof');" style="display: none;" />
+                          <div class="icon-imgs">
+                            <label for="fileCancelChequeProof">
+                              <div class="imgthum">
+                                <img src="/assets/images/image.png" name="addPrfImage" id="imgIdCancelChequeProof"
+                                  alt="Browse An Image">
+                              </div>
+                            </label>
+                            <label class="f-12"
+                              [ngStyle]="{'color':imageSizeCcp !== 'File Uploaded Successfully.' ? '#FF0000' : '#597d07' }">{{imageSizeCcp}}</label>
+                            <!-- <label class="img-size">{{imageSizeCcp}}</label> -->
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="gap"></div>
+                  <button type="button" class="btn btn-success " (click)="toggleTab('PSection2')">Previous</button>
+                  <button type="button" class="btn btn-success " id="sec3btn" (click)="submit();">Submit</button>
+                </div>
+              </section>
+
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- <div  [ngClass]="BankList"> -->
+      <div class="inner" [class]="showBankList">
+        <div class="row bankList">
+          <div class="col-md-10" style="position:absolute;z-index: 5000;color: #000;top: 0%; left: 8%; ">
+            <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+              <div class="tableHeader">
+                <h4 class="shopTitle">Select Your Bank</h4>
+                <hr class="m-0">
+                <span class="closeBtn" title="close" (click)="btnClose()">
+                  <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                </span>
+              </div>
+              <table id="myTable" class="table table-fixedheader table-striped tblBack">
+                <tbody style="min-height: 285px !important;max-height: 430px !important;">
+                  <div class="row col-md-12">
+                    <div class="col-md-6 pt-2 pb-2" *ngFor="let bank of BankList">
+                      <ul class="userModal">
+                        <li class="text-black p-0">
+                          <div class="row cursorPointerC" (click)="selectBank(bank)">
+                            <div class="col-md-2">
+                              <img [src]="bank.BANK_LOGO" style="height:70px;padding: 5px;"
+                                *ngIf="bank.BANK_LOGO != ''">
+                              <img src="assets/images/bank.png" style="height:70px;padding: 5px;"
+                                *ngIf="bank.BANK_LOGO == ''">
+                            </div>
+                            <div class="col-md-10 p-0"> <span
+                                style="position: absolute;width: 350px;top: 20px;">{{bank.BANK_NAME}}</span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div [class]="showOverlay"
+        style="position:absolute;z-index: 4999; height:-webkit-fill-available;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)">
+      </div>
+
+      <div [ngClass]="cbsFormShow">
+        <div class="col-md-12 col-sm-12 card mb-0 p-3">
+          <div>
+            <h6><span class="font-weight-bold" style="color:#276b08">
+                &nbsp;{{title}}</span>
+              <span class="text-right float-right">
+                <i class="fa fa-arrow-circle-o-left fa-2x cursorPointerC" matTooltip="Back"
+                  matTooltipPosition="above" (click)="Back()"></i>
+              </span>
+            </h6>
+
+            <hr>
+          </div>
+          <!-- <h4 style=" text-decoration: underline;">{{title}}</h4>
+
+            <hr>  -->
+          <div [class]='showcbsForm'>
+            <!-- <div class="form-group">
+                    <label class="lable-text">Customer ID
+                        <span style="color:red">*</span>
+                    </label>
+                    <input type="text" autocomplete="off"  inputType="number" class="form-control form-control-sm" [(ngModel)]="Customer_ID"
+                        required placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="lable-text">Account Number
+                        <span style="color:red">*</span>
+                    </label>
+                    <input type="text" autocomplete="off"  inputType="number" minlength="11" maxlength="16" class="form-control form-control-sm"
+                        [(ngModel)]="AC_NUMBER" required placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="lable-text">Mobile Number
+                        <span style="color:red">*</span>
+                    </label>
+                    <input type="text" autocomplete="off"  inputType="mobileNo" maxlength="10" minlength="10" class="form-control form-control-sm"
+                        [(ngModel)]="Mobile_Number" required placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="lable-text">Date of Birth</label>
+                    <input type="text" autocomplete="off"  class="form-control form-control-sm" name="dob" [(ngModel)]="DOB" (click)="DateTimeCtrl('D','DOB')"
+                        readonly>
+                </div> -->
+            <div class="row">
+              <div class="col-md-2 col-sm-12 mr-5">
+                <div class="form-group mb-0">
+                  <mat-form-field>
+                    <input type="text" autocomplete="off" inputType="number" maxlength="20" matInput
+                      placeholder="Customer ID" name="CustomerId" required [(ngModel)]='Customer_ID'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-12 mr-5">
+                <div class="form-group mb-0">
+                  <mat-form-field>
+                    <input type="text" autocomplete="off" matInput placeholder="Account Number" maxlength="18"
+                      minlength="9" name="accountNo" required [(ngModel)]='AC_NUMBER'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-12 mr-5">
+                <div class="form-group mb-0">
+                  <mat-form-field>
+                    <input type="text" autocomplete="off" inputType="mobileNo" matInput placeholder="Mobile Number"
+                      name="mobileNo" required [(ngModel)]='Mobile_Number'>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-12 mr-5">
+                <div class="form-group mb-0">
+                  <mat-form-field>
+                    <input type="text" autocomplete="off" matInput placeholder="Date of Birth" name="dob" required
+                      [(ngModel)]='DOB' (click)="DateTimeCtrl('D','DOB')" readonly>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- <div class="checkbox checkbox-success" *ngIf="OpFlag=='N'">
+                    <input type="checkbox" id="bankDetail" [(ngModel)]="DEFAULT_FLAG">
+                    <label for="bankDetail">
+                        <span style="color:green ;padding-left: 5px;
+                                font-size: 13px;">
+                            <a href="javascript:void(0)">Set Default</a>
+                        </span>
+                    </label>
+                </div> -->
+
+            <div class="float-right pt-3">
+              <button mat-raised-button class="btn-success text-white" (click)="SaveCbs()">
+                Generate OTP
+              </button>
+              <button mat-raised-button class="btn-success text-white" (click)="ClearCbsForm();">
+                Clear
+              </button>
+              <!-- <button type="button"  class="btn btn-success ">Generate OTP</button> -->
+              <!-- <button type="button" class="btn btn-success" value="Clear" (click)="ClearCbsForm();">Clear</button> -->
+              <!-- <button type="button" class="btn btn-success" value="Back" (click)="Back();">Back</button> -->
+            </div>
+
+
+
+
+          </div>
+
+          <!-- <div class="row"> -->
+          <div [class]='showOtp' style="margin-top:0px">
+            <div class="form-group">
+              <!-- <input type="text" autocomplete="off"  inputType="number" [(ngModel)]='otp' class="form-control" title='OTP' maxlength="6" minlength="6" placeholder="Enter OTP"
+                  required> -->
+              <!-- <otp [eid]="'otp'" (callBackMethod)="regenerateOTP()"></otp> -->
+              <otp [eid]="'otp'"></otp>
+            </div>
+            <button type="button" class="btn btn-success" (click)="bankRegistraionProcess()">Submit</button>
+          </div>
+          <!-- </div> -->
+
+          <!-- <button type="button" class="btn btn-success" value="Submit" *ngIf="addBtn==true" (click)="Save()">Submit</button> -->
+          <!-- <button type="button" class="btn btn-success" value="Update" *ngIf="editDevBtn==true"(click)="Update()">Update</button> -->
+        </div>
+      </div>
+      <!-- </div> -->
+
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

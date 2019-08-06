@@ -1,0 +1,143 @@
+
+/* //buttons */
+.button {
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: 0.8em 1.4em;
+  padding-right: 4.7em;
+  background: #009ED8;
+  border: none;
+  color: white;
+  transition: 0.2s;
+}
+.button:before,
+.button:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  width: 2.8em;
+  content: "\00a0";
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+  transition: 0.2s;
+  transform-origin: 50% 60%;
+}
+.button:before {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+.button:hover {
+  background: #0079a5;
+}
+.button:active,
+.button:focus {
+  background: #002e3f;
+  outline: none;
+}
+.button {
+  min-width: 10em;
+}
+.btnclear {
+  background: #FE5F55;
+}
+.btnclear:hover {
+  background: #fe2f22;
+}
+.btnclear:active,
+.btnclear:focus {
+  background: #b90c01;
+}
+.btnclear:after {
+  content: "\f071";
+}
+.btnclear:hover:after {
+  -webkit-animation: bounceright 0.3s alternate ease infinite;
+  animation: bounceright 0.3s alternate ease infinite;
+}
+.btnNext {
+  background: #139675;
+}
+.btnNext:hover {
+  background: #0d6952;
+}
+.btnNext:active,
+.btnNext:focus {
+  background: #083b2e;
+}
+.btnNext:after {
+  content: "\f04e";
+}
+.btnNext:hover:after {
+  /* -webkit-animation: wiggle 0.05s alternate ease infinite;
+  animation: wiggle 0.05s alternate ease infinite; */
+  -webkit-animation: none;
+  -webkit-transform: scale(1.4);
+  animation: none;
+  transform: scale(1.4);
+}
+.btnPrev {
+  background: #C673B3;
+}
+.btnPrev:hover {
+  background: #b74f9f;
+}
+.btnPrev:active,
+.btnPrev:focus {
+  background: #963d82;
+}
+.btnPrev:after {
+  content: "\f04a";
+}
+.btnPrev:hover:after {
+  -webkit-animation: none;
+  -webkit-transform: skew(-20deg);
+  animation: none;
+  transform: skew(-20deg);
+  text-indent: 0.1em;
+}
+.btnSave:after {
+  content: "\f0c7";
+}
+.btnSave:hover:after {
+  -webkit-animation: none;
+  -webkit-transform: scale(1.4);
+  animation: none;
+  transform: scale(1.4);
+}
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@-webkit-keyframes wiggle {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(30deg);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}
+@keyframes wiggle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(30deg);
+  }
+}

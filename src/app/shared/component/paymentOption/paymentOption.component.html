@@ -1,0 +1,468 @@
+<!-- card1 start -->
+<div *ngIf="DivPaymentOption" class="slideUpDown animationDown">
+  
+  <div class="paymentModalBox">
+    <div class="card widget-card-1 text-center" style="border-top: 4px solid #b9cb1a;  border-radius: 11px;box-shadow: 1px 1px 19px 0px rgba(0,0,0,0.75);">
+      <div class="card-block-small face front" style="background-color: #e9efe9;border-radius: 2%;padding: 0px 17px 5px 15px; ">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row" style="border-bottom: 1px solid #E8E8E8; background: #5e872f;">
+              <div class="col-md-3 col-sm-3">
+                  <a href="javascript:void(0)" >
+                      <img class="img-fluid" src="assets/images/vpay.svg" style="height: 52px; overflow: hidden; padding: 7px; " alt="Theme-Logo"
+                      />
+                    </a>
+              </div>
+              <div style="background: -webkit-gradient(  linear,  left top,  left bottom,  color-stop(0, #86B615),  color-stop(1, #B9CB1A) );
+              color: #fff;" class="col-md-9 col-sm-9">
+                <h4 style="font-weight: bold;
+                font-family: cursive;">Vpay Payment Service</h4>
+              </div>
+            </div>
+            <!-- <div class="price-sec" style="padding: 10px;padding-top: 20px;"> -->
+            <div class="tableHeader">
+              <span class="closeBtn" [ngClass]='errorStatusBtnHide' title="Close"  (click)="btnClosePayOptFail()">
+                <img class="img-fluid" src="assets/images/closeBtn.png" alt="close" style="width:100%">
+              </span>
+              <span class="closeBtn" [ngClass]='errorStatusBtnClose'  title="Close"   (click)="btnClosePayOpt();">
+                <img class="img-fluid" src="assets/images/closeBtn.png" alt="close" style="width:100%">
+              </span>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="d-flex flex-row mt-2">
+          <div [class]="showDisableLink"> </div>
+          <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
+            <li class="nav-item navBorder">
+              <a href="javascript:void(0)" id='aadharTab' class="nav-link active" data-toggle="tab" role="tab" aria-controls="aadhar" #aadhar (click)="aadharPay(aadhar)">
+                <img class="img-fluid" src="assets/images/logos/aadhar.png" alt="Aadhar Payment" title="Aadhar Payment" >
+              </a>
+            </li>
+            <li class="nav-item navBorder">
+              <a href="javascript:void(0)" id='upiTab' class="nav-link " data-toggle="tab" role="tab" aria-controls="upi" #upi (click)="upiPay(upi)">
+                <img class="img-fluid" src="assets/images/logos/upi.png" alt="UPI Payment" title="UPI Payment" >
+              </a>
+            </li>
+            <li class="nav-item navBorder">
+              <a href="javascript:void(0)" class="nav-link  " data-toggle="tab" role="tab" aria-controls="paymentGateway" #paymentGateway (click)="showPaymentGateway(paymentGateway);">
+                <img class="img-fluid" src="assets/images/logos/payement.png" alt="Payment Gateway" title="Payment Gateway" >
+              </a>
+            </li>
+            <li class="nav-item navBorder">
+              <a href="javascript:void(0)" class="nav-link " data-toggle="tab" role="tab" aria-controls="qr" #Qrcode (click)="showQRPayment(Qrcode)">
+                <img class="img-fluid" src="assets/images/logos/QRCODE.png" alt="QR Payment" title="QR Payment" >
+              </a>
+            </li>
+            <li class="nav-item navBorder">
+              <a href="javascript:void(0)" class="nav-link " data-toggle="tab" role="tab" aria-controls="cash" #cash (click)="cashPayment(cash)">
+                <img class="img-fluid" src="assets/images/logos/cash.png" alt="Cash Payment" title="Cash Payment" >
+              </a>
+            </li>
+            <!-- <li class="nav-item navBorder">
+              <a href="javascript:void(0)" class="nav-link " data-toggle="tab" role="tab" aria-controls="pos"  #pos (click)="posPayment(pos)">
+                <img class="img-fluid" src="assets/images/logos/posmachine.png" alt="POS Machine" title="POS Payment" >
+              </a>
+            </li> -->
+          </ul>
+
+
+          <div class="tab-content tab_scroll">
+            <!-- Aadhar Payment-->
+            <div [class]="showAadharBox">
+            <div class="tab-pane fade show active" id="aadhar" role="tabpanel">
+              <!-- <h1>Aadhar Payment</h1> -->
+              <div style="color: #000; padding: 2%">
+                <!-- <div class="price-sec" style="padding: 10px;"> -->
+                  <div class="row">
+                    <div class="col-md-12" style="text-align: left;">
+                      <h4 class="shopTitle">Aadhar Pay</h4>
+                      <hr>
+                      <div [class]="showAadharForm">
+                        <p>Aadhar Number
+                          <span style="color:red">*</span>
+                        </p>
+                        <div class="row">
+                          <div class="form-inline" style="margin: 0 10px">
+                            <input autocomplete="off"  style="width: 28%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo1Pay" inputType="number" id="txtAadhar1"
+                              type="text" class="form-control form-control-sm text-center aadhar" maxlength="4" placeholder="Enter"
+                              required> &nbsp;
+                            <input autocomplete="off"  style="width: 28%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo2Pay" inputType="number" id="txtAadhar2"
+                              type="text" class="form-control form-control-sm text-center aadhar" maxlength="4" placeholder="Aadhar"
+                              required> &nbsp;
+                            <input autocomplete="off"  style="width: 28%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo3Pay" inputType="number" id="txtAadhar3"
+                              type="text" class="form-control form-control-sm text-center aadhar" maxlength="4" placeholder="Number"
+                              required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label>Select Bank
+                            <span style="color:red">*</span>
+                          </label>
+                          <input autocomplete="off" class="form-control form-control-sm" (blur)="setBankCode()" type="text" id="txtAadharBank" list="items"
+                            placeholder="Bank Name" [(ngModel)]="bankNamePay" required/>
+                          <datalist id="items">
+                            <option *ngFor="let bank of aadharBankList" [value]="bank.BANK_NAME"></option>
+                          </datalist>
+                        </div>
+                        <div class="form-group">
+                          <label>Amount
+                            <span style="color:red">*</span>
+                          </label>
+                          <input autocomplete="off"  id="txtAmountA" type="text" inputType="decimal" class="form-control form-control-sm" disabled [(ngModel)]="billDetail.billAmount"
+                            (blur)="setAmountFormat()" placeholder="0.00" required>
+                        </div>
+                        <div [class]="showAadharOtherInfo">
+                          <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" autocomplete="off"  inputType="char" class="form-control form-control-sm" [(ngModel)]="billDetail.customerName" placeholder=" " id='aadharCustName'>
+                          </div>
+                          <div class="form-group">
+                            <label>Bill Number</label>
+                            <input type="text" autocomplete="off"  class="form-control form-control-uppercase form-control-sm" disabled [(ngModel)]="billNumberPay" maxlength="20"
+                              placeholder=" ">
+                          </div>
+                          <div class="form-group">
+                            <label>Customer GST Number</label>
+                            <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" [(ngModel)]="billDetail.customerGstNo" maxlength="15" minlength="15" id='aadharCustGstNo'
+                              placeholder=" ">
+                          </div>
+                          <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" [(ngModel)]="billDetail.remark" placeholder=" " id='aadharRemark'>
+                          </div>
+                        </div>
+                        <div class="checkbox checkbox-success">
+                          <input type="checkbox" id="aadharCheck" (click)="showAadharOthInfo($event)">
+                          <label for="aadharCheck">
+                            <span style="padding-left: 5px; font-size: 13px;">Other Information</span>
+                          </label>
+                        </div>
+                        <div class="checkbox checkbox-success">
+                          <input type="checkbox" id="aadharCheck2" [(ngModel)]="TCchek">
+                          <label for="aadharCheck2">
+                            <span style="color:green ;padding-left: 5px;
+                                  font-size: 13px;">
+                              <a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal" data-target="#myModal">Accept Term & Conditions.
+                              </a>
+                            </span>
+                          </label>
+                        </div>
+                        <button type="button" class="btn btn-success " (click)="btnPayment('Aadhar');">Pay</button>
+                        <!-- <button type="button" class="btn btn-success" (click)="clear();">Clear</button> -->
+                        <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnHide' title="Close" (click)="btnClosePayOptFail();">Close</button>
+                        <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  title="Close" (click)="btnClosePayOpt();"  >Close</button>
+                      </div>
+                      <!-- <div style="margin: 0 10%;" *ngIf="showAadharInstallInfo"> -->
+                        <div class="gap"></div>
+                        <div [class]="showAadharStatusBox" style="text-align:center; font-family:  verdana; background: #e9efe9; padding: 20px 20px 5px 20px; border-radius: 48px;">
+                          <!-- <span style="position: absolute; right: 20px;top: 0px; font-size: 20px;" (click)="hideAadharStatus()">x</span> -->
+                          <img [src]="statusImage" [alt]="statusMessage" style="width:40px;" />
+                          <p style="color:#2f4706;padding: 10px 0 0;font-size:15px;margin-bottom: 2px;" [class]='showBusinness'>Business :{{business}}</p>
+                          <p style="margin-bottom:2px">Merchant :{{merchantName}}</p>
+                          <p style="margin-bottom:2px" [class]='mCust'>Customer Name :{{customerName}}</p>
+                          <p style="margin-bottom:2px" [class]='showAadharTranId'>RRN : {{rrn}} </p>
+                          <p [class]="resultMessage" style="margin-bottom:2px">Status : {{statusMessage}}</p>
+                          <p [class]="resultMessage" style="font-size: 13px;margin-bottom:2px">{{collMessage}}</p>
+                          <p style="margin-bottom:2px; font-weight: bold">₹ Amount : {{balance | number:'1.2'}}</p>
+                          <p style="margin-bottom:2px">Date :{{tranDate}}</p>
+                          <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnHide' (click)="hideAadharStatus();">Close</button>
+                          <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  (click)="btnClosePayOpt();"  data-toggle="modal" data-target="#myModal">Close</button>
+
+                        </div>
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+
+            </div>
+            </div>
+            <!-- UPI Payment-->
+            <div [class]="showUpiBox">
+            <div class="tab-pane show fade" id="upi" role="tabpanel">
+
+              <div style="color: #000;padding: 2%">
+                <!-- <div class="price-sec" style="padding: 10px;padding-top: 20px;"> -->
+                  <div class="row">
+                    <div class="col-md-12" style="text-align: left;">
+                      <h4 class="shopTitle">UPI Payment</h4>
+                      <hr>
+                      <div [class]="showUpiForm">
+                        <div class="form-group">
+                          <label>Virtual Payment Address
+                            <span style="color:red">*</span>
+                          </label>
+                            <input autocomplete="off" class="form-control form-control-sm" (blur)="setAcNameLabel(CollectionVPA)" type="text" id="txtVpa"
+                           placeholder="abc@BankAddress" [(ngModel)]="CollectionVPAPay" required/>
+                         
+                          <!-- <input autocomplete="off" class="form-control form-control-sm" (blur)="setAcNameLabel(CollectionVPA)" type="text" id="txtVpa"
+                            list="itemsVpa" placeholder="abc@BankAddress" [(ngModel)]="CollectionVPAPay" required/>
+                          <datalist id="itemsVpa">
+                            <option *ngFor="let item of beneficaryList" [value]="item.VPA_ADDRESS"></option>
+                          </datalist> -->
+                          <!-- <span style="color:green">{{acName}}</span> -->
+
+                        </div>
+
+                        <div class="form-group">
+                          <label>Amount
+                            <span style="color:red">*</span>
+                          </label>
+                          <input type="text" autocomplete="off"  inputType="decimal" class="form-control form-control-sm " disabled id="txtAmountU" placeholder="0.00" [(ngModel)]="billDetail.billAmount"
+                            (blur)="setAmountFormat()" (click)="select($event)" required>
+                        </div>
+
+                        <div class="form-group">
+                          <label>Bill Number
+                            <span style="color:red">*</span>
+                          </label>
+                          <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-uppercase form-control-sm " disabled id="" [(ngModel)]="billNumberPay"
+                            placeholder=" " maxlength="10" required>
+                        </div>
+
+                        <div [class]="showUpiOtherInfo">
+                          <div class="form-group">
+                            <label>Customer Name</label>
+                            <input type="text" autocomplete="off"  class="form-control form-control-sm" id="upiCustName" [(ngModel)]="billDetail.customerName" placeholder=" ">
+                          </div>
+
+                          <div class="form-group">
+                            <label>Customer GST Number</label>
+                            <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" id="upiGstNo" [(ngModel)]="billDetail.customerGstNo" maxlength="15" placeholder=" ">
+                          </div>
+
+                          <div class="form-group">
+                            <label>Remarks</label>
+                            <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" id="upiRemark" [(ngModel)]="billDetail.remark" placeholder=" ">
+                          </div>
+                        </div>
+                        <div class="checkbox checkbox-success">
+                          <input type="checkbox"  id="collectionCheck" (click)="showUpiOthInfo($event)">
+                          <label for="collectionCheck">
+                            <span style="padding-left: 5px; font-size: 13px;">Other information</span>
+                          </label>
+                        </div>
+
+
+                        <div class="checkbox checkbox-success">
+                          <input type="checkbox" id='collectionCheck2' [(ngModel)]="TCchek">
+                          <label for="collectionCheck2">
+                            <span style="color:green ;padding-left: 5px;
+                                      font-size: 13px;">
+                              <a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal" data-target="#myModal">Accept Term & Conditions.</a>
+                            </span>
+                          </label>
+                        </div>
+
+                        <button type="button" id="collBtn" class="btn btn-success" value="Process" (click)="btnPayment('UPI');">Process</button>
+                        <!-- <button type="button" class="btn btn-success" value="Clear" (click)="clearUPI();">Clear</button> -->
+                        <button type="button" class="btn btn-success"  [ngClass]='errorStatusBtnHide'  (click)="btnClosePayOptFail();">Close</button>
+                        <button type="button" class="btn btn-success"  [ngClass]='errorStatusBtnClose' (click)="btnClosePayOpt();" data-toggle="modal" data-target="#myModal">Close</button>
+
+                      </div>
+
+                      <div class="gap"></div>
+                      <div [class]="showUpiStatusBox">
+                        <div style="text-align:center; font-family:  verdana; background: #bedad5ab; padding: 20px 20px 5px 20px; border-radius: 10px;">
+                          <!-- <span style="position: absolute;right: 20px;top: 0px; font-size: 20px;" (click)="hideUpiStatus()">x</span> -->
+                          <img [src]="statusImage" [alt]="statusMessage" style="width:40px;" />
+                          <h4 [class]="showBusinness" style="color:#2f4706;padding: 10px 0 0;font-size:15px;margin-bottom: 2px;">Business :{{business}}</h4>
+                          <p style="margin-bottom:2px">Merchant :{{merchantName}}</p>
+                          <p style="margin-bottom:2px" [class]='mCust'>Customer Name :{{customerName}}</p>
+                          <p style="margin-bottom:2px" [class]="showVPayTranId">VPay Tran Id : {{rrn}} </p>
+                          <p style="margin-bottom:2px" [class]="showUPITranId">UPI Tran Id : {{rrn}} </p>
+                          <p [class]="resultMessage" style="margin-bottom:2px">Status : {{statusMessage}}</p>
+                          <p [class]="resultMessage" style="font-size: 13px;margin-bottom:2px">{{collMessage}}</p>
+                          <p style="margin-bottom:2px; font-weight: bold">₹ Amount : {{balance | number:'1.2'}}</p>
+                          <p style="margin-bottom:2px">Date :{{tranDate}}</p>
+                          <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnHide'  (click)="hideUpiStatus();">Close</button>
+                          <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  (click)="btnClosePayOpt();">Close</button>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+             
+
+            </div>
+            </div>
+
+            <!-- Payment GateWay-->
+            <div [class]="showPaymentGatewayBox"> 
+            <div class="tab-pane show fade" id="paymentGateway" role="tabpanel">
+              <h4 class="shopTitle" >Payment Gateway</h4>
+              <hr>
+              <p style="margin-bottom:2px; font-weight: bold">Bill Number : {{billNumberPay}}</p>
+              <p style="margin-bottom:2px; font-weight: bold">₹ Total Amount : {{billDetail.billAmount | number:'1.2'}}</p>
+              <button type="button" [ngClass]='showPayButton' class="btn btn-success" (click)="btnPayment('PAYMENTGATEWAY');">Pay</button>
+              <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  (click)="btnClosePayOpt();">Close</button>
+              
+              
+
+</div>
+            </div>
+
+          
+            
+
+            <!-- QR Payment -->
+            <div [class]="showQRBox">
+            <div class="tab-pane show fade" id="qr" role="tabpanel">
+              <h4 class="shopTitle">QR Payment</h4>
+              <hr>
+              <p style="margin-bottom:2px; font-weight: bold">Bill Number : {{billNumberPay}}</p>
+              <p style="margin-bottom:2px; font-weight: bold">₹ Total Amount : {{billDetail.billAmount | number:'1.2'}}</p>
+              <hr>
+
+              <!-- <div class="text-center" >
+                <img class="img-fluid" style="height: 180px;" src="assets/images/qrImage.png" />
+              </div> -->
+              <div class="text-center" [ngClass]="QRFlag">
+                <!-- <div class="text-center" > -->
+                <div class="qrcode-block">
+
+                  <!-- <div class="qrtop">
+                    <img class="img-fluid" src="assets/images/mobile.png" alt="" />
+                  </div> -->
+
+                  <!-- <span style="height:100px;"> </span> -->
+
+                  <div class="genqr">
+                    <div class="scan-title">
+                      <h5>Scan QR Code</h5>
+                      <span style="margin-top:10px"></span>
+                      <!-- <ngx-qrcode item-width="200px" item-height="200px" qrc-value="{{QRDATA}}">
+                        </ngx-qrcode> -->
+                      <ngx-qrcode item-width="200px" item-height="200px" [qrc-element-type]="elementType" [qrc-value]="qrValue">
+                      </ngx-qrcode>
+                      <!-- <img class="upi_qr" src="assets/images/UPI-qr-2.png" /> -->
+
+                    </div>
+                  </div>
+
+
+                  <div class="client-name">
+                    <p style="padding-top:8px;" *ngIf="businessName!=null">Business Name </p>
+                    <p>{{businessName | titlecase }}</p>
+                    <p style="padding-top:10px;">Merchant Name</p>
+                    <p>{{merchantName| titlecase }} </p>
+                  </div>
+
+
+
+                </div>
+              </div>
+
+           
+            </div>
+            </div>
+
+
+            <!-- Cash Payment -->
+            <div [class]="showCashBox">
+            <div class="tab-pane show fade" id="cash" role="tabpanel">
+              <h4 class="shopTitle">Cash Payment</h4>
+              <hr>
+
+              <p style="margin-bottom:2px; font-weight: bold">Bill Number : {{billNumberPay}}</p>
+              <p style="margin-bottom:2px; font-weight: bold">₹ Total Amount : {{billDetail.billAmount | number:'1.2'}}</p>
+              <button type="button" [ngClass]='showPayButton' class="btn btn-success" (click)="btnPayment('CASH');">Pay</button>
+              <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  (click)="btnClosePayOpt();">Close</button>
+            </div>
+            </div>
+
+            <!-- POS Payment -->
+            <div [class]="showPOSBox">
+              <div class="tab-pane show fade" id="pos" role="tabpanel">
+                <h4 class="shopTitle">POS Payment</h4>
+                <hr>
+  
+                <p style="margin-bottom:2px; font-weight: bold">Bill Number : {{billNumberPay}}</p>
+                <p style="margin-bottom:2px; font-weight: bold">₹ Total Amount : {{billDetail.billAmount | number:'1.2'}}</p>
+                <button type="button" class="btn btn-success" [ngClass]='showPayButton' (click)="btnPayment('POS');">Pay</button>
+                <button type="button" class="btn btn-success" [ngClass]='errorStatusBtnClose'  (click)="btnClosePayOpt();">Close</button>
+              </div>
+              </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--POPUP START-->
+  <div class="modal fade" id="myModal" style="position:relative;z-index: 5005">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+      <div class="modal-content">
+        <div class="modal-body" style="height: 400px;overflow: auto;">
+          <div *ngFor="let item of termCondContent">
+            <p style="text-transform: uppercase; font-weight: bold">
+              {{item.TERM_COND_HEADER}}
+            </p>
+            <p style="margin-top: 2%">
+              {{item.TERM_COND_DETAIL}}
+            </p>
+            <br>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--POPUP END-->
+
+
+
+         <!--POPUP START for diveIn option-->
+         <!-- <div class="modal fade" id="showThanksModal" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                <div class="modal-content dialog">
+
+                    <div class="modal-header">
+                        <p class="title-name" style="margin:0em 0 0;"></p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body ">
+                        <div class='text-center'>
+                            <h4>Thanks For Using Vpay and Visit Again.</h4>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+        <!--POPUP END for diveIn option-->
+
+        <div [class]="showThanksWindow" style="position: absolute;z-index: 6000;color: #000;width: 100% ;height:-webkit-fill-available;overflow: auto;">
+            <span class="closeBtn"  title="Close" (click)="closeThanksWindow()">
+              <img class="img-fluid" src="assets/images/closeBtn.png" alt="close" style="width:100%">
+            </span>
+
+            <div class='text-center'>
+                <h4>Thanks For Using Vpay and Visit Again.</h4>
+            </div>
+            <!-- <iframe [src]="PaymentGatewayUrl" style="width: 100%;height: -webkit-fill-available;"></iframe> -->
+          </div>
+
+
+    <!-- PaymentGatewayWindow -->
+    <div [class]="showPaymentGatewayWindow" style="position: absolute;z-index: 6000;color: #000;width: 100% ;height:-webkit-fill-available;overflow: auto;">
+      <span class="closeBtn"  title="Close" (click)="closePaymentGatewayWindow()">
+        <img class="img-fluid" src="assets/images/closeBtn.png" alt="close" style="width:100%">
+      </span>
+      <!-- <iframe [src]="PaymentGatewayUrl" style="width: 100%;height: -webkit-fill-available;"></iframe> -->
+      <!-- <WebView #webview [src]="PaymentGatewayUrl"></WebView> -->
+    </div>

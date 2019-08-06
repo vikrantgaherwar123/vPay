@@ -1,0 +1,306 @@
+<!-- <div *ngIf='showPaymentOption' class="animation slideUpIn" style="z-index: 5555; position: relative;">
+    <paymentOption [billDetail]='billDetailObj' (btnClick)='paymentCallback($event)'></paymentOption>
+</div> -->
+
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat" style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="BBPS Payment Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal"
+            data-target="#myModal">
+        <!-- <div class="inner"> -->
+        <div class="card p-3" *ngIf="bbpsForm">
+            <h4>
+                <span *ngIf="banklogo !=null && BankArray?.length == 1">
+                    <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid " style="height: 44px;padding-left: 10px;" />
+                </span>
+                <span *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                    <img [src]="setBankLogo" class="img-fluid cursorPointerC " *ngIf="setBankLogo !=''" matTooltip="Select Your Bank"
+                        matTooltipPosition="above" (click)="showBankModal()" style="height: 44px;padding-left: 10px;" />
+                </span>
+                <!-- <span class="m-auto text-center" *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                    <mat-icon class="cursorPointerC" matTooltip="Select Bank" matTooltipPosition="above" (click)="showBankModal()" >account_balance</mat-icon>
+                </span> -->
+                <!-- <span class="font-weight-bold float-left">{{categoryName}}</span> -->
+                <img style="width: 10%;" class="img-fluid float-right" src="assets/images/bbps_logo.png" alt="bbps" />
+                <img style=" width: 7%;" class="img-fluid float-right mr-2" src="assets/images/icici_logo.png" alt="icici_logo" />
+            </h4>
+            <hr class="mt-0">
+            <div [class]="showForm">
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp; {{categoryName}}</span>
+                        <span class="float-right">
+                            <i class="fa fa-arrow-circle-o-left cursorPointerC" style="font-size:26px" matTooltip="Back"
+                                matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <div class="row col-md-12" *ngIf="showProviderName">
+                    <!-- Recent Tab -->
+                    <div class="col-md-12" *ngIf="showRecentTab">
+                        <div class="pt-3 pl-2">
+                            <h6><span style="color:#276b08">
+                                    &nbsp; Select Recent Transaction for details</span>
+                            
+                            </h6>
+                            <hr class="m-1">
+                        </div>
+                        <div class="row col-md-12 text-center bankTitleRow">
+                            <!-- <div class="col-md-2">Sr No.</div> -->
+                            <div class="col-md-2">Sr No.</div>
+                            <div class="col-md-4">Biller Name</div>
+                            <div class="col-md-3">Bill Consumer No.</div>
+                            <div class="col-md-3">Bill Amount</div>
+                        </div>
+                        <div class="mb-3" style="max-height: 180px;min-height: 50px; overflow-y:auto ">
+                            <div *ngFor="let recent of resentData, let i= index">
+                                <div class="row text-center bankListRow cursorPointerC" (click)="recentProviderSelect(recent)">
+                                    <!-- <div class="col-md-2">{{i+1}}</div> -->
+                                    <div class="col-md-2">
+                                        <img [src]="recent.img" class="img-fluid" style="height:35px" />
+                                    </div>
+                                    <div class="col-md-4">{{recent.name}}</div>
+                                    <div class="col-md-3">{{recent.BILLER_MOB_NO}}</div>
+                                    <div class="col-md-3">{{recent.BILL_AMOUNT |currency:'₹' :'code'}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12 mx-auto" *ngIf="showProviderName">
+                    <div class="col-md-3">
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Provider Name" autocomplete="off" inputType="char" (change)="setProviderName()"
+                                id="txtproviderName" name="providerName" list="items" [(ngModel)]="providerName"
+                                required maxlength="100">
+                            <button mat-button *ngIf="providerName" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="reset()">
+                                <!-- (click)="providerName=''" -->
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <datalist id="items">
+                                <option *ngFor="let Item of Items" [value]="Item.name"></option>
+                            </datalist>
+                        </mat-form-field>
+                    </div>
+
+
+                </div>
+                <div [class]="providerNameClass" *ngIf="providerName !=null">
+                    <div *ngIf="inputfieldarray !=null" id="custparams">
+                        <div class="row col-md-12 mx-auto">
+                            <div class="col-md-3" *ngIf="inputfieldarray !=null &&  categoryName !='Mobile Postpaid'">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" matInput autocomplete="off" placeholder="Biller Mobile Number"
+                                        autocomplete="off" inputType="number" id="txtAgentNo" name="agentMobNumber"
+                                        [(ngModel)]="mobile" required maxlength="10">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-3" *ngFor="let inputfield of inputfieldarray">
+                                <mat-form-field class="example-full-width" *ngIf="inputfield.type=='NUMERIC'">
+                                    <input type="text" matInput autocomplete="off" [placeholder]="inputfield.name"
+                                        autocomplete="off" inputType="number" [maxlength]="inputfield.maxLength"
+                                        [minlength]="inputfield.minLength" (change)="myupdate(inputfield);" [id]="inputfield.name"
+                                        [name]="inputfield.name" [(ngModel)]="inputfield.value" required>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" *ngIf="inputfield.type=='ALPHANUMERIC'">
+                                    <input type="text" matInput autocomplete="off" [placeholder]="inputfield.name"
+                                        autocomplete="off" inputType="alphaNumeric" [maxlength]="inputfield.maxLength"
+                                        [minlength]="inputfield.minLength" (change)="myupdate(inputfield);" [id]="inputfield.name"
+                                        [name]="inputfield.name" [(ngModel)]="inputfield.value" required>
+                                </mat-form-field>
+                               
+                            </div>
+
+                            <div class="col-md-3" *ngIf="fetchbill == false">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" matInput autocomplete="off" placeholder="Amount" (change)="ToDecimal()"
+                                        autocomplete="off" inputType="decimal" id="txtamount" name="amount" [(ngModel)]="Amount"
+                                        required maxlength="10">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3" *ngIf="fetchbill == false || showTpin">
+                                <mat-form-field class="example-full-width">
+                                    <input type="password" matInput autocomplete="off" placeholder="TPIN" name="TPIN" [(ngModel)]="tpin"
+                                        required maxlength="4" minlength="4">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row  col-md-12 m-auto p-3 m-auto" style="font-family: Verdana, Geneva, Tahoma, sans-serif" *ngIf="fetchbillResponse != null">
+                        <div class="col-md-6 " style="border-right: 1px solid #e8e8e8">
+                           
+                            <p>Customer Name
+                                <span style="float:right;">{{fetchbillResponse.customerName}} </span>
+                            </p>
+                            <p>Bill Number
+                                <span style="float:right;">{{fetchbillResponse.billNumber}} </span>
+                            </p>
+                            <p> Bill Date
+                                <span style="float:right;">{{fetchbillResponse.billDate}} </span>
+                            </p>
+                            <p>Bill Period
+                                <span style="float:right;">{{fetchbillResponse.billPeriod }} </span>
+                            </p>
+                            <p>Bill Due Date
+                                <span style="float:right;">{{fetchbillResponse.dueDate }} </span>
+                            </p>
+
+                            <div *ngIf="additionfetchbillInfo != null">
+                                <p *ngFor="let tags of additionfetchbillInfo">{{tags.name }}
+                                    <span style="float:right;font-weight: bold">{{tags.value }} </span>
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <p *ngIf="ccfAmt!=null "> Customer convenience Fees
+                                <span style="float:right;font-weight: bold">{{ ccfAmt |currency:'₹' :'code' }}</span>
+                            </p>
+                            <p *ngIf="couccfamt!=null "> COU Customer convenience Fees
+                                <span style="float:right;font-weight: bold">{{ couccfamt |currency:'₹' :'code' }}</span>
+                            </p>
+                            <p>Approval Ref No.
+                                <span style="float:right;font-weight: bold">{{reasonresp.approvalRefNum}} </span>
+                            </p>
+                            <p>ref Id
+                                <span style="float:right;">{{referenceId}} </span>
+                            </p>
+                            <div *ngIf="fetchbillresponseAllTag != null">
+                                <p *ngFor="let tags of fetchbillresponseAllTag">{{tags.name}}
+                                    <span style="float:right;font-weight: 500;" >{{tags.value}}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div style="text-align: center" *ngIf="fetchBillAmt==true">
+                        <button mat-button class="btn-success text-white float-right" style="width:15%" (click)="fetchbillbyParams();">Fetch
+                            Bill</button>
+                    </div>
+                    <!-- card show-->
+                    <div class="row col-md-12" *ngIf="fetchBillAmt==false">
+                      
+                        <!-- card1 start -->
+                        <div class="card col-md-6 mb-0 p-3 m-auto">
+                            <div class="row ">
+                                    <div class="col-md-2 m-auto">
+                                            <i class="icofont card1-icon">
+                                                <img class="img-fluid" style="height:50px" src="assets/images/DefaultIcon.png"
+                                                    alt="" />
+                                            </i>
+                                        </div>
+                                    <div class="col-md-8">
+                                        <span class="text-c-blue f-w-600 float-left">
+                                            <label><b>{{AccountName}}</b></label>
+                                            <div *ngIf="ChoosePaymentOption=='Bank'">
+                                                <label *ngIf="Account_Number !=null">A/C Number: {{Account_Number}}</label><br>
+                                                <label *ngIf="GlCode !=null" >Gl Code: {{GlCode}}</label><br>
+                                                <label *ngIf="AC_BALANCE !=null" >A/C Balance: <b>{{AC_BALANCE
+                                                        |currency:'₹' :'code'}}</b></label>
+                                            </div>
+                                        </span>
+                                    </div>
+                                   
+                                    <div class="col-md-2" (click)="showTranAccountModal()" *ngIf="accountList?.length > 1 ">
+                                        <span class="f-right m-t-10 ">
+                                            <i class="fa fa-2x fa-chevron-circle-down" matTooltip="BBPS Payment Help" matTooltipPosition="above"></i></span>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- card1 end -->
+                    </div>
+                    <div class="mt-4 text-center" *ngIf="fetchBillAmt==false">
+                        <button class="bg-primary text-white" mat-button (click)="checkpaymentMethod();">Proceed to Pay</button>
+                    </div>
+                </div>
+            </div>
+            <div [class]='showVpayOtp' style="margin-top:0px">
+                <div class="form-group">
+                    <otp (callBackMethod)="regenerateOTP()"></otp>
+                </div>
+                <button type="button" mat-raised-button class="btn btn-success text-white" (click)="bbpsPaymentProcess()">Submit</button>
+            </div>
+
+
+           
+
+        </div>
+
+        <!-- Pop up Modal -->
+        <div [class]="showAccountList">
+            <div class="row bankList">
+                <div class="col-md-10 accpopup">
+                    <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                        <div class="tableHeader">
+                            <h4 class="shopTitle">Select Your Account</h4>
+                            <hr class="m-0">
+                            <span class="closeBtn" title="close" (click)="btnCloseAcc()">
+                                <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                            </span>
+                        </div>
+                        <table id="myTable" class="table table-fixedheader table-striped tblBack">
+                            <tbody style="min-height: 285px !important;max-height: 430px !important;">
+                                <div class="row m-auto col-md-12">
+                                    <div class="col-md-6 p-2" *ngFor="let acc of accountList">
+                                        <ul class="userModal">
+                                            <li class="text-black p-0">
+                                                <div class="row m-auto cursorPointerC text-center" style="min-height: 105px !important;"
+                                                    (click)="selectedAcc(acc)">
+                                                    <div class="col-md-3 m-auto">
+                                                      
+                                                        <img src="assets/images/bank.png" style="height:70px;padding: 5px;">
+                                                    </div>
+                                                    <div class="col-md-9 p-0">
+                                                        <p class="mb-0">{{acc.ACCOUNT_NAME}}</p>
+                                                        <p class="mb-0">{{acc.ACCOUNT_NUMBER}}</p>
+                                                        <p class="mb-0">{{acc.GL_NAME}}</p>
+                                                        <p class="mb-0">{{acc.AC_BALANCE |currency:'₹' :'code'}}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--POPUP START-->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+
+        <div style="position:absolute;z-index: 4999; height:-webkit-fill-available;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)"
+            [ngClass]="showOverlay"></div>
+
+        <div class="clearfix">
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,118 @@
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+            style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="BBPS Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <div class="card p-2" *ngIf="ShowBBPSCate">
+            <div class="row col-md-12 mx-auto p-0">
+                <div class="col-md-6 p-0">
+                    <img class="img-fluid" style="width: 50px;" src="assets/images/BBPSL.png" alt="Bbps">
+                    <span class="font-weight-bold pl-1" style="font-family: verdana;">Bharat Bill Payment System
+                    </span>
+                </div>
+                <div class="col-md-6 text-right" *ngIf="banklogo !=null && BankArray?.length == 1">
+                    <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-right" style="height: 55px;" />
+                </div>
+                <div class="col-md-5 text-right" *ngIf="setBankLogo !=null ">
+                    <img [src]="setBankLogo" *ngIf="setBankLogo !=''" class="img-fluid" style="height: 55px;" />
+                </div>
+                <div class="col-md-1 m-auto text-center" *ngIf="setBankLogo !=null && BankArray?.length > 1">
+                    <!-- <mat-icon class="cursorPointerC" matTooltip="Select Bank" matTooltipPosition="below"
+                        (click)="showBankModal()">account_balance</mat-icon> -->
+                    <span (click)="showBankModal()" class="switchBank" matTooltip="Switch Bank"><img class="img-fluid" src="assets/images/museum.png" alt="">
+                    </span>
+                </div>
+            </div>
+            <hr class="mt-0">
+            <div class="row col-md-12 mx-auto p-0">
+                <div class="zoom col-sm-6 col-md-4 col-lg-3 col-xl-1 cursorPointerC" *ngFor="let item of bbpsItemArray">
+                    <img class="img-fluid mx-auto d-block" style="height: 50px;" (click)="showBbpsPage(item)"
+                        [src]="item.CATEGORY_LOGO" alt="bbpsImages" [title]="item.CATEGORY_KEYWORD">
+                    <p class="text-center" style="font-family: verdana; width: fit-content;margin: auto;"
+                        (click)="showBbpsPage(item)">{{item.CATEGORY_KEYWORD}}</p>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-xl-12 col-sm-8 text-center mt-3">
+                <button mat-raised-button class="text-white bg-primary mb-2" (click)="gotoSearchTrans()">
+                    Search Transaction &nbsp;<i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <button mat-raised-button class="text-white bg-primary" (click)="gotoComplStatus()">
+                    Complaint Status &nbsp;<i class="fa fa-exclamation-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <!--POPUP START-->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="Disp_BankModal" class="modal fade" id="BankModal" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:75vw">
+                <div class="modal-content" style=' width: 55%; left: 237px !important;'>
+                    <div class="modal-header selectBankHeader">
+                        <p class="title-name" style="color: #fff;">Select Your Bank</p>
+                        <button type="button" class="close" (click)="btnClose()" data-dismiss="modal"><i
+                                class="fa fa-close "></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <div class="row col-md-12 m-auto">
+                                <div class=" card col-md-12 p-2 bankCard" *ngFor="let bank of BankArray">
+                                    <div class="userModal" *ngIf="bank.BANK_NAME !='' || bank.BANK_NAME !=null">
+                                        <div class="text-black p-0" style="font-size:0.9em">
+                                            <div class="row cursorPointerC" (click)="SelectedBank(bank)"
+                                                data-dismiss="modal">
+                                                <div>
+                                                    <img [src]="bank.BANK_LOGO" class="bankImage"
+                                                        *ngIf="bank.BANK_LOGO != '' && bank.BANK_NAME != undefined">
+                                                    <img src="assets/images/bank.png" class="bankImage"
+                                                        *ngIf="bank.BANK_LOGO == ''">
+                                                </div>
+                                                <div> <span class="mt-3"
+                                                        style=" font-size: 15px; font-weight: bold; position: absolute;">{{bank.BANK_NAME}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="btnClose()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Pop up Modal Closed -->
+        <!-- Pop up Modal Closed -->
+    </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

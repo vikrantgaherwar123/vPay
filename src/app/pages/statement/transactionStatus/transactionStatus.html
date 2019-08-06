@@ -1,0 +1,265 @@
+<dtp></dtp>
+<main>
+  <div class="main">
+    <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+      style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="Statement Help"
+      matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+    <div class="container">
+
+      <div style="padding-top: 15px;">
+        <h6><span class="font-weight-bold" style="color:#276b08; ">
+            &nbsp;Transaction Status</span>
+          <span class="text-right float-right">
+            <!-- <i class="fa fa-arrow-circle-o-left cursorPointerC" aria-hidden="true" style="font-size:26px" matTooltip="Back"
+                        matTooltipPosition="above" (click)="Back()"></i> -->
+          </span>
+        </h6>
+        <hr class="mb-2">
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label style="font-size:12px;">Select Date :
+            <b>{{curDate}}</b>
+          </label>
+          <select id='checkDate' class="form-control form-control-sm" (change)="getStatement()">
+            <option value="l">Last 10 Transactions</option>
+            <option value="w">1 Week</option>
+            <option value="hm">15 Days</option>
+            <option value="m">1 Month</option>
+            <option value="qm">3 Month</option>
+            <option value="sd">Select Duration</option>
+          </select>
+        </div>
+        <div class="col-md-2 sfd " style="display:none">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" (focus)="picker.open()" [(ngModel)]="txt_Fdate" id="txtStartDate"
+              name="txt_Fdate" readonly placeholder="From Date">
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-2 sfd " style="display:none">
+         
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker1" (focus)="picker1.open()" [(ngModel)]="txt_Tdate" id="txtEndDate"
+              name="txt_Tdate" readonly placeholder="To Date">
+            <mat-datepicker touchUi #picker1></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1 sfd m-auto" style="display:none">
+          <button type="button" mat-mini-fab class="bg-success text-white" id="goStatement"
+            (click)="Submit()">Go</button>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label style="font-size:13px;">Gateway:</label>
+            <select class="form-control form-control-sm" [(ngModel)]="gateway"
+              (change)="onGatewaySelect($event.target.value)">
+              <option [value]="0">----- ALL -----</option>
+              <option *ngFor="let ac of GatewayList" [value]="ac.KEY">{{ac.DESCRIPTION}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-2" [ngClass]="tranTable">
+          <div class="p-2">
+            <a (click)="export(this,'PDF');" title="Generate PDF" href="javascript:void(0);">
+              <img src="assets/images/pdf-icon.png" alt="" />
+            </a>
+            <a (click)="export(this,'EXCEL');" title="Generate EXCEL" href="javascript:void(0);">
+              <img src="assets/images/xls-icon.png" alt="" />
+            </a>
+          </div>
+        </div>
+        <!-- <span class="closeBtn" title="close" (click)="goTODashboard()">
+              <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+            </span> -->
+      </div>
+
+
+      <div class="row">
+        <div class="tab-wrap">
+
+          <input type="radio" name="tabs" id="tab1" checked>
+          <div class="tab-label-content" id="tab1-content">
+            <label for="tab1" id="recF" (click)="Filter('R')">Received</label>
+            <div class="tab-content">
+
+              <div class="row col-md-12 m-auto p-2" [ngClass]="tranTable">
+                <mat-form-field>
+                  <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <div class="mat-elevation-z8 table-responsive example-container">
+                  <table mat-table id="statement" class="table-striped" [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="TRAN_DATE">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Transaction A/C
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.TRAN_DATE | date:'dd-MM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="PARTICULARS">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Particulars
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.PARTICULARS}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRANSAMT">
+                      <th class="f-14 text-white " mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Amount </th>
+                      <td mat-cell *matCellDef="let element"> <span class={{element.crdrcolor}}>
+                          ₹ {{element.TRANSAMT |number : '1.2' }}
+                        </span></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="tabs" id="tab2">
+          <div class="tab-label-content" id="tab2-content">
+            <label for="tab2" id="paidF" (click)="Filter('P')">Paid</label>
+            <div class="tab-content">
+              <div class="row col-md-12 m-auto p-2" [ngClass]="tranTable">
+                <mat-form-field>
+                  <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <div class="mat-elevation-z8 table-responsive example-container">
+                  <table mat-table id="statement" class="table-striped" #sort1="matSort" [dataSource]="dataSource1"
+                    matSort>
+                    <ng-container matColumnDef="TRAN_DATE">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Transaction A/C
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.TRAN_DATE | date:'dd-MM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="PARTICULARS">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Particulars
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.PARTICULARS}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRANSAMT">
+                      <th class="f-14 text-white " mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Amount </th>
+                      <td mat-cell *matCellDef="let element"> <span class={{element.crdrcolor}}>
+                          ₹ {{element.TRANSAMT |number : '1.2' }}
+                        </span></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+                  <mat-paginator #Paginator1 [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="tabs" id="tab3">
+          <div class="tab-label-content" id="tab3-content">
+            <label for="tab3" id="pendF" (click)="Filter('N')">Pending</label>
+            <div class="tab-content">
+              <div class="row col-md-12 m-auto p-2" [ngClass]="tranTable">
+                <mat-form-field>
+                  <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <div class="mat-elevation-z8 table-responsive example-container">
+                  <table mat-table id="statement" class="table-striped" #sort2="matSort" [dataSource]="dataSource2"
+                    matSort>
+                    <ng-container matColumnDef="TRAN_DATE">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Transaction A/C
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.TRAN_DATE | date:'dd-MM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="PARTICULARS">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Particulars
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.PARTICULARS}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRANSAMT">
+                      <th class="f-14 text-white " mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Amount </th>
+                      <td mat-cell *matCellDef="let element"> <span class={{element.crdrcolor}}>
+                          ₹ {{element.TRANSAMT |number : '1.2' }}
+                        </span></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+                  <mat-paginator #Paginator2 [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <input type="radio" name="tabs" id="tab4">
+          <div class="tab-label-content" id="tab4-content">
+            <label for="tab4" id="failF" (click)="Filter('F')">Failed</label>
+            <div class="tab-content">
+              <div class="row col-md-12 m-auto p-2" [ngClass]="tranTable">
+                <mat-form-field>
+                  <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                </mat-form-field>
+                <div class="mat-elevation-z8 table-responsive example-container">
+                  <table mat-table id="statement" class="table-striped" #sort3="matSort" [dataSource]="dataSource3"
+                    matSort>
+                    <ng-container matColumnDef="TRAN_DATE">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Transaction A/C
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.TRAN_DATE | date:'dd-MM-yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="PARTICULARS">
+                      <th class="f-14 text-white" mat-header-cell *matHeaderCellDef mat-sort-header> Particulars
+                      </th>
+                      <td mat-cell *matCellDef="let element"> {{element.PARTICULARS}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="TRANSAMT">
+                      <th class="f-14 text-white " mat-header-cell *matHeaderCellDef mat-sort-header>
+                        Amount </th>
+                      <td mat-cell *matCellDef="let element"> <span class={{element.crdrcolor}}>
+                          ₹ {{element.TRANSAMT |number : '1.2' }}
+                        </span></td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                  </table>
+                  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+                  <mat-paginator #Paginator3 [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slide"></div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!--POPUP START-->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+        <div class="modal-content">
+          <div class="modal-body" style="height: 400px;overflow: auto;">
+            <div *ngFor="let item of termCondContent">
+              <p style="text-transform: uppercase; font-weight: bold">
+                {{item.TERM_COND_HEADER}}
+              </p>
+              <p style="margin-top: 2%">
+                {{item.TERM_COND_DETAIL}}
+              </p>
+              <br>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--POPUP END-->
+
+  </div>
+</main>

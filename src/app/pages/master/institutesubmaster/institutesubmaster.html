@@ -1,0 +1,603 @@
+<dtp></dtp>
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="inner">
+                <section>
+                    <div class="tabs tabs-style-linetriangle">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a>
+                                        <span id="sp1" style="cursor: pointer; " (click)="TakeAction('ADD')">
+                                            <i class="fa fa-address-card"></i> Create</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span id="sp2" style="cursor: pointer;" (click)="TakeAction('MODIFY')">
+                                            <i class="fa fa-briefcase"></i> Modify</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span id="sp3" style="cursor: pointer; " (click)="TakeAction('INACTIVE')">
+                                            <i class="fa fa-building"></i> Inactive</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </section>
+
+                <div class="content-wrap">
+                    <!-- First Row -->
+                    <section id="section-linetriangle-1" class="{{showTab1Class}}">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">Institute Name</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="instname" name="instname" [(ngModel)]="instname" readonly required
+                                        placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Institute Sub Name</label><span style="color:red;">*</span>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="instsubname" name="instsubname" [(ngModel)]="instsubname" required
+                                        placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Mobile Number</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="mobileNo" class="form-control form-control-sm"
+                                        id="mobile" name="mobile" [(ngModel)]="mobile" maxlength="10" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Landline Number</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="mobileNo" class="form-control form-control-sm"
+                                        id="landline" name="landline" [(ngModel)]="landline" maxlength="10" required
+                                        placeholder=" ">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">GST Number</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="gstnumber" name="gstnumber" [(ngModel)]="gstnumber" required placeholder=" "
+                                        style="text-transform: uppercase;">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">GST Registration Date</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" name="gstregdate"
+                                        [(ngModel)]="gstregdate" (click)="DateTimeCtrl('D','gstregdate')" placeholder="DD/MM/YYYY"
+                                        required readonly style="text-align: center;">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Taxable Flag</label>
+                                <div class="form-group">
+                                    <div class="styled-select blue  semi-square">
+                                        <select class="form-control" [(ngModel)]="taxflag">
+                                            <option value="Y">Yes</option>
+                                            <option value="N">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label *ngIf="ctrl_supclientcode" class="lable-text">Super Client Code</label>
+                                <div *ngIf="ctrl_supclientcode" class="form-group">
+                                    <div class="styled-select blue  semi-square">
+                                        <select class="form-control" [(ngModel)]="SuperClientMstId" [disabled]="dispcheck">
+                                            <option *ngFor="let item of superclientData" value="{{item.CLIENT_MST_ID }}">{{
+                                                item.CLIENT_NAME }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Third Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">Registration Number</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="registnumber" name="registnumber" [(ngModel)]="registnumber" required
+                                        placeholder=" " style="text-transform: uppercase;">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Registration Date</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" id="regdate"
+                                        name="regdate" [(ngModel)]="regdate" (click)="DateTimeCtrl('D','regdate')"
+                                        required placeholder="DD/MM/YYYY" readonly style="text-align: center;">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Email ID</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="eMail" class="form-control form-control-sm"
+                                        id="emailadd" name="emailadd" [(ngModel)]="emailadd" maxlength="120"
+                                        placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Website</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="webadd" name="webadd" [(ngModel)]="webadd" maxlength="50" placeholder=" ">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Forth Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">Address</label><span style="color:red;">*</span>
+                                <div class="form-group">
+                                    <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="address"
+                                        [(ngModel)]="address" maxlength="50" required placeholder=" "></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Landmark</label>
+                                <div class="form-group">
+                                    <textarea class="form-control form-control-sm" rows="4" inputType="alphaNumeric"
+                                        [(ngModel)]="landmark" maxlength="50" id="landmark" placeholder=" "></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Area</label>
+                                <div class="form-group">
+                                    <textarea rows="4" class="form-control form-control-sm" inputType="alphaNumeric" id="areaname"
+                                        [(ngModel)]="areaname" maxlength="50" placeholder=" "></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Pin Code</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                                        id="pincode" name="pincode" [(ngModel)]="pincode" placeholder=" " (change)="SearchPincode()">
+                                </div>
+
+                                <label class="lable-text">Country</label>
+                                <div class="form-group">
+                                    <help [keyword]="'CONTMAST'" [eid]="'country'" [dataList]="service.countryList"
+                                        [readonlyFlag]="true" (getData)="onClickHelpData($event,'C')" required></help>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fifth Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">State</label>
+                                <div class="form-group">
+                                    <help [keyword]="service.stateKey" [eid]="'state'" [txtSelectedData]="txtStateData"
+                                        [dataList]="service.stateList" (getData)="onClickHelpData($event,'S')" required></help>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">District</label>
+                                <div class="form-group">
+                                    <help [keyword]="service.distKey" [eid]="'district'" [dataList]="service.districtList"
+                                        (getData)="onClickHelpData($event,'D')" required></help>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Tahasil</label>
+                                <div class="form-group">
+                                    <help [keyword]="service.tahasilKey" [eid]="'tahasil'" [dataList]="service.tahasilList"
+                                        (getData)="onClickHelpData($event,'T')" required></help>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">City</label>
+                                <div class="form-group">
+                                    <help [keyword]="service.cityKey" [eid]="'city'" [dataList]="service.cityList"
+                                        (getData)="onClickHelpData($event,'CT')" required></help>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Sixth Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">City Name</label>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="char" class="form-control form-control-sm"
+                                        id="cityname" name="cityname" [(ngModel)]="cityname" required placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Institution Identity</label>
+                                <div class="form-group">
+                                    <div class="styled-select blue  semi-square">
+                                        <select class="form-control" [(ngModel)]="businessid">
+                                            <option *ngFor="let item of DocMastBusiness" value="{{ item.KEY }}">{{
+                                                item.DESCRIPTION }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="lable-text">Institution ID Proof</label>
+                                <div class="form-group">
+                                    <div class="fileimg">
+                                        <input type="file" name="fileIdentityProof" class="inputfile" id="fileIdentityProof"
+                                            required (change)="fileSelected($event,this,'IdentityProof');" style="display: none;" />
+                                        <div class="icon-imgs">
+                                            <label for="fileIdentityProof">
+                                                <div class="imgthum">
+                                                    <img src="/assets/images/image.png" name="imgIdIdentityProof" id="imgIdIdentityProof"
+                                                        alt="Browse An Image">
+                                                </div>
+                                            </label>
+                                            <label class="img-size">{{imageSizeId}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Bank Profile Header Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span style="font-weight: 600; font-size: large; color: #007bff;">Bank Profile</span>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                        </div>
+
+                        <!-- Seventh Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">Bank A/C Type</label>
+                                <div class="form-group">
+                                    <div class="styled-select blue  semi-square">
+                                        <select class="form-control" [(ngModel)]="bankActype" [disabled]="dispcheck">
+                                            <option value="SB">Saving Account</option>
+                                            <option value="CA">Current Account</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Bank Account Number</label><span style="color:red;">*</span>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm"
+                                        id="bankacnumber" name="bankacnumber" [(ngModel)]="bankacnumber" maxlength="15"
+                                        required placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="lable-text">Bank Account Name</label><span style="color:red;">*</span>
+                                <div class="form-group">
+                                    <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm"
+                                        id="bankacname" name="bankacname" [(ngModel)]="bankacname" required placeholder=" ">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-3">
+                        <label class="lable-text">Bank Account IFSC</label><span style="color:red;">*</span>
+                        <div class="form-group">
+                            <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-sm" id="bankifsc" name="bankifsc" [(ngModel)]="bankifsc"
+                                maxlength="15" required placeholder=" ">
+                        </div>
+                    </div> -->
+                            <div class="col-md-3">
+                                <label class="lable-text">Bank Account IFSC<span style="color:red;">*</span></label>
+                                <!-- <div style="border:1px solid #000; border-radius: 10%;"> -->
+                                <div class="input-group" style="margin-top: -2px;">
+                                    <input type="text" autocomplete="off" class="form-control form-control-uppercase form-control-sm"
+                                        placeholder="IFSC Code" [(ngModel)]="IFSC_CODE" maxlength="15" minlength="3"
+                                        aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2" (click)="OpenIfscPage()"
+                                            data-toggle="modal" data-target="#myModalISB">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- <label style="color:#3399FF;" *ngIf="branch!=undefined">{{bank}}-{{this.branch}}</label> -->
+
+                                <!-- <label class="lable-text">IFSC</label>
+                      <div class="form-group">
+                        <input type="text" autocomplete="off"  inputType="alphaNumeric" class="form-control form-control-uppercase form-control-sm" id="ifsc" name="ifsc"
+                          [(ngModel)]="ifsc" maxlength="11" minlength="9" placeholder=" ">
+                      </div> -->
+                                <!--POPUP START-->
+                                <div *ngIf="Disp_ifscpage" class="modal fade" id="myModalISB">
+                                    <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <p class="title-name" style="margin:0em 0 0;font-weight: 400;">Search
+                                                    IFSC Code</p>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container">
+                                                    <!-- <input class="form-control" type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for names.." title="Type in a name"> -->
+                                                    <div class="row">
+                                                        <div class='col-md-8'>
+                                                            <div class="form-group float-label-control">
+                                                                <label>Bank Name
+                                                                    <span style="color:red">*</span>
+                                                                </label>
+                                                                <input autocomplete="off" class="form-control form-control-sm"
+                                                                    (change)="setBankName(bank)" type="text" id="txtbank"
+                                                                    placeholder="Search Bank Name" list="items"
+                                                                    [(ngModel)]="bank" required />
+                                                                <datalist id="items">
+                                                                    <option *ngFor="let item of bankdata" [value]="item.DESCRIPTION"></option>
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class='col-md-8'>
+                                                            <div class="form-group float-label-control">
+                                                                <label>State Name
+                                                                    <span style="color:red">*</span>
+                                                                </label>
+                                                                <input autocomplete="off" class="form-control form-control-sm"
+                                                                    (change)="setBankState(state)" type="text" id="txstate"
+                                                                    placeholder="Search State Name" list="stateitems"
+                                                                    [(ngModel)]="state" required />
+                                                                <datalist id="stateitems">
+                                                                    <option *ngFor="let item of statedata" [value]="item.DESCRIPTION"></option>
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class='col-md-8'>
+                                                            <div class="form-group float-label-control">
+                                                                <label>City Name
+                                                                    <span style="color:red">*</span>
+                                                                </label>
+                                                                <input autocomplete="off" class="form-control form-control-sm"
+                                                                    (change)="setBankCity(city)" type="text" id="txtcity"
+                                                                    placeholder="Search City Name" list="cityitems"
+                                                                    [(ngModel)]="city" required />
+                                                                <datalist id="cityitems">
+                                                                    <option *ngFor="let item of citydata" [value]="item.DESCRIPTION"></option>
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class='col-md-8'>
+                                                            <div class="form-group float-label-control">
+                                                                <label>Branch Name
+                                                                    <span style="color:red">*</span>
+                                                                </label>
+                                                                <input autocomplete="off" class="form-control form-control-sm"
+                                                                    (change)="setBankBranch(branch)" type="text" id="txtbranch"
+                                                                    placeholder="Search Branch Name" list="branchitems"
+                                                                    [(ngModel)]="branch" required />
+                                                                <datalist id="branchitems">
+                                                                    <option *ngFor="let item of branchdata" [value]="item.DESCRIPTION"></option>
+                                                                </datalist>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 inputcard">
+                                                            <div class="col-md-8 inputcard">
+                                                                <div *ngIf="Disp_ifsclabel" class="input-cont">
+                                                                    <label style="color: green; font-size: 1.5em;">IFSC
+                                                                        Code : {{ifsc}} </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 inputcard">
+                                                            <div class="col-md-8 inputcard">
+                                                                <div *ngIf="Disp_ifscnotfound" class="input-cont">
+                                                                    <label style="color: red">IFSC Code not found.
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                                                <button class="btn show-btn btn-primary show-raise" (click)="SetIFSC()">Set
+                                                    IFSC</button>
+                                                <button class="btn show-btn btn-primary show-raise" (click)="clearIFSC()">
+                                                    Clear </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--POPUP END-->
+                            </div>
+                        </div>
+                        <!-- Eight Row -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="lable-text">Bank Document</label>
+                                <div class="form-group">
+                                    <div class="styled-select blue  semi-square">
+                                        <select class="form-control" [(ngModel)]="bankproofid">
+                                            <option *ngFor="let item of DocMastBankProof" value="{{ item.KEY }}">{{
+                                                item.DESCRIPTION }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="lable-text">Document ID Proof</label>
+                                <div class="form-group">
+                                    <div class="fileimg">
+                                        <input type="file" name="fileBusinessProof" class="inputfile" id="fileBusinessProof"
+                                            required (change)="fileSelected($event,this,'BusinessProof');" style="display: none;" />
+                                        <div class="icon-imgs">
+                                            <label for="fileBusinessProof">
+                                                <div class="imgthum">
+                                                    <img src="/assets/images/image.png" name="imgIdBusinessProof" id="imgIdBusinessProof"
+                                                        alt="Browse An Image">
+                                                </div>
+                                            </label>
+                                            <label class="img-size">{{imageSizeBp}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <div class="row" style="margin: -10px 0 17px 0;"> -->
+                        <!-- <div class="col-md-3"> -->
+                        <button type="button" id="btnSubmit" class="btn btn-success pageValid" (click)="SubmitData()">Submit</button>
+                        <button type="button" id="btnClear" class="btn btn-success pageValid" (click)="ClearData()">Clear</button>
+                        <!-- </div> -->
+                        <!-- </div> -->
+                    </section>
+                </div>
+                <!-- Ninth Row -->
+                <!-- <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3" style="text-align: right;">
+                        
+                    </div>
+                </div> -->
+
+                <!-- Table Data -->
+                <div class="gap"></div>
+                <div class="card {{RptInstiShowHide}}" style="margin-bottom: 0">
+                    <div class="box table_scroll " style="width: 100%; height: 340px; overflow: auto;">
+                        <div class="box-body" style="font-size: 0.9em;font-family: verdana;">
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-bottom: 12px;">
+                                    <input type="text" autocomplete="off" class="form-control  form-control-sm searchBarInput"
+                                        style="padding: 11px 0px 3px 11px;" onkeyup="searchFunction(event,'#searchInstiList tr')"
+                                        placeholder="&#61442; Search Transaction">
+                                </div>
+                            </div>
+                            <!-- theader start -->
+                            <div class="tbl-header">
+                                <table cellpadding="0" id="myTable" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th (click)="sort('SUB_INSTI_NAME')">Sub Institution Name
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'SUB_INSTI_NAME', 
+                                                        'fa-arrow-up': (column == 'SUB_INSTI_NAME' && isDesc), 
+                                                        'fa-arrow-down': (column == 'SUB_INSTI_NAME' && !isDesc) }"
+                                                    aria-hidden="true"> </span>
+                                            </th>
+                                            <th (click)="sort('GSTIN')">GST Number
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'GSTIN', 
+                                                        'fa-arrow-up': (column == 'GSTIN' && isDesc), 
+                                                        'fa-arrow-down': (column == 'GSTIN' && !isDesc) }"
+                                                    aria-hidden="true"> </span>
+                                            </th>
+                                            <th (click)="sort('GST_REG_DATE')">GST Reg. Date
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'GST_REG_DATE', 
+                                                        'fa-arrow-up': (column == 'GST_REG_DATE' && isDesc), 
+                                                        'fa-arrow-down': (column == 'GST_REG_DATE' && !isDesc) }"
+                                                    aria-hidden="true"> </span>
+                                            </th>
+                                            <th (click)="sort('REG_NUMBER')">Reg. Number
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'REG_NUMBER', 
+                                                        'fa-arrow-up': (column == 'REG_NUMBER' && isDesc), 
+                                                        'fa-arrow-down': (column == 'REG_NUMBER' && !isDesc) }"
+                                                    aria-hidden="true"> </span>
+                                            </th>
+                                            <th (click)="sort('REG_DATE')">Reg. Date
+                                                <span class="fa" [ngClass]="{'fa-sort': column != 'REG_DATE', 
+                                                        'fa-arrow-up': (column == 'REG_DATE' && isDesc), 
+                                                        'fa-arrow-down': (column == 'REG_DATE' && !isDesc) }"
+                                                    aria-hidden="true"> </span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- theader end -->
+                            <div class="tbl-content">
+                                <table id="searchInstiList" class="table-striped" cellpadding="0" cellspacing="0"
+                                    border="0">
+                                    <tbody>
+                                        <tr (click)="Get_SingleInstitute(item.INSTI_SUB_MST_ID)" *ngFor="let item of helpData"
+                                            style="border-bottom: 1px solid #000;">
+                                            <td>{{ item.SUB_INSTI_NAME }}</td>
+                                            <td style="text-transform: uppercase;">{{ item.GSTIN }}</td>
+                                            <td>{{ item.GST_REG_DATE | date:'dd-MM-yyyy'}}</td>
+                                            <td>{{ item.REG_NUMBER }}</td>
+                                            <td>{{ item.REG_DATE | date:'dd-MM-yyyy'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="tab-content divouter {{RptInstiShowHide}}" id="DivInstitution">
+                
+                    <div class="tab-content" id="myTabInstiHeader">
+                        <div class="tab-pane fade show active" id="homeHeader" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="table-responsive">
+                                <table class="row-border table-striped" style="width:100%">
+                                    <tbody>
+                                        <tr class="trheader" style="background-color: #4680ff;">
+                                            <th class="col-md-2" style="width: 25%;">Sub Institution Name</th>
+                                            <th class="col-md-2" style="width: 15%;">GST Number</th>
+                                            <th class="col-md-2" style="width: 15%;">GST Reg. Date</th>
+                                            <th class="col-md-2" style="width: 15%;">Reg. Number</th>
+                                            <th class="col-md-2" style="width: 15%;">Reg. Date</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+           
+                    <div class="tab-content Rptclass" id="myTabInstiRows">
+                        <div class="tab-pane fade show active" id="homeRows" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="table-responsive">
+                                <table class="row-border table-striped" style="width:100%">
+                                    <tbody>
+                                        <tr style="height: 25px;" (click)="Get_SingleInstitute(item.INSTI_SUB_MST_ID)" *ngFor="let item of helpData" type="item-text-wrap">
+                                            <td class="col-md-2" style="width: 25%;">{{ item.SUB_INSTI_NAME }}</td>
+                                            <td class="col-md-2" style="width: 15%; text-transform: uppercase;">{{ item.GSTIN }}</td>
+                                            <td class="col-md-2" style="width: 15%;">{{ item.GST_REG_DATE | date:'dd-MM-yyyy'}}</td>
+                                            <td class="col-md-2" style="width: 15%; text-transform: uppercase;">{{ item.REG_NUMBER }}</td>
+                                            <td class="col-md-2" style="width: 15%;">{{ item.REG_DATE | date:'dd-MM-yyyy'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</main>

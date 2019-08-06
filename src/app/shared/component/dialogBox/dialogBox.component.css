@@ -1,0 +1,27 @@
+div.message {
+    font-weight: bold;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 0px;
+  }
+  div.info {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 12pt;
+  }
+  
+  .message >p {
+    color: #9e9292;
+    font-weight: 500;
+    font-size: medium;
+  }
+
+
+  .cdk-overlay-container{
+    position: fixed !important;
+    z-index: 1100 !important;
+  }
+
+ 

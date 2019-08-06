@@ -1,0 +1,591 @@
+<main class="mt-3">
+    <div *ngIf='CUSTNAME !=undefined'>
+        <app-bankHeader></app-bankHeader>
+    </div>
+
+    <div class="main mt-3">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Beneficiary Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+        <div class="container">
+            <!-- Header -->
+            <div class="card mb-3">
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <img class="img-fluid" style="height: 35px;" src="assets/images/bankdetails.png"
+                                alt="Bank Details">
+                            <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Beneficiary </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="banklogo !=null">
+                        <span *ngIf="btnBack" class="float-right pt-1">
+                            <i  class="fa fa-arrow-circle-o-left cursorPointerC"style="font-size:31px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                       
+                    </div>
+                </div>
+            </div>
+
+         
+            <!-- Beneficiary -->
+            <div class="card mb-0 col-md-12" *ngIf="showBeneficiary">
+                <div class="pt-3 pl-2">
+                    <h6 style="height:24px"><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp; Beneficiary List</span>
+                      
+                        <span class="text-right float-right mr-3 mt-0 p-1"
+                            style="border-radius: 6px;background: darkolivegreen;">
+                            <a href="javascript:void(0)" class="text-white font-weight-bold" (click)="adBene()">Add
+                                New Beneficiary</a>
+                        </span>
+                    </h6>
+                    <hr class="m-1">
+                </div>
+
+
+
+                <div class=" mb-0">
+                    <div>
+                        <mat-tab-group class="col-md-12">
+                            <!-- Own Bank -->
+                            <mat-tab label="OWN Beneficiary" class="text-white" *ngIf="BeneAccountListOwn !=null">
+                                <div class="table-responsive" style="max-height: 45vh;overflow-y: auto;">
+                                    <table class=" table table-hover table-striped">
+                                        <thead>
+                                            <tr class="bankTitleRow">
+                                                <th class="text-center">Name</th>
+                                                <th>Account Number</th>
+                                                <th>Mobile Number</th>
+                                                <th class="text-center">Modify Bene.</th>
+                                                <th class="text-center">Remove Bene.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of BeneAccountListOwn">
+                                                <td class="text-center">{{item.BENE_NAME}}</td>
+                                                <td>{{item.BENE_ACCOUNT_NUMBER}}</td>
+                                                <td>{{item.BENE_MOBNO}}</td>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);" (click)="beneOperation(item,'M')">
+                                                        <img style="height: 20px;" matTooltip="Modify Beneficiary"
+                                                            matTooltipPosition="above" src="assets/images/edit-icon.png"
+                                                            alt="" />
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);" (click)="beneOperation(item,'R')">
+                                                        <img style="height: 20px;" matTooltip="Remove Beneficiary"
+                                                            matTooltipPosition="above"
+                                                            src="assets/images/delete-icon.png" alt="" />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </mat-tab>
+                            <!-- Other Bank -->
+                            <mat-tab label="Other Beneficiary" class="text-white" *ngIf="BeneAccountListOther !=null">
+                                <div class="table-responsive" style="max-height: 45vh;overflow-y: auto;">
+                                    <table class=" table table-hover table-striped">
+                                        <thead>
+                                            <tr class="bankTitleRow">
+                                                <th class="text-center">Name</th>
+                                                <th>Account Number</th>
+                                                <th> IFSC Code </th>
+                                                <th>Mobile Number</th>
+                                                <th class="text-center">Modify Bene.</th>
+                                                <th class="text-center">Remove Bene.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of BeneAccountListOther">
+                                                <td class="text-center">{{item.BENE_NAME}}</td>
+                                                <td>{{item.BENE_ACCOUNT_NUMBER}}</td>
+                                                <td>{{item.IFSC_CODE}}</td>
+                                                <td>{{item.BENE_MOBNO}}</td>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);" (click)="beneOperation(item,'M')">
+                                                        <img style="height: 20px;" matTooltip="Modify Beneficiary"
+                                                            matTooltipPosition="above" src="assets/images/edit-icon.png"
+                                                            alt="" />
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="javascript:void(0);" (click)="beneOperation(item,'R')">
+                                                        <img style="height: 20px;" matTooltip="Remove Beneficiary"
+                                                            matTooltipPosition="above"
+                                                            src="assets/images/delete-icon.png" alt="" />
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </div>
+                <div class="gap"></div>
+            
+            </div>
+
+            <!-- Add Remove Beneficiary -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="addRemoveBeneficiary">
+                <div class="pt-3 pl-2">
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{beneTitle}}</span>
+                        <span class="text-right float-right">
+                            <i class="fa fa-arrow-circle-o-left cursorPointerC"style="font-size:26px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="benBack()"></i>
+                        </span>
+                    </h6>
+                    <hr class="m-1">
+                </div>
+                <mat-tab-group class="col-md-12" (selectedTabChange)="Open($event)">
+                    <!-- Own Bank -->
+                    <mat-tab label="OWN Bank" *ngIf="tabOWN" class="text-white ">
+                        <div class="row m-auto pt-3">
+                            <div class="col-md-2 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="mobileNo" [disabled]="isDisabled"
+                                        matInput placeholder="Mobile Number" name="mobileNumber" required
+                                        [(ngModel)]='mobileNo' maxlength="10" minlength="10">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-1 col-sm-12">
+                                <button mat-mini-fab class="bg-success text-white " [disabled]="isDisabled"
+                                    (click)="Get_Mobile_Accounts()" data-toggle="modal"
+                                    data-target="#vpayUserModal">Go</button>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" matInput inputType="number"
+                                        [disabled]="isDisabled" placeholder="Account Number" name="accountNo"
+                                        minlength="9" maxlength="20" required [(ngModel)]='accountNo'>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="char" [disabled]="isDisabled"
+                                        matInput placeholder="Beneficiary Name" maxlength="50" name="beneficiaryName"
+                                        required [(ngModel)]='beneneficiaryName'>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="char" [disabled]="isDisabled"
+                                        matInput required placeholder="Nick Name" maxlength="50" name="nickName"
+                                        [(ngModel)]='nickName'>
+                                </mat-form-field>
+                            </div>
+                           
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-select placeholder="Bene. Relationship" [disabled]="isDisabled"
+                                        [(ngModel)]="BenRel" required>
+                                        <mat-option *ngFor="let item of Relations" value="{{item.ID}}">
+                                            {{item.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12 ">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="number" [disabled]="isDisabled"
+                                        matInput placeholder="Pincode" name="pinCode" [(ngModel)]='pinCode'
+                                        maxlength="6">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="decimal" [disabled]="isDisabled"
+                                        matInput placeholder="Transaction limit" name="TransferLimit" required
+                                        [(ngModel)]='TransferLimit' minlength="1" maxlength="5" min="1" max="50000"
+                                        (change)="ConverToDecimal()">
+                                    <mat-hint align="start"><strong>(Transaction Limit Below < ₹. 50000.00)</strong>
+                                                </mat-hint> </mat-form-field> </div> <div class="col-md-3 col-sm-12">
+                                                <mat-form-field class="example-full-width">
+                                                    <input type="password" autocomplete="off" matInput
+                                                        inputType="number" placeholder="Enter TPIN" name="TPIN" required
+                                                        [(ngModel)]='tpin' maxlength="4" minlength="4">
+                                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row m-auto text-right">
+                            <!-- <div class=""> -->
+                            <div class="col-md-8">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput id="txtAddress" [disabled]="isDisabled" [(ngModel)]='address'
+                                        placeholder="Address" maxlength="150" required></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="pt-3 col-md-4">
+                                <button mat-raised-button id="btnSubmitOWN" class="btn-success text-white"
+                                    *ngIf="btnAddBene" (click)="benSubmit('N')">
+                                    Add</button>
+                                <button mat-raised-button id="btnSubmitOWN" class="btn-success text-white"
+                                    *ngIf="btnModifyBene" (click)="benSubmit('M')">
+                                    Modify</button>
+                                <button mat-raised-button class="btn-success text-white" *ngIf="btnDeleteBene"
+                                    (click)="benSubmit('R')">
+                                    Delete</button>
+                                <button mat-raised-button class="btn-success text-white" *ngIf="btnClearBene"
+                                    (click)="clearPage()">
+                                    Clear</button>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </mat-tab>
+                    <!-- Other Bank -->
+                    <mat-tab label="OTHER Bank" *ngIf="tabOther" class="text-white ">
+                        <div class="row m-auto pt-3">
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="mobileNo" [disabled]="isDisabled"
+                                        matInput placeholder="Mobile Number" name="mobileNumber" required
+                                        [(ngModel)]='mobileNo' maxlength="10" minlength="10">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" matInput inputType="number"
+                                        [disabled]="isDisabled" placeholder="Account Number" name="accountNo"
+                                        minlength="9" maxlength="16" required [(ngModel)]='accountNo'>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="char" matInput
+                                        [disabled]="isDisabled" placeholder="Beneficiary Name" name="beneficiaryName"
+                                        maxlength="50" required [(ngModel)]='beneneficiaryName'>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="char" [disabled]="isDisabled"
+                                        matInput required placeholder="Nick Name" maxlength="50" name="nickName"
+                                        [(ngModel)]='nickName'>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4 col-sm-12" [ngClass]="padBottom">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="text" class="text-uppercase" autocomplete="off"
+                                        [disabled]="isDisabled" inputType="alphaNumeric" placeholder="IFSC Code"
+                                        (change)="Get_IFSC_BankBranch()" [(ngModel)]="IFSC" maxlength="11" required
+                                        minlength="3">
+                                    <mat-icon matSuffix *ngIf="searchIcon" class="cursorPointerC "
+                                        (click)="OpenIfscPage()" data-toggle="modal" matTooltip="Search IFSC Code"
+                                        matTooltipPosition="above" data-target="#myModalSB">search</mat-icon>
+                                    <mat-hint align="start" *ngIf="branch!=null"><strong>
+                                            <p style="font-size: 11px" class="mb-0" *ngIf="bank !=null ">Bank Name
+                                                :-
+                                                {{bank}}</p>
+                                            <p style="font-size: 11px" class="mb-0" *ngIf="branch !=null ">Branch
+                                                Name
+                                                :-{{branch}}</p>
+                                            <p style="font-size: 11px" class="mb-0" *ngIf="bankAddress !=null ">
+                                                Location
+                                                :- {{bankAddress}}</p>
+                                        </strong>
+                                    </mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-select placeholder="Bene. Relationship" [disabled]="isDisabled" required
+                                        [(ngModel)]="BenRel">
+                                        <mat-option *ngFor="let item of Relations" value="{{item.ID}}">
+                                            {{item.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 col-sm-12 ">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="number" [disabled]="isDisabled"
+                                        matInput placeholder="Pincode" name="pinCode" [(ngModel)]='pinCode'
+                                        maxlength="6">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <mat-form-field class="example-full-width">
+                                    <input type="text" autocomplete="off" inputType="decimal" [disabled]="isDisabled"
+                                        matInput placeholder="Transaction limit" name="TransferLimit" required
+                                        [(ngModel)]='TransferLimit' minlength="1" maxlength="8"
+                                        (change)="ConverToDecimal()">
+                                    <mat-hint align="start"><strong>(Transaction Limit Below < ₹. 50000.00)</strong>
+                                                </mat-hint> </mat-form-field> </div> </div> <div class="row m-auto">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <mat-form-field class="example-full-width">
+                                                        <textarea matInput id="txtAddress" [disabled]="isDisabled"
+                                                            [(ngModel)]='address' required placeholder="Address"
+                                                            maxlength="150"></textarea>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3 col-sm-12">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input type="password" autocomplete="off" matInput
+                                                            inputType="number" placeholder="Enter TPIN" name="TPIN"
+                                                            required [(ngModel)]='tpin' maxlength="4" minlength="4">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-5 pt-3 text-right">
+                                                    <button id="btnSubmit" mat-raised-button
+                                                        class="btn btn-success text-white pageValid" 
+                                                        *ngIf="btnAddBene" (click)="benSubmit('N')">
+                                                        Add</button>
+                                                    <button id="btnSubmit" mat-raised-button
+                                                        class="btn btn-success text-white pageValid" 
+                                                        *ngIf="btnModifyBene" (click)="benSubmit('M')">
+                                                        Modify</button>
+                                                    <button mat-raised-button class="btn-success text-white"
+                                                        *ngIf="btnDeleteBene" (click)="benSubmit('R')">
+                                                        Delete</button>
+                                                    <button mat-raised-button class="btn-success text-white"
+                                                        *ngIf="btnClearBene" (click)="clearPage()">
+                                                        Clear</button>
+                                                </div>
+                            </div>
+                    </mat-tab>
+                    <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
+                </mat-tab-group>
+                <!-- </div> -->
+            </div>
+            <!-- OTP Control -->
+            <div class="card p-5" [ngClass]='showVpayOtp'>
+                <div class="form-group">
+                    <otp [eid]="'vpayOtp'"></otp>
+                </div>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="benOtpProcess()">Submit</button>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="Back()">Cancel</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- All Pop Up Start -->
+        <!-- term help -->
+        <div class="modal fade" id="termModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+       
+
+
+
+        <div [ngClass]="showUserModal" class="modal fade" id="selectAccPopup" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                <div class="modal-content" style="left: 60px; width: 90%;position: fixed;margin-top: 2%;">
+                    <div class="modal-header">
+                        <p class="title-name" style="margin:0em 0 0;">Select Account</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" style="border-top-left-radius: 20px;border-top-right-radius: 20px;">
+                        <div class="row col-md-12 m-auto p-2">
+                            <div class="mat-elevation-z8 table-responsive example-container">
+                                <table mat-table class="table-striped" [dataSource]="dataSource" style="cursor: pointer;">
+                                    <ng-container matColumnDef="Acc_name">
+                                        <th class="f-14" mat-header-cell *matHeaderCellDef>Account Name </th>
+                                        <td mat-cell *matCellDef="let element">  {{element.ACCOUNT_NAME}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Acc_num">
+                                        <th class="f-14" mat-header-cell *matHeaderCellDef> Account Number </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.ACCOUNT_NO }} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Address">
+                                        <th class="f-14" mat-header-cell *matHeaderCellDef> Address </th>
+                                        <td mat-cell *matCellDef="let element" style=" color: maroon"> {{element.ADDRESS}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Branch_name">
+                                        <th class="f-14" mat-header-cell *matHeaderCellDef> Branch Name</th>
+                                        <td mat-cell *matCellDef="let element" style=" color: green ">{{element.BRANCHNAME }} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Pincode">
+                                        <th class="f-14" mat-header-cell *matHeaderCellDef> Pinode </th>
+                                        <td mat-cell *matCellDef="let element">{{element.PINCODE}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                                    <tr mat-row (click)="onUserDetail(row)" data-dismiss="modal" *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- </div> -->
+
+        <!--POPUP START-->
+        <div *ngIf="Disp_ifscpage" class="modal fade" id="myModalSB" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="title-name" style="margin:0em 0 0;">Search IFSC Code</p>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                        <label>Bank Name
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input autocomplete="off" inputType="char" class="form-control form-control-sm"
+                                            (change)="setBankName(bank)" type="text" id="txtbank"
+                                            placeholder="Search Bank Name" list="items" [(ngModel)]="bank" required />
+                                        <datalist id="items">
+                                            <option *ngFor="let item of bankdata" [value]="item.DESCRIPTION"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                        <label>State Name
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input autocomplete="off" inputType="char" class="form-control form-control-sm"
+                                            (change)="setBankState(state)" type="text" id="txstate"
+                                            placeholder="Search State Name" list="stateitems" [(ngModel)]="state"
+                                            required />
+                                        <datalist id="stateitems">
+                                            <option *ngFor="let item of statedata" [value]="item.DESCRIPTION"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                        <label>City Name
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input autocomplete="off" inputType="char" class="form-control form-control-sm"
+                                            (change)="setBankCity(city)" type="text" id="txtcity"
+                                            placeholder="Search City Name" list="cityitems" [(ngModel)]="city"
+                                            required />
+                                        <datalist id="cityitems">
+                                            <option *ngFor="let item of citydata" [value]="item.DESCRIPTION"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-md-8'>
+                                    <div class="form-group float-label-control">
+                                        <label>Branch Name
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input autocomplete="off" class="form-control form-control-sm"
+                                            (change)="setBankBranch(branch)" type="text" id="txtbranch"
+                                            placeholder="Search Branch Name" list="branchitems" [(ngModel)]="branch"
+                                            required />
+                                        <datalist id="branchitems">
+                                            <option *ngFor="let item of branchdata" [value]="item.DESCRIPTION"></option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 inputcard" style="text-align: center;">
+                                    <div *ngIf="Disp_ifsclabel" class="input-cont">
+                                        <label style="color: green; font-size: 1.25em;">IFSC
+                                            Code : {{ifsc}} </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 inputcard" style="text-align: center;">
+                                    <div *ngIf="Disp_ifscnotfound" class="input-cont">
+                                        <label style="color: red; font-size: 1.25em;">IFSC
+                                            Code not found. </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button mat-raised-button class="btn-success text-white" data-dismiss="modal"
+                            (click)="SetIFSC()">Set
+                            IFSC</button>
+                        <button mat-raised-button class="btn-success text-white" (click)="clearIFSC()">
+                            Clear </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+
+        <!-- success help -->
+        <div *ngIf="showTOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{accountNo}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                            </h6>
+
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="gap"></div>
+<div class="gap"></div>

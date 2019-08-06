@@ -1,0 +1,10 @@
+
+<div style="padding-bottom:1.5em;" class="input-var">
+        <input autocomplete="off" (blur)="onBlur()" (focus)="onFocus()" (keydown)="onKeyDown($event)" [(ngModel)]="txtVal"  [id]="eid" [name]="eid" [class]="txtClass" [placeholder]=" " [maxlength]="maxLength" />
+        <label [for]="eid" name="labelName" [class]="labelFadeClass">{{captionLabel}}
+                <span *ngIf="required" style="color:red;"> *</span>
+        </label>
+        <div class="errClass" *ngIf="showError"  name="labelValName">
+                You must enter {{captionLabel}}.
+        </div>
+</div>

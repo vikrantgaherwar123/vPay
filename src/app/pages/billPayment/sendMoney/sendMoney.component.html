@@ -1,0 +1,183 @@
+<main class="mt-3">
+  <div class="main">
+    <div class="container">
+      <div class="card mb-3">
+        <div class="row col-md-12 m-auto">
+          <div class="col-md-6">
+            <div class="row">
+              <img class="img-fluid" style="height: 35px;" src="assets/images/pay.png" alt="Bank Details">
+              <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Send Money </h4>
+            </div>
+          </div>
+          <!-- <div class="col-md-6 text-right" >
+        <img [src]="banklogo"class="img-fluid float-right" style="height: 55px;" />
+      </div>
+      <div class="col-md-5 text-right" >
+        <img [src]="setBankLogo" class="img-fluid" style="height: 55px;" />
+      </div> -->
+
+        </div>
+      </div>
+
+
+      <div class="card-deck">
+        <!-- first card -->
+        <div class="col-sm-12 col-md-4 col-lg-3 ">
+          <div class="card card-block border-info cardHeightleftBlock">
+
+            <div class="bankMenu">
+              <h5 [ngClass]="{'submenuActive': tab==='tab1'}" (click)="ChangeMenu('AadharPay')">Aadhar Pay</h5>
+            </div>
+
+            <div class="bankMenu">
+              <h5 [ngClass]="{'submenuActive': tab==='tab2'}" (click)="ChangeMenu('Collection')">UPI Collection</h5>
+            </div>
+
+            <!-- <div class="bankMenu">
+              <h5 [ngClass]="{'submenuActive': tab==='tab3'}" (click)="ChangeMenu('PaymentGateway')">Payment Gateway</h5>
+            </div> -->
+
+          </div>
+        </div>
+        <!-- first card end -->
+
+        <!-- second card -->
+        <div class="card mb-0 pb-3 col-md-12 cardHeightBlock">
+
+          <app-aadhar *ngIf="AadharPay"></app-aadhar>
+
+
+          <vgipl-collection *ngIf="Collection"></vgipl-collection>
+
+          <!-- <vgipl-paymentGateway *ngIf="PaymentGateway"></vgipl-paymentGateway> -->
+
+
+         
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+</div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main>
+  <!-- <div class="main">
+      <img src="assets/images/help.png" class="cursorPointerC  fa-beat" style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+      matTooltip="Send Money Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+    <div class="container">
+      <section>
+        <div class="card" style="padding: 7px 28px;">
+          <div class="row"><img class="img-fluid" style="height: 35px;padding-left: 12px;" src="assets/images/BBPSL.png"
+              alt="Bbps">
+            <h4 style="margin-top: 8px; font-weight: bold;">Send Money</h4>
+          </div>
+          <hr style="margin-top:0">
+          <div class="row">
+            <div class="col-md-10">
+              <div class="tree">
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <span class="zoom cursorPointerC" (click)="gotoAadharPay()">
+                            <img class="img-fluid d-block mx-auto imageBorder" src="assets/images/logos/addhar100px.png"
+                              alt="  bbpsImages" title="Aadhar">
+                            <p class="text-center mx-auto font-weight-bold ">Aadhar
+                              Pay</p>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+    
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <div class="container-fluid">
+                        <div class="row">
+                          <span class="zoom cursorPointerC" (click)="gotoCollection()">
+                            <img class="img-fluid d-block mx-auto imageBorder" src="assets/images/logos/UPI100px.png"
+                              alt="bbpsImages" title="upi">
+                            <p class="text-center mx-auto font-weight-bold">Collection</p>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+               
+       
+                <ul>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <div class="container-fluid">
+                        <div class="row ">
+                          <span class="zoom cursorPointerC" (click)="gotoPaymentGateway()">
+                            <img class="img-fluid d-block mx-auto imageBorder" src="assets/images/logos/payment100px.png"
+                              alt="bbpsImages" title="Payment Gateway">
+                            <p class="text-center mx-auto font-weight-bold">Payment Gateway</p>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div> -->
+  <!--POPUP START-->
+  <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+          <div class="modal-content">
+              <div class="modal-body" style="height: 400px;overflow: auto;">
+                  <div *ngFor="let item of termCondContent">
+                      <p style="text-transform: uppercase; font-weight: bold">
+                          {{item.TERM_COND_HEADER}}
+                      </p>
+                      <p style="margin-top: 2%">
+                          {{item.TERM_COND_DETAIL}}
+                      </p>
+                      <br>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+
+          </div>
+      </div>
+  </div>
+  <!--POPUP END-->
+
+
+</main>

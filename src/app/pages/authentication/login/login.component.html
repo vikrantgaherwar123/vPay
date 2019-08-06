@@ -1,0 +1,222 @@
+<header id="top">
+  <div class="top-bar" style="position: fixed; top: 0px;">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-2 logo">
+          <div class="left-logo text-center">
+            <a href="javascript:void(0)">
+              <img class="img-fluid" src="assets/images/vpay.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12 top-logos">
+          <div class="text-center">
+            <!--Navigation-->
+            <div id="cssmenu" class="navigation">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoHome()">Home</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Corporate</a>
+                  <ul>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoAbout()">About</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoOurTeam()">Our Team</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">News & Blog</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Careers</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoHowToUse()">How It Works</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoWhyUs()">Why Us</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoSignUp('I')">Sign Up</a>
+                </li>
+                <li class="active">
+                  <a href="javascript:void(0)" (click)="gotoLogin()">Login</a>
+                </li>
+              </ul>
+            </div>
+            <!--/Navigation-->
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="vgipl-logo text-right">
+            <a href="javascript:void(0)">
+              <img style="height: 60px;" class="img-fluid" src="assets/images/vg-logo.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</header>
+
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Login</li>
+    </ol>
+  </nav>
+</div>
+<main>
+  <div class="main">
+    <div class="container">
+      <h4>Login Here</h4>
+      <div class="row">
+
+        <div class="col-md-5">
+          <div class="login-block ">
+
+            <div class="form-group processBtn">
+              <input type="text" autocomplete="off" id="txtMobileNo" inputType="mobileNo" [(ngModel)]="mobileNo"
+                title='Mobile No.' class="form-control" placeholder="Enter Your Mobile No." maxlength="10" required
+                style="width: 200px;display: inline-block;" (keyup)="goProcess($event)">
+              <button id="processBtn" type="button" mat-raised-button class="mt-1 btn-success text-white"
+                (click)="process()">Go</button>
+            </div>
+            <div style="margin-bottom:13px">
+              <div [class]="showCustTypes">
+
+                <div class="radio radio-success radio-inline">
+                  <input type="radio" id="rdbIndividual" value="I" [(ngModel)]="custType" (click)="changeCustType('I')"
+                    name="custTypes">
+                  <label for="rdbIndividual"> Individual </label>
+                </div>
+                <div class="radio radio-success radio-inline">
+                  <input type="radio" id="rdbCorporate" name="custTypes" value="C" [(ngModel)]="custType"
+                    (click)="changeCustType('C')">
+                  <label for="rdbCorporate"> Corporate</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" [class]="hideCorpCode" style="margin-bottom:15px">
+              <input type="text" autocomplete="off" id="txtCorporateCode" inputType="number" [(ngModel)]="corporateCode"
+                title='Corporate Code.' class="form-control" placeholder="Enter Your Corporate Code" maxlength="15"
+                required (change)="setCorpClientMstId()">
+            </div>
+
+
+            <div [class]="showPasswd">
+
+              <div class="form-group">
+
+                <input type="password" autocomplete="off" id="txtPassword" inputType="alphaNumeric"
+                  [(ngModel)]="password" title='Password' class="form-control" name="password" placeholder="Password"
+                  required maxlength="20">
+                <span toggle="#txtPassword" class="fa fa-fw fa-eye-slash field-icon toggle-password"></span>
+
+              </div>
+
+              <div class="flt">
+                <div class="form-group">
+                  <input type="text" class="form-control captchaInput" disabled='true' id="mainCaptcha">
+                  <img src='assets/images/recaptcha.png' matTooltip="Reset Captcha"
+                  matTooltipPosition="above" class="captchaImg" id="refresh" (click)="Captcha();">
+                </div>
+                <div class="form-group">
+                  <input style="margin-top:10px;" type="text" [(ngModel)]="CaptchaBox" class="form-control"
+                    inputType="alphaNumeric" placeholder="Enter captcha" name="captcha" id="txtInput" autocomplete="off"
+                    (keyup)="submit($event)" required="" maxlength="7">
+                </div>
+                <div class="pb-2">
+                  <button type="button" mat-raised-button class="btn-success text-white"
+                    (click)="validateForm()" >Login</button>
+                  <button type="clearBtn" mat-raised-button class="btn-success text-white"
+                    (click)="clear()">Clear</button>
+                </div>
+              </div>
+              <div class="form-group">
+
+                <div class="checkbox checkbox-success">
+                  <input id="checkbox3" type="checkbox" [(ngModel)]="TCchek">
+                  <label for="checkbox3">
+                    I agree to the
+                    <a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal"
+                      data-target="#myModal">Terms
+                      and Conditions</a> &
+                    <a href="#" (click)="privacyPolicy()" data-toggle="modal" data-target="#myModal">Privacy Policy.</a>
+                  </label>
+                </div>
+              </div>
+
+              <div class="frt">
+                <p class="login-link">
+                  <a href="javascript:void(0)" (click)="gotoForgetUnLockTab('F')">
+                    <i class="fa fa-question"></i> Forgot Password</a> &nbsp; &nbsp;
+                  <a href="javascript:void(0)" (click)="gotoForgetUnLockTab('U')">
+                    <i class="fa fa-unlock-alt"></i> Unlock User</a>
+                  <br />
+
+                </p>
+              </div>
+
+              <div class="clear"></div>
+              <div class="col-md-12 login-link" style="text-align: right">
+                <a href="javascript:void(0)" (click)="gotoForgetUnLockTab('SP')">
+                  <i class="fa fa-user"></i> Set Password For Existing User</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <img class="img-fluid" src="assets/images/login.jpg" alt="" />
+
+        </div>
+
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>
+<!--POPUP START-->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 400px;overflow: auto;">
+        <div *ngFor="let item of termCondContent">
+          <p style="text-transform: uppercase; font-weight: bold">
+            {{item.TERM_COND_HEADER}}
+          </p>
+          <p style="margin-top: 2%">
+            {{item.TERM_COND_DETAIL}}
+          </p>
+          <br>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!--POPUP END-->
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

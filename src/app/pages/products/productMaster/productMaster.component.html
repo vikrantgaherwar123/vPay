@@ -1,0 +1,331 @@
+<dtp></dtp>
+<main>
+  <div class="main">
+    <div class="container">
+      <div class="inner btnProduct">
+        <div class="device-bg">
+          <div class="card" style="padding:7px 0; margin-bottom: 15px">
+            <!-- <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="row" style="padding-left: 33px;">
+                  <img class="img-fluid" style="height: 35px;" src="assets/images/productIco.png" alt="Product Master">
+                  <h4 style="margin-top: 8px;
+              font-weight: bold;">&nbsp;Product Master</h4>
+                </div>
+              </div>
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-sm-12 ">
+                <div class="device-btn">
+                  <button mat-mini-fab class="bg-success text-white prodMenuBtn " title="Add Product" (click)="AddProd()">
+                    <i class="fa fa-plus-square-o prodMenuFaIc"></i>
+                  </button>
+                </div>
+
+                <div class="device-btn">
+                  <button mat-mini-fab class="bg-success text-white prodMenuBtn" title="Modify Product" (click)="EditProd()">
+                    <i class="fa fa-pencil-square-o prodMenuFaIc"></i>
+                  </button>
+                </div>
+                <div class="device-btn">
+                  <button mat-mini-fab class="bg-success text-white prodMenuBtn " title="Delete Product" (click)="DelProd()">
+                    <i class="fa fa-trash prodMenuFaIc"></i>
+                  </button>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="row col-md-12">
+              <div class="col-md-4">
+                <h4 style="margin-top: 8px;font-weight: bold;">
+                  <img class="img-fluid" style="height: 35px;" src="assets/images/productIco.png" alt="Product Master">&nbsp;Product
+                  Master</h4>
+              </div>
+              <div class="col-md-3 offset-md-5">
+                <button mat-fab class="bg-success text-white prodMenuBtn" matTooltip="Add Product" matTooltipPosition="above"
+                  (click)="AddProd()">
+                  <i class="fa fa-plus-square-o prodMenuFaIc"></i>
+                </button>
+                <button mat-fab class="bg-success text-white prodMenuBtn" matTooltip="Modify Product"
+                  matTooltipPosition="above" (click)="EditProd()">
+                  <i class="fa fa-pencil-square-o prodMenuFaIc"></i>
+                </button>
+                <button mat-fab class="bg-success text-white prodMenuBtn " matTooltip="Delete Product"
+                  matTooltipPosition="above" (click)="DelProd()">
+                  <i class="fa fa-trash prodMenuFaIc"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card p-4">
+          <span style="font-weight: bold;font-size: 15px;color: darkgreen;">{{title}}</span>
+          <hr style="margin-top:0">
+          <div class="row">
+            <div class="col-md-4 ">
+              <label>Product Type
+                <span style="color:red">*</span>
+              </label>
+              <div class="input-group mb-3">
+                <input type="text" autocomplete="off" class="form-control form-control-sm " id="txtProdType"
+                  placeholder="Search Product Type.." [(ngModel)]="PRODUCT_TYPE_NAME" (change)="onChangeSetProdType()"
+                  maxlength="100" minlength="3" aria-describedby="basic-addon2">
+                <datalist id="items">
+                  <option *ngFor="let product of ItemsAll" [value]="PRODUCT_TYPE_NAME"></option>
+                </datalist>
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2" data-toggle="modal" data-target="#productTypeModal">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div [class]='showProdCode'>
+              <div class="form-group">
+                <label>Product Code
+                  <span style="color:red">*</span>
+                </label>
+                <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm text-uppercase"
+                  id="txtProductCode" (change)="onChangeProdCode()" name="productCode" [(ngModel)]="productCode"
+                  maxlength="100">
+              </div>
+            </div>
+
+            <div [class]='showMProductCode'>
+              <label>Product Code
+                <span style="color:red">*</span>
+              </label>
+              <div class="input-group mb-3">
+                <input type="text" autocomplete="off" class="form-control form-control-sm text-uppercase" placeholder="Search Product Code.."
+                  id='txtMproductCode' [(ngModel)]="productCode" (change)="onChangeProdCode()" maxlength="100"
+                  minlength="3" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2" data-toggle="modal" data-target="#productCodeModal">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Applicable date:
+                  <span style="color:red">*</span>
+                </label>
+                <input type="text" autocomplete="off" class="form-control form-control-sm disableInput" name="applicableDate"
+                  id='txtAppDate' [(ngModel)]="appDate" (click)="DateTimeCtrl('D','appDate')" placeholder="DD/MM/YYYY"
+                  readonly>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control form-control-sm disableInput"
+                  id="txtProductName" name="productName" [(ngModel)]="productName" maxlength="100">
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Product Unit
+                  <span style="color:red">*</span>
+                </label>
+                <select class="form-control form-control-sm disableInput" id="txtProductUnit" [(ngModel)]="productUnit">
+                  <option value="1">kg</option>
+                  <option value="2">Gram</option>
+                  <option value="3">Litre</option>
+                  <option value="4">Piece</option>
+                  <option value="5">other</option>
+                </select>
+              </div>
+            </div>
+            <div class='col-md-4 col-sm-12'>
+              <div class="form-group">
+                <label>HSN Code</label>
+                <input type="text" autocomplete="off" inputType="alphaNumeric" class="form-control text-uppercase form-control-sm disableInput"
+                  id="" name="hsnCode" [(ngModel)]="hsnCode" maxlength="50">
+              </div>
+            </div>
+          </div>
+          <div class='row'>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Product Rate
+                  <span style="color:red">*</span>
+                </label>
+                <input type="text" autocomplete="off" inputType="decimal" class="form-control form-control-sm disableInput"
+                  id="txtProductRate" name="productRate" [(ngModel)]="productRate" maxlength="20">
+              </div>
+            </div>
+            <div class='col-md-4 col-sm-12'>
+              <div class="form-group">
+                <label>Product Quantity
+                  <span style="color:red">*</span>
+                </label>
+                <input type="text" autocomplete="off" inputType="number" class="form-control form-control-sm disableInput"
+                  id="txtProductQuantity" name="productQuantity" [(ngModel)]="productQuantity" maxlength="20">
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Tax Percent(%)
+                  <span style="color:red">*</span>
+                </label>
+                <input type="text" autocomplete="off" inputType="decimal" class="form-control form-control-sm disableInput"
+                  id="txtTaxPercent" name="taxPercent" [(ngModel)]="taxPercent" maxlength="20">
+              </div>
+            </div>
+          </div>
+          <div class='row'>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>Product Description</label>
+                <textarea class="form-control form-control-sm disableInput" inputType="alphaNumeric" id="proCodeDesc"
+                  [(ngModel)]="proCodeDesc" maxlength="150" placeholder=" "></textarea>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="form-group">
+                <div class="fileimg cursorPointerC">
+                  <input type="file" name="fileProductImage" class="inputfile disableInput" id="fileProductImage"
+                    required (change)="fileSelected($event,this,'ProductImage');" style="display: none;" />
+                  <div class="icon-imgs">
+                    <label for="fileProductImage">
+                      <div class="imgthum">
+                        <img [src]="productImage" name="imgIdProductImage" id="imgIdProductImage" alt="Browse Product Image">
+                      </div>
+                    </label>
+                    <label class="img-size">{{imageSize}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="submit" id="btnProduct" mat-raised-button class="btn btn-success text-white pageValid" *ngIf="showSubmitBtn"
+              disabled="true" (click)="submit()">Submit</button>
+            <button type="submit" id="btnProduct" mat-raised-button class="btn btn-success text-white  pageValid" *ngIf="showUpdateBtn"
+              disabled="true" (click)="submit()">Update</button>
+            <button type="submit" id="btnProduct" mat-raised-button class="btn btn-success text-white " *ngIf="showDeleteBtn"
+              (click)="submit()">Delete</button>
+            <button type="reset" mat-raised-button class="btn btn-success text-white " (click)="clear();">Clear</button>
+          </div>
+        </div>
+        <!--POPUP START for show product Type-->
+        <div class="modal fade" id="productTypeModal">
+          <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+            <div class="modal-content dialog">
+
+              <div class="modal-header">
+                <p class="title-name" style="margin:0em 0 0;">Search Product Type</p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm" onkeyup="searchFunction(event,'#searchProdType tr')"
+                      placeholder="Search Product Type..." />
+                    <span class="input-group-btn">
+                      <button class="btn btn-info " type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <hr>
+                <div class="tbl-header">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr>
+                        <th>Product Id</th>
+                        <th>Product Type Code</th>
+                        <th>Product Type Name</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tbl-content">
+                  <table id='searchProdType' class="table-striped row-border table-hover" cellpadding="0" cellspacing="0"
+                    border="0">
+                    <tbody>
+                      <tr *ngFor="let item of productTypeDataArray" (click)="getValue(item)" data-dismiss="modal">
+                        <td>{{item._id}}</td>
+                        <td>{{item.PRODUCT_TYPE_CODE}}</td>
+                        <td>{{item.PRODUCT_TYPE_NAME}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--POPUP END for show product Type-->
+
+        <!--POPUP START for show product COde-->
+        <div class="modal fade" id="productCodeModal">
+          <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+            <div class="modal-content dialog">
+              <div class="modal-header">
+                <p class="title-name" style="margin:0em 0 0;">Search Product</p>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div id="custom-search-input">
+                  <div class="input-group col-md-12">
+                    <input type="text" autocomplete="off" class="form-control form-control-sm" onkeyup="searchFunction(event,'#searchProdList tr')"
+                      placeholder="Search Product..." />
+                    <span class="input-group-btn">
+                      <button class="btn btn-info " type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <hr>
+                <div class="tbl-header">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr>
+                        <th>Product Code</th>
+                        <th>Product Name</th>
+                        <th>Product Rate</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="tbl-content">
+                  <table id='searchProdList' class="table-striped row-border table-hover" cellpadding="0" cellspacing="0"
+                    border="0">
+                    <tbody>
+                      <tr *ngFor="let item of productListDataArray" (click)="getProdValue(item)" data-dismiss="modal">
+                        <td>{{item.PRODUCT_CODE}}</td>
+                        <td>{{item.PRODUCT_NAME}}</td>
+                        <td>{{item.PRO_RATE}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!--POPUP END for show product-->
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</main>

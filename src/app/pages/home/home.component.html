@@ -1,0 +1,557 @@
+<header id="top">
+  <div class="top-bar" style="position: fixed; top: 0px;">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-2 logo">
+          <div class="left-logo text-center">
+            <a href="javascript:void(0)">
+              <img class="img-fluid" src="assets/images/vpay.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12 top-logos">
+          <div class="text-center">
+            <!--Navigation-->
+            <div id="cssmenu" class="navigation">
+              <ul>
+                <li class="active">
+                  <a href="javascript:void(0)" (click)="gotoHome()">Home</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Corporate</a>
+                  <ul>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoAbout()">About</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoOurTeam()">Our Team</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">News & Blog</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Careers</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoHowToUse()">How It Works</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoWhyUs()">Why Us</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoSignUp('I')">Sign Up</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoLogin()">Login</a>
+                </li>
+              </ul>
+            </div>
+            <!--/Navigation-->
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="vgipl-logo text-right">
+            <a href="javascript:void(0)">
+              <img style="height: 60px;" class="img-fluid" src="assets/images/vg-logo.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</header>
+
+
+<main>
+  <div class="main">
+    <section class="graybg">
+      <div class="container">
+        <div class="main-vpay">
+        
+          <div class="vpay-title">
+            <h1>VPay –
+              <span class="vpay-text">Complete Payment system for Merchants</span>
+            </h1>
+          </div>
+          <div class="vpaytxt">
+            <p>Accept payments through your mobile and web portal instantly and grow your business with us.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="app-title">
+        <h2>One app for all your payments</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-01.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">Aadhaar Pay</p>
+              <div class="app-text">
+                <p>Aadhaar Pay is meant for merchants to receive digital payments from customers over the counter
+                  through Aadhaar
+                  authentication...
+                </p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(1)" data-target="#myModal">Read More</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-02.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">AEPS Micro ATM</p>
+              <div class="app-text">
+                <p>Aadhaar Enabled Payment System is a way to get money from the bank account. This system of getting
+                  money
+                  neither requires your signature nor Debit card...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(2)" data-target="#myModal">Read More</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-03.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">Unified Payments Interface</p>
+              <div class="app-text">
+                <p>UPI allows a customer to pay directly from a bank account to different merchants, both online and
+                  offline,
+                  without the hassle of typing credit card details...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(3)" data-target="#myModal">Read More</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-04.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">UPI QR Code</p>
+              <div class="app-text">
+                <p>Scanning the QR code through your mobile will help in transferring money from one source to another.
+                  Payments
+                  made through UPI QR code will directly get transferred...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(4)" data-target="#myModal">Read More</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-05.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">Bharat QR Based Payment</p>
+              <div class="app-text">
+                <p>Scanning the QR code through your mobile will help in transferring money from one source to another.
+                  Payments
+                  made through Bharat QR code will directly get transferred...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(5)" data-target="#myModal">Read More</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-06.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">Bharat Bill Payment System</p>
+              <div class="app-text">
+                <p>Bharat Bill Payments System is an integrated online platform for all kinds of bill payments. It
+                  would connect
+                  the utility service companies on one end and all payments service...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(6)" data-target="#myModal">Read More</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-07.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">FASTag</p>
+              <div class="app-text">
+                <p>FASTag is a simple to use, reloadable tag which enables automatic deduction of toll charges and lets
+                  you
+                  pass through the toll plaza without stopping for the cash transaction...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(7)" data-target="#myModal">Read More</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="app-block">
+            <div class="thumb-icon">
+              <img src="assets/images/app-08.svg" alt="" />
+            </div>
+            <div class="app-content">
+              <p class="title-name">Payment Gateway</p>
+              <div class="app-text">
+                <p>Payment gateway services are required for Debit and credit card processing. It’s the same exact
+                  process as
+                  a point of service (POS) device does when you pay for your lunch at...</p>
+              </div>
+              <p class="read-btn">
+                <a href="#" data-toggle="modal" (click)="showModel(8)" data-target="#myModal">Read More</a>
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <section class="paybg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="text-center payment-block">
+              <div class="payimg">
+                <img src="assets/images/icon-01.svg" alt="" />
+              </div>
+              <p class="payment-head">Multiple payment Receipt channels</p>
+              <p>Acceptance of all Payment Modes, on a Single ‘VPay App’ (All Debit & Credit Cards, Bharat QR, UPI,
+                Aadhar Pay
+                etc.)
+              </p>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-3 col-sm-6">
+            <div class="text-center payment-block">
+              <div class="payimg">
+                <img src="assets/images/icon-02.svg" alt="" />
+              </div>
+              <p class="payment-head">Sell More and Grow </p>
+              <p>Helps businesses of all sizes to sell more and grow with a widest range of value added services like
+                BBPS,
+                Fastag, Micro ATM &amp; Payment Gateway, etc.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="text-center payment-block">
+              <div class="payimg">
+                <img src="assets/images/icon-03.svg" alt="" />
+              </div>
+              <p class="payment-head">Integrated Transaction Dashboard</p>
+              <p>A transaction dashboard for merchants to see detailed transaction and settlement reports.</p>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6">
+            <div class="text-center payment-block">
+              <div class="payimg">
+                <img src="assets/images/icon-04.svg" alt="" />
+              </div>
+              <p class="payment-head">Limited KYC</p>
+              <p>A merchant could start transacting instantly by providing basic details like (Name, Mobile Number,
+                Address,
+                PAN Card).</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="green-bg">
+      <div class="container">
+        <div class="addvanc-title">
+          <h2>Advantages of V-Pay</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6">
+            <ul class="listing2">
+              <li>Card Less & Cashless Transactions anywhere any time</li>
+              <li>Easy Installation & onetime registration process</li>
+              <li>Simple, Secured & easy Interface & Operates in your preferred language.</li>
+              <li>Integrated with multiple payment Receipt channels Viz. Aadhaar-Pay, UPI, UPI QR Code, Bharat QR Code, Card
+                Payments & Payment gateway</li>
+              <li>Quick Settlements & Speedy checkout</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <ul class="listing2">
+              <li>Vpay is not a wallet & your money gets auto credited to your existing Bank A/c.</li>
+              <li>State of the art safety & Security features for both Merchant and its customers</li>
+              <li>Fully Secured & 24/7 Fraud Protection</li>
+              <li>Merchant Payment with T+1 TaT</li>
+              <li>Auto Reconciliation & Alerts</li>
+              <li>Fast & Easy Payment</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section> -->
+
+    <div class="container">
+      <div class="message-title">
+        <h2>Send Us a Message</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-2 text-center">
+              <p style="font-size: 17px;">I am</p>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group">
+                <select class="form-control form-control-sm" id="exampleFormControlSelect1">
+                  <option>Dealer</option>
+                  <option>Merchant</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm" id="" placeholder="Enter Mobile">
+              </div>
+
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm" id="" placeholder="Enter Email">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm" id="" placeholder="Enter Pincode">
+              </div>
+
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input type="text" autocomplete="off" class="form-control form-control-sm" id="" placeholder="Enter City">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" autocomplete="off" class="form-control form-control-sm" id="" placeholder="Enter Subject">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control form-control-sm" id="" rows="3" placeholder="Enter Your Message"></textarea>
+          </div>
+        </div>
+      </div>
+      <button mat-button class="btn btn-success text-white">Submit</button>
+      </div>
+
+    <section class="contact-bg">
+      <div class="lead-title">
+        <h2>Connect with us</h2>
+      </div>
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="contect-block">
+              <h5>
+                <img src="assets/images/cont-icon1.png" alt="" /> Head office</h5>
+              <!-- <p class="mobno">
+              <strong>Virtual Galaxy Infotech Pvt. Ltd.</strong>
+            </p>
+            <p>3, Central Excise Colony, Behind Mahatme Eye Bank, Chhatrapati Sq., Ring Road, Nagpur- 440015 Maharashtra (INDIA)</p> -->
+              <div *ngFor="let item of Items">
+                <p *ngIf="item=='Virtual Galaxy Infotech Pvt Ltd '" class="mobno" style="margin-bottom: 1px;">
+                  {{item}}
+                  <br>
+                </p>
+                <p *ngIf="item!='Virtual Galaxy Infotech Pvt Ltd '" class="mobno" style="margin-bottom: 1px;"> {{item}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contect-block">
+              <h5>
+                <img src="assets/images/cont-icon2.png" alt="" /> Request for Business solutions</h5>
+
+              <div class="contact-detail">
+                <!-- <p>
+                <img src="assets/images/whatsp-icon.png" alt="" /> Mobile no.: 900000000</p> -->
+                <p class="mobno">
+                  <i class="icofont icofont-phone-circle" style="font-size:20px"></i>: {{SPhone}}</p>
+                <p>
+                  <i class="icofont icofont-email" style="font-size:20px"></i>:
+                  <a href="mailto:{{SEMail}}"> {{SEMail}}</a>
+                </p>
+                <p>Monday to Saturday (10 AM - 7 PM)</p>
+                <p class="click">
+                  <a href="javascript:void(0);">Click Here for Enquiry</a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="contect-block">
+              <h5>
+                <img src="assets/images/cont-icon3.png" alt="" /> Service and complaints</h5>
+              <div class="contact-detail">
+                <p class="mobno">
+                  <i class="icofont icofont-phone-circle" style="font-size:20px"></i>: {{CPhone}}</p>
+                <p>
+                  <i class="icofont icofont-email" style="font-size:20px"></i>:
+                  <a href="mailto:{{PEMail}}">{{PEMail}}</a>
+                </p>
+                <!-- <p>vpaycustomercare@vgipl.in</p> -->
+                <p>Monday to Saturday (10 AM - 7 PM)</p>
+                <p class="click">
+                  <a href="javascript:void(0);">Click Here for Enquiry</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="india">
+              <img src="assets/images/made-india.png" alt="" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+</main>
+
+<!--POPUP START-->
+<div class="modal fade" id="myModal" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <div class="thumb-icon" *ngIf="Vpay !=undefined">
+          <img style="height: 70px; overflow: hidden;" src="{{Vpay.logo}}" />
+        </div>
+        <p class="title-name" style="margin:0em 0 0;" *ngIf="Vpay !=undefined">{{Vpay.title}}</p>
+        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close "></i></button>
+      </div>
+      <div class="modal-body" *ngIf="Vpay !=undefined">
+        <p>{{Vpay.para1}}</p>
+        <p>{{Vpay.para2}}</p>
+        <p>{{Vpay.para3}}</p>
+        <p>{{Vpay.para4}}</p>
+        <p>{{Vpay.para5}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="modal fade" id="myModalAlert" data-backdrop="static" >
+    <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+      <div class="modal-content"
+      style="width: 100%; left: 4px;">
+  
+        <div class="modal-header">
+          <p class="title-name" style="margin:0em 0 0;">Alert</p>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+  
+  
+        <div class="modal-body">
+         {{dummyData}}
+        </div>
+  
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="testAlert()" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div> -->
+<!-- 
+
+  <button data-toggle="modal"  data-target="#myModalAlert" > ffsdffsadfsafdsf</button> -->
+
+
+<!--POPUP END-->
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

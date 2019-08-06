@@ -1,0 +1,314 @@
+<!-- FORM 1  -->
+<div *ngIf="showInsuranceDetailsPage">
+<div class="container">
+  <div class="innner-bg">
+    <div class="insurance-title">
+      <h1>Two Wheeler Insurance</h1>
+    </div>
+    <div class="renew-policy">
+      <p>Please fill in these details to calculate your insurance premium</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Purchased / Registered in the City of </label>
+          <input class="form-control" [(ngModel)]="cityModel" id="cityModel" list="cityitems"
+            (change)="getSelectedDatalist($event);" placeholder="Select City">
+
+          <datalist id="cityitems">
+            <option *ngFor="let regCity of registeredCityArray" [value]="regCity.TXT_RTO_LOCATION_DESC">
+              BANGALORE-KARNATAKA
+            </option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Two Wheeler Make and Model </label>
+          <input class="form-control" matInput required autocomplete="off" id="manufacture"
+            inputType="alphaNumeric" maxlength="20" [(ngModel)]="manufacture"
+            list="manuFactitems" (change)="getSelectedDatalist($event);" placeholder="Select Manufacture">
+            
+          <datalist id="manuFactitems">
+            <option *ngFor="let item of manufactureAreay" [value]="item.MANUFACTURER">
+              <!-- {{item.ManufacturerCode}} -->
+            </option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Bike Model</label>
+          <input class="form-control" matInput required autocomplete="off" placeholder="Select Bike Model"
+            inputType="alphaNumeric" maxlength="20" [(ngModel)]="BikeModel" id="BikeModel" list="modelItem"
+            (change)="getSelectedDatalist($event);">
+          <datalist id="modelItem">
+            <option *ngFor="let item of ModelSelectArray" [value]="item.VEHICLEMODEL">
+              <!-- {{item.ManufacturerCode}} -->
+            </option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label>Purchased Year</label>
+          <input class="form-control" [matDatepicker]="picker" (click)="picker.open()" [(ngModel)]="registrationDate" type="text"
+            class="form-control" name="registrationDate" readonly placeholder="Registration Date">
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </div>
+      </div>
+     </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-success button btnSave" (click)="back('back')">BACK</button>
+      <button type="button" class="btn btn-success button btnSave" (click)="submit('Bike')">SUBMIT</button>
+    </div>
+  </div>
+</div>
+</div>
+<br />
+
+<!-- FORM 2 -->
+<div *ngIf="showPreviousPolicyDetailsPage">
+<div class="container">
+    <div class="insurance-title"><h1>Two Wheeler Insurance</h1></div>
+     <div class="renew-policy"><p>Insured Declared Value (IDV) : 29,749</p></div>
+
+    <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Purchased / Registered in the City of</label>
+              <input class="form-control" matInput required autocomplete="off" id="selectedRtoLocation" placeholder="Select Manufacture"
+              inputType="alphaNumeric" maxlength="20" [(ngModel)]="selectedRtoLocation">
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Two Wheeler Make and Model </label>
+            <input class="form-control" matInput required autocomplete="off" id="selectedCompany" placeholder="Select Manufacture"
+            inputType="alphaNumeric" maxlength="20" [(ngModel)]="selectedCompany" readonly>
+          </div>
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label>Bike Model</label>
+              <input class="form-control" matInput required autocomplete="off" id="selectModel" placeholder="Select Model"
+              inputType="alphaNumeric" maxlength="20" [(ngModel)]="selectModel" readonly>
+              </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+                <label>Purchased Year</label>
+              <input class="form-control" matInput [matDatepicker]="picker2" (click)="picker2.open()" [(ngModel)]="registrationDate"
+              id="txtStartDate" name="registrationDate" readonly placeholder="Registration Date" readonly>
+              </div>
+          </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Select Model</label>
+                <input class="form-control" matInput required autocomplete="off" id="exShowRoomPrice" placeholder="Select Model"
+                inputType="alphaNumeric" maxlength="20" [(ngModel)]="exShowRoomPrice" readonly>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Select Number of Claims</label>
+                <select class="form-control" placeholder="Select Number of Claims"  [(ngModel)]="ddClaimMade" required>
+                  <option *ngFor="let item of ClaimsMadeDetail" value="{{item.claims}}">
+                    {{item.claims}}
+                  </option>
+                </select>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                  <label>Select Number of Claims Bonus</label>
+                <select class="form-control" placeholder="Select Number of Claims Bonus"  [(ngModel)]="ddClaimBonus" required>
+                  <option *ngFor="let item of NCBArray" value="{{item.idw}}">
+                    {{item.NCB}}%
+                  </option>
+                </select>
+                </div>
+            </div>
+        </div>
+        <div class="verify-text">
+          <p>Please verify the details that we've added to speed up your transaction.</p>
+        </div>
+ </div>
+
+
+<section class="bgbox">
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box-block">
+                  <p class="year">3 Years</p>
+                  <hr />
+                  <h2 class="rupee-title"><span>&#x20B9;</span>4825</h2>
+                  <p class="gst-number">with GST &#x20B9; 5694</p>
+                  <P class="cost">Cost saving & long term cover</P>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="box-block">
+                  <p class="year">2 Years</p>
+                  <hr />
+                  <h2 class="rupee-title"><span>&#x20B9;</span>3288</h2>
+                  <p class="gst-number">with GST &#x20B9; 3880</p>
+                  <P class="cost2">No burden of third party premium hike</P>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="box-block">
+                  <p class="year">1 Years</p>
+                  <hr />
+                  <h2 class="rupee-title"><span>&#x20B9;</span>1635</h2>
+                  <p class="gst-number">with GST &#x20B9; 1929</p>
+                  <P class="cost2">Protection for a single year</P>
+                </div>
+            </div>
+          </div>
+    </div> -->
+
+    <div class="container">
+        <p class="plan">This plan includes the Personal Accident cover for owner-driver.</p>
+    </div>
+
+    <div class="container">
+      <div class="premium-block">
+        <div class="row">
+          <div class="col-md-8">
+              <p class="personal">I want to protect myself from harm caused by accidents
+                Personal Protect Cover: Coverage against death and permanent total disability</p>
+          </div>
+          <div class="col-md-2">
+              <p class="personal">Sum Insured <br /> &#x20B9; 3,00,000</p>
+          </div>
+          <div class="col-md-2">
+              <p class="personal">Premium<br /> &#x20B9; <b>{{finalPremium}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div class="container">
+      <h4 class="text-center">Choose Additional Cover</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                  <input type="checkbox" name="" (click)="isAddOnCheck('roadSide')"> &nbsp;
+                <b>Road Side Assistance Best Selling</b></p>
+                <p>You can avail emergency assistance services in any of our network garages. These services include towing on breakdown/accident, flat tyre, etc.</p>
+            </div>
+            <div class="col-md-6">
+                <p>
+                  <input type="checkbox" name=""  (click)="isAddOnCheck('zeroDesc')"> &nbsp;
+                <b>Zero Depreciation</b></p>
+                <p>Every year, your two wheeler devaluates due to wear and tear of its parts. The add-on does not consider this, giving you complete coverage.</p>
+            </div>
+    </div>
+    </div>
+    <br />
+
+    <div class="container">
+      <h3 class="benefits-title">Benefits Covered (4)</h3>
+        <div class="row">
+            <div class="col-md-6">
+              <div class="benefit-block">
+                <p><b>Own Damage</b></p>
+                <p>In case of an accident, we pay the cost of damages to your two wheeler </p>
+                <p><b>Key Inclusions:</b> Natural calamities (Fire, lightening, flood etc), Man-made disasters (Burglary, theft, riot, strikes etc.) </p>
+                <p><b>Key Exclusions:</b> Depreciation of two wheeler parts, tyres, two wheeler driven under intoxication.</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="benefit-block">
+                <p><b>Third Party</b></p>
+                <p>If you accidentally ram your two wheeler into someone or something, we'll pay for the legal liabilities - injury or death of a person, and damage caused to the surrounding property. </p>
+                <p><b>Key Exclusions:</b> 1. Accidents outside geographical area.</p>
+                <p>2. Two Wheeler driven by someone who is not the owner or driver.</p>
+                <p>3. Loss or damage due to war or invasion.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <div class="benefit-block">
+                <p><b>Two Wheeler Theft</b></p>
+                <p>In case your two wheeler gets stolen, we pay you the two wheeler's Insured Declared Value i.e maximum sum insured amount fixed at the beginning of the policy period. </p>
+                <p><b>Key Inclusions:</b> Theft of two wheeler </p>
+                <p><b>Key Exclusions:</b> Frauds, staged theft, claims made without filing an FIR</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="benefit-block">
+                <p><b>Personal Accident</b></p>
+                <p>We pay up to `15 lakhs in case of death or permanent disability caused to the owner-driver due to an accident. </p>
+                <p><b>Key Inclusions:</b> Registered owner of the two wheeler, valid license held by the driver as per motor vehicle rules. </p>
+                <p><b>Key Exclusions:</b> Accident caused outside geographical area</p>
+              </div>
+            </div>
+    </div>
+    </div>
+<br />
+    <div class="container">
+       
+        <div class="row">
+          <div class="col-md-4">
+          <div class="network">
+            <h3>Find Network Garages</h3>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                  <input type="" class="form-control" id="" placeholder="Please enter the first 3 letters of your city to check">
+            </div>
+          </div>
+          <div class="col-md-1">
+              <div class="form-group">
+                  <button type="button" class="btn btn-primary">CHECK</button>
+              </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <a class="btn btn-outline-secondary">Mumbai</a> &nbsp;
+          <a class="btn btn-outline-secondary">New Delhi</a> &nbsp;
+          <a class="btn btn-outline-secondary">Pune</a> &nbsp;
+          <a class="btn btn-outline-secondary">Bengaluru</a> &nbsp;
+          <a class="btn btn-outline-secondary">Hyderabad</a> &nbsp;
+        </div>
+        <div>
+        </div>
+    </div>
+    <br />
+
+      <div class="container">
+          <div class="network"><h3 class="text-center">Policy Documents</h3></div>
+          <div class="text-center">
+            <p><a href="#">Download Brochure</a> &nbsp; &nbsp; &nbsp; &nbsp; <a href="#">Download Policy Wordings</a></p>
+       </div>
+      </div>
+  
+    <br />
+    <div class="text-center">
+        <button type="button" class="btn btn-success button btnSave" (click)="back()">BACK</button>
+        <button type="button" class="btn btn-success button btnSave"  *ngIf="btnBuyNow" (click)="process()">
+           BUY NOW
+        </button>
+        <button  type="button" class="btn btn-success button btnSave" *ngIf="btnRecalculate" (click)="reCalculatePolicy()">RECALCULATE</button>
+    </div>
+ </section>
+</div>
+<br />
+<br />

@@ -1,0 +1,196 @@
+<main>
+    <div class="main">
+        <!-- <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Card Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal"> -->
+        <div class="container">
+            <div class="inner">
+                <div class="aadhaarblock">
+                    <div style="height:380px" [ngClass]="showATMCard">
+                        <div class="pt-3 pl-2">
+                            <h6><span class="font-weight-bold" style="color:#276b08">
+                                    &nbsp; Card Details</span>
+                            </h6>
+                            <hr class="m-1">
+                        </div>
+                        <!-- <div class="table-responsive"> -->
+                        <div class="row col-md-12 mt-2 pb-3" [ngClass]="showCard">
+                            <mat-slide-toggle class="ml-2" (change)='updateItem(OnOff)' [(ngModel)]="OnOff" id="OnOff">
+                            </mat-slide-toggle>
+                            <div class="mb-3 pt-3 pl-2">
+                                <div class="container preload" *ngIf="New_Ac_Number!=null">
+                                    <div class="creditcard">
+                                        <div class="front">
+                                            <div id="ccsingle"></div>
+                                            <svg version="1.1" id="cardfront" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                viewBox="0 0 750 471" style="enable-background:new 0 0 750 471;"
+                                                xml:space="preserve">
+                                                <g id="Front">
+                                                    <g id="CardBackground">
+                                                        <g id="Page-1_1_">
+                                                            <g id="amex_1_">
+                                                                <path id="Rectangle-1_1_ fcolor"
+                                                                    [ngClass]="cardFColorclass" d="M40,0h670c22.1,0,40,17.9,40,40v391c0,22.1-17.9,40-40,40H40c-22.1,0-40-17.9-40-40V40
+                                                              C0,17.9,17.9,0,40,0z" />
+                                                            </g>
+                                                        </g>
+                                                        <path id="bcolor" [ngClass]="cardBColorclass"
+                                                            d="M750,431V193.2c-217.6-57.5-556.4-13.5-750,24.9V431c0,22.1,17.9,40,40,40h670C732.1,471,750,453.1,750,431z" />
+                                                    </g>
+                                                    <text transform="matrix(1 0 0 1 60.106 295.0121)" id="svgnumber"
+                                                        class="st2 st3 st4">{{New_Ac_Number}}</text>
+                                                    <text transform="matrix(1 0 0 1 54.1064 428.1723)" id="svgname"
+                                                        class="st2 st5 st6">{{Account_Name}}</text>
+                                                    <text transform="matrix(1 0 0 1 54.1074 389.8793)"
+                                                        class="st7 st5 st8">cardholder
+                                                        name</text>
+                                                    <text transform="matrix(1 0 0 1 65.1054 241.5)"
+                                                        class="st7 st5 st8">card
+                                                        number</text>
+
+                                                    <g id="cchip">
+                                                        <g>
+                                                            <path class="st2"
+                                                                d="M168.1,143.6H82.9c-10.2,0-18.5-8.3-18.5-18.5V74.9c0-10.2,8.3-18.5,18.5-18.5h85.3
+                                                          c10.2,0,18.5,8.3,18.5,18.5v50.2C186.6,135.3,178.3,143.6,168.1,143.6z" />
+                                                        </g>
+                                                        <g>
+                                                            <g>
+                                                                <rect x="82" y="70" class="st12" width="1.5"
+                                                                    height="60" />
+                                                            </g>
+                                                            <g>
+                                                                <rect x="167.4" y="70" class="st12" width="1.5"
+                                                                    height="60" />
+                                                            </g>
+                                                            <g>
+                                                                <path class="st12"
+                                                                    d="M125.5,130.8c-10.2,0-18.5-8.3-18.5-18.5c0-4.6,1.7-8.9,4.7-12.3c-3-3.4-4.7-7.7-4.7-12.3
+                                                              c0-10.2,8.3-18.5,18.5-18.5s18.5,8.3,18.5,18.5c0,4.6-1.7,8.9-4.7,12.3c3,3.4,4.7,7.7,4.7,12.3
+                                                              C143.9,122.5,135.7,130.8,125.5,130.8z M125.5,70.8c-9.3,0-16.9,7.6-16.9,16.9c0,4.4,1.7,8.6,4.8,11.8l0.5,0.5l-0.5,0.5
+                                                              c-3.1,3.2-4.8,7.4-4.8,11.8c0,9.3,7.6,16.9,16.9,16.9s16.9-7.6,16.9-16.9c0-4.4-1.7-8.6-4.8-11.8l-0.5-0.5l0.5-0.5
+                                                              c3.1-3.2,4.8-7.4,4.8-11.8C142.4,78.4,134.8,70.8,125.5,70.8z" />
+                                                            </g>
+                                                            <g>
+                                                                <rect x="82.8" y="82.1" class="st12" width="25.8"
+                                                                    height="1.5" />
+                                                            </g>
+                                                            <g>
+                                                                <rect x="82.8" y="117.9" class="st12" width="26.1"
+                                                                    height="1.5" />
+                                                            </g>
+                                                            <g>
+                                                                <rect x="142.4" y="82.1" class="st12" width="25.8"
+                                                                    height="1.5" />
+                                                            </g>
+                                                            <g>
+                                                                <rect x="142" y="117.9" class="st12" width="26.2"
+                                                                    height="1.5" />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                                <g id="Back">
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="ml-2">
+                                <div class="col-md-4 col-sm-12" *ngIf="showTpin">
+                                    <mat-form-field class="example-full-width">
+                                        <input type="password" autocomplete="off" matInput inputType="number"
+                                            placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin'
+                                            maxlength="4" minlength="4">
+                                    </mat-form-field>
+                                </div>
+                                <button type="button" mat-raised-button class="bg-primary text-white ml-3"
+                                    (click)="CardProcess()">Process</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- OTP Control -->
+                    <div class="card p-4" [ngClass]='showVpayOtp'>
+                        <h6><span class="font-weight-bold" style="color:#276b08">
+                                &nbsp;{{otpTitle}}</span></h6>
+                        <hr class="m-1">
+
+                        <div class="form-group">
+                            <!-- <otp [eid]="'vpayOtp'" (callBackMethod)="regenerateOTP()"></otp> -->
+                            <otp [eid]="'vpayOtp'"></otp>
+                        </div>
+                        <button type="button" mat-raised-button class="btn btn-success text-white"
+                            (click)="cardOtpProcess()">Submit</button>
+                        <button type="button" mat-raised-button class="btn btn-success text-white"
+                            (click)="Back()">Cancel</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <!--POPUP START-->
+          
+            <!-- success help -->
+            <div *ngIf="showTOPUP" class="modal fade" id="TopupDialog">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <div class="m-auto">
+                                <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                    viewBox="0 0 48 48" aria-hidden="true">
+                                    <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                    <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                                </svg>
+                            </div>
+                            <div *ngIf="showTOPUPCard">
+                                <h6 class="text-uppercase">
+                                    <span class="font-weight-bold"> Account Number</span> :- {{acc}}
+                                </h6>
+                                <h6 class="text-uppercase">
+                                    <span class="font-weight-bold"> RRN</span> :- {{rrnNumber}}
+                                </h6>
+                                <h6 class="text-uppercase ">
+                                    <span class="font-weight-bold">Customer Reference No.</span> :- {{customerRefNo }}
+                                </h6>
+                                <h6 class="text-uppercase ">
+                                    <span class="font-weight-bold">Bank Reference Number</span> :-
+                                    {{bankReferenceNumber}}
+                                </h6>
+                                <h6 class="text-uppercase font-weight-bold ">
+                                    <span>Amount</span> :- {{RespData |currency:'₹' :'code'}}
+                                </h6>
+                            </div>
+
+                            <div *ngIf="showTOPUPCard == false">
+                                <h6 class="text-uppercase">
+                                    <span class="font-weight-bold"> {{statusMsg}} </span>
+                                </h6>
+                                <h6 class="text-uppercase">
+                                    <span class="font-weight-bold"> Account Number</span> :- {{New_Ac_Number}}
+                                </h6>
+                                <h6 class="text-uppercase">
+                                    <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                                </h6>
+                                <h6 class="text-uppercase ">
+                                    <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                                </h6>
+
+                            </div>
+                            <br>
+                        </div>
+                        <div class="modal-footer border-0 m-auto">
+                            <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

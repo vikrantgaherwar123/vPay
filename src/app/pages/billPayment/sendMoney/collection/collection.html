@@ -1,0 +1,245 @@
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC  fa-beat"
+            style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="Upi Collection Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <div class="container">
+            <div *ngIf="showDonation">
+                    <div style="padding-top: 15px;">
+                            <h6><span class="font-weight-bold" style="color:#276b08; ">
+                                    &nbsp;UPI Collection</span>
+                                <span class="text-right float-right">
+                              
+                                </span>
+                            </h6>
+                            <hr class="mb-2">
+                        </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 p-3">
+                        <div class="btnSubmit">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Pay To:-
+                                    <!-- <span style="color:red">*</span> -->
+                                </label>
+                                <input autocomplete="off" class="form-control form-control-sm" inputType="mobileNo"
+                                    type="text" id="txtDonationNumber" [(ngModel)]="donateNumber"
+                                    placeholder="Enter Mobile No." required />
+                            </div>
+                            <div>
+                                <!-- <button class="btn btn-primary btnSuccessGO ripple" (click)="Go();" data-toggle="modal"
+                                data-target="#vpayUserModal">GO</button> -->
+                                <button id="btnSubmit" mat-raised-button class="btn btn-success text-white pageValid"
+                                    disabled="true" (click)="Go()" data-toggle="modal" data-target="#vpayUserModal">
+                                    Process
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-12">
+                        <div class="" style="padding: 1px 28px;">
+                            <div class="row">
+                                <h4 style="margin-top: 8px;
+                            font-weight: bold;color: #2f4706">Donation</h4>
+                            </div>
+                            <hr style="margin-top:0">
+                            <div class="row">
+                                <div class="col-md-2 text-center cursorPointerC" *ngFor="let Item of VpayConatctlist">
+                                    <!-- <img class="img-fluid "  (click)="showBbpsPage(item)" [src]="item.path" alt="bbpsImages" [title]="item.name">
+                            <p class="text-center " (click)="showBbpsPage(item)">{{item.name}}</p> -->
+                                    <img class="img-fluid" style="height:30px;" *ngIf="Item.CUSTOMER_TYPE=='99999'"
+                                        (click)="submitDonate(Item)" src="assets/images/DefaultIcon.png" alt="Donation">
+                                    <p class="text-center font-weight-bold" style="font-size: 10px;color:#276b08"
+                                        (click)="submitDonate(Item)" *ngIf="Item.CUSTOMER_TYPE=='99999'">
+                                        {{Item.CLIENT_NAME}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inner" *ngIf="showCollectionForm">
+                <div class="upiblock">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 mb-0 p-4">
+                            <h6>Pay To:-<span class="font-weight-bold" style="color:#276b08">
+                                    &nbsp;{{payName}}</span>
+                                <span class="text-right float-right">
+                                    <i class="fa fa-arrow-circle-o-left fa-2x cursorPointerC"  title="Back"
+                                        (click)="backDonation()" style="font-size: x-large;"></i>
+                                </span>
+                            </h6>
+                            <hr>
+                            <div class="form-group">
+                                <label>Virtual Payment Address
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input autocomplete="off" maxlength="50" class="form-control form-control-sm"
+                                    (blur)="setAcNameLabel(CollectionVPA)" type="text" id="txtVpa" list="items"
+                                    placeholder="abc@BankAddress" [(ngModel)]="CollectionVPA" required />
+                                <datalist id="items">
+                                    <option *ngFor="let item of beneficaryList" [value]="item.VPA_ADDRESS"></option>
+                                </datalist>
+                                <span style="color:green">{{acName}}</span>
+                                <!-- <input type="text" autocomplete="off" inputType="vpa" class="form-control form-control-sm" id="txtVpa" placeholder="abc@BankAddress" [(ngModel)]="CollectionVPA"
+                                                        required> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label>Amount
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input type="text" autocomplete="off" maxlength="10" inputType="decimal"
+                                    class="form-control form-control-sm" id="txtAmount" placeholder="0.00"
+                                    [(ngModel)]="CollectionAmount" (blur)="setAmountFormat()" (click)="select($event)"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Bill Number
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input type="text" autocomplete="off" inputType="alphaNumeric"
+                                    class="form-control form-control-uppercase form-control-sm" id=""
+                                    [(ngModel)]="CollectionBillNumber" placeholder=" " maxlength="10" required>
+                            </div>
+
+                            <div *ngIf="showOtherInfo">
+                                <div class="form-group">
+                                    <label>Customer Name</label>
+                                    <input type="text" autocomplete="off" maxlength="30"
+                                        class="form-control form-control-sm" id="" [(ngModel)]="CollectionCustomerName"
+                                        placeholder=" ">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Customer GST Number</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" id=""
+                                        [(ngModel)]="CollectionGstNumber" maxlength="15" placeholder=" ">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" id=""
+                                        [(ngModel)]="CollectionRemarks" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="checkbox checkbox-success">
+                                <input type="checkbox" id="collectionCheck" (click)="showOthInfo($event)">
+                                <label for="collectionCheck">
+                                    <span style="padding-left: 5px; font-size: 13px;">Other
+                                        information</span>
+                                </label>
+                            </div>
+
+
+                            <!-- <div class="checkbox checkbox-success">
+                                <input type="checkbox" id='collectionCheck2' [(ngModel)]="TCchek">
+                                <label for="collectionCheck2">
+                                    <span style="color:green ;padding-left: 5px;
+                                                        font-size: 13px;"><a href="javascript:void(0)"
+                                            (click)="termConditions()" data-toggle="modal" data-target="#myModal">Accept
+                                            Term
+                                            & Conditions.</a></span>
+                                </label>
+                            </div> -->
+                            <div>
+                                <label>
+                                    <span style="color:green ;
+                                    font-size: 13px;">Payment may take upto next working day to
+                                        reflect in your Bank A/c.</span>
+                                </label>
+                            </div>
+
+                            <div>
+                                <button type="button" id="collBtn" mat-raised-button class="btn btn-success text-white"
+                                    value="Process" (click)="processUPI();">Process</button>
+                                <button type="button" class="btn btn-success text-white" mat-raised-button value="Clear"
+                                    (click)="clearUPI();">Clear</button>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6 col-sm-12" *ngIf="showStatusBox">
+                            <div
+                                style="text-align:center; font-family:  verdana; background: #bedad5ab; padding: 20px 20px 5px 20px; border-radius: 10px;">
+                                <span style="position: absolute; right: 30px; top: 18px; font-size: 20px;"
+                                    (click)="hideStatusBox()">x</span>
+                                <img [src]="statusImage" [alt]="statusMessage" style="width:40px;" />
+                                <h4 [class]="showBusinness"
+                                    style="color:#2f4706;padding: 10px 0 0;font-size:15px;margin-bottom: 2px;">Business
+                                    :{{business}}
+                                </h4>
+                                <p style="margin-bottom:2px">Merchant :{{merchantName}}</p>
+                                <p style="margin-bottom:2px" [class]='mCust'>Customer Name :{{customerName}}</p>
+                                <p style="margin-bottom:2px" [class]="showVPayTranId">VPay Tran Id : {{rrn}} </p>
+                                <p style="margin-bottom:2px" [class]="showUPITranId">UPI Tran Id : {{rrn}} </p>
+                                <p [class]="resultMessage" style="margin-bottom:2px">Status : {{statusMessage}}</p>
+                                <p [class]="resultMessage" style="font-size: 13px;margin-bottom:2px">{{collMessage}}</p>
+                                <p style="margin-bottom:2px; font-weight: bold">₹ Amount : {{balance | number:'1.2'}}
+                                </p>
+                                <p style="margin-bottom:2px">Date :{{tranDate}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!--POPUP START-->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <div *ngFor="let item of termCondContent">
+                                <p style="text-transform: uppercase; font-weight: bold">
+                                    {{item.TERM_COND_HEADER}}
+                                </p>
+                                <p style="margin-top: 2%">
+                                    {{item.TERM_COND_DETAIL}}
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+
+
+
+            <!--POPUP START for show user List-->
+            <div *ngIf="showUserModal" class="modal fade" id="vpayUserModal" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                    <div class="modal-content dialog">
+                        <div class="modal-header">
+                            <p class="title-name m-0">Vpay Users</p>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body ">
+                            <ul class="userModal">
+                                <li *ngFor="let item of VpayUserlist" style="color: #000;">
+                                    <div class="row cursorPointerC" (click)="submitDonate(item)" data-dismiss="modal">
+                                        <div class="col-md-12">{{item.CLIENT_NAME}} &nbsp; <span *ngIf="item.CORPORATE_FLAG =='C'">({{item.INSTITUTION_NAME}})</span></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>    
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END for show user List-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

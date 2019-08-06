@@ -1,0 +1,214 @@
+
+
+<main class="mt-3">
+        <div *ngIf='CUSTNAME !=undefined'>
+                <app-bankHeader></app-bankHeader>
+              </div>
+            
+
+    <div class="main mt-3">
+           
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Approval Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#termModal">
+        <div class="container">
+            <!-- Header -->
+            <div class="card mb-3">
+                <div class="row col-md-12 m-auto">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <img class="img-fluid" style="height: 35px;" src="assets/images/bankdetails.png"
+                                alt="Bank Details">
+                            <h4 style="margin-top: 8px; font-weight: bold;">&nbsp;Approval </h4>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="banklogo !=null">
+                        <span *ngIf="btnBack" class="float-right pt-1">
+                            <i class="fa fa-arrow-circle-o-left cursorPointerC" aria-hidden="true" style="font-size:31px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="pageBack()"></i>
+                        </span>
+                        <!-- <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-right"
+                            style="height: 55px;" /> -->
+                    </div>
+                </div>
+            </div>
+
+           
+            <!-- Approve -->
+            <div class="card mb-0 pb-3 col-md-12" *ngIf="showApproval">
+                <div *ngIf="showApprovalList">
+                    <div class="pt-3 pl-2">
+                        <h6><span class="font-weight-bold" style="color:#276b08">
+                                &nbsp;Approval List</span>
+                            <!-- <span class="text-right float-right">
+                      
+                        </span> -->
+                        </h6>
+                        <hr class="m-1">
+                    </div>
+                 
+
+                    <div class="table-responsive" style="max-height: 45vh;">
+                        <table class=" table table-hover table-striped">
+                            <thead >
+                                <tr class="bankTitleRow">
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Remark</th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Time</th>
+                                    <th class="text-center">Approve</th>
+                                    <th class="text-center">Reject</th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y: auto;">
+                                <tr *ngFor="let Item of ApprovalList">
+                                    <td class="text-center">{{Item.AUTH_VALUE}}</td>
+                                    <td>{{Item.REMARK}}</td>
+                                    <td>{{Item.TRANSACTION_DATE.slice(0,10)}}</td>
+                                    <td>{{Item.TRANSACTION_TIME.slice(0,14)}}</td>
+                                    <td class="text-center"> <a href="javascript:void(0);"
+                                            (click)="approveRejectBene(Item,'Y')">
+                                            <img style="height: 20px;" matTooltip="Approve"
+                                                matTooltipPosition="above" src="assets/images/success.png" alt="" />
+                                        </a></td>
+                                    <td class="text-center"><a href="javascript:void(0);"
+                                            (click)="approveRejectBene(Item,'R')">
+                                            <img style="height: 20px;" matTooltip="Reject"
+                                                matTooltipPosition="above" src="assets/images/delete-icon.png" alt="" />
+                                        </a></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div *ngIf="DivOtherPages">
+                    <div class="pt-3 pl-2">
+                        <h6><span class="font-weight-bold" style="color:#276b08">
+                                &nbsp;{{OthPageTitle}}</span>
+                            <span class="text-right float-right">
+                                <i class="fa fa-arrow-circle-o-left cursorPointerC" aria-hidden="true" style="font-size:26px"
+                                matTooltip="Back" matTooltipPosition="above" (click)="Back()"></i>
+                            </span>
+                        </h6>
+                        <hr class="m-1">
+                    </div>
+                    <div class="row col-md-12 m-auto" *ngIf="showRejectReason">
+                        <div class="col-md-7 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="text" autocomplete="off" inputType="char" matInput
+                                    placeholder="Reject Reason" name="rejectReason" required maxlength="50"
+                                    [(ngModel)]='txtRejectResaon'>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <mat-form-field class="example-full-width">
+                                <input type="password" autocomplete="off" matInput inputType="number"
+                                    placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin' maxlength="4"
+                                    minlength="4">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-raised-button class="btn-success text-white"
+                                (click)="approveBenerejectReason()">
+                                Submit</button>
+                        </div>
+                    </div>
+
+                    <!-- TPIN Control -->
+                    <div class="col-md-4 col-sm-12" *ngIf="showTpin">
+                        <mat-form-field class="example-full-width">
+                            <input type="password" autocomplete="off" matInput inputType="number"
+                                placeholder="Enter TPIN" name="TPIN" required [(ngModel)]='tpin' maxlength="4"
+                                minlength="4">
+                        </mat-form-field>
+                        <div>
+                            <button mat-raised-button class="btn-success text-white"
+                                (click)="approveBenerejectReason()">            
+                                Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- OTP Control -->
+            <div class="card p-4" [ngClass]='showVpayOtp'>
+                    <h6><span class="font-weight-bold" style="color:#276b08">
+                            &nbsp;{{OtpTitle}}</span></h6>
+                            <hr class="m-1">
+                <div class="form-group">
+                    <!-- <otp [eid]="'vpayOtp'" (callBackMethod)="regenerateOTP()"></otp> -->
+                    <otp [eid]="'vpayOtp'"></otp>
+                </div>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="approveOtpProcess()">Submit</button>
+                <button type="button" mat-raised-button class="btn btn-success text-white"
+                    (click)="Back()">Cancel</button>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!-- All Pop Up Start -->
+        <!-- cbs banklist -->
+        <div *ngIf="showTOPUP" class="modal fade" id="TopupDialog" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="m-auto">
+                            <svg class="ft-green-tick" xmlns="http://www.w3.org/2000/svg" height="100" width="100"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <circle class="circle" fill="#5bb543" cx="24" cy="24" r="22" />
+                                <path class="tick" fill="none" stroke="#FFF" stroke-width="6" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-miterlimit="10" d="M14 27l5.917 4.917L34 17" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> {{statusMsg}} </span>
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> Account Number</span> :- {{FromAccountNumber}}
+                            </h6>
+                            <h6 class="text-uppercase">
+                                <span class="font-weight-bold"> RRN</span> :- {{RRN_No}}
+                            </h6>
+                            <h6 class="text-uppercase ">
+                                <span class="font-weight-bold">CBS Transaction Id</span> :- {{CBS_TranID }}
+                            </h6>
+
+                        </div>
+                        <br>
+                    </div>
+                    <div class="modal-footer border-0 m-auto">
+                        <button type="button" mat-raised-button class="btn btn-secondary" (click)="pageBack()"
+                            data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- term help -->
+        <div class="modal fade" id="termModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="gap"></div>
+<div class="gap"></div>

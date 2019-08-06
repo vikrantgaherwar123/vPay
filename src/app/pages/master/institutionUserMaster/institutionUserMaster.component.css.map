@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,aAAa,EAAE,eAAe;CACjC;;AAED,AAAA,YAAY,CAAA;EACR,SAAS,EAAE,iBAAiB;CAC/B;;AAED,AAAA,WAAW,CAAC,aAAa,CAAA;EACrB,MAAM,EAAE,cAAc;CACzB;;AAED,AAAA,UAAU,CAAA;EACN,KAAK,EAAE,IAAI;EACX,WAAW,EAAE,IAAI;CAEpB",
+    "sources": [
+        "institutionUserMaster.component.scss"
+    ],
+    "names": [],
+    "file": "institutionUserMaster.component.css"
+}

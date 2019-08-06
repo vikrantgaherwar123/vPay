@@ -1,0 +1,204 @@
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat"
+            style="height: 45px;position: fixed;bottom: 80px;right: 65px; z-index: 5;" matTooltip="QR Amount Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+
+        <div class="container">
+
+            <div class="inner">
+                <!-- <div class="inner-title">
+                    <h1>OR Code</h1>
+                </div> -->
+
+                <!-- <div class="aadhaar-banner">
+                    <img class="img-fluid" src="assets/images/aadhaar-banner.jpg" alt="" />
+                </div> -->
+
+                <div class="upiblock">
+
+                    <div style="padding-top: 15px;">
+                        <h6><span class="font-weight-bold" style="color:#ffc107; ">
+                                &nbsp;QR Code</span>
+                            <span class="text-right float-right">
+                                
+                            </span>
+                        </h6>
+                        <hr class="mb-2">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 p-4 mb-2">
+                            <div class="form-group">
+                                <label>Amount
+                                    <span style="color:red">*</span>
+                                </label>
+                                <div class="d-flex">
+                                    <input type="text" autocomplete="off" maxlength="10" inputType="decimal"
+                                        class="form-control form-control-sm" (change)="setAmountFormat()" id="amnt"
+                                        placeholder="0.00" [(ngModel)]="QRAmount" required autofocus>
+                                    <img class="img-fluid cursorPointerC" matTooltip="Charges"
+                                        matTooltipPosition="above" style="height: 7vh;margin-top: -10px;"
+                                        (click)="getCharges()" src="assets/images/charges.png">
+                                </div>
+                            </div>
+
+                            <div class="p-2 mb-2 border rounded border-info">
+                                <table border="0">
+                                    <tr class="row m-auto text-center">
+                                        <td class="col-md-4 border-right border-info"> MDR <br>
+                                            {{CRMDR |currency:'₹' :'code'}}</td>
+                                        <td class="col-md-4 border-right border-info"> GST <br>
+                                            {{CRGST |currency:'₹' :'code'}}</td>
+                                        <td class="col-md-4"> <small>TOTAL CHARGES</small> <br>
+                                            {{totalCharges |currency:'₹' :'code'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 text-center font-weight-bold"
+                                            [ngStyle]="{'color':CR_AMT_CAPTION === 'Credited Amount' ? '#228B22' : '' }"
+                                            colspan="3"> {{CR_AMT_CAPTION}} :{{CREDIT_AMT |currency:'₹' :'code'}} </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label>Bill Number
+                                    <span style="color:red">*</span>
+                                </label>
+                                <input type="text" autocomplete="off" maxlength="20" inputType="alphaNumeric"
+                                    class="form-control form-control-uppercase form-control-sm" id=""
+                                    [(ngModel)]="QRBillNumber" placeholder=" " required>
+                            </div>
+                            <div *ngIf="showOtherInfo">
+                                <div class="form-group">
+                                    <label>Customer Name</label>
+                                    <input type="text" autocomplete="off" maxlength="50"
+                                        class="form-control form-control-sm" id="" [(ngModel)]="QRCustomerName"
+                                        placeholder=" ">
+                                </div>
+                                <div class="form-group">
+                                    <label>Customer GST Number</label>
+                                    <input type="text" autocomplete="off" maxlength="15"
+                                        class="form-control form-control-sm" id="" [(ngModel)]="QRGstNumber"
+                                        placeholder=" ">
+                                </div>
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" id=""
+                                        [(ngModel)]="QRRemarks" placeholder=" ">
+                                </div>
+                            </div>
+                            <div class="checkbox checkbox-success">
+                                <input type="checkbox" id='qrCheck' (click)="showOthInfo($event)">
+                                <label for="qrCheck">
+                                    <span style="padding-left: 5px; font-size: 13px;">Other
+                                        information</span>
+                                </label>
+                            </div>
+                            <div >
+                                <!-- <input type="checkbox" id="qrCheck2" [(ngModel)]="TCchek"> -->
+                                <label>
+                                    <!-- <span style="color:green ;padding-left: 5px;
+                                                        font-size: 13px;">Accept
+                                        Terms & Conditions.</span> -->
+                                    <span style="color:green ;font-size: 13px;">Payment may take upto next working day to
+                                        reflect in your Bank A/c.</span>
+
+                                </label>
+                            </div>
+                            <div>
+                                <button type="button" id="qrCodeBtn" mat-raised-button
+                                    class="btn btn-success text-white pageValid" disabled="true" value="Process"
+                                    (click)="processQR();">Process</button>
+                                <button type="button" mat-raised-button class="btn btn-success text-white" value="Clear"
+                                    (click)="clearQR();">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            <div class="text-center" *ngIf="QRFlag">
+                                <div class="qrcode-block">
+                                    <div class="qrtop">
+                                        <img class="img-fluid" src="assets/images/mobile.png" alt="" />
+                                    </div>
+                                    <!-- <span style="height:100px;"> </span> -->
+                                    <div class="genqrcode">
+                                        <div class="scan-title">
+                                            <h5>Scan QR Code</h5>
+                                            <span style="margin-top:10px"></span>
+                                            <!-- <ngx-qrcode item-width="200px" item-height="200px" qrc-value="{{QRDATA}}">
+                                            </ngx-qrcode> -->
+                                            <ngx-qrcode item-width="200px" item-height="200px"
+                                                [qrc-element-type]="elementType" [qrc-value]="value">
+                                            </ngx-qrcode>
+                                            <img class="upi_qr" src="assets/images/UPI-qr-2.png" />
+                                        </div>
+                                    </div>
+                                    <div class="client-name">
+                                        <p style="padding-top:8px;">Amount</p>
+                                        <p>₹ : {{balance | number :'1.2'}}</p>
+                                        <p style="padding-top:10px;">Pay To:-</p>
+                                        <p>{{username | titlecase }} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--POPUP START-->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <div *ngFor="let item of termCondContent">
+                                <p style="text-transform: uppercase; font-weight: bold">
+                                    {{item.TERM_COND_HEADER}}
+                                </p>
+                                <p style="margin-top: 2%">
+                                    {{item.TERM_COND_DETAIL}}
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="showChargeModal" class="modal fade" id="chargesModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6>QR Payment Charges</h6>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <!-- <a href="javascript:void(0)" *ngFor="let item of Sheetbuttons">
+                                    <div>
+                                        <span mat-line>{{item.text}}</span>
+                                    </div>
+                                </a> -->
+                            <ul class="userModal">
+                                <li *ngFor="let item of Sheetbuttons" style="color: #000;">
+                                    <div class="cursorPointerC">
+                                        <div>{{item.text}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

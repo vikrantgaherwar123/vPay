@@ -1,0 +1,187 @@
+<dtp></dtp>
+<main>
+    <div class="main">
+            <img src="assets/images/help.png" class="cursorPointerC  fa-beat" style="height:45px; position: fixed;bottom: 80px;right: 65px; z-index: 5;"
+            matTooltip="Complaint Status Help" matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+            <div class="col-md-12" *ngIf="bbpsForm" >
+                <div class="card" style="padding:30px">                      
+                        <h4 class="text-center">
+                            <span *ngIf="banklogo !=null && BankArray?.length == 1">
+                                <img [src]="banklogo" *ngIf="banklogo !=''" class="img-fluid float-left" style="height: 44px;padding-left: 10px;" />
+                            </span>
+                            <span class="font-weight-bold">Complaint Status</span>
+                            <img style="width: 10%;" class="img-fluid float-right" src="assets/images/bbps_logo.png" alt="bbps" />
+                            <img style=" width: 7%;" class="img-fluid float-right mr-2" src="assets/images/icici_logo.png" alt="icici_logo" />
+                        </h4>
+                        <hr class="mt-0">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="row pt-2">
+                                    <div class="col-md-6" >
+                                        <div class="form-group mb-0">
+                                            <mat-form-field>
+                                                <input type="text" autocomplete="off"  matInput placeholder="From Date:" [(ngModel)]="txt_Fdate"
+                                                    id="txtStartDate" name="txt_Fdate" readonly (click)="DateTimeCtrl1('D','txt_Fdate')">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-0">
+                                            <mat-form-field>
+                                                <input type="text" autocomplete="off"  matInput placeholder="To Date:" id="txtEndDate" name="txt_Tdate"
+                                                    [(ngModel)]="txt_Tdate" readonly (click)="DateTimeCtrl2('D','txt_Tdate')">
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                    <button mat-raised-button class="btn-success text-white" (click)="View()">
+                                        View</button>
+                                    <button mat-raised-button class="btn-success text-white" (click)="clearPage()">
+                                        Clear</button>
+                            </div>
+                        </div>
+                        <div class="gap"></div>
+                        <div class="gap"></div>
+                        <div class="card mb-0" *ngIf="Disp_DivData">
+                            <div class="box table_scroll " style="width: 100%; min-height: 200px;
+                                max-height: 250px; overflow: auto;">
+                                <div class="box-body" style="font-size: 0.9em;font-family: verdana;">
+                                    <div class="col-md-3">
+                                        <div class="form-group" style="margin-bottom: 12px;">
+                                            <input type="text" autocomplete="off"  class="form-control  form-control-sm searchBarInput"
+                                                style="padding: 11px 0px 3px 11px;" onkeyup="searchFunction(event,'#searchTranList tr')"
+                                                placeholder="&#61442; Search Transaction...">
+                                        </div>
+                                    </div>
+                                    <!-- theader start -->
+                                    <div class="tbl-header">
+                                        <table cellpadding="0" id="myTable" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th (click)="sort('COMPLENT_ID')">Complaint ID
+                                                        <span class="fa" [ngClass]="{'fa-sort': column != 'COMPLENT_ID', 
+                                                'fa-arrow-up': (column == 'COMPLENT_ID' && isDesc), 
+                                                'fa-arrow-down': (column == 'COMPLENT_ID' && !isDesc) }"
+                                                            aria-hidden="true"> </span>
+                                                    </th>
+                                                    <th (click)="sort('COMPLENT_DESC')">Description
+                                                        <span class="fa" [ngClass]="{'fa-sort': column != 'COMPLENT_DESC', 
+                                                'fa-arrow-up': (column == 'COMPLENT_DESC' && isDesc), 
+                                                'fa-arrow-down': (column == 'COMPLENT_DESC' && !isDesc) }"
+                                                            aria-hidden="true"> </span>
+                                                    </th>
+                                                    <th (click)="sort('TYPE_OF_COMPLENT')">Complaint Type
+                                                        <span class="fa" [ngClass]="{'fa-sort': column != 'TYPE_OF_COMPLENT', 
+                                                'fa-arrow-up': (column == 'TYPE_OF_COMPLENT' && isDesc), 
+                                                'fa-arrow-down': (column == 'TYPE_OF_COMPLENT' && !isDesc) }"
+                                                            aria-hidden="true"> </span>
+                                                    </th>
+                                                    <th (click)="sort('COMPLENT_STATUS')">Status
+                                                        <span class="fa" [ngClass]="{'fa-sort': column != 'COMPLENT_STATUS', 
+                                                'fa-arrow-up': (column == 'COMPLENT_STATUS' && isDesc), 
+                                                'fa-arrow-down': (column == 'COMPLENT_STATUS' && !isDesc) }"
+                                                            aria-hidden="true"> </span>
+                                                    </th>
+                                                    <th>
+                                                        <i class="fa fa-check-circle"></i> &nbsp;&nbsp;Check Status
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- theader end -->
+
+                                    <div class="tbl-content">
+                                        <table id="searchTranList" class="table-striped" cellpadding="0" cellspacing="0"
+                                            border="0">
+                                            <tbody>
+                                                <tr *ngFor="let Item of Items" style="border-bottom: 1px solid #000;">
+                                                    <td>{{Item.COMPLENT_ID}}</td>
+                                                    <td>{{Item.COMPLENT_DESC}}</td>
+                                                    <td>{{Item.TYPE_OF_COMPLENT}}</td>
+                                                    <td>{{Item.COMPLENT_STATUS}}</td>
+                                                    <td>
+                                                        <!-- Raise Complaint -->
+                                                        <a href="javascript:void(0);" (click)="GetComplaintStatus(Item)"><i class="fa fa-check-circle"></i> &nbsp;&nbsp;Check Status</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- <div [class]="showBankList" >
+                <div class="row bankList">
+                    <div class="col-md-10" style="position:absolute;z-index: 5000;color: #000;top: 0%; left: 8%; ">
+                        <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                            <div class="tableHeader">
+                                <h4 class="shopTitle">Select Your Bank</h4>
+                                <hr class="m-0">
+                                <span class="closeBtn" title="close" (click)="btnClose()">
+                                    <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                                </span>
+                            </div>
+                            <table id="myTable" class="table table-fixedheader table-striped tblBack">
+                                <tbody style="min-height: 285px !important;max-height: 430px !important;">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-6 p-2" *ngFor="let bank of BankArray">
+                                            <ul class="userModal">
+                                                <li class="text-black p-0">
+                                                    <div class="row cursorPointerC" (click)="bankListData(bank)">
+                                                        <div class="col-md-3">
+                                                            <img [src]="bank.BANK_LOGO" style="height:70px;padding: 5px;"
+                                                                *ngIf="bank.BANK_LOGO != ''">
+                                                            <img src="assets/images/bank.png" style="height:70px;padding: 5px;"
+                                                                *ngIf="bank.BANK_LOGO == ''">
+                                                        </div>
+                                                        <div class="col-md-9 p-0"> <span style="position: absolute;width: 290px;top: 17px; ">{{bank.BANK_NAME}}</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+      <!--POPUP START-->
+      <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 400px;overflow: auto;">
+                        <div *ngFor="let item of termCondContent">
+                            <p style="text-transform: uppercase; font-weight: bold">
+                                {{item.TERM_COND_HEADER}}
+                            </p>
+                            <p style="margin-top: 2%">
+                                {{item.TERM_COND_DETAIL}}
+                            </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--POPUP END-->
+            <div style="position:absolute;z-index: 4999; height:-webkit-fill-available;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)"
+                [ngClass]="showOverlay"></div>
+            <div class="clearfix">
+            </div>
+        
+    </div>
+</main>

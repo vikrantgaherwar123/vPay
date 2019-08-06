@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "conf.scss",
+        "mixin.scss",
+        "colorScheme/mint.scss",
+        "variable.scss"
+    ],
+    "names": [],
+    "file": "conf.css"
+}

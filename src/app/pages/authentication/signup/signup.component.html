@@ -1,0 +1,201 @@
+<header id="top">
+  <div class="top-bar" style="position: fixed; top: 0px;">
+    <div class="container-fluid">
+
+      <div class="row">
+        <div class="col-md-2 logo">
+          <div class="left-logo text-center">
+            <a href="javascript:void(0)">
+              <img class="img-fluid" src="assets/images/vpay.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-sm-12 top-logos">
+          <div class="text-center">
+            <!--Navigation-->
+            <div id="cssmenu" class="navigation">
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoHome()">Home</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Corporate</a>
+                  <ul>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoAbout()">About</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" (click)="gotoOurTeam()">Our Team</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">News & Blog</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)">Careers</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoHowToUse()">How It Works</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoWhyUs()">Why Us</a>
+                </li>
+                <li class="active">
+                  <a href="javascript:void(0)" (click)="gotoSignUp('I')">Sign Up</a>
+                  <!-- <a  [routerLink]="['signup']">Sign Up</a> -->
+                </li>
+                <li>
+                  <a href="javascript:void(0)" (click)="gotoLogin()">Login</a>
+                </li>
+              </ul>
+            </div>
+            <!--/Navigation-->
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="vgipl-logo text-right">
+            <a href="javascript:void(0)">
+              <img style="height: 60px;" class="img-fluid" src="assets/images/vg-logo.svg" alt="" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</header>
+
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Signup</li>
+    </ol>
+  </nav>
+</div>
+
+<main>
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="signup-title">
+            <h4>Sign Up Here (Vpay Individual/Business User)</h4>
+          </div>
+          <div class="login-block">
+            <div class="genSecKeyBtn">
+              <div class="form-group" [class]="hideCorpCode" style="margin-bottom:15px">
+                <input type="text" autocomplete="off" id="txtCorporateCode" inputType="alphaNumeric" [(ngModel)]="corporateCode"
+                  title='Corporate Code.' class="form-control" placeholder="Enter Your Corporate Code" required>
+              </div>
+              <div class="genOtpBtn">
+                <div class="form-group">
+                  <input id="txtMobileNo" autocomplete="off" type="text" inputType="mobileNo" [(ngModel)]='mobileNo'
+                    class="form-control" title='Mobile No.' placeholder="Enter Your Mobile No." required>
+                </div>
+                <div class="cta" *ngIf='showGenOtpBtn' style="margin-top:0px">
+                  <button type="button" id="genOtpBtn" class="btn btn-success " (click)="generateOTP()">Generate OTP</button>
+                  <button type="button" class="btn btn-success" (click)="clear();">Clear</button>
+                </div>
+              </div>
+              <div class="cta" *ngIf='showGenSecBtn' style="margin-top:0px">
+                <button type="button" id="genSecKeyBtn" class="btn btn-success " (click)="generateSecKey()">Generate
+                  Seceret Key</button>
+                <button type="button" class="btn btn-success" (click)="clear();">Clear</button>
+              </div>
+            </div>
+
+            <!-- Show seceret key input -->
+            <div class="" [class]="hideSeceretKey" style="margin-top:0px">
+              <div class="form-group">
+                <!-- <input id='txtSecKey' autocomplete="off" type="text" inputType="alphaNumeric" [(ngModel)]='seceretKey' class="form-control" title='Seceret Key'
+                  maxlength="6" minlength="6" placeholder="Enter Secret Key" required> -->
+                <otp [eid]="'seceretKey'" (callBackMethod)="regenerateOTP()"></otp>
+              </div>
+              <div class="cta" style="margin-top:0px">
+                <button type="button" id="secKeyBtn" class="btn btn-success " (click)="onClickCheckSecKey()">Submit</button>
+              </div>
+            </div>
+            <!-- Show Otp input -->
+            <div class="" [class]="hideOtp" style="margin-top:0px">
+              <div class="form-group">
+                <!-- <input id='txtOtp' autocomplete="off" type="text" inputType="number" [(ngModel)]='otp' class="form-control" title='OTP' maxlength="6" minlength="6"
+                  placeholder="Enter OTP" required> -->
+                <otp [eid]="'otp'" (callBackMethod)="regenerateOTP()"></otp>
+              </div>
+              <div class="cta" style="margin-top:0px">
+                <button type="button" id="OtpBtn" class="btn btn-success" (click)="onClickCheckOTP('')">Submit</button>
+              </div>
+            </div>
+            <div class="cta signUpBtn" [class]='showSignUp' style="margin-top:0px">
+              <div class="form-group">
+                <input type="password" autocomplete="off" id="txtPasswd" inputType="password" title='Password'
+                  [(ngModel)]='loginPass' class="form-control" placeholder="Password" data-toggle="tooltip"
+                  data-placement="right" title="Minimum Six Characters, At Least One Uppercase Letter, One Lowercase Letter, One Number And One Special Character."
+                  required />
+              </div>
+              <div class="form-group">
+                <input type="password" autocomplete="off" inputType="confirmPassword" title='Confirm Password'
+                  [(ngModel)]='confirmLoginPass' class="form-control" placeholder="Confirm Password " required />
+              </div>
+              <div class="cta" style="margin-top:0px">
+                <button type="button" id="signUpBtn" class="btn btn-success " (click)='submit()'>Sign Up Now</button>
+                <button type="button" class="btn btn-success" (click)="clearPass()">Clear</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="col-md-7">
+          <div class="text-center">
+            <div class="signup-title">
+              <h3>Disclaimer</h3>
+            </div>
+            <img src="assets/images/entrus-img.jpg" alt="" />
+
+            <p class="signup-text">Please do not share your password, Credit/Debit card pin, other confidential information with anyone even if
+              he/she claims to be from VPay. We advise our customers to completely ignore such communications & report to
+              us at
+              <a href="mailto:cybercell@Vpay.com">cybercell@Vpay.com</a>.</p>
+          </div>
+          <div [class]='showSignUp' class="msg-block">
+            <p>Password should be Minimum Six Characters, At Least One Uppercase Letter, One Lowercase Letter, One Number And
+              One Special Character.</p>
+          </div>
+        </div> -->
+        <div class="col-md-7">
+          <div class="text-center">
+            <!-- Show PasswordValidator input -->
+            <div id="divPassVal" class="passwordValidator hide">
+              <ul style="color:red; font-weight:600;font-size:12px;line-height: 1.7;">
+                <li>Password must contain at least one lowercase letter (a-z)</li>
+                <li>Password must contain at least one uppercase letter (A-Z) </li>
+                <li>Password must contain at least one number (0-9)</li>
+                <li>Password must contain at least special character</li>
+                <li>Password should be Minimum Six Characters</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</main>
+
+<!--POPUP
+<app-login></app-login>
+POPUP-->
+
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>
+<div class="gap"></div>

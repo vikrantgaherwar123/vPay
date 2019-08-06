@@ -1,0 +1,191 @@
+@charset "UTF-8";
+.clsTakeAction {
+  color: #007BFF;
+  background-color: #B9CB1A;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: calc(1.8rem + 2px);
+  padding: 1px;
+}
+
+textarea {
+  height: 108px;
+}
+
+.imgthum {
+  margin: 0px;
+}
+
+.Rptclass {
+  height: 200px;
+  overflow: auto;
+}
+
+.divouter {
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 3px;
+}
+
+.trheader {
+  height: 30px;
+  background-color: #4680ff;
+  color: white;
+}
+
+.showclass {
+  display: block;
+}
+
+.hideclass {
+  display: none;
+}
+
+/**
+* Add a transition to the label and input.
+* I'm not even sure that touch-action: manipulation works on
+* inputs, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+#myModalISB label, input {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+}
+
+#myModalISB input {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  padding: 0;
+  font-family: Helvetica;
+  cursor: text;
+}
+
+#myModalISB input:focus {
+  outline: 0;
+  border-bottom: 1px solid #666;
+}
+
+#myModalISB label {
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/**
+  * Translate down and scale the label up to cover the placeholder,
+  * when following an input (with placeholder-shown support).
+  * Also make sure the label is only on one row, at max 2/3rds of the
+  * field—to make sure it scales properly and doesn't wrap.
+  */
+#myModalISB input:placeholder-shown + label {
+  cursor: text;
+  max-width: 66.66%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transform-origin: left bottom;
+          transform-origin: left bottom;
+  -webkit-transform: translate(0, 2.125rem) scale(1.5);
+          transform: translate(0, 2.125rem) scale(1.5);
+}
+
+/**
+  * By default, the placeholder should be transparent. Also, it should 
+  * inherit the transition.
+  */
+::-webkit-input-placeholder {
+  opacity: 0.4;
+  -webkit-transition: inherit;
+  transition: inherit;
+}
+
+/**
+  * Show the placeholder when the input is focused.
+  */
+#myModalISB input:focus::-webkit-input-placeholder {
+  opacity: 1;
+}
+
+/**
+  * When the element is focused, remove the label transform.
+  * Also, do this when the placeholder is _not_ shown, i.e. when 
+  * there's something in the input at all.
+  */
+input:not(:placeholder-shown) + label,
+input:focus + label {
+  -webkit-transform: translate(0, 0) scale(1);
+          transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background: #b9ca90 !important;
+  color: #fff !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: #e4f3d4 !important;
+}
+
+.tbl-header {
+  background-color: #70956a !important;
+}
+
+.tbl-content {
+  height: 245px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
+  padding: 7px 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+td {
+  padding: 3px 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 600;
+  color: #000;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+th, td {
+  white-space: normal !important;
+}
+
+.form-control {
+  font-family: "FontAwesome", verdana;
+}
+
+/* for custom scrollbar for webkit browser*/
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.searchBarInput {
+  border: none;
+  border-bottom: 1px solid #e8e8e8;
+  background: transparent;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0);
+}
+/*# sourceMappingURL=institutesubmaster.css.map */

@@ -1,0 +1,82 @@
+<ng2-toasty [position]="option.position"></ng2-toasty>
+<div class="pcoded" [attr.nav-type]="navType" [attr.theme-layout]="themeLayout" [attr.layout-type]="layoutType"
+  [attr.vertical-placement]="verticalPlacement" [attr.vertical-layout]="verticalLayout"
+  [attr.pcoded-device-type]="deviceType" [attr.vertical-nav-type]="verticalNavType"
+  [attr.vertical-effect]="verticalEffect" [attr.vnavigation-view]="vNavigationView" (window:resize)="onResize($event)">
+  <div class="pcoded-container navbar-wrapper" style="position: absolute; top: 0px;">
+    <nav>
+      <div id="logo">
+        <img class="img-fluid" src="assets/images/vpay.svg" style="overflow: hidden;height:55px; padding: 7px; "
+          alt="Theme-Logo" />
+      </div>
+      <label for="drop" class="toggle cursorPointerC" (click)="ShowMenu(MenuDisplay)">Menu</label>
+      <input type="checkbox" id="drop" />
+      <ul class="menu adminMenu" [ngClass]="MenuDisplay">
+        <li (click)="onClick(1)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab1'}">Dashboard</a>
+        </li>
+        <li (click)="onClick(2)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab2'}">MyBank</a></li>
+        <li (click)="onClick(3)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab3'}">Receive Money</a>
+        </li>
+        <!-- <li (click)="onClick(4)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab4'}">Send Money</a>
+        </li> -->
+        <li><a (click)="onClick(5)" href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab5'}">Insurance</a>
+        </li>
+        <li><a (click)="onClick(6)" *ngIf="bbpsMenu" href="javascript:void(0)"
+            [ngClass]="{'menuActive': tab==='tab6'}">BBPS</a></li>
+        <li><a (click)="onClick(11)" *ngIf="productMenu" href="javascript:void(0)"
+            [ngClass]="{'menuActive': tab==='tab11'}">Products</a>
+        </li>
+        <li><a (click)="onClick(7)" *ngIf="masterMenu" href="javascript:void(0)"
+            [ngClass]="{'menuActive': tab==='tab7'}">Master</a></li>
+        <li><a (click)="onClick(10)" *ngIf="statemenuMenu" href="javascript:void(0)"
+            [ngClass]="{'menuActive': tab==='tab10'}">Statement Of
+            Transaction</a></li>
+
+        <li (click)="onClick(8)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab8'}">Statements</a>
+        </li>
+        <li (click)="onClick(9)"><a href="javascript:void(0)" [ngClass]="{'menuActive': tab==='tab9'}">Settings</a></li>
+     
+        <ul class="loginUserInfo">
+          <li class="dropdown">
+            <i *ngIf='showUserIcon'
+              style="font-size:36px; float: left; border: 2px solid #fff; padding: 4px; margin-top: 5px;"
+              class="icofont icofont-user img-50 img-radius"></i>
+            <img *ngIf='!showUserIcon' class="img-50 img-radius"
+              [src]="domSanitizer.bypassSecurityTrustUrl(clientPhoto)" alt="">
+          </li>
+          <li class="dropdown">
+            <button style="background: transparent; border: 0;color:#fff ;cursor: pointer !important;"
+              matTooltipClass="example-tooltip-red" matTooltip="{{headerClientName}}" matTooltipPosition="below">
+              <h6 class="headerClient">{{headerClientName}} </h6>
+            </button>
+            <h6 style="font-size: 12px;margin: 8px;">{{balance}}</h6>
+          </li>
+          <li class="logout" matTooltip="Logout" matTooltipPosition="below" style="float:unset">
+            <i class="fa fa-sign-out" (click)="logout()"></i>
+          </li>
+        </ul>
+
+
+      </ul>
+    </nav>
+    <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
+      <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+          <div class="pcoded-inner-content">
+            <div class="main-body">
+              <div class="page-wrapper pb-0">
+                <app-title></app-title>
+                <app-breadcrumbs></app-breadcrumbs>
+                <div class="page-body">
+                  <router-outlet>
+                    <app-spinner></app-spinner>
+                  </router-outlet>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

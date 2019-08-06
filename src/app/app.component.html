@@ -1,0 +1,1765 @@
+<main (contextmenu)='rightClick()'>
+<router-outlet (activate)="onActivate($event)">
+    <footer class="fixed-bottom">
+      <p class="footer-text text-center">© {{SystemYear}}  All Rights Reserved. Developed by :
+        <a href="javascript:void(0);">Virtual Galaxy Infotech Pvt. Ltd.</a> &nbsp; &nbsp;  <a href="javascript:void(0);" (click)="privacyPolicy()" data-toggle="modal" data-target="#termModel"> Privacy Policy</a> |<a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal" data-target="#termModel"> Terms & Conditions</a> | <a href="javascript:void(0)" (click)="FAQ()"> FAQs</a> | Circulars
+      </p>
+    </footer>
+    
+    
+    <!--TERM POPUP START-->
+  <div class="modal fade" id="termModel">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+      <div class="modal-content">
+        <div class="modal-body" style="height: 400px;overflow: auto;">
+            <div *ngFor="let item of termCondContent">
+                <p style="text-transform: uppercase; font-weight: bold">
+                  {{item.TERM_COND_HEADER}}
+                </p>
+                <p style="margin-top: 2%">
+                    {{item.TERM_COND_DETAIL}}
+                  </p>
+                  <br>
+              </div>
+      </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <!--TERM POPUP END-->
+  
+  <!--POPUP FAQ START-->
+  <div *ngIf="DisplayFAQModal" class="modal fade" id="faqs">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+      <div class="modal-content">
+        <div class="modal-body" style="height: 500px;overflow: auto;">
+        <div class="container">
+        <div class="gap"></div>
+        <h5><b>General Merchant FAQ’s</b></h5>
+        <div id="accordion">
+            <!-- 1 faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <b> What is V-pay ?</b>
+                        </p>
+                    </h5>
+  
+                </div>
+  
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>
+                            V-Pay is really a merchant's product, its feature works like a substitute for the capital-intensive point of sale machine
+                            (POS), it is also an aggregated platform for all new payment receipt channels like Aadhaar-Pay,
+                            UPI, BharatQR and UPI QR Code and Payment gateway and income receipt channels like Aadhaar
+                            enabled Micro ATM, BBPS and FASTag etc.
+                        </p>
+                        <h6>You can use V-pay for:</h6>
+                        <ul class="listing">
+                            <li>Accepting payments from customer through different payment modes such as Aadhaar-Pay, UPI,
+                                UPI QR Code, BharatQR Code and Payment gateway.</li>
+                            <li>Increasing income from Income receipts channels such as Aadhaar enabled Micro ATM, BBPS,
+                                and FASTAG etc.</li>
+                            <li>Providing Bill Payments services such as 'Mobile/ Landline/ Gas/ Electricity/ Insurance,
+                                which will generate you an extra income.</li>
+                            <li>Money withdrawal and deposit facility from Aadhaar enabled Micro ATM given to customers,
+                                which will be an extra source of income for you.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 2faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <b>I want to register as V-Pay merchant? What is the registration process for that ?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <h6>Registration process:</h6>
+                        <ul class="listing">
+                            <li> Register to ‘Become a V-Pay Merchant’, fill the registration form with minimum KYC available
+                                on website<a href="https://www.virtualpay.in/" target="_blank"> www.virtualpay.in</a> and download V-Pay App from Play store and Apple IOS and
+                                fill the registration form with minimum KYC.</li>
+                            <li> Minimum KYC details required are your Name, Mobile No. EMAIL ID, DOB, Aadhaar Number and
+                                bank account details such as bank name, Account number and IFSC Code.</li>
+                            <li> Merchant need to upload his/her scan copy of Aadhaar card and cancelled cheque copy or scan
+                                copy of bank passbook during the registration process.</li>
+                            <li> After registration, you will receive the V-Pay kit, which includes fingerprint scanner and
+                                user manual.</li>
+                            <li> Get started, after successful registration; simply start accepting payments and offering
+                                various V-pay services to your customers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 3faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <b>What are the ways through which I can start collecting payments?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>You can start collecting payments from different payment modes available on V-Pay which includes
+                            Aadhaar-Pay, UPI, UPI QR Code, Bharat QR Code and Payment Gateway.</p>
+                        <p>To collect payment using
+                            <b>Aadhaar Pay</b> merchant need to follow below steps:</p>
+  
+                        <ol class="listing">
+                            <li>Enter customer’s Aadhaar number </li>
+                            <li>Select bank name linked with Aadhaar number</li>
+                            <li>Enter amount to pay </li>
+                            <li>Fingerprints impression</li>
+                            <li>Payment successful</li>
+                        </ol>
+  
+                        <p>To collect payment using
+                            <b>UPI</b> merchant need to follow below steps:</p>
+                        <ol class="listing">
+                            <li>Enter customer unique VPA (generated through Banks’ UPI app)</li>
+                            <li>Enter amount</li>
+                            <li>Click on pay </li>
+                            <li>Customer will receive a collect request on his/her mobile banking app</li>
+                            <li>Customer will have to validate with his/her UPI-PIN and process the payment and your payment
+                                will be complete.</li>
+                        </ol>
+  
+                        <p>To collect payment using
+                            <b>UPI QR Code</b> merchant need to follow below steps:</p>
+                        <ol class="listing">
+                            <li>Customer has to download his/her bank’s UPI QR enabled mobile banking app</li>
+                            <li>Customer has to scan the UPI QR code at Merchant store</li>
+                            <li>Enter amount to make payment</li>
+                            <li>Payment successful </li>
+                            <li>Both customer and merchant receive notification in mobile application for successful transaction</li>
+                        </ol>
+                        <p>To collect payment using
+                            <b> Bharat QR Code</b> merchant need to follow below steps:</p>
+                        <ol class="listing">
+                            <li>Customer has to download his/her bank’s Bharat QR code enabled mobile banking app</li>
+                            <li>Customer has to scan the Bharat QR code at Merchant store</li>
+                            <li>Enter amount to make payment</li>
+                            <li>Payment successful </li>
+                            <li>Both customer and merchant receive notification in mobile application for successful transaction</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 4faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <b>How can I generate extra income through income receipt channels available in V-Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>A customer can withdraw and deposit funds, can do bill payments, can recharges his/her customers
+                            Fastag card and can make payments at merchant outlet by using Aadhaar enabled Micro ATM,
+                            BBPS, FASTAG available on V-Pay app.</p>
+                        <p>To earn extra income using
+                            <b> Aadhaar enabled Micro ATM</b> merchant need to follow below steps:</p>
+                        <p>
+                            <b>For withdrawing funds:</b>
+                        </p>
+                        <ol class="listing">
+                            <li>Enter customer Aadhaar number </li>
+                            <li>Select bank name linked with Aadhaar number</li>
+                            <li>Enter withdrawal amount </li>
+                            <li>Fingerprints impression</li>
+                            <li>Payment successful</li>
+                        </ol>
+  
+                        <p>On each successful transaction merchant will going to earn Rs.5.00.</p>
+                        <p>
+                            <b>For depositing funds:</b>
+                        </p>
+                        <ol class="listing">
+                            <li>Enter customer Aadhaar number </li>
+                            <li>Select bank name linked with Aadhaar number</li>
+                            <li>Enter deposit amount and take deposit amount from customer </li>
+                            <li>Fingerprints impression </li>
+                            <li>Deposit successful</li>
+                        </ol>
+                        <p>On each successful transaction merchant will going to earn Rs.5.00.</p>
+  
+                        <p>To earn extra income using
+                            <b>BBPS</b> merchant need to follow below steps:</p>
+                        <ol class="listing">
+                            <li>Customer visits to merchant outlet provides his/her name, address, email, mobile number and
+                                bill/registration/transaction number of electricity, water and gas, DTH and telephone
+                                bill details</li>
+                            <li>Customer enter the amount and pays the bill using payment modes such as Aadhaar Pay, UPI,
+                                UPI QR Code, Bharat QR Code and Payment gateway options. </li>
+                            <li>Payment successful </li>
+                            <li>Both customer and merchant receive notification in mobile application for successful transaction.
+                                Merchant will earn as a convince fees as per Govt. Approved rates are as : </li>
+                            <ul class="listing">
+                                <li>On bill payment upto Rs.1000.00, merchant will earn Rs.5.00</li>
+                                <li>On bill payment upto Rs.2000.00, merchant will earn Rs.15.00</li>
+                                <li>On bill payment of more than Rs.2000.00, merchant will earn Rs.25.00</li>
+                            </ul>
+                        </ol>
+  
+                        <p>To earn extra income using
+                            <b>Fastag </b>merchant need to follow below steps:</p>
+                        <ol class="listing">
+                            <li>Customer Visits to merchant outlet provides his/her personal details and vehicle details
+                                and fills the online application form.</li>
+                            <li>Merchant issues FASTag card to customer and also provides recharge of FASTag cards.</li>
+                            <li>Customer affixes FASTag card on his/her vehicle and starts using it at toll plazas across
+                                India.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 5faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <b>Is there a limit to receiving payments through V-Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>No, there is no limit in receiving payments from your customers through V-Pay. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 6faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingSix">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <b>How can I get my collected money into my account? </b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>You can get your collected money directly (Auto Processed) in to your registered account with
+                            T+1 TaT as per RBI guidelines. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 7faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingSeven">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            <b>Can I immediately transfer collected funds available in V-Pay app to my bank account on the
+                                same day? What are the applicable transfer charges? </b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, you can transfer money to your bank account immediately any day and the minimum value for
+                            transferring funds is Rs.1000.00. You can transfer fund by just swiping the swipe tap provided
+                            in V-pay app. The applicable transfer charges are Rs.5.00. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 8faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingEight">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            <b>How many times in a day I can transfer funds to my bank account and what are the applicable
+                                charges for that? </b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>In a day, you can transfer funds three times a day to your account and the applicable charges
+                            for each transaction is Rs.5.00 irrespective of amount transferred. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 9faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingNine">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                            <b>Why I have to provide my bank account details at the time of registration?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>It is mandatory to provide your bank account details; as without linking your bank account, you
+                            will not be able to receive funds to your bank account. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 10faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTen">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            <b>Is there any verification process for merchant to become V-Pay service provider?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>No, there is no such process, merchant have to only fill one time registration form to avail
+                            V-Pay service.</p>
+                    </div>
+                </div>
+            </div>
+  
+  
+            <!-- 11faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingEle">
+                    <h5 class="mb-0">
+                        <p class="" data-toggle="collapse" data-target="#collapseEle" aria-expanded="false" aria-controls="collapseEle">
+                            <b>Is it secure to use V-Pay for accepting payments?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseEle" class="collapse" aria-labelledby="headingEle" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>V-Pay is very safe and secure and we use highest level of security standards. Every V-Pay transaction
+                            is safe and secure, protected and guarded by advanced 128 byte encryption technology. Each
+                            time you transact on V-Pay, you receive an SMS, V-pay Notification and e-mail. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 12faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwel">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwel" aria-expanded="false" aria-controls="collapseTwel">
+                            <b>Will I get notification when my bank account gets credited or debited?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwel" class="collapse" aria-labelledby="headingTwel" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, you will receive notification every time whenever transactions/activity that takes place
+                            through your V-Pay application. A confirmation SMS and an email notification will be sent,
+                            whenever a transaction is processed from your V-Pay application. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 13faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingThir">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseThir" aria-expanded="false" aria-controls="collapseThir">
+                            <b>What if I my mobile phone get lost/stolen?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseThir" class="collapse" aria-labelledby="headingThir" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>V-Pay provides each merchant a password for login to V-Pay account; in case your mobile is lost/stolen
+                            no one will be able to access your V-Pay account without entering the login password. For
+                            security reasons, kindly inform us immediately by emailing us at vpayinfo@vgipl.in or calling
+                            our Customer Care at +91 77 988 80906/+91 77 988 80959 following which we will block your
+                            V-Pay account for further safeguard. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 14faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingForti">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseForti" aria-expanded="false" aria-controls="collapseForti">
+                            <b>Is there any limit on the amount of funds I can immediately transfer to my bank account on
+                                same day?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseForti" class="collapse" aria-labelledby="headingForti" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, you can transfer 80 % of funds to your registered bank account on same day of collected
+                            fund and the remaining balance will automatically transfer on T+1 day as per RBI Guidelines
+                            after reconciliation to your registered bank account. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 15faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingFiti">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseFiti" aria-expanded="false" aria-controls="collapseFiti">
+                            <b>How can I check my V-Pay 'Balance'?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseFiti" class="collapse" aria-labelledby="headingFiti" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Your balance is always displayed on front page and also you can check detail balance in application
+                            on left side of account tap on transaction summary. You can also able to check the balance
+                            received through different payment modes. On website, your V-Pay balance will be shown upon
+                            login. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 16faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingSixt">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseSixt" aria-expanded="false" aria-controls="collapseSixt">
+                            <b>Why Should I use V-pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseSixt" class="collapse" aria-labelledby="headingSixt" data-parent="#accordion">
+                    <div class="card-body">
+                        <ul class="listing">
+                            <li>100 % safe and secure and transaction are secured using highest 256 Byte encryption technology</li>
+                            <li>Very portable and economical, no need to invest money in POS machines</li>
+                            <li>Same day credit of funds to merchant’s bank account</li>
+                            <li>Minimal MDR charges as per RBI norms.</li>
+                            <li>24X7 Support</li>
+                            <li>Easy and convenient to use</li>
+                            <li>Flexibility to use account of any bank including co-operative bank.</li>
+                            <li>Instant notification by SMS and emails</li>
+                            <li>Various ways of income generation.</li>
+                            <li>You can carry it with you for collection of onside payments.</li>
+                            <li>Can be integrated with your ERP system</li>
+                            <li>Detailed dash board for continues monitoring and MIS.</li>
+                            <li>Operates on Mobile and WEB both.</li>
+                            <li>Consolidated information and MIS for various terminals.</li>
+                            <li>V-Pay Aadhaar pay enables each and every citizen to go cashless and cardless.</li>
+                            <li>Eliminate the risk of cash handling </li>
+                            <li>Huge saving on bank Interest. </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 17faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingSevnti">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseSevnti" aria-expanded="false" aria-controls="collapseSevnti">
+                            <b>Is registering for V-pay free?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseSevnti" class="collapse" aria-labelledby="headingSevnti" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>No, you have to pay one time registration fee of Rs.500.00 and the monthly maintenance charge
+                            of Rs.100.00 </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 18faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingEigty">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseEigty" aria-expanded="false" aria-controls="collapseEigty">
+                            <b>Do I have to pay for fingerprint scanner?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseEigty" class="collapse" aria-labelledby="headingEigty" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, you have to pay for fingerprint scanner. The cost of scanner is Rs.2500.00 plus GST. Which
+                            can be paid during registration process. </p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 19faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingNinty">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseNinty" aria-expanded="false" aria-controls="collapseNinty">
+                            <b>Can I make payment of fingerprint scanner on monthly basis?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseNinty" class="collapse" aria-labelledby="headingNinty" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, you can pay monthly EMI of Rs.155.00. plus GST for 24 months with one time registration
+                            fee of Rs.500.00.</p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- 20faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty" aria-expanded="false" aria-controls="collapseTwenty">
+                            <b>Is V-Pay is a wallet?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty" class="collapse" aria-labelledby="headingTwenty" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>No, V-Pay is not a wallet it’s an aggregated platform for all new payment receipt channels like
+                            Aadhaar-Pay UPI, UPI QR Code BharatQR & Payment Gateway and income receipt channel such as
+                            BBPS, FASTAG etc where you can start accepting payments from your customer in your bank account.
+                            </p>
+                    </div>
+                </div>
+            </div>
+            <!-- 21faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty1">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty1" aria-expanded="false" aria-controls="collapseTwenty1">
+                            <b>How do I sign up for my V-Pay account?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty1" class="collapse" aria-labelledby="headingTwenty1" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Signing up for a V-Pay account is easy. Opt for any one of the following 2 ways: </p>
+                        <ul class="listing">
+                            <li>WEB</li>
+                        </ul>
+                        <p>Visit <a href="https://www.virtualpay.com/" target="_blank">www.virtualpay.com</a> and sign up </p>
+                        <ul class="listing">
+                            <li>Mobile App</li>
+                        </ul>
+                        <p>Download free V-Pay mobile app for android/IOS from Google Play Store and Apple Play Store</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 22faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty2">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty2" aria-expanded="false" aria-controls="collapseTwenty2">
+                            <b>Where can I view my Transaction History?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty2" class="collapse" aria-labelledby="headingTwenty2" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Log in to your V-Pay account and go to 'Transaction Summary' tab. Here you can see your 'Balance'
+                            and all the transaction history under the same tab.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 23faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty3">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty3" aria-expanded="false" aria-controls="collapseTwenty3">
+                            <b>Where can I view my Statement?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty3" class="collapse" aria-labelledby="headingTwenty3" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Log in to your V-Pay account and go to 'Statement' tab. Here you can see your 'last 10 transactions'
+                            and select the period for which you want to see statement.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 24faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty4">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty4" aria-expanded="false" aria-controls="collapseTwenty4">
+                            <b>How can I change my password?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty4" class="collapse" aria-labelledby="headingTwenty4" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Steps to follow for changing password:</p>
+                        <ol class="listing">
+                            <li>Log in to your V-Pay account and go to 'Settings' tab. </li>
+                            <li>Tap on to change password tab after tapping you will be asked to generate OTP</li>
+                            <li>After tapping on generate OTP, you will receive the OTP on your registered mobile number</li>
+                            <li>Enter OTP and set your new password</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- 25faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty5">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty5" aria-expanded="false" aria-controls="collapseTwenty5">
+                            <b>Is V-Pay multilingual?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty5" class="collapse" aria-labelledby="headingTwenty5" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>Yes, V-Pay is available in many languages. To change your language, tap on the change language
+                            tab, and select your language from dropdown menu. Tap on to your preferred language and immediately
+                            you will be able to see V-Pay in your preferred language.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 26faq -->
+            <div class="faq-block">
+                <div class="card-header" id="headingTwenty6">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseTwenty6" aria-expanded="false" aria-controls="collapseTwenty6">
+                            <b>Is V-Pay available on all handsets and Operating Systems?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseTwenty6" class="collapse" aria-labelledby="headingTwenty6" data-parent="#accordion">
+                    <div class="card-body">
+                        <p>V-Pay is available on Android Kitkat Version above 4.4.and IOS operating system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="gap"></div>
+        <h5><b>Aadhaar Pay FAQ’s</b></h5>
+        <div id="accordion1">
+            <!-- addhar faq1 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddhOne">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddhOne" aria-expanded="false" aria-controls="collapseAddhOne">
+                            <b> What is Aadhaar Pay?</b>
+                        </p>
+                    </h5>
+  
+                </div>
+  
+                <div id="collapseAddhOne" class="collapse " aria-labelledby="headingAddhOne" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>Aadhaar Pay is a service to allow the merchant to accept payment from a customer of any bank by
+                            authenticating the customer’s biometrics (currently only fingerprints) directly from customer’s
+                            bank account and receive the sale proceeds instantaneously into merchant’s own bank account.
+                            </p>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq2 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh2">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh2" aria-expanded="false" aria-controls="collapseAddh2">
+                            <b>How Aadhaar Pay works?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh2" class="collapse " aria-labelledby="headingAddh2" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>Following steps:</p>
+                        <ul class="listing">
+                            <li>Enter customer Aadhaar number </li>
+                            <li>Select bank name linked with Aadhaar number</li>
+                            <li>Enter amount to pay </li>
+                            <li>Fingerprints impression</li>
+                            <li>Payment successful</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- addhar faq3 -->
+        <div class="faq-block">
+                <div class="card-header" id="headingAddh3">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh3" aria-expanded="false" aria-controls="collapseAddh3">
+                            <b>What are the requirements for this method of Payment?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh3" class="collapse " aria-labelledby="headingAddh3" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>
+                            <b>Merchants Requirements</b>
+                        </p>
+                        <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                        <ul class="listing">
+                            <li>Smartphone or PC (web Version) </li>
+                            <li>Reliable Internet connection</li>
+                            <li>V-Pay Application </li>
+                            <li>Fingerprint scanner</li>
+                            <li>Bank account</li>
+                        </ul>
+                        <p>
+                            <b>Customers Requirement:</b>
+                        </p>
+                        <li>Your Aadhaar number</li>
+                        <li>A bank account linked with Aadhaar</li>
+                        <li>Clean Fingers</li>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq4 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh4">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh4" aria-expanded="false" aria-controls="collapseAddh4">
+                            <b>What are the advantages of using Aadhaar Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh4" class="collapse " aria-labelledby="headingAddh4" data-parent="#accordion1">
+                    <div class="card-body">
+                        <ul class="listing">
+                            <li>Customers need not to have an android phone or any other technology to make payments. </li>
+                            <li>No other extra charges on the payments using Aadhaar payments app. </li>
+                            <li>There is no need to carry debit card or credit card. </li>
+                            <li>No need to remember PIN or passwords. </li>
+                            <li>Instant Payments through Aadhaar bridge system this is similar to Aadhaar Enabled Payment system
+                                (AEPS). </li>
+                            <li>Affordable payment solution for merchants as well as customers.</li>
+                        </ul>
+                        <p>
+                            <b>Customers Requirement:</b>
+                        </p>
+                        <li>Your Aadhaar number</li>
+                        <li>A bank account linked with Aadhaar</li>
+                        <li>Clean Fingers</li>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq5 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh5">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh5" aria-expanded="false" aria-controls="collapseAddh5">
+                            <b>Is there any limit on the value of transactions in Aadhaar Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh5" class="collapse " aria-labelledby="headingAddh5" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>The transaction limits have been limited to Rs 10,000 per transaction and Rs 50,000 per day. However
+                            this will be reviewed and changed from time to time by RBI and depend on the banks for setting
+                            their individual limit.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq6 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh6">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh6" aria-expanded="false" aria-controls="collapseAddh6">
+                            <b>Does Aadhaar Pay work without internet?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh6" class="collapse " aria-labelledby="headingAddh6" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>No, you need a stable internet connection to login and transact with the customer.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq7 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh7">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh7" aria-expanded="false" aria-controls="collapseAddh7">
+                            <b>What are the timings for using Aadhaar Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh7" class="collapse" aria-labelledby="headingAddh7" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>Aadhaar Pay service is available round the clock i.e. 24x7.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- addhar faq8 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingAddh8">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapseAddh8" aria-expanded="false" aria-controls="collapseAddh8">
+                            <b>Who can use Aadhaar Pay?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapseAddh8" class="collapse" aria-labelledby="headingAddh8" data-parent="#accordion1">
+                    <div class="card-body">
+                        <p>V-Pay is a merchant app so any merchant big or small can start accepting payment from customers using
+                            V-Pay.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- micro atm -->
+        <div class="gap"></div>
+        <h5><b>AEPS Micro ATM</b></h5>
+        <div id="accordion2">
+             <!-- Micro ATM faq1 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATMOne">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATMOne" aria-expanded="false" aria-controls="collapseMicroATMOne">
+                                <b>What is AEPS Micro ATM?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATMOne" class="collapse " aria-labelledby="headingMicroATMOne" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p>AEPS Micro ATM is an instant payment system; the customer can withdraw the money from their nearby V-Pay merchant store. This opens up new Revenue streams for the merchants.
+                                </p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq2 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM2">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM2" aria-expanded="false" aria-controls="collapseMicroATM2">
+                                <b>How AEPS Micro ATM works?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM2" class="collapse " aria-labelledby="headingMicroATM2" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p><b>For withdrawing funds:</b></p>
+                            <ol class="listing">
+                                <li>Enter customer Aadhaar number </li>
+                                <li>Select bank name linked with Aadhaar number</li>
+                                <li>Enter withdrawal amount</li>
+                                <li>Fingerprints impression</li>
+                                <li>Payment successful </li>
+                            </ol>
+                            <p>On each successful transaction merchant will going to earn Rs.5.00.</p>
+  
+                            <p><b>For depositing funds:</b></p>
+                            <ol class="listing">
+                            <li>Enter customer Aadhaar number </li>
+                                <li>Select bank name linked with Aadhaar number</li>
+                                <li>Enter deposit amount</li>
+                                <li>Fingerprints impression</li>
+                                <li>Deposit successful </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq3 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM3">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM3" aria-expanded="false" aria-controls="collapseMicroATM3">
+                                <b>What are the requirements for this method of Payment?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM3" class="collapse " aria-labelledby="headingMicroATM3" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p><b>Merchants Requirements</b></p>
+                            <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                            <ul class="listing">
+                                <li>Smartphone/ PC </li>
+                                <li>Reliable Internet connection</li>
+                                <li>V-Pay App</li>
+                                <li>Fingerprint scanner</li>
+                                <li>Bank account </li>
+                            </ul>
+                          
+  
+                            <p><b>Customers Requirement:</b></p>
+                            <ul class="listing">
+                                <li>Your Aadhaar number </li>
+                                <li>A bank account linked with Aadhaar</li>
+                                <li>Clean Fingers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq4 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM4">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM4" aria-expanded="false" aria-controls="collapseMicroATM4">
+                                <b>What are the Benefits of Micro ATM?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM4" class="collapse " aria-labelledby="headingMicroATM4" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p>Being a V-Pay merchant you can provide various services. Some of the immediate services are:</p>
+                            <ul class="listing">
+                                <li>Cash withdrawals </li>
+                                <li>Aadhaar Enabled Payment System(AEPS) for cash withdrawals from any Bank Accounts supporting Aadhaar (Micro ATM facility)</li>
+                                <li>Increase footfall and in-return increase your core business</li>
+                                <li>Additional Revenue without extra setup</li>
+                                <li>Earnings on every transaction</li>
+                                <li>Low Investment & high returns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq5 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM5">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM5" aria-expanded="false" aria-controls="collapseMicroATM5">
+                                <b>How can I earn money with Micro ATM?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM5" class="collapse " aria-labelledby="headingMicroATM5" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p>You will earn on every transaction that you do on behalf of your consumer.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq6 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM6">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM6" aria-expanded="false" aria-controls="collapseMicroATM6">
+                                <b>What are the benefits of Micro ATM for customers?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM6" class="collapse " aria-labelledby="headingMicroATM6" data-parent="#accordion2">
+                        <div class="card-body">
+                            <ul class="listing">
+                                <li>Easy accessibility </li>
+                                <li>Anytime money deposit & withdrawal</li>
+                                <li>No need to stand in long bank queues to avail banking services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- Micro ATM faq7 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingMicroATM7">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseMicroATM7" aria-expanded="false" aria-controls="collapseMicroATM7">
+                                <b>Is there any limit on the value of transactions in AEPS?</b>
+                            </p>
+                        </h5>
+  
+                    </div>
+  
+                    <div id="collapseMicroATM7" class="collapse " aria-labelledby="headingMicroATM7" data-parent="#accordion2">
+                        <div class="card-body">
+                            <p>Yes, there is transaction limit, each bank have their different transaction limit. </p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+  
+        <!-- upi -->
+        <div class="gap"></div>
+        <h5><b>UPI FAQ’s</b></h5>
+        <div id="accordion3">
+  
+            <!-- UPI faq1 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi1">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi1" aria-expanded="false" aria-controls="collapseUpi1">
+                                <b>What is UPI?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi1" class="collapse" aria-labelledby="headingUpi1" data-parent="#accordion3">
+                        <div class="card-body">
+                            <p>Unified Payments Interface (UPI) is an instant payment system. UPI is built over the IMPS infrastructure and allows you to instantly transfer money between any two parties' bank accounts.</p>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq2 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi2">
+                        <h5 class="mb-0">
+                            <p  data-toggle="collapse" data-target="#collapseUpi2" aria-expanded="false" aria-controls="collapseUpi2">
+                                <b>How UPI works?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi2" class="collapse" aria-labelledby="headingUpi2" data-parent="#accordion3">
+                        <div class="card-body">
+                            <p>Following steps:</p>
+                            <ol class="listing">
+                                <li>Enter customer unique VPA (generated through Banks’ UPI app)</li>
+                                <li>Enter amount</li>
+                                <li>Click on pay </li>
+                                <li>Payment successful</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq3 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi3">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi3" aria-expanded="false" aria-controls="collapseUpi3">
+                                <b>What are the requirements for this method of Payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi3" class="collapse" aria-labelledby="headingUpi3" data-parent="#accordion3">
+                        <div class="card-body">
+                            <p><b>Merchants Requirements</b></p>
+                            <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                            <ul class="listing">
+                                <li>Smartphone/ PC</li>
+                                <li>Reliable Internet connection</li>
+                                <li>V-Pay Application (Mobile or Web) </li>
+                            </ul>
+                            <p><b>Customers Requirement:</b></p>
+                            <ul class="listing">
+                                <li>Customer has to download his/her bank’s UPI enabled mobile banking app</li>
+                                <li>Customer Virtual Payment Address</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq4 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi4">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi4" aria-expanded="false" aria-controls="collapseUpi4">
+                                <b>What are the Benefits of UPI?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi4" class="collapse" aria-labelledby="headingUpi4" data-parent="#accordion3">
+                        <div class="card-body">
+                            <ul class="listing">
+                                <li>Seamless fund collection from customers – single identifiers</li>
+                                <li>Customer can make a cashless transaction without swiping there credit or debit cards</li>
+                                <li>Merchants don’t need to invest in any hardware like POS Machine for accepting digital payments </li>
+                                <li>No need to fill bank details every time you do a transaction </li>
+                                <li>Instant money payment </li>
+                                <li>Available 24*7</li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq5 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi5">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi5" aria-expanded="false" aria-controls="collapseUpi5">
+                                <b>What is an UPI PIN?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi5" class="collapse" aria-labelledby="headingUpi5" data-parent="#accordion3">
+                        <div class="card-body">
+                                <p>UPI PIN (UPI Personal Identification Number) is a 4-6 digit secret code you create/set during first time registration with this Application. You have to enter this UPI PIN to authorise all bank transactions. If you have already set up an UPI PIN with other UPI Apps you can use the same on Bharat Interface for Money.</p>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq6 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi6">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi6" aria-expanded="false" aria-controls="collapseUpi6">
+                                <b>Do money transfers happen on UPI only during banking hours?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi6" class="collapse" aria-labelledby="headingUpi6" data-parent="#accordion3">
+                        <div class="card-body">
+                                <p>All payments are instant and 24/7, regardless of your bank's working hours.</p>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq7 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi7">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi7" aria-expanded="false" aria-controls="collapseUpi7">
+                                <b>What is the limit of fund transfer using UPI?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi7" class="collapse" aria-labelledby="headingUpi7" data-parent="#accordion3">
+                        <div class="card-body">
+                                <p>At present, The transaction limits have been limited to Rs 10,000 per transaction and Rs 1,00,000 per day. However this will be reviewed and changed from time to time by RBI and depend on the banks for setting their individual limit.</p>
+                        </div>
+                    </div>
+                </div>
+            <!-- UPI faq8 -->
+            <div class="faq-block">
+                    <div class="card-header" id="headingUpi8">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpi8" aria-expanded="false" aria-controls="collapseUpi8">
+                                <b>No Bank Details required</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpi8" class="collapse" aria-labelledby="headingUpi8" data-parent="#accordion3">
+                        <div class="card-body">
+                                <p>In VPA based UPI transactions, only the receiver’s Virtual Payment Address is required to transfer funds. In other words, the receiver need not provide their bank information to the sender for transferring funds.</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+  
+        <!-- upi qrCOde -->
+        <div class="gap"></div>
+        <h5><b>UPI QR Code</b></h5>
+        <div id="accordion4">
+             <!-- UPI qrcode faq1 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr1">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr1" aria-expanded="false" aria-controls="collapseUpiQr1">
+                                <b>What is UPI QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr1" class="collapse" aria-labelledby="headingUpiQr1" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>UPI QR is P2M & P2P (Person to Merchant and Person to Person) Mobile payment solution. Once the UPI QR codes are deployed on Merchant locations, user can pay the transaction amount using UPI QR enabled mobile banking apps without sharing any user credentials to the merchant. It is a quick method of payment.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq2 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr2">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr2" aria-expanded="false" aria-controls="collapseUpiQr2">
+                                <b>What is Static UPI QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr2" class="collapse" aria-labelledby="headingUpiQr2" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>The static code is one wherein the merchant has the QR code on display and the customer scans it to enter the amount and make the payment.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq3 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr3">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr3" aria-expanded="false" aria-controls="collapseUpiQr3">
+                                <b>What is Dynamic UPI QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr3" class="collapse" aria-labelledby="headingUpiQr3" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>The Dynamic QR code, on the other hand, can be used in places such as restaurants, where the merchant will generate a new QR code for each purchase. In this case, upon scanning the code, the amount need not be entered.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq4 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr4">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr4" aria-expanded="false" aria-controls="collapseUpiQr4">
+                                <b>How UPI QR works?</b>
+                            </p>
+                        </h5> 
+                    </div>
+                    <div id="collapseUpiQr4" class="collapse" aria-labelledby="headingUpiQr4" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>Following steps:</p>
+                            <ol class="listing">
+                                <li>Customer has to download his/her bank’s UPI QR enabled mobile banking app</li>
+                                <li>Customer has to scan the UPI QR code at Merchant store</li>
+                                <li>Enter amount to make payment</li>
+                                <li>Payment successful</li>
+                                <li>Both customer and merchant receive notification in mobile application for successful transaction</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq5 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr5">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr5" aria-expanded="false" aria-controls="collapseUpiQr5">
+                                <b>What are the requirements for this method of Payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr5" class="collapse" aria-labelledby="headingUpiQr5" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p><b>Merchants Requirements</b></p>
+                            <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                            <ol class="listing">
+                                <li>Smartphone</li>
+                                <li>Reliable Internet connection</li>
+                                <li>V-Pay Application</li>
+                            </ol>
+                            <p><b>Customers Requirement:</b></p>
+                            <ul class="listing">
+                                <li>Customer has to download his/her bank’s UPI enabled mobile banking app</li>
+                                <li>Scan the Bharat QR Code</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq6 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr6">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr6" aria-expanded="false" aria-controls="collapseUpiQr6">
+                                <b>What are the Benefits of UPI QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr6" class="collapse" aria-labelledby="headingUpiQr6" data-parent="#accordion4">
+                        <div class="card-body">
+                            <ol class="listing">
+                                <li>Customer can make a cashless transaction without swiping there credit or debit cards</li>
+                                <li>No need to share your mobile number or account details, CVV with anyone</li>
+                                <li>Cuts down on maintenance cost </li>
+                                <li>Instant Money transfer</li>
+                                <li>Merchants don’t need to invest in any hardware like POS Machine for accepting digital payments</li>
+                                <li>Strong security and backup</li>
+                                <li>Available 24*7</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq7 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr7">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr7" aria-expanded="false" aria-controls="collapseUpiQr7">
+                                <b>Are Bharat QR & UPI QR Same?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr7" class="collapse" aria-labelledby="headingUpiQr7" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>UPI Based QR preferably used for P2P or P2M dynamic Transaction using Virtual Payment Address.
+  Bharat QR is specifically used for P2M transaction wherein payment is done via cards i.e., Debit card/Credit Card/Pre-paid Card.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq8 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr8">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr8" aria-expanded="false" aria-controls="collapseUpiQr8">
+                                <b>What happens if the customer’s account has been debited and merchant has not received the payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr8" class="collapse" aria-labelledby="headingUpiQr8" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>In case the cardholder’s account is debited but the merchant has not received the Payment, the money will be automatically refunded back into cardholders account.
+                                    Sometimes this takes longer than intended time. In case if cardholder has not received the refund within 24 hours, customer should contact customer support of the bank. Cardholder can also raise a chargeback through proper channel as prescribed by the respective banks.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq9 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr9">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr9" aria-expanded="false" aria-controls="collapseUpiQr9">
+                                <b>Will the transaction happen only during banking hours?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr9" class="collapse" aria-labelledby="headingUpiQr9" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>No, the transaction can be done any time, i.e., (24*7*365).</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- UPI qrcode faq10 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingUpiQr10">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseUpiQr10" aria-expanded="false" aria-controls="collapseUpiQr10">
+                                <b>What are Per Instance/Daily/monthly transaction limit?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseUpiQr10" class="collapse" aria-labelledby="headingUpiQr10" data-parent="#accordion4">
+                        <div class="card-body">
+                            <p>The transaction limits have been limited to Rs 10,000 per transaction and Rs 20,000 per day. The per day transaction limit is set at Bank’s end. Please contact respective Bank for further information.</p>
+                        </div>
+                    </div>
+                </div>
+         
+        </div>
+  
+        <!-- Bharat QR Code: -->
+        <div class="gap"></div>
+        <h5><b>Bharat QR Code</b></h5>
+        <div id="accordion5">
+             <!-- Bharat QR Code faq1 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR1">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR1" aria-expanded="false" aria-controls="collapseBharatQR1">
+                                <b>What is QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR1" class="collapse" aria-labelledby="headingBharatQR1" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>A QR code consists of black squares arranged in a square grid on a white background, which can be read by an imaging device such as a camera. QR contains information about the item to which it is attached.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq2 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR2">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR2" aria-expanded="false" aria-controls="collapseBharatQR2">
+                                <b>What is Bharat QR?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR2" class="collapse" aria-labelledby="headingBharatQR2" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>Bharat QR is P2M (Person to Merchant) Mobile payment solution. Once the BQR codes are deployed on Merchant locations, user can pay the utility bills using BQR enabled mobile banking apps without sharing any user credentials to the merchant. It is a quick method of payment.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq3 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR3">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR3" aria-expanded="false" aria-controls="collapseBharatQR3">
+                                <b>What is Static Bharat QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR3" class="collapse" aria-labelledby="headingBharatQR3" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>The static code is one wherein the merchant has the QR code on display and the customer scans it to enter the amount and make the payment.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq4 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR4">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR4" aria-expanded="false" aria-controls="collapseBharatQR4">
+                                <b>What is Dynamic Bharat QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR4" class="collapse" aria-labelledby="headingBharatQR4" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>The dynamic Bharat QR code, on the other hand, can be used in places such as restaurants, where the merchant will generate a new QR code for each purchase. In this case, upon scanning the code, the amount need not be entered.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq5 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR5">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR5" aria-expanded="false" aria-controls="collapseBharatQR5">
+                                <b>How Bharat QR works?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR5" class="collapse" aria-labelledby="headingBharatQR5" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>Following steps:</p>
+                            <ul class="listing">
+                                <li>Customer has to download his/her bank’s Bharat QR enabled mobile banking app</li>
+                                <li>Customer has to scan the Bharat QR code at Merchant store</li>
+                                <li>Enter amount to make payment</li>
+                                <li>Payment successful </li>
+                                <li>Both customer and merchant receive notification in mobile application for successful transaction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq6 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR6">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR6" aria-expanded="false" aria-controls="collapseBharatQR6">
+                                <b>What are the requirements for this method of Payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR6" class="collapse" aria-labelledby="headingBharatQR6" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p><b>Merchants Requirements</b></p>
+                            <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                            <ul class="listing">
+                                <li>Smartphone</li>
+                                <li>Reliable Internet connection</li>
+                                <li>V-Pay Application</li>
+                            </ul>
+                            <p><b>Customers Requirement:</b></p>
+                            <ul class="listing">
+                                <li>Customer has to download his/her bank’s UPI enabled mobile banking app</li>
+                                <li>Scan the Bharat QR Code</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq7 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR7">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR7" aria-expanded="false" aria-controls="collapseBharatQR7">
+                                <b>What are the Benefits of Bharat QR Code?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR7" class="collapse" aria-labelledby="headingBharatQR7" data-parent="#accordion5">
+                        <div class="card-body">
+                            <ul class="listing">
+                                <li>Customer can make a cashless transaction without swiping there credit or debit cards</li>
+                                <li>No need to share your mobile number or account details, CVV with anyone</li>
+                                <li>Cuts down on maintenance cost </li>
+                                <li>Instant Money transfer</li>
+                                <li>Merchants don’t need to invest in any hardware like POS Machine for accepting digital payments </li>
+                                <li>Strong security and backup </li>
+                                <li>Available 24*7</li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq8 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR8">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR8" aria-expanded="false" aria-controls="collapseBharatQR8">
+                                <b>What happens if the customer’s account has been debited and merchant has not received the payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR8" class="collapse" aria-labelledby="headingBharatQR8" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>In case the cardholder’s account is debited but the merchant has not received the Payment, the money will be automatically refunded back into cardholders account.
+                                    Sometimes this takes longer than intended time. In case if cardholder has not received the refund within 24 hours, customer should contact customer support of the bank. Cardholder can also raise a chargeback through proper channel as prescribed by the respective banks.</p>
+                           
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq9 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR9">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR9" aria-expanded="false" aria-controls="collapseBharatQR9">
+                                <b>What happens if the credentials while doing Bharat QR payment are entered wrong?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR9" class="collapse" aria-labelledby="headingBharatQR9" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>No problem, the mobile application will prompt you to re-enter the correct PIN. The maximum number of tries allowed, depends on your bank. Please check with your bank for details.</p>
+                           
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq10 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR10">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseBharatQR10" aria-expanded="false" aria-controls="collapseBharatQR10">
+                                <b>Will the transaction happen only during banking hours?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR10" class="collapse" aria-labelledby="headingBharatQR10" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>No, the transaction can be done any time, i.e., (24*7*365).</p>
+                           
+                        </div>
+                    </div>
+                </div>
+             <!-- Bharat QR Code faq11 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingBharatQR11">
+                        <h5 class="mb-0">
+                            <p  data-toggle="collapse" data-target="#collapseBharatQR11" aria-expanded="false" aria-controls="collapseBharatQR11">
+                                <b>What are Per Instance/Daily/monthly transaction limit?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseBharatQR11" class="collapse" aria-labelledby="headingBharatQR11" data-parent="#accordion5">
+                        <div class="card-body">
+                            <p>The transaction limits have been limited to Rs 10,000 per transaction and Rs 20,000 per day. The per day transaction limit is set at Bank’s end. Please contact respective Bank for further information.</p>
+                           
+                        </div>
+                    </div>
+                </div>
+        </div>
+  
+        <!-- BBPS FAQS -->
+        <div class="gap"></div>
+        <h5><b>BBPS</b></h5>
+        <div id="accordion6">
+            <!-- bbps faqs1 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps1">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps1" aria-expanded="false" aria-controls="collapsebbps1">
+                            <b>What is BBPS?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps1" class="collapse" aria-labelledby="headingbbps1" data-parent="#accordion6">
+                    <div class="card-body">
+                        <p>Bharat Bill Payments System (BBPS) is an integrated online platform for utility bill payments. The platform provides an interoperable service through a digital and network of agents i.e. bank internet banking, mobile banking and retail shops for consumer to do a bill payment, at one place, anytime anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- bbps faqs2 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps2">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps2" aria-expanded="false" aria-controls="collapsebbps2">
+                            <b>How BBPS works?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps2" class="collapse" aria-labelledby="headingbbps2" data-parent="#accordion6">
+                    <div class="card-body">
+                        <p>Following steps:</p>
+                        <ol class="listing">
+                            <li>Customer Visits to merchant outlet provides his/her name, address, email, mobile number and bill/registration/transaction number of electricity, water and gas, DTH and telephone bill details</li>
+                            <li>Customer enters the amount and pays the bill using payment modes such as Aadhaar Pay, UPI, UPI QR Code, Bharat QR Code and Payment gateway options. </li>
+                            <li>Payment successful </li>
+                            <li>Both customer and merchant receive notification in mobile application for successful transaction</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- bbps faqs3 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps3">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps3" aria-expanded="false" aria-controls="collapsebbps3">
+                            <b>What are the requirements for this method of Payment?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps3" class="collapse" aria-labelledby="headingbbps3" data-parent="#accordion6">
+                    <div class="card-body">
+                        <p><b>Merchants Requirements</b></p>
+                        <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                        <ul class="listing">
+                            <li>Smartphone</li>
+                            <li>Reliable Internet connection</li>
+                            <li>V-Pay Application</li>
+                        </ul>
+                        <p><b>Customers Requirement:</b></p>
+                        <ul class="listing">
+                            <li>Customer details and bill details which customer wants to pay</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- bbps faqs4 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps4">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps4" aria-expanded="false" aria-controls="collapsebbps4">
+                            <b>What are the Benefits of BBPS?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps4" class="collapse" aria-labelledby="headingbbps4" data-parent="#accordion6">
+                    <div class="card-body">
+                        <ul class="listing">
+                            <li>Use of the various payment channels available on Bharat Bill Payment System</li>
+                            <li>Convenient and faster bill payments</li>
+                            <li>Reliable, trustful, safe and secure platform for bill payments</li>
+                            <li>Instant confirmation of bill payments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- bbps faqs5 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps5">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps5" aria-expanded="false" aria-controls="collapsebbps5">
+                            <b>What are the utility bills one can pay at merchant store?</b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps5" class="collapse" aria-labelledby="headingbbps5" data-parent="#accordion6">
+                    <div class="card-body">
+                       <p>The categories that are currently covered in BBPS are Electricity, Telecom (Landline Post-paid, Mobile postpaid and Broadband Postpaid), Gas, Water and DTH. Gradually more categories would be covered under BBPS.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- bbps faqs6 -->
+            <div class="faq-block">
+                <div class="card-header" id="headingbbps6">
+                    <h5 class="mb-0">
+                        <p data-toggle="collapse" data-target="#collapsebbps6" aria-expanded="false" aria-controls="collapsebbps6">
+                            <b>What are the timings for BBPS transactions? </b>
+                        </p>
+                    </h5>
+                </div>
+                <div id="collapsebbps6" class="collapse" aria-labelledby="headingbbps6" data-parent="#accordion6">
+                    <div class="card-body">
+                       <p>BBPS services are available 24 hours of the day, all days of the week, throughout the year including all public holidays.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <!-- fastag FAQs -->
+        <div class="gap"></div>
+        <h5><b>Fastag</b></h5>
+        <div id="accordion7">
+             <!-- fastag faq1 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingFast1">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseFast1" aria-expanded="false" aria-controls="collapseFast1">
+                                <b>What is Electronic Toll Collection (ETC) / FASTag?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseFast1" class="collapse" aria-labelledby="headingFast1" data-parent="#accordion7">
+                        <div class="card-body">
+                            <p>FASTag is a device that employs Radio Frequency Identification (RFID) technology for making toll payments directly from the prepaid account linked to it. It is affixed on the windscreen of your vehicle and enables you to drive through toll plazas.</p>
+                        </div>
+                    </div>
+                </div>
+             <!-- fastag faq2 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingFast2">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseFast2" aria-expanded="false" aria-controls="collapseFast2">
+                                <b>How FASTag works?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseFast2" class="collapse" aria-labelledby="headingFast2" data-parent="#accordion7">
+                        <div class="card-body">
+                            <p>Following steps:</p>
+                            <ul class="listing">
+                                <li>Customer Visits to merchant outlet provides his/her personal details and vehicle details and fills the online application form.</li>
+                                <li>Merchant issues FASTag card to customer and also provides recharge of FASTag cards.</li>
+                                <li>Customer affixes FASTag card on his/her vehicle and starts using it at toll plazas across India.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- fastag faq3 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingFast3">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseFast3" aria-expanded="false" aria-controls="collapseFast3">
+                                <b>What are the requirements for this method of Payment?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseFast3" class="collapse" aria-labelledby="headingFast3" data-parent="#accordion7">
+                        <div class="card-body">
+                            <p><b>Merchants Requirements</b></p>
+                            <p>Merchant have to make following arrangements. These are the requirement for the person who want payment.</p>
+                            <ul class="listing">
+                                <li>Smartphone</li>
+                                <li>Reliable Internet connection</li>
+                                <li>V-Pay App</li>
+                            </ul>
+                            <p><b>Customers Requirement:</b></p>
+                            <ul class="listing">
+                                <li>Customer details and vehicle details</li> </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- fastag faq4 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingFast4">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseFast4" aria-expanded="false" aria-controls="collapseFast4">
+                                <b>What are the Benefits of FASTag?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseFast4" class="collapse" aria-labelledby="headingFast4" data-parent="#accordion7">
+                        <div class="card-body">
+                            <ul class="listing">
+                                <li>Ease of payment – No need to carry cash for the toll transactions, saves time</li>
+                                <li>Online Recharge – Tag can be recharged online through Credit Card / Debit Card / UPI / NEFT/ RTGS or Net banking</li>
+                                <li>SMS alerts for toll transactions, low balance, etc.</li>
+                                <li>Validity of 5 Years</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+             <!-- fastag faq5 -->
+             <div class="faq-block">
+                    <div class="card-header" id="headingFast5">
+                        <h5 class="mb-0">
+                            <p data-toggle="collapse" data-target="#collapseFast5" aria-expanded="false" aria-controls="collapseFast5">
+                                <b>What are the documents needed to apply for FASTag?</b>
+                            </p>
+                        </h5>
+                    </div>
+                    <div id="collapseFast5" class="collapse" aria-labelledby="headingFast5" data-parent="#accordion7">
+                        <div class="card-body">
+                           <p>You will need to carry original as well as copy of your KYC document</p>
+                           <p>You need to submit the following documents along with the application for FASTag:</p>
+                           <ol class="listing">
+                               <li>Registration Certificate (RC) of the vehicle.</li>
+                               <li>Passport size photograph of the vehicle owner</li>
+                               <li>KYC documents as per the category of the vehicle owner:</li>
+                               <li>Our representative will provide you an application form, which you need fill and submit.</li>
+                               <li>All required documents for FASTag should be in the name of the owner of the vehicle. If car owner is not present at the time of application, driver will need to submit his photo ID proof.</li>
+                               <li>A valid driving license would be sufficient for Address & ID proof.</li>
+                           </ol>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+    </div>
+      </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <!--POPUP FAQ END-->
+  
+    <app-spinner></app-spinner></router-outlet>
+    </main>

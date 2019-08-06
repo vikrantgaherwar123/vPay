@@ -1,0 +1,123 @@
+<div class="container">
+  <section>
+    <div class="tabs tabs-style-underline">
+      <nav>
+        <ul id="menuId">
+          <li class='tab-current'><a href="javascript:void(0)" (click)="gotoMenu('carInsurance')"><i class="fa fa-car"></i><span>Car Insurance</span></a></li>
+          <li><a href="javascript:void(0)" (click)="gotoMenu('bikeInsurance')"><i class="fa fa-motorcycle"></i><span>Bike Insurance</span></a></li>
+          <!-- <li><a href="javascript:void(0)" (click)="gotoMenu('marineInsurance')"><i class="fa fa-ship"></i><span>Marine Insurance</span></a></li>
+          <li><a href="javascript:void(0)" (click)="gotoMenu('healthInsurance')"><i class="fa fa-stethoscope"></i><span>Health Insurance</span></a></li>
+          <li><a href="javascript:void(0)" (click)="gotoMenu('travelInsurance')"><i class="fa fa-bus"></i><span>Travel Insurance</span></a></li> -->
+        </ul>
+      </nav>
+      <div class="content-wrap">
+        <section id="section-underline-1" *ngIf='carInsurance'>
+          <div class="container">
+            <div class="insurance-title">
+              <h1>Existing Policy</h1>
+            </div>
+            <div class="renew-policy">
+              <p>Renew policy from another insurer</p>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="form-group form-group-lg">
+                  <label class="text-left">Registration number (Eg.MH02CL0094)</label>
+                  <input type="text"  [(ngModel)]="textNumber" maxlength="20" type="text" class="form-control" id="" placeholder="Registration number (Eg.MH02CL0094)">
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                    <label class="label-title">Mobile Number</label>
+                  <input [(ngModel)]="mobileNumber" inputType="number" maxlength="10" type="text" class="form-control" id="" placeholder="Mobile Number">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                    <label class="label-title">Email Address</label>
+                  <input type="email" name="email" [(ngModel)]="email" type="text" class="form-control" id="" placeholder="Email">
+                </div>
+              </div>
+            </div>
+
+            <div class="text-left">
+              <input [(ngModel)]="termsConditions" id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
+              <label for="checkbox-1" class="checkbox-custom-label">I agree to the Terms and Conditions</label>
+              <br />
+              <input [(ngModel)]="whatsapp" id="checkbox-2" class="checkbox-custom" name="checkbox-2" type="checkbox">
+              <label for="checkbox-2" class="checkbox-custom-label">I wish to get policy details on my whatsapp number
+              </label>
+            </div>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-success button btnSave" (click)="submit('Bike')">SUBMIT</button>
+            
+            <div class="regist">
+              <p><a href="#">I don't have my registration number</a></p>
+            </div>
+            <div class="regist">
+              <p><a href="#">Retrieve quote</a></p>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <section id="section-underline-2" *ngIf='bikeInsurance'>
+          <div class="container">
+            <div class="insurance-title">
+              <h1>Renew Policy</h1>
+            </div>
+            <div class="renew-policy">
+              <p>Renew existing ICICI Lombard policy</p>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                  <input type="text" class="form-control" id="" placeholder="Policy Number">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>-- Select Engine / Chassis number --</option>
+                    <option>Engine Number</option>
+                    <option>Chassis Number</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-group-lg">
+                  <input type="text" class="form-control" id="" placeholder="Enter your engine number">
+                </div>
+              </div>
+            </div>
+
+
+            <div>
+              <button type="button" class="btn btn-success button btnSave">SUBMIT</button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- <section id="section-underline-3" *ngIf='marineInsurance'>
+          <p>3</p>
+        </section>
+        <section id="section-underline-4" *ngIf='healthInsurance'>
+          <p>4</p>
+        </section>
+        <section id="section-underline-5" *ngIf='travelInsurance'>
+          <p>5</p>
+        </section> -->
+      </div>
+    </div>
+  </section>
+</div>

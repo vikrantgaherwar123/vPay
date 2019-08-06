@@ -1,0 +1,72 @@
+<main>
+    <div class="main">
+        <img src="assets/images/help.png" class="cursorPointerC fa-beat imgHelp" matTooltip="Close Account Help"
+            matTooltipPosition="above" (click)="pageHelp()" data-toggle="modal" data-target="#myModal">
+        <!-- </button> -->
+        <div class="container">
+            <div class="inner">
+                <div class="aadhaarblock">
+                    <div style="padding-top: 15px;">
+                        <h6><span class="font-weight-bold" style="color:#276b08 !important;">
+                                &nbsp;Close Account</span>
+                            <span class="text-right float-right">
+                    
+                            </span>
+                        </h6>
+                        <hr class="mb-2">
+                    </div>
+
+                    <div class="row  p-3">
+                        <div class="col-md-7 col-sm-12 ">
+                            <h3>Total Balance :-
+                                <span style="color:green;">₹ {{balance | number:'1.2'}}</span>
+                            </h3>
+                            <br>
+                            <div class="genOtpBtn" *ngIf='showGenOtpBtn'>
+                                <div class="cta" style="margin-top:0px">
+                                    <button type="button" id="genOtpBtn" mat-raised-button class="btn-success text-white"
+                                        (click)='otpConfirmation()'>Generate
+                                        OTP</button>
+                                </div>
+                            </div>
+                            <div [class]='showOtp' style="margin-top:0px">
+                                <div class="form-group">
+                                    <otp [eid]="'otp'" (callBackMethod)="regenerateOTP()"></otp>
+                                </div>
+                                <div class="cta" style="margin-top:0px">
+                                    <button type="button" mat-raised-button class="btn-success text-white"
+                                        (click)="onClickCheckOTP()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--POPUP START-->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-body" style="height: 400px;overflow: auto;">
+                            <div *ngFor="let item of termCondContent">
+                                <p style="text-transform: uppercase; font-weight: bold">
+                                    {{item.TERM_COND_HEADER}}
+                                </p>
+                                <p style="margin-top: 2%">
+                                    {{item.TERM_COND_DETAIL}}
+                                </p>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END-->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</main>

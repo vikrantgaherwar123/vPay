@@ -1,0 +1,216 @@
+<div class="row dashPage">
+  <!-- card1 start -->
+  <div class="col-md-6 col-xl-3 col-sm-12 flip">
+    <div class="card widget-card-1 card2">
+      <div class="card-block-small face front">
+        <i class="icofont bg-c-blue card1-icon">
+          <img src="assets/images/logo-icon1.png" alt="" />
+        </i>
+
+        <span class="text-c-blue f-w-600">Aadhar Pay</span>
+        <h4 id="cardAadhar">
+          <i class="icofont icofont-cur-rupee-false"></i> {{aadharBalance | number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted" (click)="goToStatement(1)">
+            <!-- <i class="text-c-blue f-16 icofont icofont-calendar m-r-10"></i>Recent Transaction -->
+            <i class="fa fa-clock-o text-c-blue f-16 m-r-10"></i>Recent Transaction:
+          </span>
+          <div class=" tool" data-tip="Proceed to Aadhar Transaction">
+            <span class="f-right m-t-10 "> <i class="ti-arrow-circle-right cardSmBtn" style="background-color: #4680ff;"
+                (click)="onClick('aadhar')"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="face back">
+        <div id="aadhar-payment" style="height:100px"></div>
+      </div>
+    </div>
+  </div>
+  <!-- card1 end -->
+  <!-- card2 start -->
+  <div class="col-md-6 col-xl-3 col-sm-12 flip">
+    <div class="card widget-card-1 card2">
+      <div class="card-block-small front face">
+        <i class="icofont bg-c-pink card1-icon">
+          <img src="assets/images/logo-icon2.png" alt="" />
+        </i>
+        <span class="text-c-pink f-w-600">UPI</span>
+        <h4 id="cardUpi">
+          <i class="icofont icofont-cur-rupee-false"></i> {{upiBalance | number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted" (click)="goToStatement(2)">
+            <i class="text-c-pink f-16 fa fa-clock-o m-r-10"></i>Recent Transaction:
+          </span>
+          <div class=" tool" data-tip=" Proceed to UPI Transaction ">
+            <span class="f-right m-t-10 "> <i class="ti-arrow-circle-right cardSmBtn" style="background-color: #fc6180;"
+                (click)="onClick('upi')"></i></span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="face backP">
+        <div id="upi" style="height:100px"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-xl-3 col-sm-12 flip">
+    <div class="card widget-card-1 card2">
+      <div class="card-block-small front face">
+        <i class="icofont bg-c-yellow card1-icon">
+          <img src="assets/images/bharat-icon.png" alt="" />
+        </i>
+        <span class="text-c-yellow f-w-600">Bharat QR Code</span>
+        <h4 id="cardBharat">
+          <i class="icofont icofont-cur-rupee-false"></i> {{bharatQrCodeBalance| number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted">
+            <i class="text-c-yellow f-16 icofont icofont-refresh m-r-10"></i>Coming Soon
+          </span>
+        </div>
+      </div>
+
+      <div class="face backY">
+        <div id="bharatQRCode" style="height:100px"></div>
+      </div>
+    </div>
+  </div>
+  <!-- card2 end -->
+
+  <!-- card4 start -->
+  <div class="col-md-6 col-xl-3 col-sm-12 flip">
+    <div class="card widget-card-1 card2">
+      <div class="card-block-small face front">
+        <i class="icofont bg-c-green card1-icon">
+          <img src="assets/images/logo-icon3.png" alt="" />
+        </i>
+        <span class="text-c-green f-w-600">Payment Gateway</span>
+        <h4 id="cardPaymentGateway">
+          <i class="icofont icofont-cur-rupee-false"></i> {{paymentGatewayBalance | number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted" (click)="goToStatement(5)">
+            <i class="text-c-green f-16 fa fa-clock m-r-10"></i>Recent Transaction:
+          </span>
+          <div class="tool" data-tip="Proceed to Payment Gateway Transaction">
+            <span class="f-right m-t-10 "> <i class="ti-arrow-circle-right cardSmBtn" style="background-color: #93be52;"
+              (click)="onClick('paymentGateway')"></i></span>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="face backG">
+        <div id="payment-gateway" style="height:100px"></div>
+      </div>
+    </div>
+  </div>
+  <!-- card4 end -->
+
+
+  <!-- Statistics Start -->
+  <div class="col-md-12 col-xl-9 col-sm-12 ">
+    <app-card [title]="'Statistics'" (cardData)='cardGraph($event)' (graphData)="dataGraph($event)">
+      <div id="line-example" class="line-example">
+        <div id="statistics-chart" style="height:300px;"></div>
+      </div>
+    </app-card>
+  </div>
+
+  <!-- <div class="col-md-12 col-xl-9">
+    <app-card [title]="'Statistics'" (graphData)="dataGraph($event)">
+        <div id="line-example" class="line-example">
+          <div id="statistics-chart1" style="height:300px;"></div>
+        </div>
+    </app-card>
+  </div> -->
+  <!-- Statistics End -->
+
+  <!-- card5 start -->
+  <div class="col-md-6 col-xl-3 col-sm-12 flip">
+    <!-- <div class=""> -->
+    <div class="card widget-card-1 card2">
+      <div class="card-block-small face front">
+        <i class="icofont bg-c-blue card1-icon">
+          <img src="assets/images/logo-icon5.png" alt="" />
+        </i>
+        <span class="text-c-blue f-w-600">FastTag</span>
+        <h4 id="cardFastPay">
+          <i class="icofont icofont-cur-rupee-false"></i>{{fastPayBalance | number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted">
+            <i class="text-c-blue f-16 icofont icofont-refresh m-r-10"></i>Coming Soon
+          </span>
+        </div>
+      </div>
+      <div class="face back">
+        <div id="fastag-payment" style="height:100px"></div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+
+  <div id="bbpsBal" class="col-md-6 col-xl-3 col-sm-12 bbpsBox flip">
+    <!-- <div class=""> -->
+    <div class="card widget-card-1 card2">
+
+      <div class="card-block-small face front">
+        <i class="icofont bg-c-yellow card1-icon">
+          <img src="assets/images/logo-icon4.png" alt="" />
+        </i>
+        <span class="text-c-yellow f-w-600">Bharat Bill Pay</span>
+        <h4 id="cardBbps">
+          <i class="icofont icofont-cur-rupee-false"></i> {{bbpsBalance | number:'1.2'}}
+        </h4>
+        <div>
+          <span class="f-left m-t-10 text-muted">
+            <i class="text-c-yellow f-16 icofont icofont-refresh m-r-10"></i>Coming Soon
+          </span>
+        </div>
+      </div>
+
+      <div class="face backY">
+        <div id="Bbps-payment" style="height:100px"></div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+  <!-- card5 end -->
+
+  <div id="KYCModal" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" style="max-width:75%;">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header d-block" style="border-bottom:0">
+          <!-- <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <button type="button" class="close" data-dismiss="modal"><i class="fa fa-close "></i></button>
+        </div>
+        <div class="modal-body text-center p-2">
+          <img class="img-fluid" style="width: 48%;box-shadow: 1px 0px 7px 1px grey;" src="assets/images/kyc.jpg">
+          <h4 class="mt-3"> Complete Your KYC</h4>
+          <ul class="text-dark p-2 ">
+            <li>As per RBI guidelines, complete e-KYC to use VPay. </li>
+            <li>Use your KYC for Other regulatory requirements to access products and services. </li>
+          </ul>
+          <button mat-button class="btn btn-success text-white" data-dismiss="modal" (click)="complekyc('Y')">Complete
+            KYC</button>
+        </div>
+        <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div> -->
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gap"></div>
+  <div class="gap"></div>

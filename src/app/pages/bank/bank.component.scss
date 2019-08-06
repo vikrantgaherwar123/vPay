@@ -1,0 +1,834 @@
+.flip {
+  -webkit-perspective: 800;
+   width: 400px;
+   /* height: 200px; */
+    position: relative;
+    /* margin: 50px auto; */
+    height: 148px;
+}
+.flip .card2.flipped {
+  -webkit-transform: rotatey(-180deg);
+}
+.flip .card2 {
+  width: 100%;
+  height: 79%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+  border-radius: 5px;
+}
+.flip .card2 .face {
+  width: 100%;
+  height: 91%;
+  position: absolute;
+  -webkit-backface-visibility: hidden ;
+  z-index: 2;
+    /* font-family: Georgia; */
+    /* font-size: 3em; */
+    /* text-align: center; */
+    /* line-height: 200px; */
+    border-radius: 5px;
+}
+.flip .card2 .front {
+  position: absolute;
+  z-index: 1;
+    background:white;
+    /* color: white; */
+    cursor: pointer;
+}
+.flip .card2 .back {
+  -webkit-transform: rotatey(-180deg);
+    /* background: blue; */
+    background: #4680ff;
+    /* color: black; */
+    cursor: pointer;
+    height:100%;
+    padding-top:17px;
+}
+
+.flip .card2 .backP{
+  -webkit-transform: rotatey(-180deg);
+    /* background: blue; */
+    background: #fc6180;
+    /* color: black; */
+    cursor: pointer;
+    height:100%;
+    padding-top:17px;
+}
+
+.flip .card2 .backG{
+  -webkit-transform: rotatey(-180deg);
+  /* background: blue; */
+  background: #93be52;
+  /* color: black; */
+  cursor: pointer;
+  height:100%;
+  padding-top:17px;
+}
+
+
+.flip .card2 .backY{
+  -webkit-transform: rotatey(-180deg);
+  /* background: blue; */
+  background: #ffb64d;
+  /* color: black; */
+  cursor: pointer;
+  height:100%;
+  padding-top:17px;
+}
+
+.main-body .page-wrapper{
+  padding-bottom: 0px !important;
+}
+
+.top-logos {
+  /* background:#B9CB1A url('assets/images/header.svg') no-repeat center 0 !important; */
+   /* background-size:70% !important; */
+   
+  } 
+
+
+  .cardSmBtn{
+    color: #fff;
+    padding: 2px;
+    border-radius: 8px;
+  }
+
+  .widget-card-1 .card1-icon{
+    top: -25px !important;
+    right: 20px !important;
+  }
+
+.bgCcard{
+  background: #2193b0;background: -webkit-linear-gradient(to right, #2193b0, #6dd5ed);                     background: linear-gradient(to right, #2193b0, #6dd5ed);
+}
+
+
+.bankLogo{
+  height: 50px;
+}
+.pbal{
+  font-weight: bold;
+  text-align: center;
+}
+// .pt-3 > h6
+// {
+// text-align: center;
+// }
+
+//  .tbl-header{
+//   // background-color: rgba(255,255,255,0.3);
+//   // background-color: #e8e8e8;
+//   background-color: #70956a !important;
+//  }
+//    .table-striped tbody tr:nth-of-type(even) {
+//   // background: linear-gradient(to bottom right, #759a1c, #eff3cb) !important ;
+//   background: transparent !important ;
+//   color: #fff !important ;
+// }
+// .table-striped tbody tr:nth-of-type(odd) {background: #e4f3d4 !important}
+//  .table-striped tbody tr:nth-of-type(odd) {background: transparent !important}
+//  .tbl-content{
+//   height:300px;
+//   overflow-x:auto;
+//   margin-top: 0px;
+//   border: 1px solid rgba(255,255,255,0.3);
+// }
+//  th{
+//   padding: 10px 15px;
+//   text-align: left;
+//   // font-weight: 500;
+//   // font-size: 12px;
+//   color: #fff;
+//   text-transform: uppercase;
+// }
+//  td{
+//   padding: 10px 15px;
+//   text-align: left;
+//   vertical-align:middle;
+//   color: rgb(0, 0, 0);
+//   border-bottom: solid 1px rgba(255,255,255,0.1);
+// }
+
+/* For small screen */
+// .accRow .bankListRow:nth-of-type(even){
+//   background-color: #dcdcdc;
+// }
+// .accRow .bankListRow:nth-of-type(odd){
+//   background-color: #aaaaaa;
+// }
+
+
+// .row:nth-child(odd) {
+//   background: #e0e0e0;
+// }
+// .accrowbox >.accRow:nth-child(odd) {
+//   background: #e0e0e0;
+// }
+// .accrowbox >.accRow:nth-child(even) {
+//   background: #fff;
+// }
+
+// .rwd-table > .bankListRow:nth-child(odd) {
+//     background: #e0e0e0;
+//   }
+//  .rwd-table > .bankListRow:nth-child(even) {
+//     background: #fff;
+//   }
+
+// div.accRow > div.bankListRow:nth-of-type(odd) {
+//   background: #ff0;
+// }
+
+
+
+
+
+// table
+
+// .table-striped tbody tr:nth-of-type(even) {
+//   // background: linear-gradient(to bottom right, #759a1c, #eff3cb) !important ;
+//   // background: #b9ca90 !important;
+//   color: #fff !important ;
+// }
+
+
+// .table-striped tbody tr:nth-of-type(odd) {background: #e4f3d4 !important}
+
+
+
+// .tbl-header{
+// // background-color: rgba(255,255,255,0.3);
+// background-color: #70956a !important;
+// }
+// .tbl-content{
+// height:245px;
+// overflow-x:auto;
+// margin-top: 0px;
+// border: 1px solid rgba(255,255,255,0.3);
+// }
+// th{
+// // padding: 20px 15px;
+// padding: 7px 10px;
+// text-align: left;
+// font-weight: 600;
+// // font-size: 12px;
+// color: #fff;
+// text-transform: uppercase;
+// cursor: pointer;
+// }
+// td{
+// // padding: 15px;
+// padding: 3px 15px;
+// text-align: left;
+// vertical-align:middle;
+// font-weight: 600;
+// // font-size: 12px;
+// color: #000;
+// border-bottom: solid 1px rgba(255,255,255,0.1);
+// // width:100px; word-wrap:break-word;
+// }
+// th, td {
+// white-space: normal !important;
+// }
+
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+  width: 6px;
+} 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+
+
+
+
+// card style
+
+
+.cardDisplay{
+
+}
+#ccsingle {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+
+#ccsingle svg {
+  width: 100px;
+  max-height: 60px;
+}
+
+.creditcard svg#cardfront,
+.creditcard svg#cardback {
+  width: 50%;
+  -webkit-box-shadow: 1px 5px 6px 0px black;
+  box-shadow: 1px 5px 6px 0px black;
+  border-radius: 22px;
+}
+
+#generatecard{
+  cursor: pointer;
+  float: right;
+  font-size: 12px;
+  color: #fff;
+  padding: 2px 4px;
+  background-color: #909090;
+  border-radius: 4px;
+  cursor: pointer;
+  float:right;
+}
+
+/* CHANGEABLE CARD ELEMENTS */
+.creditcard .lightcolor,
+.creditcard .darkcolor {
+  -webkit-transition: fill .5s;
+  transition: fill .5s;
+}
+
+.creditcard .lightblue {
+  fill: #03A9F4;
+}
+
+.creditcard .lightbluedark {
+  fill: #0288D1;
+}
+
+.creditcard .red {
+  fill: #ef5350;
+}
+
+.creditcard .reddark {
+  fill: #d32f2f;
+}
+
+.creditcard .purple {
+  fill: #ab47bc;
+}
+
+.creditcard .purpledark {
+  fill: #7b1fa2;
+}
+
+.creditcard .cyan {
+  fill: #26c6da;
+}
+
+.creditcard .cyandark {
+  fill: #0097a7;
+}
+
+.creditcard .green {
+  fill: #66bb6a;
+}
+
+.creditcard .greendark {
+  fill: #388e3c;
+}
+
+.creditcard .lime {
+  fill: #d4e157;
+}
+
+.creditcard .limedark {
+  fill: #afb42b;
+}
+
+.creditcard .yellow {
+  fill: #ffeb3b;
+}
+
+.creditcard .yellowdark {
+  fill: #f9a825;
+}
+
+.creditcard .orange {
+  fill: #ff9800;
+}
+
+.creditcard .orangedark {
+  fill: #ef6c00;
+}
+
+.creditcard .grey {
+  fill: #bdbdbd;
+}
+
+.creditcard .greydark {
+  fill: #616161;
+}
+
+/* FRONT OF CARD */
+#svgname {
+  text-transform: uppercase;
+}
+
+#cardfront .st2 {
+  fill: #FFFFFF;
+}
+
+#cardfront .st3 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600;
+}
+
+#cardfront .st4 {
+  font-size: 54.7817px;
+}
+
+#cardfront .st5 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+}
+
+#cardfront .st6 {
+  font-size: 33.1112px;
+}
+
+#cardfront .st7 {
+  opacity: 0.6;
+  fill: #FFFFFF;
+}
+
+#cardfront .st8 {
+  font-size: 24px;
+}
+
+#cardfront .st9 {
+  font-size: 36.5498px;
+}
+
+#cardfront .st10 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+}
+
+#cardfront .st11 {
+  font-size: 16.1716px;
+}
+
+#cardfront .st12 {
+  fill: #4C4C4C;
+}
+
+/* BACK OF CARD */
+#cardback .st0 {
+  fill: none;
+  stroke: #0F0F0F;
+  stroke-miterlimit: 10;
+}
+
+#cardback .st2 {
+  fill: #111111;
+}
+
+#cardback .st3 {
+  fill: #F2F2F2;
+}
+
+#cardback .st4 {
+  fill: #D8D2DB;
+}
+
+#cardback .st5 {
+  fill: #C4C4C4;
+}
+
+#cardback .st6 {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+}
+
+#cardback .st7 {
+  font-size: 27px;
+}
+
+#cardback .st8 {
+  opacity: 0.6;
+}
+
+#cardback .st9 {
+  fill: #FFFFFF;
+}
+
+#cardback .st10 {
+  font-size: 24px;
+}
+
+#cardback .st11 {
+  fill: #EAEAEA;
+}
+
+#cardback .st12 {
+  font-family: 'Rock Salt', cursive;
+}
+
+#cardback .st13 {
+  font-size: 37.769px;
+}
+
+/* FLIP ANIMATION */
+.container {
+  perspective: 1000px;
+}
+
+.creditcard {
+  width: 500px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: -webkit-transform 0.6s;
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
+  cursor: pointer;
+}
+
+.creditcard .front,
+.creditcard .back {
+  position: relative;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  color: #47525d;
+}
+
+.creditcard .back {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.creditcard.flipped {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+
+.acclist > p{
+  margin: 0;
+  cursor: pointer;
+}
+
+.padding-bot{
+  padding-bottom: 25px;
+}
+
+
+$breakpoint-alpha: 480px; // adjust to your needs
+
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px; // adjust to your needs
+  
+  tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!   
+  }
+  
+  td {
+    display: block; 
+    
+    &:first-child {
+      padding-top: .5em;
+    }
+    &:last-child {
+      padding-bottom: .5em;
+    }
+
+    &:before {
+      content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+      font-weight: bold;
+
+      // optional stuff to make it look nicer
+      width: 6.5em; // magic number :( adjust according to your own content
+      display: inline-block;
+      // end options
+      
+      @media (min-width: $breakpoint-alpha) {
+        display: none;
+      }
+    }
+  }
+  
+  th, td {
+    text-align: left;
+    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+      
+      &:first-child {
+        padding-left: 0;
+      }
+      
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+  }
+  
+}
+.rwd-table {
+  // background: #34495E;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+  tr {
+    // border-color: lighten(#34495E, 10%);
+  }
+  th, td {
+    margin: .5em 1em;
+    @media (min-width: $breakpoint-alpha) { 
+      padding: 1em !important; 
+    }
+  }
+  th, td:before {
+    // color: #dd5;
+  }
+}
+
+
+.full-offers-wrap .rd-step .step-number {
+  display: inline-block;
+  margin-left: 1px;
+}
+.rd-step .step-number {
+  position: static;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 21px;
+  color: #FFF;
+}
+.rd-step.yellow {
+  background: #ffb302;
+  border-color: #ffe082;
+}
+.rd-step.blue {
+  background:  #17a2b8;
+
+  border-color: rgba(33,150,243,0.4);
+  background-clip: padding-box;
+}
+.rd-step.red {
+  background:#dc3545;
+  border-color: #dc35458f;
+}
+
+.rd-step.green {
+  background: #1ab744;
+  border-color: #76d48f;
+}
+
+
+
+
+.rd-step {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-width: 5px;
+  border-style: solid;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  font-size: 15px;
+  line-height: 15px;
+  background: #b0bec5;
+  border-color: rgba(176,190,197,0.4);
+  -webkit-background-clip: padding-box!important;
+  background-clip: padding-box!important;
+}
+
+
+
+
+
+
+.bankMenu h5{             
+padding: 5px;
+}
+
+.bankMenu{
+  display:flex;
+  // margin-left: 5px;
+padding: 10px;
+/* background-color: coral; */
+}
+// .bankMenu h5{
+//   margin: 10px 10px;
+// }
+
+// #bankMenuCard{
+//   margin: auto;
+  
+// } 
+
+
+.cardHeight{
+  // height: 360px;
+  // width:250px;   
+  min-width: 250px;
+  text-align: left;
+  border-left: 5px solid;
+      margin-bottom: 10px;
+
+  // margin-left: 0px !important;
+  }
+.bankMenu img:hover .dropdown-content {
+/* background-color: pink; */
+}
+
+.subMenuList li{
+
+text-align: left;
+// padding-bottom: 2px;
+}
+
+
+.subMenuList li a{
+  color: 	 #4d4d4d;
+  }
+  
+  .subMenuList li a:hover{
+  color:#000000;
+  font-size: 13px;
+  font-weight: bold;
+  }  
+hr{
+margin-top: 0.5rem;
+margin-bottom: 0.5rem;
+}    
+
+
+
+
+#formFooter {
+background-color: #f6f6f6;
+border-top: 1px solid #dce8f1;
+padding: 25px;
+text-align: center;
+-webkit-border-radius: 0 0 10px 10px;
+border-radius: 0 0 10px 10px;
+}
+
+.row.col-md-12.m-auto.p-3:hover {
+  background: #e8e8e8;
+  cursor: pointer;
+}
+
+.bankCustInfo{
+  width: 108%;
+  max-width: 108%;
+  padding: 0 8px;
+  border-bottom: 1px solid #e8e8e8;
+   margin-top: -2.4em ;
+   margin-left: -3em;
+   padding: 0.5em;
+}
+
+
+.topSpan{
+  font-weight: bold;display: block
+}
+
+.colorLogo{
+  height: 25px;
+  width: 25px;
+}
+
+.ClientDialog{
+  width: 50%;
+  left: 25%;
+}
+.title-name{
+  margin: 6px 32px ;
+}
+.modal-body{
+  height: 400px;overflow: auto;
+}
+.ClientDialogBody{
+  width:100%;  margin: 0px 0px 0px 10px;
+}
+
+.submenuActive{
+  
+  color: #28a745!important
+}
+
+.passwordModal{
+  width: 55%;
+}
+.bankDialog
+{
+  max-width:75vw
+}
+
+.hideIcon{
+  display: none
+}
+.CUSTNAME{
+  margin-right: -70px;
+}
+
+
+
+
+
+
+.btn-hover {
+  width: 8rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 40px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-3 {
+  background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle .mat-radio-inner-circle{
+  background: #3f51b5 !important;
+}

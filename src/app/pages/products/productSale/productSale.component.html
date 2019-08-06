@@ -1,0 +1,762 @@
+<!-- <ul id="infinite-scroller"
+appInfiniteScroller
+scrollPerecnt="70"
+immediateCallback="true"
+[scrollCallback]="scrollCallback"
+>
+  <li *ngFor="let item of productMasterDataArray">{{item.PRODUCT_NAME}}</li>
+</ul> -->
+
+<div *ngIf='showPaymentOption' class="animation slideUpIn" style="z-index: 5555; position: relative;">
+    <paymentOption [billDetail]='billDetailObj' (btnClick)='paymentCallback($event)'></paymentOption>
+</div>
+<main>
+    <div class="main">
+        <div style="margin-right: 0px !important;margin-left: 0px!important;padding-left:0px !important;margin-right:15px !important; width: 100%;">
+            <div class="row navbarProd">
+
+                <div class="col-md-2">
+                    <div class="form-group ">
+                        <input type="text" autocomplete="off" inputType='number' id="mobileNo" class="form-control  form-control-sm searchBarInput"
+                            name="mobileNo" [(ngModel)]="mobileNo" required maxlength="10">
+                        <label class="form-control-placeholder" for="mobileNo">Mobile No.</label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group ">
+                        <input type="text" autocomplete="off" inputType="char" id="customerName" class="form-control  form-control-sm searchBarInput"
+                            name="customerName" [(ngModel)]="customerName" required maxlength="100">
+                        <label class="form-control-placeholder" for="customerName">Customer Name</label>
+                    </div>
+                </div>
+                <div class="col-md-5"></div>
+
+                <div class="col-md-1 col-sm-12 " style="padding: 0px;margin-right: 0px; z-index: 50;">
+                    <div class="">
+                        <a class="linkTS" href="javascript:void(0);" (click)="resetPurchaseItemIconValue()">
+                            <i class="fa fa-refresh fa-fw"></i>Refresh</a>
+                        <!-- <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>Refresh</a> -->
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-12 " style="margin: 0px 0px 0px 10px; padding:0;z-index: 50;">
+                    <div class="dropdown">
+                        <a class="linkTS dropdown-toggle" href="javascript:void(0);" (click)="getProdBill()" id="dropdownMenuLink"
+                            data-toggle="modal" data-target="#showBillModal">
+                            <i class="material-icons">receipt</i> View Bill
+                        </a>
+
+                        <div class="dropdown-menu dialog animation slideUpIn second-example" aria-labelledby="dropdownMenuLink">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div [class]="showallProdwithType" appInfiniteScroller scrollPerecnt="80" immediateCallback="true"
+                [scrollDownCallback]="scrollDCallback">
+                <div *ngFor="let productType of showProductTypeArray">
+                    <div class="row">
+                        <div class="col-md-12" style="margin-top: 30px; border-bottom: 1px solid #e8e8e8;">
+                            <div class="row">
+                                <div class="col-md-6" style="padding-left: 30px;">
+                                    <!-- <p id="panimate" [@myAwesomeAnimation]='state' (click)="animateMe()">I will animate</p> -->
+                                    <h4 style="font-size:1.3rem">{{productType.PRODUCT_TYPE_NAME}}
+                                        <a href="javascript:void(0);" (click)="ViewAllProdList(productType._id,productType.PRODUCT_TYPE_NAME)">View
+                                            All</a>
+                                    </h4>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span id="slider">
+
+                                <div id="slides" appInfiniteScroller scrollPerecnt="80" immediateCallback="true"
+                                    [scrollLeftCallback]="scrollLCallback" [class]='productType._id'>
+
+                                    <!-- <div id="container" (swipe)="onSwipe($event,productType._id)" style="height: 240px; width: max-content;" class="swipe"> -->
+                                    <div id="container" style="height: 240px; width: max-content;" class="swipe">
+
+                                        <div class="inner" *ngFor="let item of productMasterDataArray; let i = index">
+                                            <div *ngIf="productType._id==item.PRO_TYPE_MST_ID" [class]="'cls_'+productType._id+'_'+ item._id">
+                                                <div class="slid col-md-12 ">
+
+                                                    <div class="plus-control">0</div>
+                                                    <div class="cost-control">
+                                                        <div style="width:100%;float:left;padding:5px;text-align: center;">
+                                                            <div style="width: 48%;height: 250px;float: left;padding-top: 70px;cursor: pointer;"
+                                                                (click)="removeItem(i,$event);">-</div>
+                                                            <div [id]="'cntDiv' + item._id" style="float: left;width: 4%;padding-top: 70px;">0</div>
+                                                            <div style="width: 48%;height: 250px;float: right;cursor: pointer;padding-top: 70px;"
+                                                                (click)="addItem(i,$event);">+</div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="productImg " style="text-align: center;">
+                                                        <img class="img-fluid text-center" src="assets/images/product/{{item.PRODUCT_IMAGE}}"
+                                                            alt="" />
+                                                    </p>
+                                                    <p class="prod-price" style="font-family: Arial,sans-serif;font-size: 14px;font-weight: 600;">
+                                                        {{item.PRODUCT_NAME}}
+                                                    </p>
+                                                    <p class="prod-price" style="color:rgb(146, 13, 13); font-size:13px">₹
+                                                        {{item.PRO_RATE | number: '1.2'}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wrapper1">
+                                    <button class="butL" (click)="prevProd(productType)">
+                                        <i class="material-icons">chevron_left</i>
+                                    </button>
+                                </div>
+                                <div class="wrapper1">
+                                    <button class="buttoR" (click)="nextProd(productType)">
+                                        <i class="material-icons">
+                                            chevron_right
+                                            </i>
+                                    </button>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- View all Start -->
+            <div [class]="showViewAllProdWOType" appInfiniteScroller scrollPerecnt="80" immediateCallback="true"
+                [scrollDownCallback]="scrollDDCallback">
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 30px; border-bottom: 1px solid #e8e8e8;">
+                        <div class="row">
+                            <div class="col-md-6 " style="padding-left: 30px;">
+                                <h4 style="font-size:1.3rem">{{ProdTypeName}}
+                                </h4>
+
+                            </div>
+                            <div class="col-md-4">
+
+                            </div>
+                            <div class="col-md-2 text-right ">
+                                <i class="fa fa-arrow-circle-o-left fa-2x cursorPointerC  " data-title="Back"
+                                    (click)="backAllProd()"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <span id="slider"> -->
+                        <div id="TypeProd">
+
+                            <!-- <div id="container" (swipe)="onSwipe($event,productType._id)" style="height: 240px; width: max-content;" class="swipe"> -->
+                            <!-- <div id="container"> -->
+
+                            <div class="row">
+
+                                <div class="col-md-2" style="padding: 0 4px;" *ngFor="let item of productMasterDataArray | filter:filterProdType ; let i = index">
+                                    <div class="card">
+                                        <!-- <div class="col-md-3" > -->
+
+                                        <div class="plus-control">0</div>
+                                        <div class="cost-control">
+                                            <div style="width:100%;float:left;padding:5px;text-align: center;">
+
+                                                <div style="width: 48%;height: 250px;float: left;padding-top: 70px;cursor: pointer;"
+                                                    (click)="removeItem(i,$event);">-</div>
+                                                <div [id]="'cntDivD' + item._id" style="color:transparent;float: left;width: 4%;padding-top: 70px;">0</div>
+                                                <div style="width: 48%;height: 250px;float: right;cursor: pointer;padding-top: 70px;"
+                                                    (click)="addItem(i,$event);">+</div>
+                                            </div>
+                                        </div>
+                                        <p class="productImg " style="text-align: center;">
+                                            <img class="img-fluid text-center" src="assets/images/product/{{item.PRODUCT_IMAGE}}"
+                                                alt="" />
+                                        </p>
+                                        <p class="prod-price" style="font-family: Arial,sans-serif;font-size: 14px;font-weight: 600;">
+                                            {{item.PRODUCT_NAME}}
+                                        </p>
+                                        <p class="prod-price" style="color:rgb(146, 13, 13); font-size:13px">₹
+                                            {{item.PRO_RATE | number: '1.2'}}</p>
+                                        <!-- </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                        <!-- </span> -->
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- <div class="row table-responsive" style="height:472px;width: 100% !important; overflow: auto;" id="infinite-scroller" appInfiniteScroller
+                        scrollPerecnt="70" immediateCallback="true" [scrollCallback]="scrollCallback">
+                        <div *ngFor="let item of productMasterDataArray; let i = index" class="col-md-2" style="padding: 10px !important; border: 1px solid #bbbbbb;">
+                            <div class="plus-control">0</div>
+                            <div class="cost-control">
+                                <div style="width:100%;float:left;padding:5px;text-align: center;">
+                                    <div style="width:10%;float:left;cursor:pointer;" (click)="removeItem(i,$event);">-</div>
+                                    <div [id]="'cntDiv' + item._id" style="float:left; width:80%;">0</div>
+                                    <div style="width:10%;float:right;cursor:pointer;" (click)="addItem(i,$event);">+</div>
+                                </div>
+                            </div>
+                            <div style="width: 100%;">
+                                <p class="productImg" style="text-align: center;">
+                                    <img class="img-fluid text-center" style="height: 121px !important;" src={{item.PRODUCT_IMAGE}} alt="" />
+                                </p>
+                                <p class="prod-price">{{item.PRODUCT_NAME}}</p>
+                                <p class="prod-price" style="padding-top:10px">Rs.{{item.PRO_RATE | number: '1.2'}}</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+            <div [class]="showBill">
+                <div class="row">
+                    <div class="col-md-10" style="position:absolute;z-index: 5000;color: #000;top: 0%; left: 8%; ">
+                        <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                            <div class="tableHeader" style="border-top: 4px solid #b9cb1a;">
+                                <h4 class="shopTitle">{{businessName}}</h4>
+                                <hr>
+                                <div class="row shopDetls">
+                                    <div class="col-md-6">
+                                        <p>Mobile No:-{{mobileNo}}</p>
+                                        <p>Customer Name:- {{customerName}}</p>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p *ngIf="ShowBillNo">Bill Number:- {{billNo}}</p>
+                                            </div>
+                                            <div class="col-md-6" style="float:right">
+                                                <a href="javascript:void(0)" title="Save Bill" (click)="saveBill();"
+                                                    data-toggle="modal" data-target="#saveBillModal" class="button1 btnPush btnBlueGreen">Save</a>
+                                                <!-- <a href="javascript:void(0)" title="Print Bill" (click)="printBill();"  data-toggle="modal" data-target="#saveBillModal" class="button1 btnPush btnBlueGreen">Print</a> -->
+                                                <!-- <a href="javascript:void(0)" class="buttonPress" style="bottom: -40px; right: 105px;" title="Save Bill" (click)="saveBill();">
+                                                    <span>Save</span>
+                                                </a>
+                                                <a href="javascript:void(0)" class="buttonPress" style="bottom: -40px;right: 21px;" title="Print Bill">
+                                                    <span>Print</span>
+                                                </a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="closeBtn" title="close" (click)="btnClose()">
+                                    <img class="img-fluid" src="assets/images/closeBtn.png" alt="close">
+                                </span>
+                            </div>
+
+
+                            <table id="myTable" class="table table-fixedheader table-bordered table-striped" style="font-size: 0.75rem;background: #fff;border-top: 4px solid #b9cb1a;">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">Product Name</th>
+                                        <th width="15%">Quantity</th>
+                                        <th width="10%">Rate</th>
+                                        <th width="15%">Amount</th>
+                                        <th width="15%">GST</th>
+                                        <th width="20%">Total Amount</th>
+                                        <th width="5%">
+                                            <i class="fa fa-trash"></i>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="height:291px !important">
+                                    <tr *ngFor="let purchaseItem of purchaseItemArray; let i = index">
+                                        <td width="20%">{{purchaseItem.productName}}</td>
+                                        <td width="15%">
+                                            <input id={{i}} type="text" inputType="number" style="font-size: 15px;text-align: center;height: 22px;"
+                                                (blur)="onQtyblur(purchaseItem, i)" [(ngModel)]="purchaseItem.qty"
+                                                class="form-control form-control-sm" id="" />
+                                        </td>
+                                        <td width="10%" class='text-right'>{{purchaseItem.rate | number:'1.2'}}</td>
+                                        <td width="15%" class='text-right'>{{(purchaseItem.qty * purchaseItem.rate) |
+                                            number:'1.2'}}</td>
+                                        <td width="15%" class='text-right'>{{(purchaseItem.gst * purchaseItem.qty) |
+                                            number:'1.2'}}</td>
+                                        <td width="20%" class='text-right'> ₹ {{(purchaseItem.qty * ( purchaseItem.rate
+                                            + purchaseItem.gst)) | number:'1.2'}}</td>
+                                        <td class='text-center' (click)="removeProduct(purchaseItem,i)" width="5%">
+                                            <i class="fa fa-trash"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        <th width="20%">
+                                            <strong>No. of product</strong>
+                                        </th>
+                                        <th width="15%">
+                                            <strong>Total qty.</strong>
+                                        </th>
+                                        <th width="40%" align="center" colspan="3">Total Amount</th>
+                                        <th width="25%" align="center" colspan="2">
+                                            <strong class="number" style="color:green">₹ {{totalAmount | number:'1.2'}}</strong>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%" style="height: 48px;">
+                                            <strong class="number">{{totalProduct}}</strong>
+                                        </th>
+                                        <th width="15%" style="height: 48px;">
+                                            <strong class="number">{{totalQty}}</strong>
+                                        </th>
+                                        <!-- <span width="65%" *ngIf="showPaymentMode">
+                                            <th class="prod-pay">
+                                                <strong>
+                                                    <img class="img-fluid" src="assets/images/prod-icon1.png" alt="Aadhar Payment" title="Aadhar Payment" (click)="aadharPay()">
+                                                </strong>
+                                            </th>
+                                            <th class="prod-pay">
+                                                <strong>
+                                                    <img class="img-fluid" src="assets/images/prod-icon2.png" alt="UPI Payment" title="UPI Payment">
+                                                </strong>
+                                            </th>
+                                            <th class="prod-pay">
+                                                <strong>
+                                                    <img class="img-fluid" src="assets/images/prod-icon3.png" alt="Payment Gateway" title="Payment Gateway" (click)="payByPaymentGateway()">
+                                                </strong>
+                                            </th>
+                                            <th class="prod-pay">
+                                                <strong>
+                                                    <img class="img-fluid" src="assets/images/prod-icon4.png" alt="QR Payment" title="QR Payment" (click)="qrCodePay()">
+                                                </strong>
+                                            </th>
+                                            <th class="prod-pay">
+                                                <strong>
+                                                    <img class="img-fluid" src="assets/images/prod-icon5.png" alt="Cash Payment" title="Cash Payment" (click)="cashPay()">
+                                                </strong>
+                                            </th>
+                                        </span> -->
+                                        <th *ngIf="showVerify" width="65%" style="height: 48px;">
+                                            <!-- <a href="javascript:void(0)" class="buttonPress" (click)="VerifyPay()">
+                                                <span>Verify Payment</span>
+                                            </a> -->
+
+
+                                            <a href="javascript:void(0)" title="Verify Payment" (click)="VerifyPay()"
+                                                class="button2 btnPush btnBlueGreen">Verify Payment</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left:2%" *ngIf='showPayList'>
+
+                </div>
+
+            </div>
+
+            <!-- <div [class]='showAadharPay'>
+                <div class="col-md-6" style="position:absolute;z-index: 5003;color: #000;top: 7%; left: 25%;
+                height: 500px;overflow: auto; background: whitesmoke; border-top: 4px solid #b9cb1a;">
+                    <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12">
+                                <h4 class="shopTitle">Aadhar Pay</h4>
+                                <hr>
+                                <div [class]="showAadharform">
+                                    <p>Aadhar Number
+                                        <span style="color:red">*</span>
+                                    </p>
+                                    <div class="row">
+
+
+                                        <div class="form-inline" style="margin: 0 10px">
+                                            <input style="width: 31%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo1Pay" inputType="number" id="txtAadhar1"
+                                                type="text" class="form-control form-control-sm text-center aadhar" maxlength="4"
+                                                required> &nbsp;
+                                            <input style="width: 31%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo2Pay" inputType="number" id="txtAadhar2"
+                                                type="text" class="form-control form-control-sm text-center aadhar" maxlength="4"
+                                                required> &nbsp;
+                                            <input style="width: 31%; margin: -7px 4px 10px;" (keyup)="onkeyup()" [(ngModel)]="aadharNo3Pay" inputType="number" id="txtAadhar3"
+                                                type="text" class="form-control form-control-sm text-center aadhar" maxlength="4"
+                                                required>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Select Bank
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input autocomplete="off" class="form-control form-control-sm" (blur)="setBankCode()" type="text" id="txtAadharBank" list="items"
+                                            placeholder="Bank Name" [(ngModel)]="bankNamePay" required/>
+                                        <datalist id="items">
+                                            <option *ngFor="let bank of aadharBankList" [value]="bank.BANK_NAME"></option>
+                                        </datalist>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Amount
+                                            <span style="color:red">*</span>
+                                        </label>
+                                        <input id="txtAmount" type="text" inputType="decimal" class="form-control form-control-sm" [(ngModel)]="totalAmount" (blur)="setAmountFormat()"
+                                            placeholder="0.00" required>
+                                    </div>
+                                    <div *ngIf="showOtherInfo">
+                                        <div class="form-group">
+                                            <label>Customer Name</label>
+                                            <input type="text" autocomplete="off"  inputType="char" class="form-control form-control-sm" [(ngModel)]="customerName" placeholder=" ">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Bill Number</label>
+                                            <input type="text" autocomplete="off"  class="form-control form-control-uppercase form-control-sm" [(ngModel)]="billNo" maxlength="20" placeholder=" ">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Customer GST Number</label>
+                                            <input type="text" autocomplete="off"  class="form-control form-control-sm" [(ngModel)]="custGSTNoPay" maxlength="15" minlength="15" placeholder=" ">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Remarks</label>
+                                            <input type="text" autocomplete="off"  class="form-control form-control-sm" [(ngModel)]="aadharRemarksPay" placeholder=" ">
+                                        </div>
+                                    </div>
+
+                                    <div class="checkbox checkbox-success">
+                                        <input type="checkbox" id="aadharCheck" (click)="showOthInfo($event)">
+                                        <label for="aadharCheck">
+                                            <span style="padding-left: 5px; font-size: 13px;">Other Information</span>
+                                        </label>
+                                    </div>
+
+
+                                    <div class="checkbox checkbox-success">
+                                        <input type="checkbox" id="aadharCheck2" [(ngModel)]="TCchek">
+                                        <label for="aadharCheck2">
+                                            <span style="color:green ;padding-left: 5px;
+                                                            font-size: 13px;">
+                                                <a href="javascript:void(0)" (click)="termConditions()" data-toggle="modal" data-target="#myModal">Accept Term & Conditions.</a>
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <button type="button" class="btn btn-success " (click)="btnPaymentAadhar();">Pay</button>
+                                    <button type="button" class="btn btn-success" (click)="clear();">Clear</button>
+                                    <button type="button" class="btn btn-success" (click)="closeaadharPay();">Close</button>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-10 col-sm-12" style="margin: 0 10%;" *ngIf="showAadharInstallInfo">
+
+                                <div class="gap"></div>
+                                <div *ngIf="showStatusBox" style="text-align:center; font-family:  verdana; background: #bedad5ab; padding: 20px 20px 5px 20px; border-radius: 10px;">
+                                    <span style="position: absolute; right: 30px; top: 18px; font-size: 20px;" (click)="closeaadharPay()">x</span>
+                                    <img [src]="statusImage" [alt]="statusMessage" style="width:40px;" />
+                                    <p style="color:#2f4706;padding: 10px 0 0;font-size:15px;margin-bottom: 2px;" [class]='showBusinness'>Business :{{business}}</p>
+                                    <p style="margin-bottom:2px">Merchant :{{merchantName}}</p>
+                                    <p style="margin-bottom:2px" [class]='mCust'>Customer Name :{{customerName}}</p>
+                                    <p style="margin-bottom:2px" [class]='showAadharTranId'>RRN : {{rrn}} </p>
+                                    <p [class]="resultMessage" style="margin-bottom:2px">Status : {{statusMessage}}</p>
+                                    <p [class]="resultMessage" style="font-size: 13px;margin-bottom:2px">{{collMessage}}</p>
+                                    <p style="margin-bottom:2px; font-weight: bold">₹ Amount : {{balance | number:'1.2'}}</p>
+                                    <p style="margin-bottom:2px">Date :{{tranDate}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- show QR popup -->
+            <div [class]='showQrPay'>
+                <div class="col-md-6" style="position:absolute;z-index: 5003;color: #000;top: 7%; left: 25%;
+                height: 500px;overflow: auto; background: whitesmoke; border-top: 4px solid #b9cb1a;">
+                    <div class="price-sec" style="padding: 10px;padding-top: 20px;">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="text-center" *ngIf="QRFlag">
+                                    <div class="qrcode-block">
+                                        <div class="qrtop">
+                                            <img class="img-fluid" src="assets/images/qrcode-top.jpg" alt="" />
+                                        </div>
+                                        <div class="genqr">
+                                            <div class="scan-title">
+                                                <h5 style="margin-bottom: 0px;">Scan QR Code</h5>
+
+                                                <ngx-qrcode item-width="200px" item-height="200px" [qrc-element-type]="elementType"
+                                                    [qrc-value]="qrValue">
+                                                </ngx-qrcode>
+                                                <img class="upi_qr" src="assets/images/UPI-qr-2.png" />
+                                            </div>
+                                        </div>
+                                        <div class="client-name">
+                                            <p>Business Name :- {{business}}</p>
+                                            <p>Merchant Name :- {{merchantName}}</p>
+                                        </div>
+
+                                        <div class="step-block">
+                                            <p>
+                                                <strong>Steps to Pay</strong>
+                                            </p>
+                                            <p class="app">
+                                                Open UPI app
+                                                <span class="qraro">></span>
+                                                Select 'Scan to Pay'
+                                                <span class="qraro">></span>
+                                                Scan QR Code
+                                                <span class="qraro">></span> Enter Amount</p>
+                                        </div>
+                                        <div class="qrtop">
+                                            <img class="img-fluid" src="assets/images/qrcode-footer.jpg" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!--POPUP START for show product Type-->
+            <div class="modal fade" id="saveBillModal" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                    <div class="modal-content dialog">
+
+                        <div class="modal-header">
+                            <p class="title-name" style="margin:0em 0 0;">Save Bill</p>
+                            <button type="button" class="close" (click)="closeSaveBill()" data-dismiss="modal">&times;</button>
+                        </div>
+
+
+                        <div class="modal-body ">
+
+                            <p>Bill Number:-{{billNo}}</p>
+                            <p>Mobile No:-{{mobileNo}}</p>
+                            <p>Customer Name:- {{customerName}}</p>
+                            <p>Total Amount:-<strong class="number" style="font-size:20px">₹ {{totalAmount |
+                                    number:'1.2'}}</strong></p>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="printBill()" data-dismiss="modal">Print
+                                Bill</button>
+                            <button type="button" class="btn btn-secondary" (click)="closeSaveBill()" data-dismiss="modal">Close</button>
+                            <!-- <button class="btn show-btn btn-success " (click)="submit()">Submit</button>
+                  <button class="btn show-btn btn-success " (click)="clear()"> Clear </button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END for show product-->
+
+
+
+            <!--POPUP START for show product Type-->
+            <div class="modal fade" id="productTypeModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                    <div class="modal-content dialog">
+
+                        <div class="modal-header">
+                            <p class="title-name" style="margin:0em 0 0;">Search Product Type</p>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+
+                        <div class="modal-body ">
+
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" onkeyup="searchFunction(event,'#searchProdType tr')"
+                                        placeholder="Search Product Type..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info " type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Product Id</th>
+                                            <th>Product Type Code</th>
+                                            <th>Product Type Name</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table id='searchProdType' class="table-striped row-border table-hover" cellpadding="0"
+                                    cellspacing="0" border="0">
+                                    <tbody>
+                                        <tr *ngFor="let item of productTypeDataArray" (click)="getValue(item)"
+                                            data-dismiss="modal">
+                                            <td>{{item._id}}</td>
+                                            <td>{{item.PRODUCT_TYPE_CODE}}</td>
+                                            <td>{{item.PRODUCT_TYPE_NAME}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- <button class="btn show-btn btn-success " (click)="submit()">Submit</button>
+                  <button class="btn show-btn btn-success " (click)="clear()"> Clear </button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END for show product-->
+
+            <!--POPUP START for show product Bill-->
+            <div class="modal fade" id="showBillModal">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:100%;">
+                    <div class="modal-content dialog">
+
+                        <div class="modal-header">
+                            <p class="title-name" style="margin:0em 0 0;">View Bill</p>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+
+
+
+                        <div class="modal-body ">
+
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" autocomplete="off" class="form-control form-control-sm" onkeyup="searchFunction(event,'#searchGenBill tr')"
+                                        placeholder="Search Bill..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info " type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Mobile Number</th>
+                                            <th>Customer Name</th>
+                                            <th>Bill Number</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="tbl-content">
+                                <table id='searchGenBill' style="table-layout: fixed;" width="100%" class="table-striped row-border table-hover"
+                                    cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                        <tr *ngFor="let item of productBillDataArray" (click)="getBillDetails(item)"
+                                            data-dismiss="modal">
+                                            <td> {{item.MOBILE_NO}}</td>
+                                            <td style="word-wrap: break-word"> {{item.CUSTOMER_NAME}}</td>
+                                            <td class="text-center"> {{item.BILL_NO}}</td>
+                                            <td class="text-center">₹ {{item.TOTAL_AMOUNT}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- <button class="btn show-btn btn-success " (click)="submit()">Submit</button>
+                  <button class="btn show-btn btn-success " (click)="clear()"> Clear </button> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--POPUP END for show product-->
+
+        </div>
+    </div>
+    <div [class]="showOverlay" style="position:absolute;z-index: 4999; height:100%;width:100%;left:0px;top:0px;background-color:rgba(8, 8, 8, 0.53)"></div>
+
+    <div [class]='showProdList' style="position: fixed;z-index: 5000;color: white;right: 0;bottom: 37px;background-color: #000000b0; ">
+        <p style="margin:0">
+            <a class="btn btn-primary" (click)="hideArrow()" style="background: transparent;
+                    border: 0; font-weight: bold;padding: 10px 42px 7px 13px;"
+                data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                <!-- <span>View Purchase Summary &amp; Pay &nbsp;({{totalQty}}) </span>-->
+                <span>View Purchase Summary &amp; Pay </span> &nbsp;
+                <button class="totalQtyNo">{{totalQty}}</button>
+            </a>
+            <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Button with data-target
+                    </button> -->
+            <span class="btnCollapseDown" (click)="hideArrow()" data-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="true" aria-controls="collapseExample">
+                <i class="fa fa-angle-down"></i>
+            </span>
+            <span class="btnCollapseUp" (click)="hideArrow()" data-toggle="collapse" href="#collapseExample" role="button"
+                aria-expanded="true" aria-controls="collapseExample">
+                <i class="fa fa-angle-up"></i>
+            </span>
+        </p>
+        <div class="collapse show" id="collapseExample">
+
+            <table id="myTable" class="table table-fixedheader table-bordered table-striped" style="font-size: 0.75rem; text-align: center;
+                            width: 420px; border: 2px solid #0fadb5;">
+                <thead>
+                    <tr>
+                        <th>
+                            <strong>No. of product</strong>
+                        </th>
+                        <th>
+                            <strong>Total qty.</strong>
+                        </th>
+                        <th align="center" colspan="3">Total Amount</th>
+                        <th align="center" rowspan="2" style="vertical-align: middle; cursor: pointer;" (click)="showPurchaseBill();">
+                            <span class="btnPay">Pay</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <strong class="number">{{totalProduct}}</strong>
+                        </th>
+                        <th>
+                            <strong class="number">{{totalQty}}</strong>
+                        </th>
+                        <th style="text-align: center;" colspan="3">
+                            <strong class="number" style="color:white;font-size:20px">₹ {{totalAmount | number:'1.2'}}</strong>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+
+
+    </div>
+
+</main>

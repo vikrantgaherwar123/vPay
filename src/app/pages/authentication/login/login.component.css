@@ -1,0 +1,23 @@
+.forgetLink{
+    padding: 0px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background: lightgray;
+}
+
+
+
+.field-icon {
+    float: right;
+    margin-left: -25px;
+    margin-right: 5px;
+    margin-top: -22px;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .captchaImg{height: 9vh;margin-top: -3vh;margin-left: 1vw;cursor: pointer;}
+  .captchaInput{margin-bottom: 0px;width: 75%; font-size: 24px; font-weight: bolder; text-decoration: line-through; display: inline-block;
+     background-color:#fff;color: transparent;text-shadow: 0 0 3px rgba(0, 0, 0, 1);}
