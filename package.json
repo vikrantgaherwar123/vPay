@@ -48,7 +48,7 @@
     "ngx-image-zoom": "^0.3.4",
     "ngx-qrcode2": "0.0.5",
     "ngx-webstorage-service": "^4.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "npm": "^6.6.0",
     "npm-check": "^5.9.0",
     "rxjs": "^6.4.0",
