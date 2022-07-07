@@ -39,7 +39,7 @@
     "jquery": "^3.4.1",
     "jquery.panzoom": "^3.2.3",
     "material-design-icons": "^3.0.1",
-    "moment": "2.22.2",
+    "moment": "2.29.4",
     "ng-click-outside": "^2.4.1",
     "ng-recaptcha": "^4.2.1",
     "ng-select": "^1.0.0-beta.6",
